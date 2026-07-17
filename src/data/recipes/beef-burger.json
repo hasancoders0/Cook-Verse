@@ -1,0 +1,410 @@
+{
+  "id": "beef-burger",
+  "slug": "beef-burger",
+
+  "title": {
+    "en": "Classic Beef Burger",
+    "bn": "ক্লাসিক বিফ বার্গার"
+  },
+
+  "description": {
+    "en": "A juicy homemade beef burger topped with fresh vegetables, melted cheese, and a toasted bun. Perfect for lunch, dinner, or weekend BBQs.",
+    "bn": ""
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80",
+
+  "gallery": [],
+
+  "category": {
+    "slug": "fast-food",
+    "name": {
+      "en": "Fast Food",
+      "bn": "ফাস্ট ফুড"
+    }
+  },
+
+  "cuisine": {
+    "slug": "american",
+    "name": {
+      "en": "American",
+      "bn": "আমেরিকান"
+    }
+  },
+
+  "difficulty": {
+    "en": "Easy",
+    "bn": "সহজ"
+  },
+
+  "prepTime": 15,
+  "cookTime": 10,
+  "totalTime": 25,
+
+  "servings": 2,
+
+  "nutrition": {
+    "calories": 720,
+    "protein": 42,
+    "fat": 38,
+    "carbohydrates": 48,
+    "fiber": 3,
+    "sugar": 6,
+    "sodium": 980
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Burger",
+        "bn": "বার্গার"
+      },
+      "items": [
+        {
+          "slug": "ground-beef",
+          "name": {
+            "en": "Ground Beef",
+            "bn": "গরুর কিমা"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 400,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "80% lean",
+            "bn": ""
+          }
+        },
+        {
+          "slug": "burger-buns",
+          "name": {
+            "en": "Burger Buns",
+            "bn": "বার্গার বান"
+          },
+          "type": "grain",
+          "isMainIngredient": true,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Lightly toasted",
+            "bn": ""
+          }
+        },
+        {
+          "slug": "cheddar-cheese",
+          "name": {
+            "en": "Cheddar Cheese",
+            "bn": "চেডার চিজ"
+          },
+          "type": "dairy",
+          "isMainIngredient": true,
+          "amount": 2,
+          "unit": {
+            "en": "slices",
+            "bn": "স্লাইস"
+          }
+        },
+        {
+          "slug": "lettuce",
+          "name": {
+            "en": "Lettuce",
+            "bn": "লেটুস"
+          },
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 2,
+          "unit": {
+            "en": "leaves",
+            "bn": "পাতা"
+          }
+        },
+        {
+          "slug": "tomato",
+          "name": {
+            "en": "Tomato",
+            "bn": "টমেটো"
+          },
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 4,
+          "unit": {
+            "en": "slices",
+            "bn": "স্লাইস"
+          }
+        },
+        {
+          "slug": "onion",
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "rings",
+            "bn": "রিং"
+          }
+        },
+        {
+          "slug": "pickles",
+          "name": {
+            "en": "Pickles",
+            "bn": "পিকলস"
+          },
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": {
+            "en": "slices",
+            "bn": "স্লাইস"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Sauce",
+        "bn": "সস"
+      },
+      "items": [
+        {
+          "slug": "mayonnaise",
+          "name": {
+            "en": "Mayonnaise",
+            "bn": "মেয়োনিজ"
+          },
+          "type": "sauce",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "ketchup",
+          "name": {
+            "en": "Ketchup",
+            "bn": "কেচাপ"
+          },
+          "type": "sauce",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Seasoning",
+        "bn": "মসলা"
+      },
+      "items": [
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "black-pepper",
+          "name": {
+            "en": "Black Pepper",
+            "bn": "গোলমরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Season the Beef",
+        "bn": "গরুর কিমায় মসলা মেশান"
+      },
+      "description": {
+        "en": "Season the ground beef with salt and black pepper.",
+        "bn": ""
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Shape the Patties",
+        "bn": "প্যাটি তৈরি করুন"
+      },
+      "description": {
+        "en": "Divide the beef into two equal portions and shape them into burger patties.",
+        "bn": ""
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Cook the Patties",
+        "bn": "প্যাটি রান্না করুন"
+      },
+      "description": {
+        "en": "Cook the patties over medium-high heat for 4–5 minutes per side.",
+        "bn": ""
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Add Cheese",
+        "bn": "চিজ যোগ করুন"
+      },
+      "description": {
+        "en": "Place cheddar cheese on top during the final minute.",
+        "bn": ""
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Assemble the Burger",
+        "bn": "বার্গার তৈরি করুন"
+      },
+      "description": {
+        "en": "Toast the buns, spread the sauces, add vegetables, patties, and serve.",
+        "bn": ""
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Let the patties rest for 2 minutes before serving.",
+      "bn": ""
+    },
+    {
+      "en": "Use freshly ground beef for better flavor.",
+      "bn": ""
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Grill Pan",
+      "bn": "গ্রিল প্যান"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Mixing Bowl",
+      "bn": "মিক্সিং বোল"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "burger",
+      "name": {
+        "en": "Burger",
+        "bn": "বার্গার"
+      }
+    },
+    {
+      "slug": "beef",
+      "name": {
+        "en": "Beef",
+        "bn": "গরুর মাংস"
+      }
+    },
+    {
+      "slug": "american",
+      "name": {
+        "en": "American",
+        "bn": "আমেরিকান"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "dinner",
+      "name": {
+        "en": "Dinner",
+        "bn": "রাতের খাবার"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "burger",
+      "hamburger",
+      "beef burger",
+      "ground beef",
+      "fast food",
+      "american",
+      "high protein",
+      "bbq",
+      "cheddar cheese",
+      "grilled burger",
+      "homemade burger"
+    ],
+    "bn": [
+      "বার্গার",
+      "হ্যামবার্গার",
+      "বিফ বার্গার",
+      "গরুর কিমা",
+      "ফাস্ট ফুড",
+      "আমেরিকান",
+      "উচ্চ প্রোটিন"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 324
+  },
+
+  "featured": true,
+
+  "published": true
+}

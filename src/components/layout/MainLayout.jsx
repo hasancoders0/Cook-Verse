@@ -2,8 +2,6 @@ import "./globals.css";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { FavoritesProvider } from "@/context/FavoritesContext";
-import { RecentlyViewedProvider } from "@/context/RecentlyViewedContext";
 
 export const metadata = {
   title: "CookVerse",
@@ -12,18 +10,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className="min-h-screen bg-white text-gray-900 antialiased">
         <div className="flex min-h-screen flex-col">
-          <FavoritesProvider>
-            <RecentlyViewedProvider>
-              <Header />
+          <Header />
 
-              <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            {children}
+          </main>
 
-              <Footer />
-            </RecentlyViewedProvider>
-          </FavoritesProvider>
+          <Footer />
         </div>
       </body>
     </html>

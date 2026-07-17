@@ -1,0 +1,255 @@
+{
+  "id": "vegetable-salad",
+  "slug": "vegetable-salad",
+
+  "title": "Fresh Vegetable Salad",
+
+  "description": "A refreshing and healthy vegetable salad made with crisp lettuce, cucumber, tomatoes, carrots, and a light lemon dressing. Perfect as a side dish or a light meal.",
+
+  "thumbnail": "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "name": "Salad",
+    "slug": "salad",
+    "searchTerms": ["salad", "green salad", "healthy salad", "fresh salad"]
+  },
+
+  "cuisine": {
+    "name": "International",
+    "slug": "international",
+    "searchTerms": ["international", "global", "world cuisine"]
+  },
+
+  "difficulty": "Easy",
+
+  "prepTime": 15,
+  "cookTime": 0,
+  "totalTime": 15,
+
+  "servings": 2,
+
+  "nutrition": {
+    "calories": 180,
+    "protein": 4,
+    "fat": 10,
+    "carbohydrates": 18,
+    "fiber": 5,
+    "sugar": 8,
+    "sodium": 240
+  },
+
+  "diet": [
+    {
+      "name": "Vegetarian",
+      "slug": "vegetarian",
+      "searchTerms": ["vegetarian", "veg", "meatless"]
+    },
+    {
+      "name": "Low Calorie",
+      "slug": "low-calorie",
+      "searchTerms": [
+        "low calorie",
+        "low calories",
+        "light meal",
+        "diet friendly"
+      ]
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": "Salad",
+      "items": [
+        {
+          "name": "Lettuce",
+          "slug": "lettuce",
+          "searchTerms": ["lettuce", "leaf lettuce", "salad leaves"],
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 1,
+          "unit": "head",
+          "note": "Washed and chopped"
+        },
+        {
+          "name": "Cucumber",
+          "slug": "cucumber",
+          "searchTerms": ["cucumber", "cucumbers", "fresh cucumber"],
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 1,
+          "unit": "pc",
+          "note": "Sliced"
+        },
+        {
+          "name": "Tomato",
+          "slug": "tomato",
+          "searchTerms": ["tomato", "tomatoes", "fresh tomato"],
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 2,
+          "unit": "pcs",
+          "note": "Diced"
+        },
+        {
+          "name": "Carrot",
+          "slug": "carrot",
+          "searchTerms": ["carrot", "carrots", "fresh carrot"],
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 1,
+          "unit": "pc",
+          "note": "Grated"
+        },
+        {
+          "name": "Red Onion",
+          "slug": "red-onion",
+          "searchTerms": ["red onion", "onion", "red onions", "onions"],
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": "pc",
+          "note": "Thinly sliced"
+        }
+      ]
+    },
+
+    {
+      "title": "Dressing",
+      "items": [
+        {
+          "name": "Olive Oil",
+          "slug": "olive-oil",
+          "searchTerms": ["olive oil", "extra virgin olive oil", "evoo"],
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": "tbsp"
+        },
+        {
+          "name": "Lemon Juice",
+          "slug": "lemon-juice",
+          "searchTerms": ["lemon juice", "lemon", "lime juice"],
+          "type": "acid",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": "tbsp"
+        }
+      ]
+    },
+
+    {
+      "title": "Seasoning",
+      "items": [
+        {
+          "name": "Salt",
+          "slug": "salt",
+          "searchTerms": ["salt", "table salt"],
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": "tsp",
+          "note": "Or to taste"
+        },
+        {
+          "name": "Black Pepper",
+          "slug": "black-pepper",
+          "searchTerms": ["black pepper", "pepper", "ground black pepper"],
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.25,
+          "unit": "tsp"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Prepare the Vegetables",
+      "description": "Wash all vegetables thoroughly. Chop the lettuce, slice the cucumber and onion, dice the tomatoes, and grate the carrot."
+    },
+    {
+      "step": 2,
+      "title": "Combine Ingredients",
+      "description": "Place all prepared vegetables into a large mixing bowl."
+    },
+    {
+      "step": 3,
+      "title": "Prepare the Dressing",
+      "description": "Whisk together olive oil, lemon juice, salt, and black pepper until well combined."
+    },
+    {
+      "step": 4,
+      "title": "Mix the Salad",
+      "description": "Pour the dressing over the vegetables and toss gently until evenly coated."
+    },
+    {
+      "step": 5,
+      "title": "Serve",
+      "description": "Serve immediately while fresh and crisp."
+    }
+  ],
+
+  "equipment": [
+    {
+      "name": "Mixing Bowl"
+    },
+    {
+      "name": "Chef Knife"
+    },
+    {
+      "name": "Cutting Board"
+    },
+    {
+      "name": "Whisk"
+    }
+  ],
+
+  "tips": [
+    "Chill the vegetables before serving for extra freshness.",
+    "Add feta cheese or avocado for more flavor and nutrition.",
+    "Prepare the dressing separately and mix just before serving."
+  ],
+
+  "tags": [
+    {
+      "name": "Salad",
+      "slug": "salad",
+      "searchTerms": ["salad", "green salad", "vegetable salad", "fresh salad"]
+    },
+    {
+      "name": "Healthy",
+      "slug": "healthy",
+      "searchTerms": ["healthy", "nutritious", "healthy food", "healthy meal"]
+    },
+    {
+      "name": "Vegetarian",
+      "slug": "vegetarian",
+      "searchTerms": ["vegetarian", "veg", "meatless"]
+    },
+    {
+      "name": "Quick",
+      "slug": "quick",
+      "searchTerms": ["quick", "fast", "easy", "ready in minutes"]
+    },
+    {
+      "name": "Low Calorie",
+      "slug": "low-calorie",
+      "searchTerms": ["low calorie", "low calories", "light", "diet"]
+    },
+    {
+      "name": "Fresh",
+      "slug": "fresh",
+      "searchTerms": ["fresh", "crisp", "refreshing"]
+    }
+  ],
+
+  "rating": {
+    "average": 4.7,
+    "count": 186
+  },
+
+  "featured": true,
+
+  "published": true
+}

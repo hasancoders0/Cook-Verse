@@ -1,0 +1,394 @@
+{
+  "id": "chicken-biryani",
+  "slug": "chicken-biryani",
+
+  "title": "Chicken Biryani",
+
+  "description": "A flavorful and aromatic chicken biryani made with fragrant basmati rice, marinated chicken, whole spices, herbs, and saffron. Perfect for family dinners and special occasions.",
+
+  "thumbnail": "https://images.unsplash.com/photo-1701579231305-d84d8af9a3fd?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "name": "Dinner",
+    "slug": "dinner",
+    "searchTerms": ["dinner", "evening meal", "supper", "main course"]
+  },
+
+  "cuisine": {
+    "name": "Indian",
+    "slug": "indian",
+    "searchTerms": ["indian", "india", "desi"]
+  },
+
+  "difficulty": "Medium",
+
+  "prepTime": 20,
+  "cookTime": 35,
+  "totalTime": 55,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 580,
+    "protein": 32,
+    "fat": 18,
+    "carbohydrates": 62,
+    "fiber": 3,
+    "sugar": 4,
+    "sodium": 890
+  },
+
+  "diet": [
+    {
+      "name": "High Protein",
+      "slug": "high-protein",
+      "searchTerms": [
+        "high protein",
+        "protein",
+        "protein rich",
+        "muscle building"
+      ]
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": "Rice",
+      "items": [
+        {
+          "name": "Basmati Rice",
+          "slug": "basmati-rice",
+          "searchTerms": ["basmati rice", "rice", "long grain rice"],
+          "type": "grain",
+          "isMainIngredient": true,
+          "amount": 2,
+          "unit": "cups"
+        },
+        {
+          "name": "Water",
+          "slug": "water",
+          "searchTerms": ["water"],
+          "type": "liquid",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": "cups"
+        }
+      ]
+    },
+
+    {
+      "title": "Chicken Marinade",
+      "items": [
+        {
+          "name": "Chicken",
+          "slug": "chicken",
+          "searchTerms": [
+            "chicken",
+            "chicken meat",
+            "boneless chicken",
+            "chicken pieces"
+          ],
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 500,
+          "unit": "g"
+        },
+        {
+          "name": "Yogurt",
+          "slug": "plain-yogurt",
+          "searchTerms": ["yogurt", "plain yogurt", "yoghurt", "curd", "dahi"],
+          "type": "dairy",
+          "isMainIngredient": true,
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "name": "Ginger Garlic Paste",
+          "slug": "ginger-garlic-paste",
+          "searchTerms": [
+            "ginger garlic paste",
+            "ginger paste",
+            "garlic paste"
+          ],
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": "tbsp"
+        },
+        {
+          "name": "Lemon Juice",
+          "slug": "lemon-juice",
+          "searchTerms": ["lemon juice", "lemon", "lime juice"],
+          "type": "acid",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": "tbsp"
+        }
+      ]
+    },
+
+    {
+      "title": "Vegetables & Herbs",
+      "items": [
+        {
+          "name": "Onion",
+          "slug": "onion",
+          "searchTerms": ["onion", "onions", "red onion", "white onion"],
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": "pcs",
+          "note": "Thinly sliced"
+        },
+        {
+          "name": "Tomato",
+          "slug": "tomato",
+          "searchTerms": ["tomato", "tomatoes", "fresh tomato"],
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 1,
+          "unit": "pc",
+          "note": "Chopped"
+        },
+        {
+          "name": "Fresh Coriander",
+          "slug": "fresh-coriander",
+          "searchTerms": ["fresh coriander", "coriander", "cilantro"],
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": "cup"
+        },
+        {
+          "name": "Fresh Mint",
+          "slug": "fresh-mint",
+          "searchTerms": ["fresh mint", "mint", "mint leaves"],
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": "cup"
+        }
+      ]
+    },
+
+    {
+      "title": "Whole Spices",
+      "items": [
+        {
+          "name": "Bay Leaf",
+          "slug": "bay-leaf",
+          "searchTerms": ["bay leaf", "bay leaves"],
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": "pcs"
+        },
+        {
+          "name": "Green Cardamom",
+          "slug": "green-cardamom",
+          "searchTerms": ["green cardamom", "cardamom", "elaichi"],
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": "pcs"
+        },
+        {
+          "name": "Cinnamon Stick",
+          "slug": "cinnamon-stick",
+          "searchTerms": ["cinnamon", "cinnamon stick", "dalchini"],
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": "pc"
+        },
+        {
+          "name": "Cloves",
+          "slug": "cloves",
+          "searchTerms": ["clove", "cloves", "lobongo"],
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 5,
+          "unit": "pcs"
+        }
+      ]
+    },
+
+    {
+      "title": "Seasoning",
+      "items": [
+        {
+          "name": "Salt",
+          "slug": "salt",
+          "searchTerms": ["salt", "table salt"],
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": "tsp"
+        },
+        {
+          "name": "Turmeric Powder",
+          "slug": "turmeric-powder",
+          "searchTerms": ["turmeric", "turmeric powder", "haldi"],
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": "tsp"
+        },
+        {
+          "name": "Red Chili Powder",
+          "slug": "red-chili-powder",
+          "searchTerms": [
+            "red chili",
+            "red chilli",
+            "red chili powder",
+            "red chilli powder",
+            "chili powder"
+          ],
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": "tsp"
+        },
+        {
+          "name": "Garam Masala",
+          "slug": "garam-masala",
+          "searchTerms": ["garam masala", "mixed spice"],
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": "tsp"
+        }
+      ]
+    },
+
+    {
+      "title": "For Garnish",
+      "items": [
+        {
+          "name": "Fried Onion",
+          "slug": "fried-onion",
+          "searchTerms": ["fried onion", "crispy onion", "birista"],
+          "type": "garnish",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Saffron Milk",
+          "slug": "saffron-milk",
+          "searchTerms": ["saffron milk", "saffron"],
+          "type": "garnish",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": "tbsp"
+        },
+        {
+          "name": "Ghee",
+          "slug": "ghee",
+          "searchTerms": ["ghee", "clarified butter"],
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": "tbsp"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "step": 1,
+      "title": "Prepare the Rice",
+      "description": "Wash the basmati rice thoroughly and soak it for 30 minutes.",
+      "tip": "Soaking helps the rice cook evenly and stay fluffy."
+    },
+    {
+      "step": 2,
+      "title": "Marinate the Chicken",
+      "description": "Mix the chicken with yogurt, ginger garlic paste, lemon juice, turmeric, chili powder, garam masala, and salt. Marinate for at least 30 minutes.",
+      "tip": "For deeper flavor, marinate overnight."
+    },
+    {
+      "step": 3,
+      "title": "Cook the Rice",
+      "description": "Boil the rice with whole spices until it is about 70% cooked. Drain and set aside."
+    },
+    {
+      "step": 4,
+      "title": "Cook the Chicken",
+      "description": "Cook the marinated chicken with onions and tomatoes until the chicken is tender."
+    },
+    {
+      "step": 5,
+      "title": "Layer the Biryani",
+      "description": "Layer the chicken and rice in a heavy pot. Add fried onions, mint, coriander, saffron milk, and ghee between layers."
+    },
+    {
+      "step": 6,
+      "title": "Dum Cooking",
+      "description": "Cover tightly and cook over low heat for 20–25 minutes."
+    },
+    {
+      "step": 7,
+      "title": "Serve",
+      "description": "Gently fluff the biryani and serve hot with raita or salad."
+    }
+  ],
+
+  "equipment": [
+    {
+      "name": "Large Pot"
+    },
+    {
+      "name": "Mixing Bowl"
+    },
+    {
+      "name": "Rice Strainer"
+    },
+    {
+      "name": "Wooden Spoon"
+    }
+  ],
+
+  "tips": [
+    "Use aged basmati rice for the best texture.",
+    "Do not overcook the rice before layering.",
+    "Cook on low heat to achieve authentic dum biryani."
+  ],
+
+  "tags": [
+    {
+      "name": "Chicken",
+      "slug": "chicken",
+      "searchTerms": ["chicken", "poultry", "chicken meat"]
+    },
+    {
+      "name": "Rice",
+      "slug": "rice",
+      "searchTerms": ["rice", "basmati", "basmati rice"]
+    },
+    {
+      "name": "Indian",
+      "slug": "indian",
+      "searchTerms": ["indian", "india", "desi"]
+    },
+    {
+      "name": "Spicy",
+      "slug": "spicy",
+      "searchTerms": ["spicy", "hot", "fiery", "spice"]
+    },
+    {
+      "name": "Dinner",
+      "slug": "dinner",
+      "searchTerms": ["dinner", "supper", "evening meal", "main course"]
+    }
+  ],
+
+  "rating": {
+    "average": 4.9,
+    "count": 542
+  },
+
+  "featured": true,
+
+  "published": true
+}
