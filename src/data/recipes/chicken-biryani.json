@@ -2,25 +2,38 @@
   "id": "chicken-biryani",
   "slug": "chicken-biryani",
 
-  "title": "Chicken Biryani",
+  "title": {
+    "en": "Chicken Biryani",
+    "bn": "চিকেন বিরিয়ানি"
+  },
 
-  "description": "A flavorful and aromatic chicken biryani made with fragrant basmati rice, marinated chicken, whole spices, herbs, and saffron. Perfect for family dinners and special occasions.",
+  "description": {
+    "en": "A flavorful and aromatic chicken biryani made with fragrant basmati rice, marinated chicken, whole spices, herbs, and saffron. Perfect for family dinners and special occasions.",
+    "bn": "সুগন্ধি বাসমতি চাল, মেরিনেট করা মুরগি, গোটা মসলা, তাজা হার্বস এবং জাফরান দিয়ে তৈরি সুস্বাদু ও সুগন্ধি চিকেন বিরিয়ানি। পারিবারিক ডিনার ও বিশেষ অনুষ্ঠানের জন্য উপযুক্ত।"
+  },
 
   "thumbnail": "https://images.unsplash.com/photo-1701579231305-d84d8af9a3fd?auto=format&fit=crop&w=1200&q=80",
 
   "category": {
-    "name": "Dinner",
     "slug": "dinner",
-    "searchTerms": ["dinner", "evening meal", "supper", "main course"]
+    "name": {
+      "en": "Dinner",
+      "bn": "রাতের খাবার"
+    }
   },
 
   "cuisine": {
-    "name": "Indian",
     "slug": "indian",
-    "searchTerms": ["indian", "india", "desi"]
+    "name": {
+      "en": "Indian",
+      "bn": "ভারতীয়"
+    }
   },
 
-  "difficulty": "Medium",
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
 
   "prepTime": 20,
   "cookTime": 35,
@@ -40,256 +53,366 @@
 
   "diet": [
     {
-      "name": "High Protein",
       "slug": "high-protein",
-      "searchTerms": [
-        "high protein",
-        "protein",
-        "protein rich",
-        "muscle building"
-      ]
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
     }
   ],
 
   "ingredientGroups": [
     {
-      "title": "Rice",
+      "title": {
+        "en": "Rice",
+        "bn": "চাল"
+      },
       "items": [
         {
-          "name": "Basmati Rice",
           "slug": "basmati-rice",
-          "searchTerms": ["basmati rice", "rice", "long grain rice"],
+          "name": {
+            "en": "Basmati Rice",
+            "bn": "বাসমতি চাল"
+          },
           "type": "grain",
           "isMainIngredient": true,
           "amount": 2,
-          "unit": "cups"
+          "unit": {
+            "en": "cups",
+            "bn": "কাপ"
+          }
         },
         {
-          "name": "Water",
           "slug": "water",
-          "searchTerms": ["water"],
+          "name": {
+            "en": "Water",
+            "bn": "পানি"
+          },
           "type": "liquid",
           "isMainIngredient": false,
           "amount": 6,
-          "unit": "cups"
+          "unit": {
+            "en": "cups",
+            "bn": "কাপ"
+          }
         }
       ]
     },
 
     {
-      "title": "Chicken Marinade",
+      "title": {
+        "en": "Chicken Marinade",
+        "bn": "চিকেন মেরিনেড"
+      },
       "items": [
         {
-          "name": "Chicken",
           "slug": "chicken",
-          "searchTerms": [
-            "chicken",
-            "chicken meat",
-            "boneless chicken",
-            "chicken pieces"
-          ],
+          "name": {
+            "en": "Chicken",
+            "bn": "মুরগির মাংস"
+          },
           "type": "protein",
           "isMainIngredient": true,
           "amount": 500,
-          "unit": "g"
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          }
         },
         {
-          "name": "Yogurt",
           "slug": "plain-yogurt",
-          "searchTerms": ["yogurt", "plain yogurt", "yoghurt", "curd", "dahi"],
+          "name": {
+            "en": "Plain Yogurt",
+            "bn": "টক দই"
+          },
           "type": "dairy",
           "isMainIngredient": true,
           "amount": 150,
-          "unit": "g"
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          }
         },
         {
-          "name": "Ginger Garlic Paste",
           "slug": "ginger-garlic-paste",
-          "searchTerms": [
-            "ginger garlic paste",
-            "ginger paste",
-            "garlic paste"
-          ],
+          "name": {
+            "en": "Ginger Garlic Paste",
+            "bn": "আদা-রসুন বাটা"
+          },
           "type": "paste",
           "isMainIngredient": false,
           "amount": 2,
-          "unit": "tbsp"
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
         },
         {
-          "name": "Lemon Juice",
           "slug": "lemon-juice",
-          "searchTerms": ["lemon juice", "lemon", "lime juice"],
+          "name": {
+            "en": "Lemon Juice",
+            "bn": "লেবুর রস"
+          },
           "type": "acid",
           "isMainIngredient": false,
           "amount": 1,
-          "unit": "tbsp"
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
         }
       ]
     },
-
     {
-      "title": "Vegetables & Herbs",
+      "title": {
+        "en": "Vegetables & Herbs",
+        "bn": "সবজি ও হার্বস"
+      },
       "items": [
         {
-          "name": "Onion",
           "slug": "onion",
-          "searchTerms": ["onion", "onions", "red onion", "white onion"],
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
           "type": "vegetable",
           "isMainIngredient": false,
           "amount": 2,
-          "unit": "pcs",
-          "note": "Thinly sliced"
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Thinly sliced",
+            "bn": "পাতলা করে কাটা"
+          }
         },
         {
-          "name": "Tomato",
           "slug": "tomato",
-          "searchTerms": ["tomato", "tomatoes", "fresh tomato"],
+          "name": {
+            "en": "Tomato",
+            "bn": "টমেটো"
+          },
           "type": "vegetable",
           "isMainIngredient": true,
           "amount": 1,
-          "unit": "pc",
-          "note": "Chopped"
+          "unit": {
+            "en": "pc",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
         },
         {
-          "name": "Fresh Coriander",
           "slug": "fresh-coriander",
-          "searchTerms": ["fresh coriander", "coriander", "cilantro"],
+          "name": {
+            "en": "Fresh Coriander",
+            "bn": "তাজা ধনেপাতা"
+          },
           "type": "herb",
           "isMainIngredient": false,
           "amount": 0.5,
-          "unit": "cup"
+          "unit": {
+            "en": "cup",
+            "bn": "কাপ"
+          }
         },
         {
-          "name": "Fresh Mint",
           "slug": "fresh-mint",
-          "searchTerms": ["fresh mint", "mint", "mint leaves"],
+          "name": {
+            "en": "Fresh Mint",
+            "bn": "তাজা পুদিনা পাতা"
+          },
           "type": "herb",
           "isMainIngredient": false,
           "amount": 0.5,
-          "unit": "cup"
+          "unit": {
+            "en": "cup",
+            "bn": "কাপ"
+          }
         }
       ]
     },
 
     {
-      "title": "Whole Spices",
+      "title": {
+        "en": "Whole Spices",
+        "bn": "গোটা মসলা"
+      },
       "items": [
         {
-          "name": "Bay Leaf",
           "slug": "bay-leaf",
-          "searchTerms": ["bay leaf", "bay leaves"],
+          "name": {
+            "en": "Bay Leaf",
+            "bn": "তেজপাতা"
+          },
           "type": "spice",
           "isMainIngredient": false,
           "amount": 2,
-          "unit": "pcs"
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
         },
         {
-          "name": "Green Cardamom",
           "slug": "green-cardamom",
-          "searchTerms": ["green cardamom", "cardamom", "elaichi"],
+          "name": {
+            "en": "Green Cardamom",
+            "bn": "সবুজ এলাচ"
+          },
           "type": "spice",
           "isMainIngredient": false,
           "amount": 4,
-          "unit": "pcs"
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
         },
         {
-          "name": "Cinnamon Stick",
           "slug": "cinnamon-stick",
-          "searchTerms": ["cinnamon", "cinnamon stick", "dalchini"],
+          "name": {
+            "en": "Cinnamon Stick",
+            "bn": "দারুচিনি"
+          },
           "type": "spice",
           "isMainIngredient": false,
           "amount": 1,
-          "unit": "pc"
+          "unit": {
+            "en": "pc",
+            "bn": "টি"
+          }
         },
         {
-          "name": "Cloves",
           "slug": "cloves",
-          "searchTerms": ["clove", "cloves", "lobongo"],
+          "name": {
+            "en": "Cloves",
+            "bn": "লবঙ্গ"
+          },
           "type": "spice",
           "isMainIngredient": false,
           "amount": 5,
-          "unit": "pcs"
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
         }
       ]
     },
 
     {
-      "title": "Seasoning",
+      "title": {
+        "en": "Seasoning",
+        "bn": "মসলা"
+      },
       "items": [
         {
-          "name": "Salt",
           "slug": "salt",
-          "searchTerms": ["salt", "table salt"],
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
           "type": "seasoning",
           "isMainIngredient": false,
           "amount": 2,
-          "unit": "tsp"
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
         },
         {
-          "name": "Turmeric Powder",
           "slug": "turmeric-powder",
-          "searchTerms": ["turmeric", "turmeric powder", "haldi"],
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
           "type": "spice",
           "isMainIngredient": false,
           "amount": 0.5,
-          "unit": "tsp"
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
         },
         {
-          "name": "Red Chili Powder",
           "slug": "red-chili-powder",
-          "searchTerms": [
-            "red chili",
-            "red chilli",
-            "red chili powder",
-            "red chilli powder",
-            "chili powder"
-          ],
+          "name": {
+            "en": "Red Chili Powder",
+            "bn": "লাল মরিচের গুঁড়া"
+          },
           "type": "spice",
           "isMainIngredient": false,
           "amount": 1,
-          "unit": "tsp"
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
         },
         {
-          "name": "Garam Masala",
           "slug": "garam-masala",
-          "searchTerms": ["garam masala", "mixed spice"],
+          "name": {
+            "en": "Garam Masala",
+            "bn": "গরম মসলা"
+          },
           "type": "spice",
           "isMainIngredient": false,
           "amount": 1,
-          "unit": "tsp"
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
         }
       ]
     },
 
     {
-      "title": "For Garnish",
+      "title": {
+        "en": "For Garnish",
+        "bn": "সাজানোর জন্য"
+      },
       "items": [
         {
-          "name": "Fried Onion",
           "slug": "fried-onion",
-          "searchTerms": ["fried onion", "crispy onion", "birista"],
+          "name": {
+            "en": "Fried Onion",
+            "bn": "ভাজা পেঁয়াজ"
+          },
           "type": "garnish",
           "isMainIngredient": false,
           "amount": 1,
-          "unit": "cup"
+          "unit": {
+            "en": "cup",
+            "bn": "কাপ"
+          }
         },
         {
-          "name": "Saffron Milk",
           "slug": "saffron-milk",
-          "searchTerms": ["saffron milk", "saffron"],
+          "name": {
+            "en": "Saffron Milk",
+            "bn": "জাফরান মেশানো দুধ"
+          },
           "type": "garnish",
           "isMainIngredient": false,
           "amount": 2,
-          "unit": "tbsp"
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
         },
         {
-          "name": "Ghee",
           "slug": "ghee",
-          "searchTerms": ["ghee", "clarified butter"],
+          "name": {
+            "en": "Ghee",
+            "bn": "ঘি"
+          },
           "type": "oil",
           "isMainIngredient": false,
           "amount": 2,
-          "unit": "tbsp"
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
         }
       ]
     }
@@ -297,91 +420,188 @@
   "instructions": [
     {
       "step": 1,
-      "title": "Prepare the Rice",
-      "description": "Wash the basmati rice thoroughly and soak it for 30 minutes.",
-      "tip": "Soaking helps the rice cook evenly and stay fluffy."
+      "title": {
+        "en": "Prepare the Rice",
+        "bn": "চাল প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Wash the basmati rice thoroughly and soak it for 30 minutes.",
+        "bn": "বাসমতি চাল ভালোভাবে ধুয়ে ৩০ মিনিট ভিজিয়ে রাখুন।"
+      },
+      "tip": {
+        "en": "Soaking helps the rice cook evenly and stay fluffy.",
+        "bn": "চাল ভিজিয়ে রাখলে সমানভাবে সেদ্ধ হয় এবং ঝরঝরে থাকে।"
+      }
     },
     {
       "step": 2,
-      "title": "Marinate the Chicken",
-      "description": "Mix the chicken with yogurt, ginger garlic paste, lemon juice, turmeric, chili powder, garam masala, and salt. Marinate for at least 30 minutes.",
-      "tip": "For deeper flavor, marinate overnight."
+      "title": {
+        "en": "Marinate the Chicken",
+        "bn": "মুরগি মেরিনেট করুন"
+      },
+      "description": {
+        "en": "Mix the chicken with yogurt, ginger garlic paste, lemon juice, turmeric, chili powder, garam masala, and salt. Marinate for at least 30 minutes.",
+        "bn": "মুরগির সাথে টক দই, আদা-রসুন বাটা, লেবুর রস, হলুদ, মরিচের গুঁড়া, গরম মসলা ও লবণ মিশিয়ে কমপক্ষে ৩০ মিনিট মেরিনেট করুন।"
+      },
+      "tip": {
+        "en": "For deeper flavor, marinate overnight.",
+        "bn": "আরও ভালো স্বাদের জন্য সারা রাত মেরিনেট করে রাখতে পারেন।"
+      }
     },
     {
       "step": 3,
-      "title": "Cook the Rice",
-      "description": "Boil the rice with whole spices until it is about 70% cooked. Drain and set aside."
+      "title": {
+        "en": "Cook the Rice",
+        "bn": "চাল সেদ্ধ করুন"
+      },
+      "description": {
+        "en": "Boil the rice with whole spices until it is about 70% cooked. Drain and set aside.",
+        "bn": "গোটা মসলার সাথে চাল ৭০% সেদ্ধ হওয়া পর্যন্ত রান্না করুন। তারপর পানি ঝরিয়ে আলাদা রাখুন।"
+      }
     },
     {
       "step": 4,
-      "title": "Cook the Chicken",
-      "description": "Cook the marinated chicken with onions and tomatoes until the chicken is tender."
+      "title": {
+        "en": "Cook the Chicken",
+        "bn": "মুরগি রান্না করুন"
+      },
+      "description": {
+        "en": "Cook the marinated chicken with onions and tomatoes until the chicken is tender.",
+        "bn": "মেরিনেট করা মুরগি পেঁয়াজ ও টমেটোর সাথে নরম হওয়া পর্যন্ত রান্না করুন।"
+      }
     },
     {
       "step": 5,
-      "title": "Layer the Biryani",
-      "description": "Layer the chicken and rice in a heavy pot. Add fried onions, mint, coriander, saffron milk, and ghee between layers."
+      "title": {
+        "en": "Layer the Biryani",
+        "bn": "বিরিয়ানির স্তর তৈরি করুন"
+      },
+      "description": {
+        "en": "Layer the chicken and rice in a heavy pot. Add fried onions, mint, coriander, saffron milk, and ghee between layers.",
+        "bn": "ভারী পাত্রে মুরগি ও চাল স্তরে স্তরে সাজিয়ে প্রতিটি স্তরের মাঝে ভাজা পেঁয়াজ, পুদিনা, ধনেপাতা, জাফরান দুধ ও ঘি দিন।"
+      }
     },
     {
       "step": 6,
-      "title": "Dum Cooking",
-      "description": "Cover tightly and cook over low heat for 20–25 minutes."
+      "title": {
+        "en": "Dum Cooking",
+        "bn": "দমে রান্না করুন"
+      },
+      "description": {
+        "en": "Cover tightly and cook over low heat for 20–25 minutes.",
+        "bn": "ভালোভাবে ঢেকে কম আঁচে ২০–২৫ মিনিট দমে রান্না করুন।"
+      }
     },
     {
       "step": 7,
-      "title": "Serve",
-      "description": "Gently fluff the biryani and serve hot with raita or salad."
+      "title": {
+        "en": "Serve",
+        "bn": "পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Gently fluff the biryani and serve hot with raita or salad.",
+        "bn": "হালকাভাবে বিরিয়ানি নেড়ে রায়তা বা সালাদের সাথে গরম গরম পরিবেশন করুন।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Use aged basmati rice for the best texture.",
+      "bn": "সেরা টেক্সচারের জন্য পুরনো বাসমতি চাল ব্যবহার করুন।"
+    },
+    {
+      "en": "Do not overcook the rice before layering.",
+      "bn": "স্তর তৈরির আগে চাল বেশি সেদ্ধ করবেন না।"
+    },
+    {
+      "en": "Cook on low heat to achieve authentic dum biryani.",
+      "bn": "আসল দম বিরিয়ানির স্বাদের জন্য কম আঁচে রান্না করুন।"
     }
   ],
 
   "equipment": [
     {
-      "name": "Large Pot"
+      "en": "Large Pot",
+      "bn": "বড় হাঁড়ি"
     },
     {
-      "name": "Mixing Bowl"
+      "en": "Mixing Bowl",
+      "bn": "মিক্সিং বোল"
     },
     {
-      "name": "Rice Strainer"
+      "en": "Rice Strainer",
+      "bn": "চালের ছাঁকনি"
     },
     {
-      "name": "Wooden Spoon"
+      "en": "Wooden Spoon",
+      "bn": "কাঠের চামচ"
     }
-  ],
-
-  "tips": [
-    "Use aged basmati rice for the best texture.",
-    "Do not overcook the rice before layering.",
-    "Cook on low heat to achieve authentic dum biryani."
   ],
 
   "tags": [
     {
-      "name": "Chicken",
       "slug": "chicken",
-      "searchTerms": ["chicken", "poultry", "chicken meat"]
+      "name": {
+        "en": "Chicken",
+        "bn": "চিকেন"
+      }
     },
     {
-      "name": "Rice",
       "slug": "rice",
-      "searchTerms": ["rice", "basmati", "basmati rice"]
+      "name": {
+        "en": "Rice",
+        "bn": "ভাত"
+      }
     },
     {
-      "name": "Indian",
       "slug": "indian",
-      "searchTerms": ["indian", "india", "desi"]
+      "name": {
+        "en": "Indian",
+        "bn": "ভারতীয়"
+      }
     },
     {
-      "name": "Spicy",
       "slug": "spicy",
-      "searchTerms": ["spicy", "hot", "fiery", "spice"]
+      "name": {
+        "en": "Spicy",
+        "bn": "ঝাল"
+      }
     },
     {
-      "name": "Dinner",
       "slug": "dinner",
-      "searchTerms": ["dinner", "supper", "evening meal", "main course"]
+      "name": {
+        "en": "Dinner",
+        "bn": "রাতের খাবার"
+      }
     }
   ],
+
+  "searchTerms": {
+    "en": [
+      "chicken biryani",
+      "biryani",
+      "basmati rice",
+      "indian biryani",
+      "dum biryani",
+      "chicken rice",
+      "spicy rice",
+      "high protein",
+      "dinner",
+      "traditional biryani"
+    ],
+    "bn": [
+      "চিকেন বিরিয়ানি",
+      "বিরিয়ানি",
+      "বাসমতি চাল",
+      "ভারতীয় বিরিয়ানি",
+      "দম বিরিয়ানি",
+      "মুরগির বিরিয়ানি",
+      "ঝাল ভাত",
+      "উচ্চ প্রোটিন",
+      "রাতের খাবার"
+    ]
+  },
 
   "rating": {
     "average": 4.9,

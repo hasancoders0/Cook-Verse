@@ -1,9 +1,20 @@
+"use client";
+
 import { ArrowRight, Sparkles } from "lucide-react";
 
 import RecipeCard from "@/components/recipe/RecipeCard";
 
+import generateRecipeContent from "@/content/generate-recipe";
+import useTranslation from "@/hooks/useTranslation";
+
 export default function RecipeRecommendations({ recipes = [] }) {
+  const { language } = useTranslation();
+
   if (!recipes.length) return null;
+
+  const content = generateRecipeContent[language] || generateRecipeContent.en;
+
+  const recommendationContent = content.result.recommendations;
 
   return (
     <section className="py-4">
@@ -14,22 +25,22 @@ export default function RecipeRecommendations({ recipes = [] }) {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-700">
               <Sparkles size={16} />
-              AI Recommendations
+              {recommendationContent.badge}
             </div>
 
             <h2 className="mt-5 text-3xl font-bold text-gray-900">
-              You Might Also Like
+              {recommendationContent.title}
             </h2>
 
             <p className="mt-3 max-w-2xl leading-7 text-gray-600">
-              These recipes also match many of your ingredients, cooking
-              preferences, or dietary choices. If you'd like to explore more
-              options, these are excellent alternatives.
+              {recommendationContent.description}
             </p>
           </div>
 
           <div className="rounded-2xl border border-orange-100 bg-white px-6 py-4 text-center shadow-sm">
-            <p className="text-sm text-gray-500">Alternative Recipes</p>
+            <p className="text-sm text-gray-500">
+              {recommendationContent.countLabel}
+            </p>
 
             <p className="mt-1 text-3xl font-bold text-orange-600">
               {recipes.length}
@@ -52,9 +63,7 @@ export default function RecipeRecommendations({ recipes = [] }) {
             <ArrowRight size={20} className="mt-1 shrink-0 text-orange-500" />
 
             <p className="leading-7 text-gray-700">
-              Want something even more specific? Try adding more ingredients,
-              preferred cuisine, cooking time, or dietary preferences to get a
-              more personalized recommendation from CookVerse AI.
+              {recommendationContent.footer}
             </p>
           </div>
         </div>

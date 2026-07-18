@@ -1,46 +1,21 @@
-const suggestions = [
-  {
-    id: 1,
-    title: "Chicken Biryani",
-    prompt: "I have chicken, rice, onion, garlic and yogurt. What can I cook?",
-  },
-  {
-    id: 2,
-    title: "Beef Burger",
-    prompt: "I have ground beef, burger buns, lettuce, tomato and cheese.",
-  },
-  {
-    id: 3,
-    title: "Vegetable Salad",
-    prompt:
-      "I have cucumber, tomato, lettuce and carrots. Suggest a healthy recipe.",
-  },
-  {
-    id: 4,
-    title: "Spicy Dinner",
-    prompt: "Recommend a spicy chicken recipe for dinner.",
-  },
-  {
-    id: 5,
-    title: "Healthy Lunch",
-    prompt: "I want a healthy vegetable meal for lunch.",
-  },
-  {
-    id: 6,
-    title: "Use My Ingredients",
-    prompt: "I have rice, chicken and yogurt. What recipe matches best?",
-  },
-];
+"use client";
+
+import generateRecipeContent from "@/content/generate-recipe";
+import useTranslation from "@/hooks/useTranslation";
 
 export default function SuggestionChips({ onSelect }) {
+  const { language } = useTranslation();
+
+  const content = generateRecipeContent[language] || generateRecipeContent.en;
+
   return (
     <div className="mt-8">
       <p className="mb-4 text-sm font-medium text-gray-500">
-        Try one of these prompts
+        {content.suggestions.title}
       </p>
 
       <div className="flex flex-wrap gap-3">
-        {suggestions.map((item) => (
+        {content.suggestions.items.map((item) => (
           <button
             key={item.id}
             type="button"

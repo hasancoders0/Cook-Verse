@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FiHeart, FiMenu } from "react-icons/fi";
+import { FiGlobe, FiHeart, FiMenu } from "react-icons/fi";
 
 import { useFavorites } from "@/context/FavoritesContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 import AppContainer from "@/components/ui/AppContainer";
 import MobileMenu from "@/components/layout/MobileMenu";
@@ -20,6 +21,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { favoriteCount } = useFavorites();
+
+  const { language, changeLanguage } = useLanguage();
 
   return (
     <>
@@ -67,6 +70,35 @@ export default function Header() {
 
             {/* Right Side */}
             <div className="flex items-center gap-3">
+              {/* Language Switcher */}
+              <div className="hidden items-center rounded-xl border border-gray-200 bg-white p-1 md:flex">
+                <FiGlobe size={16} className="ml-2 mr-1 text-gray-500" />
+
+                <button
+                  type="button"
+                  onClick={() => changeLanguage("en")}
+                  className={`rounded-lg px-3 py-1 text-sm font-medium transition ${
+                    language === "en"
+                      ? "bg-orange-500 text-white"
+                      : "text-gray-600 hover:bg-orange-50"
+                  }`}
+                >
+                  EN
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => changeLanguage("bn")}
+                  className={`rounded-lg px-3 py-1 text-sm font-medium transition ${
+                    language === "bn"
+                      ? "bg-orange-500 text-white"
+                      : "text-gray-600 hover:bg-orange-50"
+                  }`}
+                >
+                  বাংলা
+                </button>
+              </div>
+
               {/* Favorites */}
               <Link
                 href={ROUTES.FAVORITES}

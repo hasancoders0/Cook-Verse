@@ -1,4 +1,5 @@
 import { getAllRecipes, flattenIngredients } from "@/lib/recipes";
+import { getLocalizedValue } from "@/lib/language";
 
 /* -------------------------------------------------------------------------- */
 /* Score Configuration                                                        */
@@ -142,9 +143,12 @@ export function scoreRecipe(recipe, parsedPrompt) {
   /* ---------------------------------------------------------------------- */
 
   parsedPrompt.difficulties.forEach((difficulty) => {
-    if (recipe.difficulty.toLowerCase() === difficulty.slug.toLowerCase()) {
+    const recipeDifficulty = getLocalizedValue(recipe.difficulty, "en");
+
+    if (recipeDifficulty.toLowerCase() === difficulty.slug.toLowerCase()) {
       score += SCORE.DIFFICULTY;
-      reasons.push(`Difficulty: ${recipe.difficulty}`);
+
+      reasons.push(`Difficulty: ${recipeDifficulty}`);
     }
   });
 

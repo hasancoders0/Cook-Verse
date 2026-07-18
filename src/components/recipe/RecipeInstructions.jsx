@@ -1,8 +1,13 @@
+"use client";
+
 import { FiInfo } from "react-icons/fi";
 
 import AppContainer from "@/components/ui/AppContainer";
+import useTranslation from "@/hooks/useTranslation";
 
 export default function RecipeInstructions({ recipe }) {
+  const { language, t } = useTranslation();
+
   return (
     <section className="bg-gray-50 py-20">
       <AppContainer>
@@ -10,21 +15,25 @@ export default function RecipeInstructions({ recipe }) {
           {/* Section Header */}
           <div className="mb-10">
             <span className="inline-flex rounded-full bg-orange-100 px-4 py-2 text-sm font-medium text-orange-600">
-              Instructions
+              {language === "bn" ? "নির্দেশনা" : "Instructions"}
             </span>
 
             <h2 className="mt-5 text-4xl font-bold text-gray-900">
-              Step-by-Step Directions
+              {language === "bn"
+                ? "ধাপে ধাপে রান্নার পদ্ধতি"
+                : "Step-by-Step Directions"}
             </h2>
 
             <p className="mt-3 text-lg text-gray-600">
-              Follow these simple steps to prepare your recipe.
+              {language === "bn"
+                ? "সুস্বাদু রেসিপি তৈরি করতে এই সহজ ধাপগুলো অনুসরণ করুন।"
+                : "Follow these simple steps to prepare your recipe."}
             </p>
           </div>
 
           {/* Steps */}
           <div className="space-y-6">
-            {recipe.instructions.map((step) => (
+            {recipe.instructions?.map((step) => (
               <div
                 key={step.step}
                 className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm"
@@ -38,11 +47,11 @@ export default function RecipeInstructions({ recipe }) {
                   {/* Step Content */}
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-gray-900">
-                      {step.title}
+                      {t(step.title)}
                     </h3>
 
                     <p className="mt-3 leading-8 text-gray-600">
-                      {step.description}
+                      {t(step.description)}
                     </p>
 
                     {step.tip && (
@@ -51,11 +60,11 @@ export default function RecipeInstructions({ recipe }) {
 
                         <div>
                           <p className="text-sm font-semibold text-orange-700">
-                            Chef's Tip
+                            {language === "bn" ? "শেফের টিপস" : "Chef's Tip"}
                           </p>
 
                           <p className="mt-1 text-sm text-gray-600">
-                            {step.tip}
+                            {t(step.tip)}
                           </p>
                         </div>
                       </div>

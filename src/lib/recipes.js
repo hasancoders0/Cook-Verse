@@ -2,6 +2,8 @@ import chickenBiryani from "@/data/recipes/chicken-biryani.json";
 import beefBurger from "@/data/recipes/beef-burger.json";
 import vegetableSalad from "@/data/recipes/vegetable-salad.json";
 
+import { getLocalizedValue } from "@/lib/language";
+
 /* -------------------------------------------------------------------------- */
 /* Recipes                                                                    */
 /* -------------------------------------------------------------------------- */
@@ -12,7 +14,15 @@ const recipes = [chickenBiryani, beefBurger, vegetableSalad];
 /* Helpers                                                                    */
 /* -------------------------------------------------------------------------- */
 
-function flattenIngredients(recipe) {
+function normalizeText(value = "") {
+  return String(value).toLowerCase().trim();
+}
+
+function normalizeSlug(value = "") {
+  return normalizeText(value);
+}
+
+export function flattenIngredients(recipe) {
   return recipe?.ingredientGroups?.flatMap((group) => group.items || []) || [];
 }
 
@@ -20,9 +30,28 @@ function uniqueBy(array = [], key) {
   return Array.from(new Map(array.map((item) => [item[key], item])).values());
 }
 
-function normalizeSlug(value = "") {
-  return value.toLowerCase().trim();
+/* -------------------------------------------------------------------------- */
+/* Localization                                                               */
+/* -------------------------------------------------------------------------- */
+
+function t(value, language = "en") {
+  return getLocalizedValue(value, language);
 }
+
+function localizedText(value, language = "en") {
+  return normalizeText(t(value, language));
+}
+
+function localizedSearchTerms(searchTerms = {}, language = "en") {
+  const localized = Array.isArray(searchTerms?.[language])
+    ? searchTerms[language]
+    : [];
+
+  const english = Array.isArray(searchTerms?.en) ? searchTerms.en : [];
+
+  return [...new Set([...localized, ...english])];
+}
+
 /* -------------------------------------------------------------------------- */
 /* Recipes                                                                    */
 /* -------------------------------------------------------------------------- */
@@ -72,224 +101,18 @@ export function getRecipesByCuisine(cuisineSlug) {
   );
 }
 
-export function getRecipesByDifficulty(difficulty) {
-  return getAllRecipes().filter((recipe) => recipe.difficulty === difficulty);
+export function getRecipesByDifficulty(difficulty, language = "en") {
+  return getAllRecipes().filter(
+    (recipe) =>
+      normalizeText(t(recipe.difficulty, language)) ===
+      normalizeText(difficulty),
+  );
 }
 
 export function getRecipesByDiet(dietSlug) {
   return getAllRecipes().filter((recipe) =>
     recipe.diet?.some((diet) => diet.slug === dietSlug),
   );
-}
-/* -------------------------------------------------------------------------- */
-/* Recipe Search                                                              */
-/* -------------------------------------------------------------------------- */
-
-export function searchRecipes(keyword = "") {
-  const query = keyword.trim().toLowerCase();
-
-  if (!query) {
-    return getAllRecipes();
-  }
-
-  return getAllRecipes().filter((recipe) => {
-    const ingredients = flattenIngredients(recipe);
-
-    return (
-      /* Title */
-      recipe.title?.toLowerCase().includes(query) ||
-      /* Description */
-      recipe.description?.toLowerCase().includes(query) ||
-      /* Category */
-      recipe.category?.name?.toLowerCase().includes(query) ||
-      recipe.category?.slug?.toLowerCase().includes(query) ||
-      recipe.category?.searchTerms?.some((term) =>
-        term.toLowerCase().includes(query),
-      ) ||
-      /* Cuisine */
-      recipe.cuisine?.name?.toLowerCase().includes(query) ||
-      recipe.cuisine?.slug?.toLowerCase().includes(query) ||
-      recipe.cuisine?.searchTerms?.some((term) =>
-        term.toLowerCase().includes(query),
-      ) ||
-      /* Difficulty */
-      recipe.difficulty?.toLowerCase().includes(query) ||
-      /* Diet */
-      recipe.diet?.some(
-        (diet) =>
-          diet.name.toLowerCase().includes(query) ||
-          diet.slug.toLowerCase().includes(query) ||
-          diet.searchTerms?.some((term) => term.toLowerCase().includes(query)),
-      ) ||
-      /* Tags */
-      recipe.tags?.some(
-        (tag) =>
-          tag.name.toLowerCase().includes(query) ||
-          tag.slug.toLowerCase().includes(query) ||
-          tag.searchTerms?.some((term) => term.toLowerCase().includes(query)),
-      ) ||
-      /* Ingredients */
-      ingredients.some(
-        (ingredient) =>
-          ingredient.name.toLowerCase().includes(query) ||
-          ingredient.slug.toLowerCase().includes(query) ||
-          ingredient.searchTerms?.some((term) =>
-            term.toLowerCase().includes(query),
-          ),
-      )
-    );
-  });
-}
-
-/* -------------------------------------------------------------------------- */
-/* Dynamic Filters                                                            */
-/* -------------------------------------------------------------------------- */
-
-export function getCategories() {
-  return uniqueBy(
-    getAllRecipes().map((recipe) => recipe.category),
-    "slug",
-  ).sort((a, b) => a.name.localeCompare(b.name));
-}
-
-export function getCuisines() {
-  return uniqueBy(
-    getAllRecipes().map((recipe) => recipe.cuisine),
-    "slug",
-  ).sort((a, b) => a.name.localeCompare(b.name));
-}
-
-export function getDifficulties() {
-  return [...new Set(getAllRecipes().map((recipe) => recipe.difficulty))];
-}
-
-export function getDiets() {
-  return uniqueBy(
-    getAllRecipes().flatMap((recipe) => recipe.diet || []),
-    "slug",
-  ).sort((a, b) => a.name.localeCompare(b.name));
-}
-/* -------------------------------------------------------------------------- */
-/* Ingredients                                                                */
-/* -------------------------------------------------------------------------- */
-
-export function getIngredients() {
-  const ingredients = new Map();
-
-  getAllRecipes().forEach((recipe) => {
-    const recipeIngredients = flattenIngredients(recipe);
-
-    recipeIngredients.forEach((ingredient) => {
-      if (!ingredient.isMainIngredient) return;
-
-      const slug = ingredient.slug;
-
-      if (ingredients.has(slug)) {
-        ingredients.get(slug).count += 1;
-      } else {
-        ingredients.set(slug, {
-          ...ingredient,
-          count: 1,
-        });
-      }
-    });
-  });
-
-  return [...ingredients.values()].sort((a, b) => a.name.localeCompare(b.name));
-}
-
-export function getIngredientBySlug(slug) {
-  return getIngredients().find((ingredient) => ingredient.slug === slug);
-}
-
-export function getRecipesByIngredient(slug) {
-  return getAllRecipes().filter((recipe) => {
-    const ingredients = flattenIngredients(recipe);
-
-    return ingredients.some((ingredient) => ingredient.slug === slug);
-  });
-}
-
-export function findRecipesByIngredients(ingredientSlugs = []) {
-  return getAllRecipes().filter((recipe) => {
-    const ingredients = flattenIngredients(recipe);
-
-    const recipeSlugs = ingredients.map((ingredient) => ingredient.slug);
-
-    return ingredientSlugs.every((slug) => recipeSlugs.includes(slug));
-  });
-}
-
-export function searchIngredients(keyword = "") {
-  const query = keyword.trim().toLowerCase();
-
-  const ingredients = getIngredients();
-
-  if (!query) {
-    return ingredients;
-  }
-
-  return ingredients.filter((ingredient) => {
-    return (
-      ingredient.name.toLowerCase().includes(query) ||
-      ingredient.slug.toLowerCase().includes(query) ||
-      ingredient.searchTerms?.some((term) => term.toLowerCase().includes(query))
-    );
-  });
-}
-/* -------------------------------------------------------------------------- */
-/* AI Helpers                                                                 */
-/* -------------------------------------------------------------------------- */
-
-export function findIngredient(keyword = "") {
-  const query = keyword.trim().toLowerCase();
-
-  return getIngredients().find(
-    (ingredient) =>
-      ingredient.name.toLowerCase() === query ||
-      ingredient.slug.toLowerCase() === query ||
-      ingredient.searchTerms?.some((term) => term.toLowerCase() === query),
-  );
-}
-
-export function getSearchData() {
-  return {
-    categories: getCategories(),
-    cuisines: getCuisines(),
-    diets: getDiets(),
-    difficulties: getDifficulties(),
-    ingredients: getIngredients(),
-    tags: getTags(),
-  };
-}
-
-/* -------------------------------------------------------------------------- */
-/* Ingredient Types                                                           */
-/* -------------------------------------------------------------------------- */
-
-export function getIngredientTypes() {
-  return [
-    ...new Set(
-      getIngredients()
-        .map((ingredient) => ingredient.type)
-        .filter(Boolean),
-    ),
-  ].sort();
-}
-
-export function getIngredientsByType(type) {
-  return getIngredients().filter((ingredient) => ingredient.type === type);
-}
-
-/* -------------------------------------------------------------------------- */
-/* Tags                                                                       */
-/* -------------------------------------------------------------------------- */
-
-export function getTags() {
-  return uniqueBy(
-    getAllRecipes().flatMap((recipe) => recipe.tags || []),
-    "slug",
-  ).sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export function getRecipesByTag(tagSlug) {
@@ -299,29 +122,216 @@ export function getRecipesByTag(tagSlug) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Nutrition                                                                  */
+/* Search                                                                     */
 /* -------------------------------------------------------------------------- */
 
-export function getCaloriesRange() {
-  const calories = getAllRecipes()
-    .map((recipe) => recipe.nutrition?.calories)
-    .filter((value) => typeof value === "number");
+export function searchRecipes(keyword = "", language = "en") {
+  const query = normalizeText(keyword);
 
-  if (!calories.length) {
-    return {
-      min: 0,
-      max: 0,
-    };
+  if (!query) {
+    return getAllRecipes();
   }
 
+  return getAllRecipes().filter((recipe) => {
+    const ingredients = flattenIngredients(recipe);
+
+    return (
+      localizedText(recipe.title, language).includes(query) ||
+      localizedText(recipe.description, language).includes(query) ||
+      localizedSearchTerms(recipe.searchTerms, language).some((term) =>
+        normalizeText(term).includes(query),
+      ) ||
+      localizedText(recipe.category?.name).includes(query) ||
+      normalizeText(recipe.category?.slug).includes(query) ||
+      localizedText(recipe.cuisine?.name).includes(query) ||
+      normalizeText(recipe.cuisine?.slug).includes(query) ||
+      localizedText(recipe.difficulty).includes(query) ||
+      recipe.diet?.some(
+        (diet) =>
+          localizedText(diet.name).includes(query) ||
+          normalizeText(diet.slug).includes(query),
+      ) ||
+      recipe.tags?.some(
+        (tag) =>
+          localizedText(tag.name).includes(query) ||
+          normalizeText(tag.slug).includes(query),
+      ) ||
+      recipe.ingredientGroups?.some((group) =>
+        localizedText(group.title).includes(query),
+      ) ||
+      ingredients.some(
+        (ingredient) =>
+          localizedText(ingredient.name).includes(query) ||
+          normalizeText(ingredient.slug).includes(query) ||
+          localizedText(ingredient.note).includes(query),
+      )
+    );
+  });
+}
+
+/* -------------------------------------------------------------------------- */
+/* Categories                                                                 */
+/* -------------------------------------------------------------------------- */
+
+export function getCategories(language = "en") {
+  return uniqueBy(
+    getAllRecipes().map((recipe) => recipe.category),
+    "slug",
+  ).sort((a, b) =>
+    localizedText(a.name, language).localeCompare(
+      localizedText(b.name, language),
+    ),
+  );
+}
+
+export function getCategoryBySlug(slug) {
+  return getCategories().find((category) => category.slug === slug);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Cuisines                                                                   */
+/* -------------------------------------------------------------------------- */
+
+export function getCuisines(language = "en") {
+  return uniqueBy(
+    getAllRecipes().map((recipe) => recipe.cuisine),
+    "slug",
+  ).sort((a, b) =>
+    localizedText(a.name, language).localeCompare(
+      localizedText(b.name, language),
+    ),
+  );
+}
+
+export function getCuisineBySlug(slug) {
+  return getCuisines().find((cuisine) => cuisine.slug === slug);
+}
+/* -------------------------------------------------------------------------- */
+/* Difficulties                                                               */
+/* -------------------------------------------------------------------------- */
+
+export function getDifficulties(language = "en") {
+  return [
+    ...new Set(getAllRecipes().map((recipe) => t(recipe.difficulty, language))),
+  ].sort((a, b) => a.localeCompare(b));
+}
+
+/* -------------------------------------------------------------------------- */
+/* Diets                                                                      */
+/* -------------------------------------------------------------------------- */
+
+export function getDiets(language = "en") {
+  return uniqueBy(
+    getAllRecipes().flatMap((recipe) => recipe.diet || []),
+    "slug",
+  ).sort((a, b) =>
+    localizedText(a.name, language).localeCompare(
+      localizedText(b.name, language),
+    ),
+  );
+}
+
+export function getDietBySlug(slug) {
+  return getDiets().find((diet) => diet.slug === slug);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Ingredients                                                                */
+/* -------------------------------------------------------------------------- */
+
+export function getIngredients(language = "en") {
+  return uniqueBy(
+    getAllRecipes().flatMap((recipe) =>
+      flattenIngredients(recipe).filter(
+        (ingredient) => ingredient.isMainIngredient === true,
+      ),
+    ),
+    "slug",
+  ).sort((a, b) =>
+    localizedText(a.name, language).localeCompare(
+      localizedText(b.name, language),
+    ),
+  );
+}
+
+export function getIngredientBySlug(slug) {
+  return getIngredients().find((ingredient) => ingredient.slug === slug);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Tags                                                                       */
+/* -------------------------------------------------------------------------- */
+
+export function getTags(language = "en") {
+  return uniqueBy(
+    getAllRecipes().flatMap((recipe) => recipe.tags || []),
+    "slug",
+  ).sort((a, b) =>
+    localizedText(a.name, language).localeCompare(
+      localizedText(b.name, language),
+    ),
+  );
+}
+
+export function getTagBySlug(slug) {
+  return getTags().find((tag) => tag.slug === slug);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Search Data                                                                */
+/* -------------------------------------------------------------------------- */
+
+export function getSearchData() {
   return {
-    min: Math.min(...calories),
-    max: Math.max(...calories),
+    ingredients: getIngredients(),
+
+    categories: getCategories(),
+
+    cuisines: getCuisines(),
+
+    diets: getDiets(),
+
+    tags: getTags(),
+
+    difficulties: getDifficulties().map((difficulty) => ({
+      slug: normalizeText(difficulty),
+      name: {
+        en: difficulty,
+        bn: difficulty,
+      },
+      searchTerms: {
+        en: [difficulty],
+        bn: [difficulty],
+      },
+    })),
   };
 }
 
 /* -------------------------------------------------------------------------- */
-/* Export Helpers                                                             */
+/* Statistics                                                                 */
 /* -------------------------------------------------------------------------- */
 
-export { flattenIngredients };
+export function getRecipesByIngredient(slug) {
+  return getAllRecipes().filter((recipe) =>
+    recipe.ingredientGroups?.some((group) =>
+      group.items?.some(
+        (ingredient) =>
+          ingredient.isMainIngredient === true && ingredient.slug === slug,
+      ),
+    ),
+  );
+}
+
+export function getRecipeStats() {
+  const allRecipes = getAllRecipes();
+
+  return {
+    recipes: allRecipes.length,
+    categories: getCategories().length,
+    cuisines: getCuisines().length,
+    ingredients: getIngredients().length,
+    diets: getDiets().length,
+    tags: getTags().length,
+    featured: getFeaturedRecipes().length,
+  };
+}

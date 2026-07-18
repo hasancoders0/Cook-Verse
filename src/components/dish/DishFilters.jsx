@@ -9,6 +9,10 @@ import {
   getDiets,
 } from "@/lib/recipes";
 
+import useTranslation from "@/hooks/useTranslation";
+
+import dishContent from "@/content/dish";
+
 import AppContainer from "@/components/ui/AppContainer";
 
 export default function DishFilters({
@@ -26,10 +30,16 @@ export default function DishFilters({
   setSort,
   totalRecipes,
 }) {
-  const categories = getCategories();
-  const cuisines = getCuisines();
-  const diets = getDiets();
-  const difficulties = getDifficulties();
+  const { language, t } = useTranslation();
+
+  const content = dishContent[language] ?? dishContent.en;
+
+  const filters = content.filters;
+
+  const categories = getCategories(language);
+  const cuisines = getCuisines(language);
+  const diets = getDiets(language);
+  const difficulties = getDifficulties(language);
 
   const hasFilters =
     search || category || cuisine || diet || difficulty || sort;
@@ -48,6 +58,7 @@ export default function DishFilters({
       <AppContainer>
         <div className="space-y-5">
           {/* Search */}
+
           <div className="relative">
             <FiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-xl text-gray-400" />
 
@@ -55,7 +66,7 @@ export default function DishFilters({
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search recipes..."
+              placeholder={filters.searchPlaceholder}
               className="h-14 w-full rounded-2xl border border-gray-300 bg-white pl-14 pr-14 text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-orange-500 focus:ring-4 focus:ring-orange-100"
             />
 
@@ -71,83 +82,102 @@ export default function DishFilters({
           </div>
 
           {/* Filters */}
+
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            {/* Category */}
+
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               className="rounded-xl border border-gray-300 px-4 py-3"
             >
-              <option value="">All Categories</option>
+              <option value="">{filters.allCategories}</option>
 
               {categories.map((item) => (
                 <option key={item.slug} value={item.slug}>
-                  {item.name}
+                  {t(item.name)}
                 </option>
               ))}
             </select>
+
+            {/* Cuisine */}
 
             <select
               value={cuisine}
               onChange={(e) => setCuisine(e.target.value)}
               className="rounded-xl border border-gray-300 px-4 py-3"
             >
-              <option value="">All Cuisines</option>
+              <option value="">{filters.allCuisines}</option>
 
               {cuisines.map((item) => (
                 <option key={item.slug} value={item.slug}>
-                  {item.name}
+                  {t(item.name)}
                 </option>
               ))}
             </select>
+
+            {/* Diet */}
 
             <select
               value={diet}
               onChange={(e) => setDiet(e.target.value)}
               className="rounded-xl border border-gray-300 px-4 py-3"
             >
-              <option value="">All Diets</option>
+              <option value="">{filters.allDiets}</option>
 
               {diets.map((item) => (
                 <option key={item.slug} value={item.slug}>
-                  {item.name}
+                  {t(item.name)}
                 </option>
               ))}
             </select>
+
+            {/* Difficulty */}
 
             <select
               value={difficulty}
               onChange={(e) => setDifficulty(e.target.value)}
               className="rounded-xl border border-gray-300 px-4 py-3"
             >
-              <option value="">All Difficulties</option>
+              <option value="">{filters.allDifficulties}</option>
 
-              {difficulties.map((item) => (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              ))}
+              {difficulties.map((item) => {
+                const label = t(item);
+
+                return (
+                  <option key={label} value={label}>
+                    {label}
+                  </option>
+                );
+              })}
             </select>
+
+            {/* Sort */}
 
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
               className="rounded-xl border border-gray-300 px-4 py-3"
             >
-              <option value="">Sort By</option>
-              <option value="rating">Highest Rated</option>
-              <option value="time">Fastest First</option>
-              <option value="latest">Newest</option>
+              <option value="">{filters.sortBy}</option>
+
+              <option value="rating">{filters.highestRated}</option>
+
+              <option value="time">{filters.fastest}</option>
+
+              <option value="latest">{filters.newest}</option>
             </select>
           </div>
 
           {/* Footer */}
+
           <div className="flex flex-wrap items-center justify-between gap-4">
             <p className="text-sm text-gray-600">
-              Showing{" "}
+              {filters.showing}{" "}
               <span className="font-semibold text-gray-900">
                 {totalRecipes}
               </span>{" "}
-              recipe{totalRecipes !== 1 && "s"}
+              {totalRecipes === 1 ? filters.recipe : filters.recipes}
             </p>
 
             {hasFilters && (
@@ -156,7 +186,7 @@ export default function DishFilters({
                 onClick={clearFilters}
                 className="rounded-full border border-orange-200 bg-orange-50 px-5 py-2 text-sm font-medium text-orange-600 transition hover:bg-orange-100"
               >
-                Clear Filters
+                {filters.clearFilters}
               </button>
             )}
           </div>

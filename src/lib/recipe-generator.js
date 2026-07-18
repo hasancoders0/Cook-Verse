@@ -1,15 +1,12 @@
 import { parseRecipePrompt } from "@/lib/recipe-parser";
-import {
-  getBestRecipe,
-  getTopRecipes,
-} from "@/lib/recipe-scoring";
+import { getBestRecipe, getTopRecipes } from "@/lib/recipe-scoring";
 import { buildResponse } from "@/lib/recipe-response";
 
 /* -------------------------------------------------------------------------- */
 /* Generate Recipe Recommendation                                             */
 /* -------------------------------------------------------------------------- */
 
-export function generateRecipe(prompt = "") {
+export function generateRecipe(prompt = "", language = "en") {
   if (!prompt.trim()) {
     return {
       success: false,
@@ -28,7 +25,7 @@ export function generateRecipe(prompt = "") {
 
   const topResults = getTopRecipes(parsedPrompt);
 
-  const response = buildResponse(bestResult, topResults);
+  const response = buildResponse(bestResult, topResults, language);
 
   return {
     success: true,

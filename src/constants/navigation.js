@@ -12,12 +12,12 @@ const NAVIGATION = [
     icon: FiHome,
   },
   {
-    label: "Recipes",
+    label: "By Dish",
     href: ROUTES.DISH,
     icon: LuChefHat,
   },
   {
-    label: "Ingredients",
+    label: "By Ingredients",
     href: ROUTES.INGREDIENTS,
     icon: PiCarrot,
   },

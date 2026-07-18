@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { getAllRecipes, getRecipeBySlug } from "@/lib/recipes";
+import { getLocalizedValue } from "@/lib/language";
 
 import RecipeHero from "@/components/recipe/RecipeHero";
 import RecipeIngredients from "@/components/recipe/RecipeIngredients";
@@ -8,6 +9,8 @@ import RecipeInstructions from "@/components/recipe/RecipeInstructions";
 import RecipeNutrition from "@/components/recipe/RecipeNutrition";
 import RelatedRecipes from "@/components/recipe/RelatedRecipes";
 import RecentlyViewedTracker from "@/components/recipe/RecentlyViewedTracker";
+
+const DEFAULT_LANGUAGE = "en";
 
 export async function generateStaticParams() {
   const recipes = getAllRecipes();
@@ -29,8 +32,8 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: recipe.title,
-    description: recipe.description,
+    title: getLocalizedValue(recipe.title, DEFAULT_LANGUAGE),
+    description: getLocalizedValue(recipe.description, DEFAULT_LANGUAGE),
   };
 }
 

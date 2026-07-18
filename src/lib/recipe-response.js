@@ -1,3 +1,4 @@
+import { getLocalizedValue } from "@/lib/language";
 /* -------------------------------------------------------------------------- */
 /* Helpers                                                                    */
 /* -------------------------------------------------------------------------- */
@@ -14,8 +15,8 @@ function formatList(items = []) {
   return `${items.slice(0, -1).join(", ")}, and ${items.at(-1)}`;
 }
 
-function ingredientNames(ingredients = []) {
-  return ingredients.map((item) => item.name);
+function ingredientNames(ingredients = [], language = "en") {
+  return ingredients.map((item) => getLocalizedValue(item.name, language));
 }
 
 function reasonSentence(reasons = []) {
@@ -28,7 +29,7 @@ function reasonSentence(reasons = []) {
 /* Recommendation                                                             */
 /* -------------------------------------------------------------------------- */
 
-export function buildRecommendation(result) {
+export function buildRecommendation(result, language = "en") {
   if (!result) return null;
 
   const {
@@ -39,18 +40,18 @@ export function buildRecommendation(result) {
   } = result;
 
   return {
-    title: `I recommend ${recipe.title}.`,
+    title: `I recommend ${getLocalizedValue(recipe.title, language)}.`,
 
     summary:
       reasons.length > 0
         ? `This recipe is a great match because it matches ${reasonSentence(
             reasons,
           )}.`
-        : recipe.description,
+        : getLocalizedValue(recipe.description, language),
 
     recipe,
 
-    matchedIngredients: ingredientNames(matchedIngredients),
+    matchedIngredients: ingredientNames(matchedIngredients, language),
 
     missingIngredients: ingredientNames(missingIngredients),
   };
@@ -95,7 +96,7 @@ export function buildTopRecommendations(results = []) {
 /* Cooking Summary                                                            */
 /* -------------------------------------------------------------------------- */
 
-export function buildCookingSummary(recipe) {
+export function buildCookingSummary(recipe, language = "en") {
   if (!recipe) return null;
 
   return {
@@ -103,7 +104,7 @@ export function buildCookingSummary(recipe) {
     cookTime: recipe.cookTime,
     totalTime: recipe.totalTime,
     servings: recipe.servings,
-    difficulty: recipe.difficulty,
+    difficulty: getLocalizedValue(recipe.difficulty, language),
     calories: recipe.nutrition?.calories ?? null,
   };
 }
@@ -112,12 +113,12 @@ export function buildCookingSummary(recipe) {
 /* Complete Response                                                          */
 /* -------------------------------------------------------------------------- */
 
-export function buildResponse(bestResult, topResults = []) {
+export function buildResponse(bestResult, topResults = [], language = "en") {
   if (!bestResult) {
     return buildNoMatchResponse();
   }
 
-  const recommendation = buildRecommendation(bestResult);
+  const recommendation = buildRecommendation(bestResult, language);
 
   return {
     /* ---------- Existing UI ---------- */
@@ -136,7 +137,7 @@ export function buildResponse(bestResult, topResults = []) {
 
     recommendation,
 
-    cooking: buildCookingSummary(bestResult.recipe),
+    cooking: buildCookingSummary(bestResult.recipe, language),
 
     message: recommendation.summary,
   };

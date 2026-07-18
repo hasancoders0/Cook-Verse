@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 
 import { getIngredients } from "@/lib/recipes";
+import useTranslation from "@/hooks/useTranslation";
 
 import IngredientsHero from "@/components/ingredients/IngredientsHero";
 import IngredientsSearch from "@/components/ingredients/IngredientsSearch";
@@ -12,20 +13,25 @@ export default function IngredientsPage() {
   const [search, setSearch] = useState("");
   const [selectedType, setSelectedType] = useState("all");
 
-  const ingredients = getIngredients();
+  const { language, t } = useTranslation();
+
+  // Get localized ingredients
+  const ingredients = useMemo(() => getIngredients(language), [language]);
 
   const filteredIngredients = useMemo(() => {
-    return ingredients.filter((ingredient) => {
-      const matchesSearch = ingredient.name
-        .toLowerCase()
-        .includes(search.toLowerCase());
+    const keyword = search.trim().toLowerCase();
 
-      const matchesType =
-        selectedType === "all" || ingredient.type === selectedType;
+    return ingredients.filter((ingredient) => {
+      const name = String(t(ingredient.name) || "").toLowerCase();
+      const type = String(t(ingredient.type) || "");
+
+      const matchesSearch = name.includes(keyword);
+
+      const matchesType = selectedType === "all" || type === selectedType;
 
       return matchesSearch && matchesType;
     });
-  }, [ingredients, search, selectedType]);
+  }, [ingredients, search, selectedType, t]);
 
   return (
     <main>

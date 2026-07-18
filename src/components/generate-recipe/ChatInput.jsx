@@ -3,6 +3,9 @@
 import { useRef } from "react";
 import { FiArrowUp, FiLoader, FiX } from "react-icons/fi";
 
+import generateRecipeContent from "@/content/generate-recipe";
+import useTranslation from "@/hooks/useTranslation";
+
 export default function ChatInput({
   value,
   onChange,
@@ -10,6 +13,12 @@ export default function ChatInput({
   loading = false,
 }) {
   const textareaRef = useRef(null);
+
+  const { language } = useTranslation();
+
+  const content =
+    generateRecipeContent[language] ||
+    generateRecipeContent.en;
 
   function resizeTextarea() {
     const textarea = textareaRef.current;
@@ -59,25 +68,24 @@ export default function ChatInput({
           disabled={loading}
           onChange={handleInput}
           onKeyDown={handleKeyDown}
-          placeholder="Example: I have chicken, rice, onion, garlic and yogurt. Recommend something spicy for dinner under 30 minutes..."
+          placeholder={content.input.placeholder}
           className="min-h-[60px] max-h-72 w-full resize-none overflow-y-auto border-none bg-transparent text-base leading-7 text-gray-800 outline-none placeholder:text-gray-400"
         />
 
         <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-1">
             <p className="text-sm text-gray-500">
-              Press <span className="font-medium">Enter</span> to generate •{" "}
-              <span className="font-medium">Shift + Enter</span> for a new line
+              {content.input.enterHint}
             </p>
 
             <p className="text-xs text-gray-400">
-              Ask about ingredients, cuisine, diet, cooking time, or servings.
+              {content.input.helperText}
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <span className="text-xs text-gray-400">
-              {value.length} characters
+              {value.length} {content.input.characterCount}
             </span>
 
             {value && !loading && (
@@ -85,7 +93,7 @@ export default function ChatInput({
                 type="button"
                 onClick={handleClear}
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition hover:bg-gray-100 hover:text-gray-700"
-                aria-label="Clear"
+                aria-label={content.input.clearButton}
               >
                 <FiX size={18} />
               </button>
@@ -96,10 +104,13 @@ export default function ChatInput({
               onClick={handleSubmit}
               disabled={!value.trim() || loading}
               className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-500 text-white shadow-md transition-all duration-200 hover:scale-105 hover:bg-orange-600 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300"
-              aria-label="Generate Recipe"
+              aria-label={content.input.submitButton}
             >
               {loading ? (
-                <FiLoader size={22} className="animate-spin" />
+                <FiLoader
+                  size={22}
+                  className="animate-spin"
+                />
               ) : (
                 <FiArrowUp size={22} />
               )}

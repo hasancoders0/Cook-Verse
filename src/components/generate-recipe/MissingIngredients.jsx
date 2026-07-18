@@ -1,6 +1,17 @@
+"use client";
+
 import { FiCheckCircle, FiShoppingCart } from "react-icons/fi";
 
+import generateRecipeContent from "@/content/generate-recipe";
+import useTranslation from "@/hooks/useTranslation";
+
 export default function MissingIngredients({ ingredients = [], message = "" }) {
+  const { language, t } = useTranslation();
+
+  const content = generateRecipeContent[language] || generateRecipeContent.en;
+
+  const missingContent = content.result.missingIngredients;
+
   const hasMissing = ingredients.length > 0 || !!message;
 
   if (!hasMissing) {
@@ -13,12 +24,11 @@ export default function MissingIngredients({ ingredients = [], message = "" }) {
 
           <div>
             <h2 className="text-2xl font-bold text-green-800">
-              You're Ready to Cook!
+              {missingContent.ready.title}
             </h2>
 
             <p className="mt-3 max-w-2xl leading-8 text-green-700">
-              Great news! You already have every ingredient needed for this
-              recipe. No additional shopping is required.
+              {missingContent.ready.description}
             </p>
           </div>
         </div>
@@ -35,12 +45,11 @@ export default function MissingIngredients({ ingredients = [], message = "" }) {
 
         <div className="flex-1">
           <h2 className="text-2xl font-bold text-gray-900">
-            Missing Ingredients
+            {missingContent.title}
           </h2>
 
           <p className="mt-3 leading-8 text-gray-600">
-            {message ||
-              "You're almost ready! Just pick up the following ingredients before you start cooking."}
+            {message || missingContent.description}
           </p>
 
           {ingredients.length > 0 && (
@@ -50,7 +59,7 @@ export default function MissingIngredients({ ingredients = [], message = "" }) {
                   key={ingredient.slug || ingredient.name}
                   className="rounded-full border border-amber-300 bg-white px-4 py-2 text-sm font-medium text-gray-700"
                 >
-                  {ingredient.name}
+                  {t(ingredient.name)}
                 </span>
               ))}
             </div>
@@ -58,9 +67,7 @@ export default function MissingIngredients({ ingredients = [], message = "" }) {
 
           <div className="mt-8 rounded-2xl border border-amber-100 bg-amber-50 p-5">
             <p className="text-sm leading-7 text-gray-600">
-              Once you've collected the missing ingredient
-              {ingredients.length !== 1 ? "s" : ""}, you'll be ready to prepare
-              this recipe with the best flavor and results.
+              {missingContent.footer}
             </p>
           </div>
         </div>

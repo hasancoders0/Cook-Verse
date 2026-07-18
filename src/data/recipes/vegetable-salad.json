@@ -2,25 +2,38 @@
   "id": "vegetable-salad",
   "slug": "vegetable-salad",
 
-  "title": "Fresh Vegetable Salad",
+  "title": {
+    "en": "Fresh Vegetable Salad",
+    "bn": "তাজা সবজি সালাদ"
+  },
 
-  "description": "A refreshing and healthy vegetable salad made with crisp lettuce, cucumber, tomatoes, carrots, and a light lemon dressing. Perfect as a side dish or a light meal.",
+  "description": {
+    "en": "A refreshing and healthy vegetable salad made with crisp lettuce, cucumber, tomatoes, carrots, and a light lemon dressing. Perfect as a side dish or a light meal.",
+    "bn": "তাজা লেটুস, শসা, টমেটো, গাজর এবং হালকা লেবুর ড্রেসিং দিয়ে তৈরি স্বাস্থ্যকর ও সতেজ সবজি সালাদ। সাইড ডিশ বা হালকা খাবার হিসেবে উপযুক্ত।"
+  },
 
   "thumbnail": "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1200&q=80",
 
   "category": {
-    "name": "Salad",
     "slug": "salad",
-    "searchTerms": ["salad", "green salad", "healthy salad", "fresh salad"]
+    "name": {
+      "en": "Salad",
+      "bn": "সালাদ"
+    }
   },
 
   "cuisine": {
-    "name": "International",
     "slug": "international",
-    "searchTerms": ["international", "global", "world cuisine"]
+    "name": {
+      "en": "International",
+      "bn": "আন্তর্জাতিক"
+    }
   },
 
-  "difficulty": "Easy",
+  "difficulty": {
+    "en": "Easy",
+    "bn": "সহজ"
+  },
 
   "prepTime": 15,
   "cookTime": 0,
@@ -40,124 +53,195 @@
 
   "diet": [
     {
-      "name": "Vegetarian",
       "slug": "vegetarian",
-      "searchTerms": ["vegetarian", "veg", "meatless"]
+      "name": {
+        "en": "Vegetarian",
+        "bn": "নিরামিষ"
+      }
     },
     {
-      "name": "Low Calorie",
       "slug": "low-calorie",
-      "searchTerms": [
-        "low calorie",
-        "low calories",
-        "light meal",
-        "diet friendly"
-      ]
+      "name": {
+        "en": "Low Calorie",
+        "bn": "কম ক্যালোরি"
+      }
     }
   ],
 
   "ingredientGroups": [
     {
-      "title": "Salad",
+      "title": {
+        "en": "Salad",
+        "bn": "সালাদ"
+      },
       "items": [
         {
-          "name": "Lettuce",
           "slug": "lettuce",
-          "searchTerms": ["lettuce", "leaf lettuce", "salad leaves"],
+          "name": {
+            "en": "Lettuce",
+            "bn": "লেটুস"
+          },
           "type": "vegetable",
           "isMainIngredient": true,
           "amount": 1,
-          "unit": "head",
-          "note": "Washed and chopped"
+          "unit": {
+            "en": "head",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Washed and chopped",
+            "bn": "ধুয়ে কুচি করা"
+          }
         },
         {
-          "name": "Cucumber",
           "slug": "cucumber",
-          "searchTerms": ["cucumber", "cucumbers", "fresh cucumber"],
+          "name": {
+            "en": "Cucumber",
+            "bn": "শসা"
+          },
           "type": "vegetable",
           "isMainIngredient": true,
           "amount": 1,
-          "unit": "pc",
-          "note": "Sliced"
+          "unit": {
+            "en": "pc",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Sliced",
+            "bn": "স্লাইস করা"
+          }
         },
         {
-          "name": "Tomato",
           "slug": "tomato",
-          "searchTerms": ["tomato", "tomatoes", "fresh tomato"],
+          "name": {
+            "en": "Tomato",
+            "bn": "টমেটো"
+          },
           "type": "vegetable",
           "isMainIngredient": true,
           "amount": 2,
-          "unit": "pcs",
-          "note": "Diced"
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Diced",
+            "bn": "কিউব করে কাটা"
+          }
         },
         {
-          "name": "Carrot",
           "slug": "carrot",
-          "searchTerms": ["carrot", "carrots", "fresh carrot"],
+          "name": {
+            "en": "Carrot",
+            "bn": "গাজর"
+          },
           "type": "vegetable",
           "isMainIngredient": true,
           "amount": 1,
-          "unit": "pc",
-          "note": "Grated"
+          "unit": {
+            "en": "pc",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Grated",
+            "bn": "কুচি করা"
+          }
         },
         {
-          "name": "Red Onion",
           "slug": "red-onion",
-          "searchTerms": ["red onion", "onion", "red onions", "onions"],
+          "name": {
+            "en": "Red Onion",
+            "bn": "লাল পেঁয়াজ"
+          },
           "type": "vegetable",
           "isMainIngredient": false,
           "amount": 0.5,
-          "unit": "pc",
-          "note": "Thinly sliced"
+          "unit": {
+            "en": "pc",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Thinly sliced",
+            "bn": "পাতলা করে কাটা"
+          }
         }
       ]
     },
 
     {
-      "title": "Dressing",
+      "title": {
+        "en": "Dressing",
+        "bn": "ড্রেসিং"
+      },
       "items": [
         {
-          "name": "Olive Oil",
           "slug": "olive-oil",
-          "searchTerms": ["olive oil", "extra virgin olive oil", "evoo"],
+          "name": {
+            "en": "Olive Oil",
+            "bn": "অলিভ অয়েল"
+          },
           "type": "oil",
           "isMainIngredient": false,
           "amount": 2,
-          "unit": "tbsp"
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
         },
         {
-          "name": "Lemon Juice",
           "slug": "lemon-juice",
-          "searchTerms": ["lemon juice", "lemon", "lime juice"],
+          "name": {
+            "en": "Lemon Juice",
+            "bn": "লেবুর রস"
+          },
           "type": "acid",
           "isMainIngredient": false,
           "amount": 1,
-          "unit": "tbsp"
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
         }
       ]
     },
 
     {
-      "title": "Seasoning",
+      "title": {
+        "en": "Seasoning",
+        "bn": "মসলা"
+      },
       "items": [
         {
-          "name": "Salt",
           "slug": "salt",
-          "searchTerms": ["salt", "table salt"],
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
           "type": "seasoning",
           "isMainIngredient": false,
           "amount": 0.5,
-          "unit": "tsp",
-          "note": "Or to taste"
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
         },
         {
-          "name": "Black Pepper",
           "slug": "black-pepper",
-          "searchTerms": ["black pepper", "pepper", "ground black pepper"],
+          "name": {
+            "en": "Black Pepper",
+            "bn": "গোলমরিচ"
+          },
           "type": "spice",
           "isMainIngredient": false,
           "amount": 0.25,
-          "unit": "tsp"
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
         }
       ]
     }
@@ -165,84 +249,166 @@
   "instructions": [
     {
       "step": 1,
-      "title": "Prepare the Vegetables",
-      "description": "Wash all vegetables thoroughly. Chop the lettuce, slice the cucumber and onion, dice the tomatoes, and grate the carrot."
+      "title": {
+        "en": "Prepare the Vegetables",
+        "bn": "সবজি প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Wash all vegetables thoroughly. Chop the lettuce, slice the cucumber and onion, dice the tomatoes, and grate the carrot.",
+        "bn": "সবজি ভালোভাবে ধুয়ে নিন। লেটুস কুচি করুন, শসা ও পেঁয়াজ পাতলা করে কাটুন, টমেটো ছোট টুকরো করুন এবং গাজর কুঁচি করুন।"
+      }
     },
     {
       "step": 2,
-      "title": "Combine Ingredients",
-      "description": "Place all prepared vegetables into a large mixing bowl."
+      "title": {
+        "en": "Combine the Vegetables",
+        "bn": "সবজি একসাথে মেশান"
+      },
+      "description": {
+        "en": "Place all the prepared vegetables into a large mixing bowl.",
+        "bn": "সব প্রস্তুত করা সবজি একটি বড় মিক্সিং বাউলে নিন।"
+      }
     },
     {
       "step": 3,
-      "title": "Prepare the Dressing",
-      "description": "Whisk together olive oil, lemon juice, salt, and black pepper until well combined."
+      "title": {
+        "en": "Prepare the Dressing",
+        "bn": "ড্রেসিং তৈরি করুন"
+      },
+      "description": {
+        "en": "Whisk together olive oil, lemon juice, salt, and black pepper until well combined.",
+        "bn": "অলিভ অয়েল, লেবুর রস, লবণ এবং গোলমরিচ একসাথে ভালোভাবে ফেটিয়ে ড্রেসিং তৈরি করুন।"
+      }
     },
     {
       "step": 4,
-      "title": "Mix the Salad",
-      "description": "Pour the dressing over the vegetables and toss gently until evenly coated."
+      "title": {
+        "en": "Mix the Salad",
+        "bn": "সালাদ মেশান"
+      },
+      "description": {
+        "en": "Pour the dressing over the vegetables and toss gently until everything is evenly coated.",
+        "bn": "সবজির উপর ড্রেসিং ঢেলে আলতোভাবে মিশিয়ে নিন যাতে সবজিগুলো সমানভাবে কোট হয়।"
+      }
     },
     {
       "step": 5,
-      "title": "Serve",
-      "description": "Serve immediately while fresh and crisp."
+      "title": {
+        "en": "Serve",
+        "bn": "পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Serve immediately while the vegetables are fresh and crisp.",
+        "bn": "সবজি সতেজ ও মচমচে থাকা অবস্থায় সঙ্গে সঙ্গে পরিবেশন করুন।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Chill the vegetables before serving for extra freshness.",
+      "bn": "আরও সতেজ স্বাদের জন্য পরিবেশনের আগে সবজি ঠান্ডা করে নিন।"
+    },
+    {
+      "en": "Add feta cheese or avocado for extra flavor and nutrition.",
+      "bn": "অতিরিক্ত স্বাদ ও পুষ্টির জন্য ফেটা চিজ বা অ্যাভোকাডো যোগ করতে পারেন।"
+    },
+    {
+      "en": "Prepare the dressing separately and mix just before serving.",
+      "bn": "ড্রেসিং আলাদা তৈরি করে পরিবেশনের ঠিক আগে সালাদের সাথে মেশান।"
     }
   ],
 
   "equipment": [
     {
-      "name": "Mixing Bowl"
+      "en": "Mixing Bowl",
+      "bn": "মিক্সিং বোল"
     },
     {
-      "name": "Chef Knife"
+      "en": "Chef Knife",
+      "bn": "শেফ নাইফ"
     },
     {
-      "name": "Cutting Board"
+      "en": "Cutting Board",
+      "bn": "কাটিং বোর্ড"
     },
     {
-      "name": "Whisk"
+      "en": "Whisk",
+      "bn": "হুইস্ক"
     }
-  ],
-
-  "tips": [
-    "Chill the vegetables before serving for extra freshness.",
-    "Add feta cheese or avocado for more flavor and nutrition.",
-    "Prepare the dressing separately and mix just before serving."
   ],
 
   "tags": [
     {
-      "name": "Salad",
       "slug": "salad",
-      "searchTerms": ["salad", "green salad", "vegetable salad", "fresh salad"]
+      "name": {
+        "en": "Salad",
+        "bn": "সালাদ"
+      }
     },
     {
-      "name": "Healthy",
       "slug": "healthy",
-      "searchTerms": ["healthy", "nutritious", "healthy food", "healthy meal"]
+      "name": {
+        "en": "Healthy",
+        "bn": "স্বাস্থ্যকর"
+      }
     },
     {
-      "name": "Vegetarian",
       "slug": "vegetarian",
-      "searchTerms": ["vegetarian", "veg", "meatless"]
+      "name": {
+        "en": "Vegetarian",
+        "bn": "নিরামিষ"
+      }
     },
     {
-      "name": "Quick",
       "slug": "quick",
-      "searchTerms": ["quick", "fast", "easy", "ready in minutes"]
+      "name": {
+        "en": "Quick",
+        "bn": "দ্রুত"
+      }
     },
     {
-      "name": "Low Calorie",
       "slug": "low-calorie",
-      "searchTerms": ["low calorie", "low calories", "light", "diet"]
+      "name": {
+        "en": "Low Calorie",
+        "bn": "কম ক্যালোরি"
+      }
     },
     {
-      "name": "Fresh",
       "slug": "fresh",
-      "searchTerms": ["fresh", "crisp", "refreshing"]
+      "name": {
+        "en": "Fresh",
+        "bn": "তাজা"
+      }
     }
   ],
+
+  "searchTerms": {
+    "en": [
+      "vegetable salad",
+      "fresh salad",
+      "healthy salad",
+      "green salad",
+      "lettuce salad",
+      "vegetarian salad",
+      "low calorie salad",
+      "quick salad",
+      "easy salad",
+      "light meal"
+    ],
+    "bn": [
+      "সবজি সালাদ",
+      "তাজা সালাদ",
+      "স্বাস্থ্যকর সালাদ",
+      "সবুজ সালাদ",
+      "নিরামিষ সালাদ",
+      "কম ক্যালোরি সালাদ",
+      "সহজ সালাদ",
+      "দ্রুত সালাদ",
+      "হালকা খাবার",
+      "লেটুস সালাদ"
+    ]
+  },
 
   "rating": {
     "average": 4.7,

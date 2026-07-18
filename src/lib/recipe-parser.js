@@ -1,10 +1,9 @@
 import { getSearchData } from "@/lib/recipes";
+import { getLocalizedValue } from "@/lib/language";
 
 /* -------------------------------------------------------------------------- */
 /* Search Data                                                                 */
 /* -------------------------------------------------------------------------- */
-
-const searchData = getSearchData();
 
 /* -------------------------------------------------------------------------- */
 /* Helpers                                                                     */
@@ -29,16 +28,34 @@ function includesPhrase(text, phrase) {
 function unique(items = []) {
   return [...new Map(items.map((item) => [item.slug, item])).values()];
 }
+function getEntityName(entity, language) {
+  return getLocalizedValue(entity.name, language);
+}
 
+function getEntitySearchTerms(entity, language) {
+  const localized = Array.isArray(entity.searchTerms?.[language])
+    ? entity.searchTerms[language]
+    : [];
+
+  const english = Array.isArray(entity.searchTerms?.en)
+    ? entity.searchTerms.en
+    : [];
+
+  return [...new Set([...localized, ...english])];
+}
 /* -------------------------------------------------------------------------- */
 /* Entity Matcher                                                             */
 /* -------------------------------------------------------------------------- */
 
-function matchEntities(text, entities = []) {
+function matchEntities(text, entities = [], language = "en") {
   const matches = [];
 
   entities.forEach((entity) => {
-    const keywords = [entity.name, entity.slug, ...(entity.searchTerms || [])];
+    const keywords = [
+      getEntityName(entity, language),
+      entity.slug,
+      ...getEntitySearchTerms(entity, language),
+    ];
 
     const found = keywords.some((keyword) => {
       const normalizedKeyword = normalizeText(keyword);
@@ -113,43 +130,31 @@ function extractServings(text) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Difficulty                                                                 */
-/* -------------------------------------------------------------------------- */
-
-function extractDifficulty(text) {
-  const difficulties = searchData.difficulties.map((difficulty) => ({
-    name: difficulty,
-    slug: difficulty.toLowerCase(),
-    searchTerms: [difficulty, `${difficulty} recipe`],
-  }));
-
-  return matchEntities(text, difficulties);
-}
-
-/* -------------------------------------------------------------------------- */
 /* Extractors                                                                 */
 /* -------------------------------------------------------------------------- */
-
-function extractIngredients(text) {
-  return matchEntities(text, searchData.ingredients);
+function extractIngredients(text, searchData, language = "en") {
+  return matchEntities(text, searchData.ingredients, language);
 }
 
-function extractCategories(text) {
-  return matchEntities(text, searchData.categories);
+function extractCategories(text, searchData, language = "en") {
+  return matchEntities(text, searchData.categories, language);
 }
 
-function extractCuisines(text) {
-  return matchEntities(text, searchData.cuisines);
+function extractCuisines(text, searchData, language = "en") {
+  return matchEntities(text, searchData.cuisines, language);
 }
 
-function extractDiets(text) {
-  return matchEntities(text, searchData.diets);
+function extractDiets(text, searchData, language = "en") {
+  return matchEntities(text, searchData.diets, language);
 }
 
-function extractTags(text) {
-  return matchEntities(text, searchData.tags);
+function extractTags(text, searchData, language = "en") {
+  return matchEntities(text, searchData.tags, language);
 }
 
+function extractDifficulty(text, searchData, language = "en") {
+  return matchEntities(text, searchData.difficulties, language);
+}
 /* -------------------------------------------------------------------------- */
 /* Intent Detection                                                           */
 /* -------------------------------------------------------------------------- */
@@ -209,7 +214,9 @@ function detectIntent(text) {
 /* Main Parser                                                                */
 /* -------------------------------------------------------------------------- */
 
-export function parseRecipePrompt(prompt = "") {
+export function parseRecipePrompt(prompt, language = "en") {
+  const searchData = getSearchData(language);
+
   const normalizedPrompt = normalizeText(prompt);
 
   return {
@@ -217,17 +224,17 @@ export function parseRecipePrompt(prompt = "") {
 
     normalizedPrompt,
 
-    ingredients: extractIngredients(normalizedPrompt),
+    ingredients: extractIngredients(normalizedPrompt, searchData, language),
 
-    categories: extractCategories(normalizedPrompt),
+    categories: extractCategories(normalizedPrompt, searchData, language),
 
-    cuisines: extractCuisines(normalizedPrompt),
+    cuisines: extractCuisines(normalizedPrompt, searchData, language),
 
-    diets: extractDiets(normalizedPrompt),
+    diets: extractDiets(normalizedPrompt, searchData, language),
 
-    tags: extractTags(normalizedPrompt),
+    tags: extractTags(normalizedPrompt, searchData, language),
 
-    difficulties: extractDifficulty(normalizedPrompt),
+    difficulties: extractDifficulty(normalizedPrompt, searchData, language),
 
     intents: detectIntent(normalizedPrompt),
 
