@@ -281,19 +281,19 @@ export function getTagBySlug(slug) {
 /* Search Data                                                                */
 /* -------------------------------------------------------------------------- */
 
-export function getSearchData() {
+export function getSearchData(language = "en") {
   return {
-    ingredients: getIngredients(),
+    ingredients: getIngredients(language),
 
-    categories: getCategories(),
+    categories: getCategories(language),
 
-    cuisines: getCuisines(),
+    cuisines: getCuisines(language),
 
-    diets: getDiets(),
+    diets: getDiets(language),
 
-    tags: getTags(),
+    tags: getTags(language),
 
-    difficulties: getDifficulties().map((difficulty) => ({
+    difficulties: getDifficulties(language).map((difficulty) => ({
       slug: normalizeText(difficulty),
       name: {
         en: difficulty,

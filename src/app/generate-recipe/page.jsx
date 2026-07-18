@@ -13,11 +13,14 @@ import MissingIngredients from "@/components/generate-recipe/MissingIngredients"
 import RecipeRecommendations from "@/components/generate-recipe/RecipeRecommendations";
 import EmptyState from "@/components/generate-recipe/EmptyState";
 
+import generateRecipeContent from "@/content/generate-recipe";
 import useTranslation from "@/hooks/useTranslation";
 import { generateRecipe } from "@/lib/recipe-generator";
 
 export default function GenerateRecipePage() {
   const { language } = useTranslation();
+
+  const content = generateRecipeContent[language] ?? generateRecipeContent.en;
 
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
@@ -58,7 +61,7 @@ export default function GenerateRecipePage() {
     <>
       <ChatHero />
 
-      <AppContainer className="py-12">
+      <AppContainer className="py-12 lg:py-16">
         <div className="mx-auto max-w-4xl">
           <ChatInput
             value={prompt}
@@ -67,39 +70,38 @@ export default function GenerateRecipePage() {
             loading={loading}
           />
 
-          <SuggestionChips onSelect={handleSuggestion} />
+          {!loading && !result && (
+            <>
+              <SuggestionChips onSelect={handleSuggestion} />
 
-          {!loading && !result && <EmptyState />}
+              <EmptyState />
+            </>
+          )}
 
           {loading && <ThinkingAnimation />}
 
           {!loading && result?.success && (
-            <>
+            <div className="space-y-10 pt-10">
               <ChefResponse prompt={prompt} result={result} />
 
-              {result.missingIngredients && (
-                <div className="mt-10">
-                  <MissingIngredients message={result.missingIngredients} />
-                </div>
-              )}
+              <MissingIngredients
+                ingredients={result.missingIngredientsList || []}
+                message={result.missingIngredients}
+              />
 
               {result.recommendations?.length > 0 && (
-                <div className="mt-12">
-                  <RecipeRecommendations recipes={result.recommendations} />
-                </div>
+                <RecipeRecommendations recipes={result.recommendations} />
               )}
-            </>
+            </div>
           )}
 
           {!loading && result && !result.success && (
-            <div className="mt-10 rounded-3xl border border-red-200 bg-red-50 p-6 text-center">
-              <h3 className="text-xl font-semibold text-red-700">
-                {language === "bn"
-                  ? "কোনো রেসিপি পাওয়া যায়নি"
-                  : "No Recipe Found"}
-              </h3>
+            <div className="mt-10 rounded-3xl border border-red-200 bg-red-50 p-8 text-center">
+              <h2 className="text-2xl font-bold text-red-700">
+                {content.messages.noResults}
+              </h2>
 
-              <p className="mt-2 text-red-600">{result.message}</p>
+              <p className="mt-3 text-red-600">{result.message}</p>
             </div>
           )}
         </div>

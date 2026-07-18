@@ -16,9 +16,7 @@ export default function ChatInput({
 
   const { language } = useTranslation();
 
-  const content =
-    generateRecipeContent[language] ||
-    generateRecipeContent.en;
+  const content = generateRecipeContent[language] ?? generateRecipeContent.en;
 
   function resizeTextarea() {
     const textarea = textareaRef.current;
@@ -50,72 +48,73 @@ export default function ChatInput({
   function handleClear() {
     onChange("");
 
-    const textarea = textareaRef.current;
-
-    if (textarea) {
-      textarea.style.height = "60px";
-      textarea.focus();
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "72px";
+      textareaRef.current.focus();
     }
   }
 
   return (
-    <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-lg transition-all duration-300 focus-within:border-orange-400 focus-within:shadow-xl">
-      <div className="p-6">
+    <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition-all duration-300 focus-within:border-orange-400 focus-within:shadow-xl">
+      <div className="p-6 md:p-8">
+        {/* Heading */}
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold text-gray-900">
+            {language === "bn"
+              ? "আজ কী রান্না করতে চান?"
+              : "What would you like to cook today?"}
+          </h2>
+
+          <p className="mt-1 text-sm text-gray-500">
+            {content.input.helperText}
+          </p>
+        </div>
+
+        {/* Textarea */}
         <textarea
           ref={textareaRef}
-          rows={1}
+          rows={2}
           value={value}
           disabled={loading}
           onChange={handleInput}
           onKeyDown={handleKeyDown}
           placeholder={content.input.placeholder}
-          className="min-h-[60px] max-h-72 w-full resize-none overflow-y-auto border-none bg-transparent text-base leading-7 text-gray-800 outline-none placeholder:text-gray-400"
+          className="min-h-[90px] max-h-72 w-full resize-none overflow-y-auto border-none bg-transparent text-base leading-7 text-gray-800 outline-none placeholder:text-gray-400"
         />
 
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
-          <div className="space-y-1">
-            <p className="text-sm text-gray-500">
-              {content.input.enterHint}
-            </p>
-
-            <p className="text-xs text-gray-400">
-              {content.input.helperText}
-            </p>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <span className="text-xs text-gray-400">
-              {value.length} {content.input.characterCount}
-            </span>
-
+        {/* Footer */}
+        <div className="mt-6 flex items-center justify-between">
+          <div>
             {value && !loading && (
               <button
                 type="button"
                 onClick={handleClear}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition hover:bg-gray-100 hover:text-gray-700"
-                aria-label={content.input.clearButton}
+                className="inline-flex items-center gap-2 rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-50"
               >
-                <FiX size={18} />
+                <FiX size={16} />
+                {content.input.clearButton}
               </button>
             )}
-
-            <button
-              type="button"
-              onClick={handleSubmit}
-              disabled={!value.trim() || loading}
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-500 text-white shadow-md transition-all duration-200 hover:scale-105 hover:bg-orange-600 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-gray-300"
-              aria-label={content.input.submitButton}
-            >
-              {loading ? (
-                <FiLoader
-                  size={22}
-                  className="animate-spin"
-                />
-              ) : (
-                <FiArrowUp size={22} />
-              )}
-            </button>
           </div>
+
+          <button
+            type="button"
+            onClick={handleSubmit}
+            disabled={!value.trim() || loading}
+            className="inline-flex h-12 items-center gap-2 rounded-xl bg-orange-500 px-5 text-sm font-medium text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:bg-gray-300"
+          >
+            {loading ? (
+              <>
+                <FiLoader size={18} className="animate-spin" />
+                {language === "bn" ? "অপেক্ষা করুন..." : "Generating..."}
+              </>
+            ) : (
+              <>
+                {content.input.submitButton}
+                <FiArrowUp size={18} />
+              </>
+            )}
+          </button>
         </div>
       </div>
     </div>

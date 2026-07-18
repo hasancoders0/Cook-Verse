@@ -2,365 +2,224 @@ const generateRecipeContent = {
   en: {
     seo: {
       title: "AI Recipe Generator | CookVerse",
-      description: "Generate personalized recipe recommendations using AI.",
+      description:
+        "Generate personalized recipes with AI based on your ingredients and preferences.",
     },
 
     hero: {
-      badge: "CookVerse AI Chef",
+      badge: "AI Recipe Assistant",
 
       title: {
-        first: "Your Personal",
-        second: "AI Recipe Assistant",
+        first: "Discover",
+        second: "Recipes with AI",
       },
 
-      description:
-        "Tell me what ingredients you have, your preferred cuisine, dietary preferences, or cooking time, and I'll recommend the best matching recipe from the CookVerse collection.",
-
-      examples: [
-        "🥩 I have chicken and rice",
-        "🥗 Healthy vegetarian dinner",
-        "⏱ Ready in 30 minutes",
-        "🌶 Spicy Indian food",
-      ],
+      description: "Tell me what you have, and I'll find the perfect recipe.",
     },
 
     input: {
-      placeholder:
-        "Example: I have chicken, rice, onion, garlic and yogurt. Recommend something spicy for dinner under 30 minutes...",
+      placeholder: "I have chicken, rice, garlic and onion. What can I cook?",
 
-      enterHint: "Press Enter to generate • Shift + Enter for a new line",
-
-      helperText:
-        "Ask about ingredients, cuisine, diet, cooking time, or servings.",
-
-      characterCount: "characters",
+      helperText: "Describe your ingredients or preferences.",
 
       clearButton: "Clear",
 
       submitButton: "Generate Recipe",
     },
-
     emptyState: {
-      badge: "CookVerse AI Chef",
-
-      title: "Ready to Find Your Perfect Recipe?",
+      title: "Ready to Cook?",
 
       description:
-        "Tell me what ingredients you already have, your favorite cuisine, dietary preferences, or how much time you have. I'll recommend the best matching recipe from the CookVerse collection.",
-
-      features: [
-        {
-          title: "Smart Recipe Matching",
-          description:
-            "Finds recipes that best match your available ingredients and preferences.",
-        },
-        {
-          title: "Time-Based Suggestions",
-          description:
-            "Discover recipes that fit your available cooking time and difficulty level.",
-        },
-        {
-          title: "Shopping Assistance",
-          description:
-            "Shows which ingredients you're missing and recommends similar recipes you can cook.",
-        },
-      ],
-
-      examples: {
-        title: "Try asking something like...",
-
-        prompts: [
-          "🥩 I have chicken, rice, onion and garlic. What can I cook?",
-          "🌶 Recommend a spicy Indian dinner under 30 minutes.",
-          "🥗 Show me a healthy vegetarian recipe.",
-          "🍔 I want something easy for 4 people.",
-        ],
-      },
+        "Describe your ingredients or choose one of the suggestions below to get started.",
     },
 
     suggestions: {
-      title: "Try one of these prompts",
-
+      title: "Popular Prompts",
       items: [
         {
           id: 1,
-          title: "Chicken Biryani",
-          prompt:
-            "I have chicken, rice, onion, garlic and yogurt. What can I cook?",
+          title: "Quick Dinner",
+          prompt: "Recommend a quick dinner under 30 minutes.",
         },
         {
           id: 2,
-          title: "Beef Burger",
-          prompt:
-            "I have ground beef, burger buns, lettuce, tomato and cheese.",
+          title: "Healthy Meal",
+          prompt: "Suggest a healthy meal.",
         },
         {
           id: 3,
-          title: "Vegetable Salad",
-          prompt:
-            "I have cucumber, tomato, lettuce and carrots. Suggest a healthy recipe.",
+          title: "Use My Ingredients",
+          prompt: "I have chicken, rice and garlic. What can I cook?",
         },
         {
           id: 4,
-          title: "Spicy Dinner",
-          prompt: "Recommend a spicy chicken recipe for dinner.",
+          title: "High Protein",
+          prompt: "Recommend a high-protein meal.",
         },
         {
           id: 5,
-          title: "Healthy Lunch",
-          prompt: "I want a healthy vegetable meal for lunch.",
+          title: "Vegetarian",
+          prompt: "Suggest an easy vegetarian recipe.",
         },
         {
           id: 6,
-          title: "Use My Ingredients",
-          prompt: "I have rice, chicken and yogurt. What recipe matches best?",
+          title: "Surprise Me",
+          prompt: "Recommend something unique and delicious.",
         },
       ],
     },
-
     thinking: {
-      badge: "CookVerse AI Chef",
-
-      title: "Preparing Your Recipe...",
-
+      title: "Finding the Best Recipe",
       description:
-        "Please wait while I analyze your request and find the best recipe from the CookVerse collection.",
-
-      stepLabel: "Step",
-
-      steps: [
-        {
-          icon: "cpu",
-          title: "Understanding your request",
-          description:
-            "Analyzing your ingredients, cuisine preferences, dietary needs, and cooking time.",
-        },
-        {
-          icon: "search",
-          title: "Searching recipe collection",
-          description:
-            "Comparing your request with recipes in the CookVerse database.",
-        },
-        {
-          icon: "check",
-          title: "Finding the best match",
-          description:
-            "Scoring recipes and selecting the best recommendation for you.",
-        },
-      ],
-
-      footer:
-        "This usually takes only a few seconds. We're matching your request against the CookVerse recipe collection.",
+        "Analyzing your request and searching the CookVerse recipe collection.",
+      loading: "AI is generating your recipe...",
     },
-
     result: {
-      recommendations: {
-        badge: "AI Recommendations",
+      badge: "AI Recipe",
 
-        title: "You Might Also Like",
+      title: "Recipe Found",
 
-        description:
-          "These recipes also match many of your ingredients, cooking preferences, or dietary choices.",
+      description: "Here's the best recipe based on your request.",
 
-        countLabel: "Alternative Recipes",
-
-        footer:
-          "Want something even more specific? Add more ingredients or preferences.",
+      stats: {
+        score: "Match Score",
+        ingredients: "Matched Ingredients",
+        time: "Cooking Time",
+        difficulty: "Difficulty",
       },
-
-      alternatives: "More Recipes",
 
       matchedIngredients: "Matched Ingredients",
 
       missingIngredients: {
         ready: {
-          title: "You're Ready to Cook!",
-          description: "Great news! You already have every ingredient needed.",
+          title: "Ready to Cook",
+
+          description: "You already have everything you need.",
         },
 
         title: "Missing Ingredients",
 
-        description:
-          "You're almost ready! Just pick up the following ingredients.",
-
-        footer: "Once you've collected them, you'll be ready to cook.",
+        description: "You'll need these ingredients before you start cooking.",
       },
     },
 
     messages: {
-      emptyPrompt: "Please enter what you'd like to cook.",
-      noResults: "No matching recipes were found.",
-      tryAgain: "Try using different ingredients or filters.",
+      emptyPrompt: "Describe what you'd like to cook.",
+      noResults: "No matching recipes found.",
+      tryAgain: "Try adding more ingredients or preferences.",
     },
   },
-
   bn: {
     seo: {
       title: "এআই রেসিপি জেনারেটর | CookVerse",
-      description: "এআই ব্যবহার করে আপনার জন্য উপযুক্ত রেসিপি খুঁজে নিন।",
+      description: "আপনার উপকরণ ও পছন্দ অনুযায়ী এআই দিয়ে রেসিপি খুঁজে নিন।",
     },
 
     hero: {
-      badge: "CookVerse এআই শেফ",
+      badge: "এআই রেসিপি সহকারী",
 
       title: {
-        first: "আপনার ব্যক্তিগত",
-        second: "এআই রেসিপি সহকারী",
+        first: "আরও সহজে",
+        second: "রান্না করুন",
       },
 
       description:
-        "আপনার কাছে থাকা উপকরণ, পছন্দের খাবার, ডায়েট বা রান্নার সময় লিখুন। আমি CookVerse সংগ্রহ থেকে সবচেয়ে উপযুক্ত রেসিপি খুঁজে দেব।",
-
-      examples: [
-        "🥩 আমার কাছে চিকেন ও ভাত আছে",
-        "🥗 স্বাস্থ্যকর নিরামিষ রাতের খাবার",
-        "⏱ ৩০ মিনিটে প্রস্তুত",
-        "🌶 ঝাল ভারতীয় খাবার",
-      ],
+        "আপনার কাছে কী কী উপকরণ আছে লিখুন, আমি আপনার জন্য সেরা রেসিপি খুঁজে দেব।",
     },
 
     input: {
       placeholder:
-        "উদাহরণ: আমার কাছে চিকেন, ভাত, পেঁয়াজ, রসুন এবং দই আছে। ৩০ মিনিটের মধ্যে ঝাল রাতের খাবারের জন্য একটি রেসিপি সাজেস্ট করুন...",
+        "আমার কাছে চিকেন, ভাত, রসুন ও পেঁয়াজ আছে। কী রান্না করতে পারি?",
 
-      enterHint: "Enter চাপুন • নতুন লাইনের জন্য Shift + Enter",
-
-      helperText: "উপকরণ, রান্নার সময়, ডায়েট বা খাবারের ধরন সম্পর্কে লিখুন।",
-
-      characterCount: "অক্ষর",
+      helperText: "আপনার উপকরণ বা পছন্দের খাবারের ধরন লিখুন।",
 
       clearButton: "মুছুন",
 
       submitButton: "রেসিপি তৈরি করুন",
     },
-
     emptyState: {
-      badge: "CookVerse এআই শেফ",
+      title: "কী রান্না করবেন?",
 
-      title: "আপনার জন্য সেরা রেসিপি খুঁজে বের করুন",
-
-      description:
-        "আপনার কাছে কী কী উপকরণ আছে বা কী ধরনের খাবার খেতে চান তা লিখুন।",
-
-      features: [
-        {
-          title: "স্মার্ট রেসিপি নির্বাচন",
-          description: "আপনার উপকরণ ও পছন্দ অনুযায়ী সেরা রেসিপি খুঁজে দেয়।",
-        },
-        {
-          title: "সময় অনুযায়ী সাজেশন",
-          description:
-            "আপনার হাতে যত সময় আছে তার ভিত্তিতে রেসিপি সাজেস্ট করে।",
-        },
-        {
-          title: "শপিং সহায়তা",
-          description:
-            "কোন কোন উপকরণ নেই তা দেখায় এবং বিকল্প রেসিপি সাজেস্ট করে।",
-        },
-      ],
-
-      examples: {
-        title: "এভাবে লিখে দেখতে পারেন",
-
-        prompts: [
-          "🥩 আমার কাছে চিকেন, ভাত, পেঁয়াজ ও রসুন আছে।",
-          "🌶 ৩০ মিনিটে ঝাল ভারতীয় রাতের খাবার চাই।",
-          "🥗 একটি স্বাস্থ্যকর নিরামিষ রেসিপি দেখাও।",
-          "🍔 ৪ জনের জন্য সহজ একটি রেসিপি চাই।",
-        ],
-      },
+      description: "আপনার উপকরণ লিখুন অথবা নিচের একটি সাজেশন নির্বাচন করুন।",
     },
 
     suggestions: {
-      title: "এই উদাহরণগুলো ব্যবহার করুন",
+      title: "জনপ্রিয় সাজেশন",
 
       items: [
         {
           id: 1,
-          title: "চিকেন বিরিয়ানি",
-          prompt: "আমার কাছে চিকেন, ভাত, পেঁয়াজ, রসুন ও দই আছে।",
+          title: "দ্রুত রাতের খাবার",
+          prompt: "৩০ মিনিটের মধ্যে একটি রাতের খাবারের রেসিপি সাজেস্ট করুন।",
         },
         {
           id: 2,
-          title: "বিফ বার্গার",
-          prompt: "আমার কাছে বিফ, বান, টমেটো ও চিজ আছে।",
+          title: "স্বাস্থ্যকর খাবার",
+          prompt: "একটি স্বাস্থ্যকর ও পুষ্টিকর রেসিপি সাজেস্ট করুন।",
         },
         {
           id: 3,
-          title: "সবজি সালাদ",
-          prompt: "আমার কাছে শসা, টমেটো ও লেটুস আছে।",
+          title: "নিরামিষ",
+          prompt: "একটি সহজ নিরামিষ রেসিপি সাজেস্ট করুন।",
+        },
+        {
+          id: 4,
+          title: "চিকেন",
+          prompt: "আমার কাছে চিকেন আছে। কী রান্না করতে পারি?",
+        },
+        {
+          id: 5,
+          title: "পাস্তা",
+          prompt: "একটি সহজ পাস্তার রেসিপি সাজেস্ট করুন।",
+        },
+        {
+          id: 6,
+          title: "চমকে দিন",
+          prompt: "আমাকে একটি ভিন্ন ও মজার রেসিপি সাজেস্ট করুন।",
         },
       ],
     },
 
     thinking: {
-      badge: "CookVerse এআই শেফ",
-
-      title: "আপনার রেসিপি প্রস্তুত করা হচ্ছে...",
-
+      title: "সেরা রেসিপি খোঁজা হচ্ছে",
       description:
-        "আপনার অনুরোধ বিশ্লেষণ করে CookVerse থেকে সেরা রেসিপি খুঁজে বের করা হচ্ছে।",
-
-      stepLabel: "ধাপ",
-
-      steps: [
-        {
-          icon: "cpu",
-          title: "আপনার অনুরোধ বিশ্লেষণ করা হচ্ছে",
-          description:
-            "উপকরণ, খাবারের ধরন, ডায়েট এবং সময় বিশ্লেষণ করা হচ্ছে।",
-        },
-        {
-          icon: "search",
-          title: "রেসিপি সংগ্রহে অনুসন্ধান",
-          description:
-            "CookVerse-এর রেসিপির সাথে আপনার তথ্য মিলিয়ে দেখা হচ্ছে।",
-        },
-        {
-          icon: "check",
-          title: "সেরা রেসিপি নির্বাচন",
-          description: "সবচেয়ে উপযুক্ত রেসিপি নির্বাচন করা হচ্ছে।",
-        },
-      ],
-
-      footer: "এতে সাধারণত কয়েক সেকেন্ড সময় লাগে।",
+        "আপনার অনুরোধ বিশ্লেষণ করে CookVerse থেকে উপযুক্ত রেসিপি খুঁজে বের করা হচ্ছে।",
+      loading: "এআই রেসিপি তৈরি করছে...",
     },
 
     result: {
-      recommendations: {
-        badge: "এআই সাজেশন",
+      badge: "এআই রেসিপি",
 
-        title: "আপনার আরও ভালো লাগতে পারে",
+      title: "রেসিপি পাওয়া গেছে",
 
-        description: "এই রেসিপিগুলোও আপনার পছন্দের সাথে মিল রয়েছে।",
+      description: "আপনার অনুরোধ অনুযায়ী সেরা রেসিপি পাওয়া গেছে।",
 
-        countLabel: "বিকল্প রেসিপি",
-
-        footer: "আরও নির্দিষ্ট ফলাফলের জন্য আরও তথ্য যোগ করুন।",
+      stats: {
+        score: "মিলের স্কোর",
+        ingredients: "মিল পাওয়া উপকরণ",
+        time: "রান্নার সময়",
+        difficulty: "কঠিনতা",
       },
-
-      alternatives: "আরও রেসিপি",
 
       matchedIngredients: "মিল পাওয়া উপকরণ",
 
       missingIngredients: {
         ready: {
-          title: "আপনি রান্নার জন্য প্রস্তুত!",
-          description: "এই রেসিপির জন্য আপনার সব উপকরণ রয়েছে।",
+          title: "রান্নার জন্য প্রস্তুত",
+
+          description: "আপনার কাছে প্রয়োজনীয় সব উপকরণ রয়েছে।",
         },
 
-        title: "যে উপকরণগুলো নেই",
+        title: "যে উপকরণগুলো লাগবে",
 
-        description: "রান্না শুরু করার আগে নিচের উপকরণগুলো সংগ্রহ করুন।",
-
-        footer: "সব উপকরণ সংগ্রহ করলে আপনি সহজেই রান্না করতে পারবেন।",
+        description: "রান্না শুরু করার আগে এই উপকরণগুলো সংগ্রহ করুন।",
       },
     },
 
     messages: {
-      emptyPrompt: "অনুগ্রহ করে কী রান্না করতে চান তা লিখুন।",
-      noResults: "কোনো মিল পাওয়া যায়নি।",
-      tryAgain: "অন্য উপকরণ বা ফিল্টার ব্যবহার করে আবার চেষ্টা করুন।",
+      emptyPrompt: "আপনি কী রান্না করতে চান তা লিখুন।",
+      noResults: "কোনো উপযুক্ত রেসিপি পাওয়া যায়নি।",
+      tryAgain: "আরও উপকরণ বা পছন্দ যোগ করে আবার চেষ্টা করুন।",
     },
   },
 };

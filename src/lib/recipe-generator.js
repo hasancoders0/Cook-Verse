@@ -19,7 +19,7 @@ export function generateRecipe(prompt = "", language = "en") {
     };
   }
 
-  const parsedPrompt = parseRecipePrompt(prompt);
+ const parsedPrompt = parseRecipePrompt(prompt, language);
 
   const bestResult = getBestRecipe(parsedPrompt);
 
@@ -39,7 +39,7 @@ export function generateRecipe(prompt = "", language = "en") {
 /* -------------------------------------------------------------------------- */
 
 export function debugRecipePrompt(prompt = "") {
-  const parsedPrompt = parseRecipePrompt(prompt);
+  const parsedPrompt = parseRecipePrompt(prompt, language);
 
   const bestResult = getBestRecipe(parsedPrompt);
 
