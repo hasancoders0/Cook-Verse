@@ -1,14 +1,7 @@
-import chickenBiryani from "@/data/recipes/chicken-biryani.json";
-import beefBurger from "@/data/recipes/beef-burger.json";
-import vegetableSalad from "@/data/recipes/vegetable-salad.json";
+import recipes from "@/data/recipes";
 
 import { getLocalizedValue } from "@/lib/language";
 
-/* -------------------------------------------------------------------------- */
-/* Recipes                                                                    */
-/* -------------------------------------------------------------------------- */
-
-const recipes = [chickenBiryani, beefBurger, vegetableSalad];
 
 /* -------------------------------------------------------------------------- */
 /* Helpers                                                                    */

@@ -47,7 +47,25 @@ export default async function RecipeDetailsPage({ params }) {
   }
 
   return (
-    <main>
+    <main className="min-h-screen" style={{ background: "#13100e" }}>
+      <style>{`
+        .hero-reveal {
+          animation: heroIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        @keyframes heroIn {
+          from { opacity: 0; transform: translateY(24px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .section-fade {
+          animation: secIn 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+          opacity: 0;
+        }
+        @keyframes secIn {
+          from { opacity: 0; transform: translateY(16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+
       <RecentlyViewedTracker slug={recipe.slug} />
 
       <RecipeHero recipe={recipe} />
