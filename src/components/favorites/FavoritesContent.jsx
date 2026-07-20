@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 
 import { useFavorites } from "@/context/FavoritesContext";
+import useTranslation from "@/hooks/useTranslation";
 
 import FavoritesHero from "./FavoritesHero";
 import EmptyFavorites from "./EmptyFavorites";
@@ -12,12 +13,24 @@ import AppContainer from "@/components/ui/AppContainer";
 
 export default function FavoritesContent({ recipes }) {
   const { favorites } = useFavorites();
+  const { language } = useTranslation();
 
   const favoriteRecipes = useMemo(() => {
     return recipes.filter((recipe) =>
       favorites.includes(recipe.slug)
     );
   }, [recipes, favorites]);
+
+  const content =
+    language === "bn"
+      ? {
+          title: "সংরক্ষিত রেসিপি",
+          description: `${favoriteRecipes.length} টি রেসিপি সংরক্ষিত আছে`,
+        }
+      : {
+          title: "Saved Recipes",
+          description: `${favoriteRecipes.length} recipe${favoriteRecipes.length !== 1 ? "s" : ""} saved`,
+        };
 
   return (
     <>
@@ -26,17 +39,17 @@ export default function FavoritesContent({ recipes }) {
       {favoriteRecipes.length === 0 ? (
         <EmptyFavorites />
       ) : (
-        <section className="py-16">
+        <section className="bg-[#0c0a09] py-12">
           <AppContainer>
-            <div className="mb-10 flex items-center justify-between">
+            {/* Section header */}
+            <div className="mb-7 flex items-end justify-between gap-4">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Saved Recipes
+                <h2 className="font-heading text-2xl font-semibold text-stone-100 tracking-tight">
+                  {content.title}
                 </h2>
 
-                <p className="mt-2 text-gray-600">
-                  {favoriteRecipes.length} recipe
-                  {favoriteRecipes.length !== 1 && "s"} saved
+                <p className="mt-1.5 font-ui text-sm text-stone-500">
+                  {content.description}
                 </p>
               </div>
             </div>

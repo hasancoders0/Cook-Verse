@@ -1,3 +1,4 @@
+// src/app/dish/page.jsx
 "use client";
 
 import { useMemo, useState } from "react";
@@ -16,7 +17,6 @@ export default function DishPage() {
   const [cuisine, setCuisine] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [sort, setSort] = useState("");
-
   const [diet, setDiet] = useState("");
 
   const filteredRecipes = useMemo(() => {
@@ -44,15 +44,12 @@ export default function DishPage() {
       case "latest":
         filtered.sort((a, b) => b.id.localeCompare(a.id));
         break;
-
       case "time":
         filtered.sort((a, b) => a.totalTime - b.totalTime);
         break;
-
       case "rating":
         filtered.sort((a, b) => b.rating.average - a.rating.average);
         break;
-
       default:
         break;
     }
@@ -61,7 +58,13 @@ export default function DishPage() {
   }, [recipes, search, category, cuisine, diet, difficulty, sort]);
 
   return (
-    <main>
+    /* 
+      flex-1 min-h-0 overflow-y-auto is CRITICAL here. 
+      Because layout.jsx <main> is flex and overflow-hidden, 
+      this inner main acts as the scroll container for the dish page,
+      allowing the sticky filters to work properly.
+    */
+    <main className="flex-1 min-h-0 flex flex-col overflow-y-auto bg-[#0c0a09]">
       <DishHero />
 
       <DishFilters

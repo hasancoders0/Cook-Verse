@@ -581,47 +581,7 @@ export default function GenerateRecipePage() {
         </div>
       </div>
 
-      {/* Styles */}
-      <style>{`
-        .chat-scroll::-webkit-scrollbar { width: 4px; }
-        .chat-scroll::-webkit-scrollbar-track { background: transparent; }
-        .chat-scroll::-webkit-scrollbar-thumb { background: #44403c; border-radius: 10px; }
-        .chat-scroll::-webkit-scrollbar-thumb:hover { background: #57534e; }
 
-        .msg-appear {
-          animation: msgIn 0.35s cubic-bezier(0.16,1,0.3,1) forwards;
-          opacity: 0;
-        }
-        @keyframes msgIn {
-          from { opacity:0; transform:translateY(12px) scale(0.98); }
-          to   { opacity:1; transform:translateY(0) scale(1); }
-        }
-
-        .typing-dot {
-          display:block; width:6px; height:6px; border-radius:50%; background:#f97316;
-          animation:bounce 1.4s ease-in-out infinite;
-        }
-        .typing-dot:nth-child(2) { animation-delay:0.2s; }
-        .typing-dot:nth-child(3) { animation-delay:0.4s; }
-        @keyframes bounce {
-          0%,60%,100% { transform:translateY(0); opacity:0.35; }
-          30% { transform:translateY(-7px); opacity:1; }
-        }
-
-        .flame-pulse {
-          animation:fp 2.5s ease-in-out infinite;
-          filter:drop-shadow(0 0 5px rgba(249,115,22,0.4));
-        }
-        @keyframes fp {
-          0%,100% { transform:scale(1); }
-          50% { transform:scale(1.08) rotate(2deg); filter:drop-shadow(0 0 10px rgba(249,115,22,0.7)); }
-        }
-
-        @media (prefers-reduced-motion:reduce) {
-          .msg-appear { animation-duration:0.01ms!important; }
-          .typing-dot,.flame-pulse { animation:none!important; }
-        }
-      `}</style>
     </div>
   );
 }

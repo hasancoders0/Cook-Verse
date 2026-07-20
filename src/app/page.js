@@ -1,21 +1,11 @@
-import Hero from "@/components/home/Hero";
-import RecipeMethod from "@/components/home/RecipeMethod";
-import PopularCategories from "@/components/home/PopularCategories";
-import PopularRecipes from "@/components/home/PopularRecipes";
-import WhyCookVerse from "@/components/home/WhyCookVerse";
-import FAQ from "@/components/home/FAQ";
-import RecentlyViewedRecipes from "@/components/home/RecentlyViewedRecipes";
+import HomeChat from "@/components/home/HomeChat";
 
-export default function Home() {
-  return (
-    <main>
-      <Hero />
-      <RecipeMethod />
-      <PopularCategories />
-      <PopularRecipes />
-      <WhyCookVerse />
-      <FAQ />
-      <RecentlyViewedRecipes />
-    </main>
-  );
+export const metadata = {
+  title: "RecipeMind | AI Recipe Finder",
+  description:
+    "Find recipes instantly using AI. Search by dish name, ingredients, cuisine, or dietary preferences.",
+};
+
+export default function HomePage() {
+  return <HomeChat />;
 }

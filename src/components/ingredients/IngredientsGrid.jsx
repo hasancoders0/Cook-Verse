@@ -25,14 +25,14 @@ export default function IngredientsGrid({ ingredients }) {
 
   if (ingredients.length === 0) {
     return (
-      <section className="py-20">
+      <section className="bg-[#0c0a09] py-20">
         <AppContainer>
-          <div className="rounded-3xl border border-dashed border-gray-300 p-16 text-center">
-            <h2 className="text-2xl font-bold text-gray-900">
+          <div className="rounded-3xl border border-dashed border-white/[0.08] p-16 text-center">
+            <h2 className="text-2xl font-bold text-stone-200">
               {content.emptyTitle}
             </h2>
 
-            <p className="mt-3 text-gray-600">{content.emptyDescription}</p>
+            <p className="mt-3 text-stone-500">{content.emptyDescription}</p>
           </div>
         </AppContainer>
       </section>
@@ -40,12 +40,12 @@ export default function IngredientsGrid({ ingredients }) {
   }
 
   return (
-    <section className="py-20">
+    <section className="bg-[#0c0a09] py-20">
       <AppContainer>
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">{content.title}</h2>
+          <h2 className="text-3xl font-bold text-stone-100">{content.title}</h2>
 
-          <p className="mt-2 text-gray-600">{content.description}</p>
+          <p className="mt-2 text-stone-500">{content.description}</p>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

@@ -1,39 +1,32 @@
 "use client";
 
 import Image from "next/image";
-
-import {
-  Clock,
-  Users,
-  BarChart3,
-  Award,
-  Star,
-  Flame,
-  ChefHat,
-} from "lucide-react";
+import { Clock, Users, BarChart3, Gauge, Star, Flame } from "lucide-react";
 
 import AppContainer from "@/components/ui/AppContainer";
 import useTranslation from "@/hooks/useTranslation";
+
+/* ── Difficulty Color Helper (matches ChatMessages) ── */
+function getDiffColor(d) {
+  const s = (typeof d === "string" ? d : "").toLowerCase();
+  if (s === "easy" || s === "সহজ") return "text-emerald-400";
+  if (s === "medium" || s === "মাঝারি") return "text-amber-400";
+  if (s === "hard" || s === "কঠিন") return "text-red-400";
+  return "text-stone-400";
+}
 
 export default function RecipeHero({ recipe }) {
   const { language, t } = useTranslation();
 
   const title = t(recipe.title) || (language === "bn" ? "রেসিপি" : "Recipe");
-
   const description = t(recipe.description);
-
   const categoryName = t(recipe.category?.name);
-
   const cuisineName = t(recipe.cuisine?.name);
-
   const difficulty = t(recipe.difficulty);
 
   const minLabel = language === "bn" ? "মিনিট" : "min";
-
   const reviewsLabel = language === "bn" ? "রিভিউ" : "reviews";
-
   const prepLabel = language === "bn" ? "প্রেপ" : "prep";
-
   const cookLabel = language === "bn" ? "কুক" : "cook";
 
   return (
@@ -52,12 +45,12 @@ export default function RecipeHero({ recipe }) {
           }}
         />
 
-        {/* Gradient Overlay */}
+        {/* Gradient Overlay - strictly matches #0c0a09 base */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, #13100e 0%, rgba(19,16,14,0.75) 40%, rgba(19,16,14,0.25) 70%, transparent 100%)",
+              "linear-gradient(to top, #0c0a09 0%, rgba(12,10,9,0.8) 40%, rgba(12,10,9,0.3) 70%, transparent 100%)",
           }}
         />
 
@@ -65,24 +58,17 @@ export default function RecipeHero({ recipe }) {
         <div className="hero-reveal absolute bottom-0 left-0 right-0 px-5 pb-8 lg:px-10 lg:pb-10">
           <div className="max-w-4xl">
             {/* Badges */}
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="rounded-full bg-orange-500/90 px-3.5 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
+            <div className="flex flex-wrap items-center gap-2 mb-5">
+              <span className="rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-semibold text-orange-300 font-ui backdrop-blur-md ring-1 ring-white/[0.08]">
                 {categoryName}
               </span>
 
-              <span
-                className="rounded-full px-3.5 py-1.5 text-xs font-medium backdrop-blur-sm"
-                style={{
-                  background: "rgba(255,255,255,0.12)",
-                  color: "#d6cdc3",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                }}
-              >
+              <span className="rounded-full bg-white/[0.08] px-2.5 py-1 text-[11px] font-medium text-stone-300 font-ui backdrop-blur-md ring-1 ring-white/[0.08]">
                 {cuisineName}
               </span>
 
               {recipe.featured && (
-                <span className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold text-amber-300 backdrop-blur-sm" style={{ background: "rgba(245,158,11,0.15)", border: "1px solid rgba(245,158,11,0.2)" }}>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/[0.12] px-2.5 py-1 text-[11px] font-semibold text-amber-300 font-ui backdrop-blur-md ring-1 ring-amber-500/20">
                   <Flame size={11} />
                   {language === "bn" ? "ফিচার্ড" : "Featured"}
                 </span>
@@ -90,81 +76,71 @@ export default function RecipeHero({ recipe }) {
             </div>
 
             {/* Title */}
-            <h1
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-stone-100"
-              style={{ fontFamily: "serif" }}
-            >
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-stone-100 tracking-tight">
               {title}
             </h1>
 
             {/* Description */}
             {description && (
-              <p className="mt-4 text-base lg:text-lg leading-relaxed text-stone-400 line-clamp-2 max-w-2xl">
+              <p className="mt-4 font-ui text-base lg:text-lg leading-relaxed text-stone-400 line-clamp-2 max-w-2xl">
                 {description}
               </p>
             )}
 
-            {/* Rating */}
-            <div className="mt-5 flex items-center gap-2.5">
-              <div className="flex items-center gap-1">
-                <Star className="fill-yellow-400 text-yellow-400" size={16} />
-                <span className="font-semibold text-stone-100">
+            {/* Rating & Tags Row */}
+            <div className="mt-5 flex flex-col sm:flex-row sm:items-center gap-4">
+              {/* Rating */}
+              <div className="flex items-center gap-1.5">
+                <Star className="fill-amber-400 text-amber-400" size={15} />
+                <span className="font-ui text-sm font-semibold text-stone-200">
                   {recipe.rating?.average ?? 0}
+                </span>
+                <span className="font-ui text-sm text-stone-500">
+                  ({recipe.rating?.count ?? 0} {reviewsLabel})
                 </span>
               </div>
 
-              <span className="text-sm text-stone-500">
-                ({recipe.rating?.count ?? 0} {reviewsLabel})
-              </span>
+              {/* Tags */}
+              {recipe.tags?.length > 0 && (
+                <div className="flex flex-wrap gap-1.5">
+                  {recipe.tags.map((tag, i) => (
+                    <span
+                      key={tag.slug || i}
+                      className="rounded-full bg-white/[0.04] border border-white/[0.06] px-2.5 py-1 font-ui text-[10px] font-medium text-stone-500"
+                    >
+                      #{t(tag.name)}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
-
-            {/* Tags */}
-            {recipe.tags?.length > 0 && (
-              <div className="mt-5 flex flex-wrap gap-1.5">
-                {recipe.tags.map((tag, i) => (
-                  <span
-                    key={tag.slug || i}
-                    className="rounded-full px-3 py-1 text-[11px] font-medium text-stone-500"
-                    style={{
-                      background: "rgba(255,255,255,0.06)",
-                      border: "1px solid rgba(255,255,255,0.06)",
-                    }}
-                  >
-                    #{t(tag.name)}
-                  </span>
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </section>
 
       {/* ===== Floating Stats Bar ===== */}
-      <section className="relative z-10 -mt-12 px-4 lg:px-8">
+      <section className="relative z-10 px-4 lg:px-8">
         <AppContainer>
           <div
-            className="grid grid-cols-2 lg:grid-cols-4 gap-3 rounded-2xl p-4 lg:p-5"
-            style={{
-              background: "rgba(28,23,20,0.92)",
-              backdropFilter: "blur(16px)",
-              border: "1px solid rgba(68,64,60,0.35)",
-            }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-3 rounded-2xl border border-white/[0.06] bg-[#0c0a09]/90 p-4 lg:p-5 shadow-2xl shadow-black/40"
+            style={{ backdropFilter: "blur(24px) saturate(1.2)" }}
           >
             {/* Total Time */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(249,115,22,0.12)" }}>
-                <Clock size={18} className="text-orange-400" />
+              <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/15 flex items-center justify-center flex-shrink-0">
+                <Clock size={17} className="text-orange-400" />
               </div>
-              <div>
-                <p className="text-[10px] uppercase tracking-wider text-stone-500">
+              <div className="min-w-0">
+                <p className="font-ui text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-500">
                   {language === "bn" ? "মোট সময়" : "Total Time"}
                 </p>
-                <p className="text-sm font-semibold text-stone-100">
+                <p className="font-ui text-sm font-semibold text-stone-100 mt-0.5">
                   {recipe.totalTime} {minLabel}
                 </p>
                 {(recipe.prepTime || recipe.cookTime) && (
-                  <p className="text-[10px] text-stone-600 mt-0.5">
-                    {prepLabel}: {recipe.prepTime ?? 0} &middot; {cookLabel}: {recipe.cookTime ?? 0}
+                  <p className="font-ui text-[10px] text-stone-600 mt-0.5">
+                    {prepLabel}: {recipe.prepTime ?? 0} &middot; {cookLabel}:{" "}
+                    {recipe.cookTime ?? 0}
                   </p>
                 )}
               </div>
@@ -172,14 +148,14 @@ export default function RecipeHero({ recipe }) {
 
             {/* Servings */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(249,115,22,0.12)" }}>
-                <Users size={18} className="text-orange-400" />
+              <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/15 flex items-center justify-center flex-shrink-0">
+                <Users size={17} className="text-orange-400" />
               </div>
-              <div>
-                <p className="text-[10px] uppercase tracking-wider text-stone-500">
+              <div className="min-w-0">
+                <p className="font-ui text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-500">
                   {language === "bn" ? "পরিবেশন" : "Servings"}
                 </p>
-                <p className="text-sm font-semibold text-stone-100">
+                <p className="font-ui text-sm font-semibold text-stone-100 mt-0.5">
                   {recipe.servings} {language === "bn" ? "জন" : "people"}
                 </p>
               </div>
@@ -187,14 +163,14 @@ export default function RecipeHero({ recipe }) {
 
             {/* Calories */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(249,115,22,0.12)" }}>
-                <BarChart3 size={18} className="text-orange-400" />
+              <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/15 flex items-center justify-center flex-shrink-0">
+                <BarChart3 size={17} className="text-orange-400" />
               </div>
-              <div>
-                <p className="text-[10px] uppercase tracking-wider text-stone-500">
+              <div className="min-w-0">
+                <p className="font-ui text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-500">
                   {language === "bn" ? "ক্যালোরি" : "Calories"}
                 </p>
-                <p className="text-sm font-semibold text-stone-100">
+                <p className="font-ui text-sm font-semibold text-stone-100 mt-0.5">
                   {recipe.nutrition?.calories ?? 0} kcal
                 </p>
               </div>
@@ -202,14 +178,16 @@ export default function RecipeHero({ recipe }) {
 
             {/* Difficulty */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(249,115,22,0.12)" }}>
-                <Award size={18} className="text-orange-400" />
+              <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/15 flex items-center justify-center flex-shrink-0">
+                <Gauge size={17} className="text-orange-400" />
               </div>
-              <div>
-                <p className="text-[10px] uppercase tracking-wider text-stone-500">
+              <div className="min-w-0">
+                <p className="font-ui text-[10px] font-semibold uppercase tracking-[0.12em] text-stone-500">
                   {language === "bn" ? "কঠিনতা" : "Difficulty"}
                 </p>
-                <p className="text-sm font-semibold text-stone-100">
+                <p
+                  className={`font-ui text-sm font-semibold mt-0.5 ${getDiffColor(difficulty)}`}
+                >
                   {difficulty}
                 </p>
               </div>
