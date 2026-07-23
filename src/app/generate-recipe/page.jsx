@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 
-import { generateRecipe } from "@/lib/ai/generate-recipe";
+import { generateRecipe } from "@/lib/ai/conversation-manager";
 
 import {
   Flame,

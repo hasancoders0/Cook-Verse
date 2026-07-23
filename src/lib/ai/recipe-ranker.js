@@ -1,363 +1,208 @@
-import { AI_CONFIG } from "./config";
+// src/lib/ai/recipe-ranker.js
+
+import { getMatchSummary } from "./recipe-matcher";
+import { RANKING_WEIGHTS } from "./config";
+import { normalizeText } from "@/lib/utils";
 
 /* -------------------------------------------------------------------------- */
-/* Rank Recipes — Public API                                                  */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* const ranked = rankRecipes(matchResults, { limit: 5 });                   */
-/*                                                                            */
-
-export function rankRecipes(results = [], options = {}) {
-  /* Pipeline gate */
-  if (AI_CONFIG.PIPELINE.RECIPE_RANKING === false) {
-    return results;
-  }
-
-  if (!Array.isArray(results) || results.length === 0) {
-    return [];
-  }
-
-  const limit = resolveLimit(options);
-
-  /* Work on a copy — never mutate the matcher's output array */
-  const ranked = results.map(attachEmptyRank);
-
-  runRankingPipeline(ranked, limit);
-
-  return ranked;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Ranking Pipeline                                                           */
+/* Reason Text Templates (localized)                                        */
 /* -------------------------------------------------------------------------- */
 
-function runRankingPipeline(ranked, limit) {
-  filterUnmatched(ranked);
-
-  deduplicateById(ranked);
-
-  sortByPriority(ranked);
-
-  applyMatchQualityTiebreak(ranked);
-
-  assignRanks(ranked);
-
-  applyLimit(ranked, limit);
-
-  attachRankingMetadata(ranked);
-}
-
-/* -------------------------------------------------------------------------- */
-/* Filter Unmatched                                                          */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Safety net: the matcher should never include matched:false results,      */
-/* but if it does (e.g. a future code change), remove them here.            */
-/*                                                                            */
-
-function filterUnmatched(results) {
-  for (let i = results.length - 1; i >= 0; i--) {
-    if (!results[i].matched) {
-      results.splice(i, 1);
-    }
-  }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Deduplicate by Recipe ID                                                   */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* If the same recipe appears more than once (matcher bug or data issue),    */
-/* keep only the highest-scoring occurrence.                                 */
-/*                                                                            */
-
-function deduplicateById(results) {
-  const seen = new Map();
-
-  for (let i = results.length - 1; i >= 0; i--) {
-    const id = results[i].recipe?.id;
-
-    if (!id) continue;
-
-    const existing = seen.get(id);
-
-    if (!existing) {
-      seen.set(id, results[i]);
-      continue;
-    }
-
-    /* Keep the one with the higher score */
-    if ((results[i].score ?? 0) > (existing.score ?? 0)) {
-      /* Remove the previously-kept one from the array */
-      const index = results.indexOf(existing);
-      if (index !== -1) {
-        results.splice(index, 1);
-      }
-      seen.set(id, results[i]);
-    } else {
-      /* Remove the current (lower-scoring) one */
-      results.splice(i, 1);
-    }
-  }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Sort by Config-Driven Priority                                            */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Reads AI_CONFIG.RANKING.SORT_PRIORITY to determine the comparison        */
-/* chain.  Each entry maps to a comparator function.  The first criterion    */
-/* that produces a non-zero result wins; if tied, the next criterion is      */
-/* tried, and so on.                                                         */
-/*                                                                            */
-/* This means adding/removing/reordering sort criteria only requires         */
-/* changing the config — no code changes here.                              */
-/*                                                                            */
-
-function sortByPriority(results) {
-  const priority = AI_CONFIG.RANKING?.SORT_PRIORITY;
-
-  if (!Array.isArray(priority) || priority.length === 0) {
-    /* Fallback: score-only sort when config is missing or empty */
-    results.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
-    return;
-  }
-
-  results.sort((a, b) => {
-    for (const criterion of priority) {
-      const comparator = COMPARATORS[criterion];
-
-      if (!comparator) continue;
-
-      const result = comparator(a, b);
-
-      if (result !== 0) return result;
-    }
-
-    return 0;
-  });
-}
-
-/* -------------------------------------------------------------------------- */
-/* Comparators                                                                */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Each comparator returns:                                                   */
-/*   > 0  if a should rank LOWER than b (b is better)                       */
-/*   < 0  if a should rank HIGHER than b (a is better)                      */
-/*   0    if tied on this criterion                                          */
-/*                                                                            */
-/* This matches the standard Array.sort convention where negative = a       */
-/* comes first.                                                              */
-/*                                                                            */
-
-const COMPARATORS = {
-  /* Primary: higher score wins */
-  score(a, b) {
-    return (b.score ?? 0) - (a.score ?? 0);
+const REASON_TEMPLATES = {
+  dish: {
+    en: "Matches the dish you asked for",
+    bn: "আপনি যা খুঁজছেন তার সাথে মিলে যায়",
   },
-
-  /* Featured recipes rank higher */
-  featured(a, b) {
-    return (
-      Number(Boolean(b.recipe?.featured)) - Number(Boolean(a.recipe?.featured))
-    );
+  ingredient: {
+    en: (count) =>
+      count > 1
+        ? `Uses ${count} ingredients you have`
+        : "Uses an ingredient you have",
+    bn: (count) =>
+      count > 1
+        ? `আপনার কাছে থাকা ${count}টি উপকরণ ব্যবহার করা হয়েছে`
+        : "আপনার কাছে থাকা উপকরণ ব্যবহার করা হয়েছে",
   },
-
-  /* Higher average rating wins */
-  averageRating(a, b) {
-    return (b.recipe?.rating?.average ?? 0) - (a.recipe?.rating?.average ?? 0);
+  cuisine: {
+    en: "Matches your preferred cuisine",
+    bn: "আপনার পছন্দের রান্নার ধরনের সাথে মিলে যায়",
   },
-
-  /* More ratings (popularity) wins */
-  ratingCount(a, b) {
-    return (b.recipe?.rating?.count ?? 0) - (a.recipe?.rating?.count ?? 0);
+  category: {
+    en: "Fits the meal type you're looking for",
+    bn: "আপনার পছন্দের ক্যাটাগরির সাথে মিলে যায়",
   },
-
-  /* Shorter total time wins (quicker recipes first) */
-  totalTime(a, b) {
-    const aTime = a.recipe?.totalTime ?? Number.MAX_SAFE_INTEGER;
-    const bTime = b.recipe?.totalTime ?? Number.MAX_SAFE_INTEGER;
-    return aTime - bTime;
+  diet: {
+    en: "Fits your dietary preference",
+    bn: "আপনার খাদ্যাভ্যাসের সাথে মিলে যায়",
   },
-
-  /* Alphabetical by English title (stable tiebreaker) */
-  title(a, b) {
-    return (a.recipe?.title?.en ?? "").localeCompare(
-      b.recipe?.title?.en ?? "",
-      "en",
-      { sensitivity: "base", numeric: true },
-    );
+  difficulty: {
+    en: "Matches your preferred difficulty level",
+    bn: "আপনার পছন্দের কঠিনতা লেভেলের সাথে মিলে যায়",
   },
-
-  /* More matched fields wins (breadth of match) */
-  matchedFields(a, b) {
-    return (b.metadata?.matchedFields ?? 0) - (a.metadata?.matchedFields ?? 0);
+  time: {
+    en: (minutes) => `Ready in ${minutes} minutes or less`,
+    bn: (minutes) => `${minutes} মিনিট বা তার কম সময়ে তৈরি হয়`,
   },
-
-  /* More total individual matches wins (depth of match) */
-  totalMatches(a, b) {
-    return (b.metadata?.totalMatches ?? 0) - (a.metadata?.totalMatches ?? 0);
+  featured: {
+    en: "A popular pick among users",
+    bn: "ব্যবহারকারীদের মধ্যে জনপ্রিয় একটি রেসিপি",
   },
-
-  /* Lower difficulty wins (easy before hard) */
-  difficulty(a, b) {
-    const order = { easy: 0, medium: 1, hard: 2 };
-    const aDiff = order[(a.recipe?.difficulty?.en ?? "").toLowerCase()] ?? 3;
-    const bDiff = order[(b.recipe?.difficulty?.en ?? "").toLowerCase()] ?? 3;
-    return aDiff - bDiff;
+  rating: {
+    en: "Highly rated by other users",
+    bn: "অন্যান্য ব্যবহারকারীদের কাছে উচ্চ রেটিংপ্রাপ্ত",
   },
-
-  /* More servings wins (more flexible for larger groups) */
-  servings(a, b) {
-    return (b.recipe?.servings ?? 0) - (a.recipe?.servings ?? 0);
+  fallback: {
+    en: "A recipe you might also enjoy",
+    bn: "আপনি এটিও পছন্দ করতে পারেন",
   },
 };
 
+function resolveReasonText(key, language, ...args) {
+  const template = REASON_TEMPLATES[key]?.[language] || REASON_TEMPLATES[key]?.en;
+  if (typeof template === "function") return template(...args);
+  return template || "";
+}
+
 /* -------------------------------------------------------------------------- */
-/* Match Quality Tiebreak                                                    */
+/* Scoring                                                                   */
 /* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* When two recipes have the same score AND the same result on all          */
-/* configured sort criteria, break the tie by match quality:                */
-/*   1. More matched fields (breadth)                                        */
-/*   2. More total matches (depth)                                           */
-/*   3. Title matches count as stronger than other match types              */
-/*                                                                            */
-/* This only re-sorts adjacent elements that are still tied after the       */
-/* main sort, so it's O(n) in practice for most result sets.               */
-/*                                                                            */
 
-function applyMatchQualityTiebreak(results) {
-  if (results.length < 2) return;
+/**
+ * Compute a numeric relevance score + human-readable reasons for a
+ * single recipe against the given constraints.
+ *
+ * Returns { score: number, reasons: string[] }
+ */
+function scoreRecipe(recipe, constraints, language) {
+  const summary = getMatchSummary(recipe, constraints, language);
+  const reasons = [];
+  let score = 0;
 
-  for (let i = 0; i < results.length - 1; i++) {
-    const a = results[i];
-    const b = results[i + 1];
+  if (summary.matchesDish) {
+    score += RANKING_WEIGHTS.DISH_NAME_MATCH;
+    reasons.push(resolveReasonText("dish", language));
+  }
 
-    /* Only apply tiebreak when scores are equal */
-    if ((a.score ?? 0) !== (b.score ?? 0)) continue;
+  if (summary.ingredientOverlap > 0) {
+    const mainIngredientBonus = countMainIngredientOverlap(recipe, constraints.ingredients);
+    const secondaryOverlap = summary.ingredientOverlap - mainIngredientBonus;
 
-    const quality = compareMatchQuality(a, b);
+    score +=
+      mainIngredientBonus * RANKING_WEIGHTS.MAIN_INGREDIENT_MATCH +
+      Math.max(secondaryOverlap, 0) * RANKING_WEIGHTS.SECONDARY_INGREDIENT_MATCH;
 
-    if (quality !== 0) {
-      results[i] = b;
-      results[i + 1] = a;
+    reasons.push(resolveReasonText("ingredient", language, summary.ingredientOverlap));
+  }
+
+  if (summary.matchesCuisine) {
+    score += RANKING_WEIGHTS.CUISINE_MATCH;
+    reasons.push(resolveReasonText("cuisine", language));
+  }
+
+  if (summary.matchesCategory) {
+    score += RANKING_WEIGHTS.CATEGORY_MATCH;
+    reasons.push(resolveReasonText("category", language));
+  }
+
+  if (summary.matchesDiet) {
+    score += RANKING_WEIGHTS.DIET_MATCH;
+    reasons.push(resolveReasonText("diet", language));
+  }
+
+  if (summary.matchesDifficulty) {
+    score += RANKING_WEIGHTS.DIFFICULTY_MATCH;
+    reasons.push(resolveReasonText("difficulty", language));
+  }
+
+  if (summary.matchesTime) {
+    score += RANKING_WEIGHTS.TIME_CONSTRAINT_MATCH;
+    reasons.push(resolveReasonText("time", language, recipe.totalTime));
+  }
+
+  // Tag / search-term overlap as a minor tiebreaker signal (not
+  // reflected in getMatchSummary directly — approximate via free text
+  // constraints if present, e.g. leftover query terms).
+  if (constraints.dish == null && summary.matchCount === 0 && recipe.featured) {
+    // Only relevant in the truly-unconstrained fallback case (handled below).
+  }
+
+  // Quality boosts — always applied, not overlap-dependent.
+  if (recipe.rating?.average) {
+    score += recipe.rating.average * RANKING_WEIGHTS.RATING_BOOST;
+  }
+  if (recipe.featured) {
+    score += RANKING_WEIGHTS.FEATURED_BOOST;
+  }
+
+  // If nothing structural matched at all (pure fallback ranking case),
+  // give a generic reason so the UI never shows an empty reasons list.
+  if (reasons.length === 0) {
+    if (recipe.featured) {
+      reasons.push(resolveReasonText("featured", language));
+    } else if (recipe.rating?.average >= 4.5) {
+      reasons.push(resolveReasonText("rating", language));
+    } else {
+      reasons.push(resolveReasonText("fallback", language));
     }
   }
+
+  return { score, reasons };
 }
 
-function compareMatchQuality(a, b) {
-  /* Tiebreak 1: more matched fields */
-  const aFields = a.metadata?.matchedFields ?? 0;
-  const bFields = b.metadata?.matchedFields ?? 0;
+/**
+ * Count how many of the requested ingredients match this recipe's
+ * MAIN ingredients specifically (vs. any ingredient) — main ingredient
+ * matches are weighted higher since they're more central to the dish.
+ */
+function countMainIngredientOverlap(recipe, ingredientSlugs = []) {
+  if (!ingredientSlugs.length) return 0;
 
-  if (aFields !== bFields) return bFields - aFields;
+  const mainSlugs = new Set(
+    (recipe.ingredientGroups || [])
+      .flatMap((group) => group.items || [])
+      .filter((item) => item.isMainIngredient)
+      .map((item) => normalizeText(item.slug)),
+  );
 
-  /* Tiebreak 2: more total matches */
-  const aTotal = a.metadata?.totalMatches ?? 0;
-  const bTotal = b.metadata?.totalMatches ?? 0;
-
-  if (aTotal !== bTotal) return bTotal - aTotal;
-
-  /* Tiebreak 3: title match is stronger than non-title */
-  const aHasTitle = (a.matches?.title?.length ?? 0) > 0;
-  const bHasTitle = (b.matches?.title?.length ?? 0) > 0;
-
-  if (aHasTitle !== bHasTitle) return Number(bHasTitle) - Number(aHasTitle);
-
-  return 0;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Assign Ranks                                                               */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Adds a `rank` property (1-based) to each result.                          */
-/*                                                                            */
-
-function assignRanks(results) {
-  for (let i = 0; i < results.length; i++) {
-    results[i].rank = i + 1;
-  }
+  return ingredientSlugs.filter((slug) => mainSlugs.has(normalizeText(slug))).length;
 }
 
 /* -------------------------------------------------------------------------- */
-/* Apply Limit                                                                */
+/* Main Export — Rank a Candidate List                                      */
 /* -------------------------------------------------------------------------- */
 
-function applyLimit(results, limit) {
-  if (limit >= results.length) return;
+/**
+ * Rank a list of candidate recipes against constraints, returning them
+ * sorted best-first with `.score` and `.reasons` attached.
+ *
+ * Does NOT filter — assumes recipe-matcher.js already narrowed the
+ * candidate pool (or passed in the full list for fallback ranking).
+ *
+ * Returns: Array<Recipe & { score: number, reasons: string[] }>
+ */
+export function rankRecipes(candidates = [], constraints = {}, language = "en") {
+  const scored = candidates.map((recipe) => {
+    const { score, reasons } = scoreRecipe(recipe, constraints, language);
+    return { ...recipe, score, reasons };
+  });
 
-  results.length = limit;
+  return scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    // Tiebreaker: higher rating wins
+    const ratingA = a.rating?.average ?? 0;
+    const ratingB = b.rating?.average ?? 0;
+    if (ratingB !== ratingA) return ratingB - ratingA;
+    // Final tiebreaker: featured recipes first
+    return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
+  });
 }
 
-/* -------------------------------------------------------------------------- */
-/* Attach Ranking Metadata                                                    */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Adds a `_ranking` object to each result with position info and           */
-/* a normalized score (0–100) relative to the top result.                   */
-/*                                                                            */
-
-function attachRankingMetadata(results) {
-  const topScore = results[0]?.score ?? 0;
-
-  for (let i = 0; i < results.length; i++) {
-    results[i]._ranking = {
-      position: i + 1,
-
-      totalResults: results.length,
-
-      normalizedScore: normalizeScore(results[i].score ?? 0, topScore),
-
-      isTopResult: i === 0,
-    };
-  }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Rank Attachment                                                            */
-/* -------------------------------------------------------------------------- */
-
-function attachEmptyRank(result) {
-  return {
-    ...result,
-
-    rank: 0,
-
-    _ranking: null,
-  };
-}
-
-/* -------------------------------------------------------------------------- */
-/* Resolve Limit                                                              */
-/* -------------------------------------------------------------------------- */
-
-function resolveLimit(options = {}) {
-  if (typeof options.limit === "number" && options.limit > 0) {
-    return options.limit;
-  }
-
-  return AI_CONFIG.RANKING?.DEFAULT_LIMIT ?? 10;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Score Normalization                                                        */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Converts a raw score to a 0–100 scale relative to the top result.        */
-/*   Top result:  100                                                       */
-/*   Zero score:   0                                                         */
-/*   Mid-range:    proportional                                                */
-/*                                                                            */
-
-function normalizeScore(score, topScore) {
-  if (topScore <= 0) return 0;
-
-  if (score <= 0) return 0;
-
-  if (score >= topScore) return 100;
-
-  return Math.round((score / topScore) * 100);
+/**
+ * Rank and return just the single best match — convenience wrapper for
+ * callers that only care about the top pick (e.g. a quick "what should
+ * I cook" single-recipe response).
+ */
+export function getTopRecipe(candidates = [], constraints = {}, language = "en") {
+  const ranked = rankRecipes(candidates, constraints, language);
+  return ranked[0] || null;
 }

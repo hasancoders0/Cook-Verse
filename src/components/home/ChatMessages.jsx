@@ -42,7 +42,6 @@ function t(field, lang = "en") {
 const UNIT = {
   min: { en: "min", bn: "মিনিট" },
   kcal: { en: "kcal", bn: "ক্যালোরি" },
-  matchReasons: { en: "Match reasons", bn: "মিলের কারণ" },
 };
 
 function unit(key, lang) {
@@ -50,7 +49,7 @@ function unit(key, lang) {
 }
 
 function diffColor(d) {
-  const s = (typeof d === "string" ? d : (d?.en ?? "")).toLowerCase();
+  const s = (typeof d === "string" ? d : d?.en ?? "").toLowerCase();
   if (s === "easy" || s === "সহজ")
     return "text-emerald-400 bg-emerald-400/10 border-emerald-400/20";
   if (s === "medium" || s === "মাঝারি")
@@ -84,11 +83,11 @@ function ChatBubble({ msg }) {
         <Flame className="text-white" size={12} />
       </div>
       <div className="max-w-[88%] sm:max-w-[80%] space-y-1.5">
-        {msg.text && (
-          <div className="rounded-2xl rounded-bl-sm bg-stone-900/60 border border-white/[0.05] px-4 py-3 font-ui text-sm leading-relaxed text-stone-200">
-            {msg.text}
-          </div>
-        )}
+{msg.text && (
+  <div className="rounded-2xl rounded-bl-sm bg-stone-900/60 border border-white/[0.05] px-4 py-3 font-ui text-sm leading-relaxed text-stone-200 whitespace-pre-line">
+    {msg.text}
+  </div>
+)}
         {msg.explanation && (
           <p className="font-ui text-xs text-stone-500 pl-1 leading-relaxed">
             {msg.explanation}
@@ -110,7 +109,9 @@ function ChatBubble({ msg }) {
 }
 
 /* ── Enhanced thinking indicator ── */
-function TypingIndicator() {
+function TypingIndicator({ lang = "en" }) {
+  const label = lang === "bn" ? "ভাবছি…" : "Thinking…";
+
   return (
     <div className="msg-appear flex gap-3 items-start">
       {/* AI avatar with pulse ring */}
@@ -141,7 +142,7 @@ function TypingIndicator() {
           />
         </div>
         <span className="font-ui text-[11px] text-stone-500 tracking-wide">
-          Thinking…
+          {label}
         </span>
       </div>
     </div>
@@ -259,48 +260,6 @@ function RecipeResultCard({ recipe, lang }) {
   );
 }
 
-/* ── Match reasons ── */
-function MatchReasons({ reasons, lang }) {
-  if (!reasons?.length) return null;
-
-  const typeMap = {
-    title: lang === "bn" ? "শিরোনাম" : "Title",
-    searchTerm: lang === "bn" ? "সার্চ টার্ম" : "Search term",
-    ingredient: lang === "bn" ? "উপকরণ" : "Ingredient",
-    category: lang === "bn" ? "ক্যাটাগরি" : "Category",
-    cuisine: lang === "bn" ? "রান্নার ধরন" : "Cuisine",
-    diet: lang === "bn" ? "ডায়েট" : "Diet",
-    tag: lang === "bn" ? "ট্যাগ" : "Tag",
-    difficulty: lang === "bn" ? "কঠিনাই" : "Difficulty",
-    cookTime: lang === "bn" ? "রান্নার সময়" : "Cook time",
-    servings: lang === "bn" ? "সার্ভিং" : "Servings",
-  };
-
-  return (
-    <div className="px-4 sm:px-6 pb-2">
-      <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-        <p className="font-ui text-[10px] font-semibold text-stone-500 uppercase tracking-[0.15em] mb-2.5">
-          {unit("matchReasons", lang)}
-        </p>
-        <div className="flex flex-wrap gap-1.5">
-          {reasons.map((r, i) => (
-            <span
-              key={i}
-              className="inline-flex items-center gap-1.5 font-ui text-[10px] text-stone-400 bg-white/[0.03] border border-white/[0.05] rounded-full px-2.5 py-1"
-            >
-              <span className="w-1 h-1 rounded-full bg-orange-500 flex-shrink-0" />
-              {typeMap[r.type] || r.type}: {r.value}
-              {r.filter != null && (
-                <span className="text-stone-600">({r.filter})</span>
-              )}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /* ── Suggestion chip ── */
 function Chip({ suggestion, onClick, compact }) {
   const Icon = suggestion.icon || Search;
@@ -341,7 +300,7 @@ function WelcomeView({ message, suggestions, onChip }) {
           WebkitTextFillColor: "transparent",
         }}
       >
-        RecipeMind
+        MealMuse
       </h2>
       <p className="font-ui text-[11px] font-medium text-orange-400/50 uppercase tracking-[0.3em] mb-8">
         AI Recipe Finder
@@ -418,18 +377,13 @@ export default function ChatMessages({
           return <ChatBubble key={msg.id} msg={msg} />;
         })}
 
-        {loading && <TypingIndicator />}
+        {loading && <TypingIndicator lang={lang} />}
 
         <div ref={endRef} />
       </div>
 
-      {/* Match reasons — pinned below scroll */}
-      {reasons && reasons.length > 0 && !loading && (
-        <MatchReasons reasons={reasons} lang={lang} />
-      )}
-
       {/* Suggestion chips — pinned at bottom */}
-      {!loading && (
+      {!loading && suggestions.length > 0 && (
         <div className="px-4 sm:px-6 pb-2.5 flex flex-wrap gap-1.5">
           {suggestions.map((s, i) => (
             <Chip

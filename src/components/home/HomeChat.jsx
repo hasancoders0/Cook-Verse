@@ -2,7 +2,11 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { generateRecipe } from "@/lib/ai/generate-recipe";
+import {
+  generateRecipe,
+  resetSession,
+  rehydrateSession,
+} from "@/lib/ai/generate-recipe";
 import {
   Zap,
   Timer,
@@ -11,6 +15,7 @@ import {
   ChefHat,
   Search,
   MessageSquare,
+  Flame,
 } from "lucide-react";
 
 import ChatHeader from "./ChatHeader";
@@ -34,9 +39,11 @@ const FALLBACK_SUGGESTIONS = [
 ];
 
 const GREETINGS = {
-  en: "Welcome to RecipeMind! I can find the perfect recipe for you. Try searching by dish name, ingredient, cuisine, or just tell me what you're in the mood for.",
-  bn: "রেসিপিমাইন্ডে স্বাগতম! আমি আপনার জন্য নিখুঁত রেসিপি খুঁজে বের করতে পারি। খাবারের নাম, উপকরণ, রান্নার ধরন দিয়ে অনুসন্ধান করুন, অথবা শুধু বলুন আপনি কী খেতে চান।",
+  en: "Hi! I'm MealMuse, your recipe assistant. What would you like to cook today?",
+  bn: "হ্যালো! আমি MealMuse, আপনার রেসিপি সহকারী। আজ কী রান্না করতে চান?",
 };
+
+const STORAGE_KEY = "mealMuse_chat_history";
 
 /* ── Component ─────────────────────────────────────────── */
 
@@ -50,14 +57,73 @@ export default function HomeChat() {
   const inputRef = useRef(null);
   const inited = useRef(false);
 
-  /* Bootstrap welcome message once */
+  /* ── Load History from Local Storage ─────────────────── */
   useEffect(() => {
-    if (inited.current) return;
+    // Ensure we are in the browser
+    if (typeof window === "undefined") return;
+
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // Map back to ensure every message has an `id` for React rendering
+          const formatted = parsed.map((m, i) => ({
+            id: m.id || `h${Date.now()}-${i}`,
+            ...m,
+          }));
+
+          setMessages(formatted);
+          const lastSuggestions = [...formatted]
+            .reverse()
+            .find((m) => Array.isArray(m.suggestions) && m.suggestions.length);
+
+          if (lastSuggestions) {
+            setSuggestions(
+              lastSuggestions.suggestions.map((label) => ({
+                label,
+                icon: MessageSquare,
+              })),
+            );
+          }
+          inited.current = true;
+
+          /* Rebuild the AI session's follow-up context (last ingredients,
+             last recipe, previous intent, etc.) from the restored message
+             history, so a page refresh doesn't silently forget context
+             mid-conversation (e.g. "Something spicy" right after reload
+             would otherwise lose the "I have chicken" context). */
+          rehydrateSession(formatted);
+          return; // Skip default greeting
+        }
+      }
+    } catch (e) {
+      /* Ignore storage errors (incognito, disabled, corrupted data) */
+    }
+
+    // Fallback: First time user, show greeting
     inited.current = true;
+    // Use MealMuse greeting from config
     setMessages([{ id: "w", role: "ai", text: GREETINGS.en }]);
   }, []);
 
-  /* Core send logic */
+  /* ── Save History to Local Storage ─────────────────── */
+  useEffect(() => {
+    // Ensure we are in the browser
+    if (typeof window === "undefined") return;
+    if (messages.length === 0) return;
+
+    try {
+      // Save lightweight format for the AI memory backend to read
+      const toSave = messages.map(({ id, ...rest }) => rest);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+    } catch (e) {
+      /* Ignore quota exceeded or storage disabled */
+    }
+  }, [messages]);
+
+  /* ── Core send logic ─────────────────────────────────── */
   const send = useCallback(
     (text) => {
       const q = (text || "").trim();
@@ -70,7 +136,7 @@ export default function HomeChat() {
       setMessages((prev) => [...prev, userMsg]);
 
       /* Longer delay so the thinking animation is visible and feels natural */
-      const delay = 1000 + Math.random() * 1200;
+      const delay = 800 + Math.random() * 1000;
 
       setTimeout(() => {
         let res;
@@ -104,6 +170,8 @@ export default function HomeChat() {
           explanation: res.assistant?.explanation || null,
           recommendation: null,
           followUp: res.assistant?.followUp || null,
+
+          suggestions: res.suggestions ?? [],
         };
 
         const recipes = res.recipes ?? [];
@@ -119,6 +187,8 @@ export default function HomeChat() {
                 role: "ai",
                 isRecipeCard: true,
                 recipe: r,
+
+                suggestions: res.suggestions ?? [],
               });
             });
           }
@@ -129,13 +199,30 @@ export default function HomeChat() {
         /* Match reasons from first result */
         setReasons(recipes.length > 0 ? recipes[0].reasons || null : null);
 
-        /* Update suggestion chips */
+        /* Update suggestion chips - use actual recipe titles if available */
         const sugs = res.suggestions ?? [];
-        setSuggestions(
-          sugs.length > 0
-            ? sugs.map((s) => ({ label: s, icon: MessageSquare }))
-            : FALLBACK_SUGGESTIONS,
-        );
+        if (sugs.length > 0) {
+          // Map to chip format with icon
+          const chipSuggestions = sugs.map((s) => {
+            // Try to find a matching icon based on the label
+            let icon = MessageSquare;
+            const lower = s.toLowerCase();
+            if (lower.includes("biryani") || lower.includes("চিকেন"))
+              icon = Zap;
+            else if (lower.includes("breakfast") || lower.includes("নাস্তা"))
+              icon = Timer;
+            else if (lower.includes("healthy") || lower.includes("স্বাস্থ্যকর"))
+              icon = Leaf;
+            else if (lower.includes("salad") || lower.includes("সালাদ"))
+              icon = Leaf;
+            else if (lower.includes("quick") || lower.includes("দ্রুত"))
+              icon = Timer;
+            return { label: s, icon };
+          });
+          setSuggestions(chipSuggestions);
+        } else {
+          setSuggestions(FALLBACK_SUGGESTIONS);
+        }
 
         setLoading(false);
         inputRef.current?.focus();
@@ -155,6 +242,18 @@ export default function HomeChat() {
     ]);
     setReasons(null);
     setSuggestions(INITIAL_SUGGESTIONS);
+
+    // Clear local storage on explicit user action
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (e) {}
+    }
+
+    // Wipe AI session context (last ingredients, last recipe, intent
+    // history) alongside the visible chat, so "Clear chat" is a true
+    // fresh start rather than just resetting what's displayed.
+    resetSession();
   };
 
   const onChip = (label) => send(label);
@@ -165,7 +264,7 @@ export default function HomeChat() {
       className="relative h-full overflow-hidden"
       style={{ background: "#0c0a09" }}
     >
-      {/* Atmospheric background — refined */}
+      {/* Atmospheric background */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div
           className="absolute inset-0"
@@ -177,9 +276,8 @@ export default function HomeChat() {
             `,
           }}
         />
-        {/* Subtle grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.018]"
+          className="absolute inset-0 opacity-[0.015]"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
             backgroundSize: "180px",

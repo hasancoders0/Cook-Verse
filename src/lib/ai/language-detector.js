@@ -1,251 +1,97 @@
-import { AI_CONFIG } from "./config";
+// src/lib/ai/language-detector.js
+
+import { LANGUAGES, DEFAULT_LANGUAGE } from "./config";
 
 /* -------------------------------------------------------------------------- */
-/* Language Patterns                                                          */
+/* Unicode Ranges                                                             */
 /* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Extensible registry: each supported language declares a Unicode regex     */
-/* that matches its script characters.  Adding a new language (e.g. Hindi,  */
-/* Arabic) requires only a new entry here — no function logic changes.      */
-/*                                                                            */
 
-const LANGUAGE_PATTERNS = {
-  bn: {
-    regex: /[\u0980-\u09FF]/g,
-    name: "Bangla",
-  },
+// Bangla block: U+0980–U+09FF
+const BANGLA_REGEX = /[\u0980-\u09FF]/;
+const BANGLA_GLOBAL_REGEX = /[\u0980-\u09FF]/g;
 
-  en: {
-    regex: /[A-Za-z]/g,
-    name: "English",
-  },
-};
+// Basic Latin letters (used to detect English content in mixed strings)
+const LATIN_REGEX = /[A-Za-z]/g;
 
 /* -------------------------------------------------------------------------- */
-/* Detect Language — Detailed                                                 */
+/* Core Detection                                                             */
 /* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Returns a rich result object with distribution, confidence, and mixed-    */
-/* language detection.  The simple detectLanguage() wrapper below extracts   */
-/* just the language code for backward compatibility.                        */
-/*                                                                            */
-/* Usage:                                                                     */
-/*   const result = detectLanguageDetailed("আমি chicken biryani রান্না করব");   */
-/*   // {                                                                  */
-/*   //   language: "bn",                                                   */
-/*   //   confidence: 0.65,                                                */
-/*   //   isMixed: true,                                                   */
-/*   //   distribution: { bn: 0.65, en: 0.35 },                           */
-/*   //   details: { bn: 13, en: 7, other: 3, total: 23 }                 */
-/*   // }                                                                  */
-/*                                                                            */
 
-export function detectLanguageDetailed(text = "") {
-  /* Pipeline gate */
-  if (AI_CONFIG.PIPELINE.LANGUAGE_DETECTION === false) {
-    return createResult(AI_CONFIG.LANGUAGE.FALLBACK, 1, false, {});
+/**
+ * Detect the language of a given text based on script composition.
+ *
+ * Strategy:
+ *  1. Count Bangla vs Latin characters in the string.
+ *  2. Whichever script has more characters "wins".
+ *  3. If there are no alphabetic characters at all (e.g. "123", "😀", ""),
+ *     fall back to the previous language if provided, else DEFAULT_LANGUAGE.
+ *
+ * This handles mixed-script input gracefully, e.g.:
+ *  - "আমার কাছে chicken আছে" -> bn (more Bangla chars)
+ *  - "I want চিকেন বিরিয়ানি" -> bn
+ *  - "chicken biryani" -> en
+ */
+export function detectLanguage(text = "", previousLanguage = DEFAULT_LANGUAGE) {
+  if (!text || typeof text !== "string") {
+    return previousLanguage || DEFAULT_LANGUAGE;
   }
 
-  /* Input validation */
-  if (text == null || typeof text !== "string") {
-    return createResult(AI_CONFIG.LANGUAGE.FALLBACK, 0, false, {});
+  const banglaMatches = text.match(BANGLA_GLOBAL_REGEX) || [];
+  const latinMatches = text.match(LATIN_REGEX) || [];
+
+  const banglaCount = banglaMatches.length;
+  const latinCount = latinMatches.length;
+
+  // No alphabetic signal at all — keep whatever language the conversation
+  // was already in, rather than snapping back to English.
+  if (banglaCount === 0 && latinCount === 0) {
+    return previousLanguage || DEFAULT_LANGUAGE;
   }
 
-  const trimmed = text.trim();
+  if (banglaCount > latinCount) return LANGUAGES.BN;
+  if (latinCount > banglaCount) return LANGUAGES.EN;
 
-  if (!trimmed) {
-    return createResult(AI_CONFIG.LANGUAGE.DEFAULT, 1, false, {});
-  }
+  // Tie: prefer whichever script appears first in the string.
+  const firstBangla = text.search(BANGLA_REGEX);
+  const firstLatin = text.search(/[A-Za-z]/);
 
-  /* Count characters per language pattern */
-  const counts = countCharacters(trimmed);
+  if (firstBangla === -1) return LANGUAGES.EN;
+  if (firstLatin === -1) return LANGUAGES.BN;
 
-  const total = counts.total;
-
-  /* No script characters found at all (only numbers/punctuation/whitespace) */
-  if (total === 0) {
-    return createResult(AI_CONFIG.LANGUAGE.DEFAULT, 0, false, counts);
-  }
-
-  /* Calculate distribution ratios */
-  const distribution = buildDistribution(counts, total);
-
-  /* Determine primary language */
-  const primary = findPrimaryLanguage(distribution);
-
-  /* Detect mixed language: two or more scripts both above threshold */
-  const isMixed = detectMixed(distribution);
-
-  /* Confidence: how dominant the primary language is (0.0 – 1.0) */
-  const confidence = calculateConfidence(distribution, primary);
-
-  /* Ensure the detected language is in the supported list.
-     If not, fall back to the config default. */
-  const language = AI_CONFIG.LANGUAGE.SUPPORTED.includes(primary)
-    ? primary
-    : AI_CONFIG.LANGUAGE.FALLBACK;
-
-  return createResult(language, confidence, isMixed, distribution, counts);
+  return firstBangla < firstLatin ? LANGUAGES.BN : LANGUAGES.EN;
 }
 
-/* -------------------------------------------------------------------------- */
-/* Detect Language — Simple (backward-compatible)                             */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* All existing callers (generate-recipe.js, prompt-parser.js) use this     */
-/* signature.  Returns a plain language code string.                         */
-/*                                                                            */
-
-export function detectLanguage(text = "") {
-  return detectLanguageDetailed(text).language;
+/**
+ * Returns true if the given text contains any Bangla script characters.
+ * Useful as a cheap check before running full detection.
+ */
+export function containsBangla(text = "") {
+  return BANGLA_REGEX.test(text);
 }
 
-/* -------------------------------------------------------------------------- */
-/* Convenience Predicates                                                     */
-/* -------------------------------------------------------------------------- */
-
-export function isBangla(text = "") {
-  return detectLanguage(text) === "bn";
+/**
+ * Returns true if the given text contains any Latin script characters.
+ */
+export function containsLatin(text = "") {
+  return /[A-Za-z]/.test(text);
 }
 
-export function isEnglish(text = "") {
-  return detectLanguage(text) === "en";
+/**
+ * Returns the ratio (0-1) of Bangla characters among all alphabetic
+ * characters in the text. Useful for confidence scoring / debugging.
+ */
+export function banglaRatio(text = "") {
+  const banglaCount = (text.match(BANGLA_GLOBAL_REGEX) || []).length;
+  const latinCount = (text.match(LATIN_REGEX) || []).length;
+  const total = banglaCount + latinCount;
+  if (total === 0) return 0;
+  return banglaCount / total;
 }
 
-/* -------------------------------------------------------------------------- */
-/* Character Counting                                                         */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Iterates the text once, counting characters that match each language      */
-/* pattern.  "Other" counts characters that don't match any pattern          */
-/* (digits, punctuation, whitespace, symbols).                              */
-/*                                                                            */
-
-function countCharacters(text) {
-  const counts = { other: 0, total: 0 };
-
-  for (const [code, pattern] of Object.entries(LANGUAGE_PATTERNS)) {
-    pattern.regex.lastIndex = 0;
-
-    const matches = text.match(pattern.regex);
-
-    counts[code] = matches ? matches.length : 0;
-  }
-
-  for (const code of Object.keys(LANGUAGE_PATTERNS)) {
-    counts.total += counts[code] ?? 0;
-  }
-
-  counts.other = text.length - counts.total;
-
-  return counts;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Distribution                                                              */
-/* -------------------------------------------------------------------------- */
-
-function buildDistribution(counts, total) {
-  const distribution = {};
-
-  for (const code of Object.keys(LANGUAGE_PATTERNS)) {
-    const count = counts[code] ?? 0;
-
-    distribution[code] = total > 0 ? count / total : 0;
-  }
-
-  return distribution;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Primary Language                                                           */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* The language with the highest character ratio.  Ties broken by the        */
-/* order languages appear in AI_CONFIG.LANGUAGE.SUPPORTED (first wins).     */
-/*                                                                            */
-
-function findPrimaryLanguage(distribution) {
-  let best = AI_CONFIG.LANGUAGE.DEFAULT;
-  let bestRatio = -1;
-
-  /* Iterate in SUPPORTED order so the preferred language wins ties */
-  for (const code of AI_CONFIG.LANGUAGE.SUPPORTED) {
-    const ratio = distribution[code] ?? 0;
-
-    if (ratio > bestRatio) {
-      bestRatio = ratio;
-      best = code;
-    }
-  }
-
-  return best;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Mixed Language Detection                                                   */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Text is "mixed" when two or more scripts each exceed the threshold.      */
-/* A single Bangla word in an English sentence is NOT mixed (too small).   */
-/* Threshold of 0.15 means a script must account for ≥15% of script chars   */
-/* to count as a contributing language.                                      */
-/*                                                                            */
-
-const MIXED_THRESHOLD = 0.15;
-
-function detectMixed(distribution) {
-  let contributing = 0;
-
-  for (const code of Object.keys(LANGUAGE_PATTERNS)) {
-    if ((distribution[code] ?? 0) >= MIXED_THRESHOLD) {
-      contributing++;
-    }
-  }
-
-  return contributing >= 2;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Confidence                                                                 */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* How dominant the primary language is among all detected scripts.          */
-/*   1.0 = 100% one script, 0.5 = equal split between two scripts.        */
-/*                                                                            */
-
-function calculateConfidence(distribution, primary) {
-  const primaryRatio = distribution[primary] ?? 0;
-
-  /* Sum of all non-zero ratios */
-  const totalRatio = Object.values(distribution).reduce(
-    (sum, r) => (r > 0 ? sum + r : sum),
-    0,
-  );
-
-  if (totalRatio === 0) {
-    return 0;
-  }
-
-  return Math.min(1, Math.round((primaryRatio / totalRatio) * 100) / 100);
-}
-
-/* -------------------------------------------------------------------------- */
-/* Result Factory                                                             */
-/* -------------------------------------------------------------------------- */
-
-function createResult(language, confidence, isMixed, distribution, details) {
-  const result = {
-    language,
-    confidence,
-    isMixed,
-    distribution: { ...distribution },
-  };
-
-  /* Attach raw character counts when available (from detailed path) */
-  if (details && typeof details === "object") {
-    result.details = { ...details };
-  }
-
-  return result;
+/**
+ * Normalize/validate a language code, falling back to default if invalid.
+ */
+export function resolveLanguage(lang) {
+  if (lang === LANGUAGES.EN || lang === LANGUAGES.BN) return lang;
+  return DEFAULT_LANGUAGE;
 }

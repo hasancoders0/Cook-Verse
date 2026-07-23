@@ -1,277 +1,232 @@
-import { AI_CONFIG } from "./config";
+// src/lib/ai/entity-normalizer.js
+
+import { normalizeText, normalizeSlug, fuzzyIncludes, similarity } from "@/lib/utils";
+import { MATCH_CONFIG } from "./config";
 
 /* -------------------------------------------------------------------------- */
-/* Constants                                                                  */
+/* Ingredient Aliases                                                         */
 /* -------------------------------------------------------------------------- */
 
-const ENTITY_COLLECTIONS = [
-  "ingredients",
-  "cuisines",
-  "categories",
-  "diets",
-  "cookingMethods",
-  "tags",
-  "searchTerms",
-];
+/**
+ * Canonical ingredient slug -> alternate spellings/names in EN & BN.
+ * Add new ingredients here as recipe data grows; entity-extractor.js
+ * will pick them up automatically once a matching slug also exists in
+ * a recipe's ingredientGroups.
+ */
+const INGREDIENT_ALIASES = {
+  chicken: ["chicken", "মুরগি", "মুরগীর মাংস", "মুরগীর", "মুরগি মাংস"],
+  beef: ["beef", "গরুর মাংস", "গরু", "গরুর গোশত"],
+  mutton: ["mutton", "খাসির মাংস", "খাসি", "ছাগলের মাংস"],
+  fish: ["fish", "মাছ"],
+  egg: ["egg", "eggs", "ডিম"],
+  potato: ["potato", "potatoes", "aloo", "আলু"],
+  onion: ["onion", "onions", "পেঁয়াজ", "পিয়াজ"],
+  "red-onion": ["red onion", "লাল পেঁয়াজ"],
+  garlic: ["garlic", "রসুন"],
+  ginger: ["ginger", "আদা"],
+  tomato: ["tomato", "tomatoes", "টমেটো"],
+  cucumber: ["cucumber", "শসা"],
+  carrot: ["carrot", "carrots", "গাজর"],
+  lettuce: ["lettuce", "লেটুস"],
+  rice: ["rice", "চাল", "ভাত"],
+  "basmati-rice": ["basmati rice", "বাসমতি চাল"],
+  flour: ["flour", "ময়দা", "আটা"],
+  sugar: ["sugar", "চিনি"],
+  salt: ["salt", "লবণ"],
+  "black-pepper": ["black pepper", "pepper", "গোলমরিচ"],
+  "olive-oil": ["olive oil", "অলিভ অয়েল"],
+  oil: ["oil", "cooking oil", "তেল"],
+  "lemon-juice": ["lemon juice", "লেবুর রস"],
+  lemon: ["lemon", "লেবু"],
+  yogurt: ["yogurt", "yoghurt", "দই"],
+  cheese: ["cheese", "চিজ", "পনির"],
+  butter: ["butter", "মাখন"],
+  bun: ["bun", "buns", "বান"],
+  lentil: ["lentil", "lentils", "ডাল"],
+  cumin: ["cumin", "জিরা"],
+  coriander: ["coriander", "cilantro", "ধনিয়া", "ধনেপাতা"],
+  turmeric: ["turmeric", "হলুদ"],
+  "chili-powder": ["chili powder", "chilli powder", "মরিচ গুঁড়া"],
+  "green-chili": ["green chili", "green chilli", "কাঁচা মরিচ"],
+};
 
 /* -------------------------------------------------------------------------- */
-/* Entity Normalizer                                                          */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Cleans, validates, and deduplicates entity strings produced by the        */
-/* entity-extractor before they reach the constraint-builder.                */
-/*                                                                            */
-/* This is a lightweight safety net — the extractor already normalizes       */
-/* text.  The normalizer's real value is:                                    */
-/*                                                                            */
-/*   1. Filtering out edge-case values that survive extraction               */
-/*   2. Re-deduplicating in case a future extractor change introduces        */
-/*      duplicates before its own finalize step                              */
-/*   3. Merging its own metadata with the extractor's metadata               */
-/*      (instead of overwriting it)                                          */
-/*   4. Providing a pipeline gate for debugging                              */
-/*                                                                            */
-
-export function normalizeEntities(entities) {
-  /* Pipeline gate */
-  if (AI_CONFIG.PIPELINE.ENTITY_NORMALIZATION === false) {
-    return entities ?? createEmptyResult();
-  }
-
-  /* Defensive: accept null/undefined */
-  if (!entities || typeof entities !== "object") {
-    return createEmptyResult("invalid_input");
-  }
-
-  const normalized = createNormalizedResult();
-
-  const log = createNormalizationLog();
-
-  runNormalization(entities, normalized, log);
-
-  return finalizeNormalization(normalized, entities.metadata, log);
-}
-
-/* -------------------------------------------------------------------------- */
-/* Normalization Pipeline                                                     */
+/* Cuisine Aliases                                                            */
 /* -------------------------------------------------------------------------- */
 
-function runNormalization(entities, normalized, log) {
-  const minLen = AI_CONFIG.THRESHOLD.MIN_TOKEN_LENGTH;
+const CUISINE_ALIASES = {
+  bangladeshi: ["bangladeshi", "bangla", "দেশি", "বাংলাদেশি"],
+  indian: ["indian", "ভারতীয়"],
+  italian: ["italian", "ইতালিয়ান", "ইতালীয়"],
+  chinese: ["chinese", "চাইনিজ", "চীনা"],
+  american: ["american", "আমেরিকান"],
+  mexican: ["mexican", "মেক্সিকান"],
+  thai: ["thai", "থাই"],
+  international: ["international", "আন্তর্জাতিক"],
+  arab: ["arab", "arabic", "middle eastern", "আরবি"],
+};
 
-  for (const collection of ENTITY_COLLECTIONS) {
-    const values = entities[collection];
+/* -------------------------------------------------------------------------- */
+/* Category Aliases                                                          */
+/* -------------------------------------------------------------------------- */
 
-    if (!Array.isArray(values) || values.length === 0) {
-      continue;
+const CATEGORY_ALIASES = {
+  breakfast: ["breakfast", "নাস্তা", "সকালের নাস্তা"],
+  lunch: ["lunch", "দুপুরের খাবার"],
+  dinner: ["dinner", "রাতের খাবার"],
+  salad: ["salad", "সালাদ"],
+  dessert: ["dessert", "sweet", "মিষ্টি"],
+  snack: ["snack", "snacks", "নাস্তা", "স্ন্যাক্স"],
+  "main-course": ["main course", "main dish", "প্রধান খাবার"],
+  soup: ["soup", "স্যুপ"],
+  "fast-food": ["fast food", "ফাস্ট ফুড"],
+};
+
+/* -------------------------------------------------------------------------- */
+/* Diet Aliases                                                              */
+/* -------------------------------------------------------------------------- */
+
+const DIET_ALIASES = {
+  vegetarian: ["vegetarian", "veg", "নিরামিষ"],
+  vegan: ["vegan", "ভেগান"],
+  "low-calorie": ["low calorie", "low-calorie", "diet food", "কম ক্যালোরি"],
+  "gluten-free": ["gluten free", "gluten-free", "গ্লুটেন ফ্রি"],
+  "high-protein": ["high protein", "high-protein", "উচ্চ প্রোটিন"],
+  healthy: ["healthy", "স্বাস্থ্যকর"],
+  spicy: ["spicy", "hot", "ঝাল", "মসলাদার"],
+  "not-spicy": ["not spicy", "mild", "ঝাল ছাড়া", "কম ঝাল"],
+};
+
+/* -------------------------------------------------------------------------- */
+/* Generic Alias Resolution                                                  */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Build a flat lookup of normalized-alias -> canonical slug for a given
+ * alias map, so exact lookups are O(1).
+ */
+function buildAliasIndex(aliasMap) {
+  const index = new Map();
+  for (const [canonical, aliases] of Object.entries(aliasMap)) {
+    for (const alias of aliases) {
+      index.set(normalizeText(alias), canonical);
     }
+  }
+  return index;
+}
 
-    for (const value of values) {
-      const result = normalizeValue(value, minLen);
+const INGREDIENT_INDEX = buildAliasIndex(INGREDIENT_ALIASES);
+const CUISINE_INDEX = buildAliasIndex(CUISINE_ALIASES);
+const CATEGORY_INDEX = buildAliasIndex(CATEGORY_ALIASES);
+const DIET_INDEX = buildAliasIndex(DIET_ALIASES);
 
-      if (result.dropped) {
-        log.dropped++;
-        log.droppedReasons[result.reason] =
-          (log.droppedReasons[result.reason] ?? 0) + 1;
-        continue;
-      }
+/**
+ * Resolve a raw value (word, phrase, or already-a-slug) against an alias
+ * index. Tries in order:
+ *  1. Exact normalized match
+ *  2. Already-canonical slug (value is itself a key in aliasMap)
+ *  3. Fuzzy match against all known aliases (typo tolerance)
+ */
+function resolveAlias(value, index, aliasMap, threshold = MATCH_CONFIG.ENTITY_MATCH_THRESHOLD) {
+  if (!value) return null;
 
-      if (result.normalized) {
-        log.normalized++;
-      }
+  const normalized = normalizeText(value);
 
-      normalized[collection].push(result.value);
+  // 1. Exact alias match
+  if (index.has(normalized)) return index.get(normalized);
+
+  // 2. Already a canonical slug
+  const asSlug = normalizeSlug(value);
+  if (aliasMap[asSlug]) return asSlug;
+
+  // 3. Fuzzy match against all aliases
+  let best = null;
+  for (const [alias, canonical] of index.entries()) {
+    if (alias.length < 3) continue; // skip too-short aliases (noisy fuzzy matches)
+    const score = similarity(normalized, alias);
+    if (score >= threshold && (!best || score > best.score)) {
+      best = { canonical, score };
     }
-
-    /* Deduplicate within collection */
-    const before = normalized[collection].length;
-    normalized[collection] = deduplicate(normalized[collection]);
-    const removed = before - normalized[collection].length;
-
-    if (removed > 0) {
-      log.deduplicated += removed;
-    }
-
-    log.inputCounts[collection] = values.length;
-    log.outputCounts[collection] = normalized[collection].length;
   }
+
+  return best?.canonical || null;
 }
 
 /* -------------------------------------------------------------------------- */
-/* Normalize Single Value                                                     */
+/* Public Normalizers                                                        */
 /* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Returns { value, normalized, dropped, reason }                             */
-/*   - value:      the final string to keep                                  */
-/*   - normalized: true if the value was modified during normalization       */
-/*   - dropped:    true if the value should be discarded                     */
-/*   - reason:     why it was dropped (only when dropped=true)              */
-/*                                                                            */
 
-function normalizeValue(value, minLen) {
-  /* Reject non-strings early */
-  if (typeof value !== "string") {
-    return {
-      value: "",
-      normalized: false,
-      dropped: true,
-      reason: "non_string",
-    };
-  }
+/**
+ * Normalize a single ingredient mention (word or short phrase) to its
+ * canonical slug, e.g. "মুরগি" -> "chicken", "Aloo" -> "potato".
+ * Returns null if nothing resolves confidently.
+ */
+export function normalizeIngredient(value) {
+  return resolveAlias(value, INGREDIENT_INDEX, INGREDIENT_ALIASES);
+}
 
-  const trimmed = value.trim();
+/**
+ * Normalize a cuisine mention/slug to its canonical slug.
+ */
+export function normalizeCuisine(value) {
+  return resolveAlias(value, CUISINE_INDEX, CUISINE_ALIASES);
+}
 
-  /* Reject empty / whitespace-only */
-  if (!trimmed) {
-    return { value: "", normalized: false, dropped: true, reason: "empty" };
-  }
+/**
+ * Normalize a category mention/slug to its canonical slug.
+ */
+export function normalizeCategory(value) {
+  return resolveAlias(value, CATEGORY_INDEX, CATEGORY_ALIASES);
+}
 
-  const lowercased = trimmed.toLowerCase();
-
-  /* Reject values that become too short after normalization.
-     searchTerms can be short compound fragments (e.g. "bbq") so
-     we only apply the length gate when called with a collection-
-     specific minLen.  Here we use 0 (no gate) because the caller
-     already filtered by minLen for non-searchTerm collections,
-     and the extractor's fallback stage deliberately adds short
-     tokens as searchTerms. */
-  if (lowercased.length === 0) {
-    return {
-      value: "",
-      normalized: false,
-      dropped: true,
-      reason: "empty_after_normalize",
-    };
-  }
-
-  const wasModified = lowercased !== value;
-
-  return {
-    value: lowercased,
-    normalized: wasModified,
-    dropped: false,
-    reason: null,
-  };
+/**
+ * Normalize a diet mention/slug to its canonical slug.
+ */
+export function normalizeDiet(value) {
+  return resolveAlias(value, DIET_INDEX, DIET_ALIASES);
 }
 
 /* -------------------------------------------------------------------------- */
-/* Normalized Result                                                          */
+/* Batch Helpers                                                             */
 /* -------------------------------------------------------------------------- */
 
-function createNormalizedResult() {
-  const result = {};
-
-  for (const collection of ENTITY_COLLECTIONS) {
-    result[collection] = [];
-  }
-
-  result.metadata = {
-    totalEntities: 0,
-    confidence: 0,
-    collections: [],
-  };
-
-  return result;
+/**
+ * Normalize an array of raw ingredient tokens/phrases, dropping
+ * anything that doesn't resolve and de-duplicating the result.
+ */
+export function normalizeIngredientList(values = []) {
+  const resolved = values.map(normalizeIngredient).filter(Boolean);
+  return [...new Set(resolved)];
 }
 
-function createEmptyResult(reason) {
-  const result = createNormalizedResult();
-  result.metadata.normalizationMode = reason;
-  return result;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Finalize                                                                   */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Merges extraction metadata (from the extractor) with normalization        */
-/* metadata instead of overwriting it.  The extractor's confidence is        */
-/* authoritative — it considers match types.  The normalizer only adds       */
-/* its own processing stats.                                                 */
-/*                                                                            */
-
-function finalizeNormalization(normalized, extractionMetadata, log) {
-  const totalEntities = ENTITY_COLLECTIONS.reduce(
-    (sum, c) => sum + normalized[c].length,
-    0,
-  );
-
-  normalized.metadata = {
-    /* Carry forward the extractor's confidence — it accounts for match
-       types (exact/partial/fuzzy/token) and is more accurate than
-       anything the normalizer could compute from plain strings. */
-    confidence: extractionMetadata?.confidence ?? 0,
-
-    totalEntities,
-
-    collections: ENTITY_COLLECTIONS.filter((c) => normalized[c].length > 0),
-
-    /* Normalizer-specific stats */
-    normalization: {
-      mode:
-        log.dropped === 0 && log.deduplicated === 0 ? "passthrough" : "active",
-
-      inputTotal: log.inputTotal,
-
-      outputTotal: totalEntities,
-
-      dropped: log.dropped,
-
-      droppedReasons: { ...log.droppedReasons },
-
-      deduplicated: log.deduplicated,
-
-      modified: log.normalized,
-
-      perCollection: ENTITY_COLLECTIONS.reduce((map, c) => {
-        const input = log.inputCounts[c] ?? 0;
-        const output = log.outputCounts[c] ?? 0;
-
-        if (input > 0 || output > 0) {
-          map[c] = { input, output };
-        }
-
-        return map;
-      }, {}),
-    },
-
-    /* Preserve extractor metadata for full pipeline traceability */
-    extraction: {
-      mode: extractionMetadata?.extractionMode ?? null,
-
-      matchTypes: extractionMetadata?.matchTypes ?? null,
-    },
-
-    normalizationMode: "full",
-  };
-
-  return normalized;
+/**
+ * Check whether two ingredient mentions refer to the same canonical
+ * ingredient, regardless of language/spelling — useful when comparing
+ * a new message's ingredients against session context.
+ */
+export function isSameIngredient(a, b) {
+  const normA = normalizeIngredient(a);
+  const normB = normalizeIngredient(b);
+  if (!normA || !normB) return false;
+  return normA === normB;
 }
 
 /* -------------------------------------------------------------------------- */
-/* Normalization Log                                                          */
+/* Introspection (useful for debugging / admin tooling later)                */
 /* -------------------------------------------------------------------------- */
 
-function createNormalizationLog() {
-  return {
-    inputTotal: 0,
-    dropped: 0,
-    deduplicated: 0,
-    normalized: 0,
-    droppedReasons: {},
-    inputCounts: {},
-    outputCounts: {},
-  };
+export function getKnownIngredientSlugs() {
+  return Object.keys(INGREDIENT_ALIASES);
 }
 
-/* -------------------------------------------------------------------------- */
-/* Helpers                                                                    */
-/* -------------------------------------------------------------------------- */
+export function getKnownCuisineSlugs() {
+  return Object.keys(CUISINE_ALIASES);
+}
 
-function deduplicate(values) {
-  if (!Array.isArray(values) || values.length === 0) {
-    return values;
-  }
+export function getKnownCategorySlugs() {
+  return Object.keys(CATEGORY_ALIASES);
+}
 
-  return [...new Set(values)];
+export function getKnownDietSlugs() {
+  return Object.keys(DIET_ALIASES);
 }

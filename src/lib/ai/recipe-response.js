@@ -1,941 +1,386 @@
-import { AI_CONFIG } from "./config";
+// src/lib/ai/recipe-response.js
+
+import { INTENTS, RESPONSES, FALLBACK_SUGGESTIONS } from "./config";
+import { getFormattedToday, isDayNameToday, formatNumber } from "@/lib/utils";
+import {
+  wasLastAssistantMessage,
+  isRepeatedUserIntent,
+} from "./conversation-manager";
+import { countRecentRepeats } from "./recipe-memory";
+import { buildDishSuggestions } from "./recommendation-engine";
 
 /* -------------------------------------------------------------------------- */
-/* Build Recipe Response — Public API                                         */
+/* Rewording Variants (for repetition avoidance)                            */
 /* -------------------------------------------------------------------------- */
 
-export function buildRecipeResponse({
-  query = "",
-  language = "en",
-  results = [],
-  constraints = {},
-  metadata = {},
-} = {}) {
-  const safeResults = Array.isArray(results) ? results : [];
-  const hasResults = safeResults.length > 0;
+/**
+ * Alternate phrasings for responses that might otherwise repeat
+ * verbatim across turns. Keyed by the same RESPONSES key.
+ */
+const REPHRASE_VARIANTS = {
+  GREETING: {
+    en: ["Hey again! What are you in the mood to cook?", "Hi there! Ready to find another recipe?"],
+    bn: ["আবার হ্যালো! আজ কী রান্না করতে মন চাইছে?", "হাই! আরেকটি রেসিপি খুঁজতে প্রস্তুত?"],
+  },
+  UNKNOWN: {
+    en: ["I'm still not sure what you mean — try naming a dish, ingredient, or cuisine.", "Hmm, could you rephrase that? A dish name or ingredient works great."],
+    bn: ["আমি এখনো ঠিক বুঝতে পারছি না — একটি খাবারের নাম, উপকরণ বা রান্নার ধরন বলে দেখুন।", "একটু অন্যভাবে বলবেন? খাবারের নাম বা উপকরণ দিলে সুবিধা হবে।"],
+  },
+  NO_MATCH: {
+    en: ["Still no luck with that one — try a different ingredient or dish name?", "That one's not turning up matches. Want to try another ingredient?"],
+    bn: ["এখনো কোনো মিল পাওয়া যায়নি — অন্য কোনো উপকরণ বা খাবারের নাম দিয়ে দেখুন?", "এটির সাথে মিল পাওয়া যাচ্ছে না। অন্য একটি উপকরণ দিয়ে চেষ্টা করবেন?"],
+  },
+  THANKS: {
+    en: ["Anytime! Let me know if you want more recipe ideas.", "Happy to help — come back anytime for more recipes."],
+    bn: ["যেকোনো সময়! আরও রেসিপির আইডিয়া চাইলে জানাবেন।", "সাহায্য করতে পেরে ভালো লাগলো — আবার আসবেন।"],
+  },
+};
 
-  if (!hasResults) {
-    return buildEmptyResponse({ query, language, constraints, metadata });
+/**
+ * Pick a response variant, cycling through rephrase options when the
+ * same response has already been sent recently, so the conversation
+ * doesn't feel robotic on repeat questions.
+ */
+function pickVariedResponse(key, language, session) {
+  const base = RESPONSES[key]?.[language] || RESPONSES[key]?.en || "";
+
+  if (!session) return base;
+
+  const repeatCount = countRecentRepeats(session.memory, base);
+  const variants = REPHRASE_VARIANTS[key]?.[language] || REPHRASE_VARIANTS[key]?.en;
+
+  if (repeatCount > 0 && variants?.length) {
+    const index = (repeatCount - 1) % variants.length;
+    return variants[index];
   }
 
-  return buildSuccessResponse({
-    query,
-    language,
-    results: safeResults,
-    constraints,
-    metadata,
-  });
+  return base;
 }
 
 /* -------------------------------------------------------------------------- */
-/* Success Response                                                           */
+/* Conversational Intent Responses (non-recipe-search)                      */
 /* -------------------------------------------------------------------------- */
 
-function buildSuccessResponse({
-  query,
-  language,
-  results,
-  constraints,
-  metadata,
-}) {
-  const response = {
-    success: true,
-    query,
-    language,
-    assistant: buildAssistant({
-      success: true,
-      language,
-      results,
-      constraints,
-    }),
-    search: buildSearch({ query, language, constraints, results }),
-    recipes: formatRecipes(results),
-    metadata: {},
-  };
+function buildGreetingResponse(session, language, { isIslamicGreeting = false } = {}) {
+  const message = isIslamicGreeting
+    ? RESPONSES.GREETING_ISLAMIC[language] || RESPONSES.GREETING_ISLAMIC.en
+    : pickVariedResponse("GREETING", language, session);
 
-  if (AI_CONFIG.RESPONSE.SHOW_SUGGESTIONS !== false) {
-    response.suggestions = buildSuggestions({
-      success: true,
+  return baseAssistantPayload({ message, language });
+}
+
+function buildIdentityResponse(language) {
+  return baseAssistantPayload({
+    message: RESPONSES.IDENTITY[language] || RESPONSES.IDENTITY.en,
+    language,
+  });
+}
+
+function buildCapabilitiesResponse(language) {
+  return baseAssistantPayload({
+    message: RESPONSES.CAPABILITIES[language] || RESPONSES.CAPABILITIES.en,
+    language,
+  });
+}
+
+function buildThanksResponse(session, language) {
+  return baseAssistantPayload({
+    message: pickVariedResponse("THANKS", language, session),
+    language,
+  });
+}
+
+function buildGoodbyeResponse(language, { casual = false } = {}) {
+  const message = casual
+    ? RESPONSES.GOODBYE_CASUAL[language] || RESPONSES.GOODBYE_CASUAL.en
+    : RESPONSES.GOODBYE[language] || RESPONSES.GOODBYE.en;
+
+  return baseAssistantPayload({ message, language });
+}
+
+function buildSmallTalkResponse(text, language) {
+  const normalized = text.toLowerCase();
+
+  if (normalized.includes("chatgpt") || normalized.includes("চ্যাটজিপিটি")) {
+    return baseAssistantPayload({
+      message: RESPONSES.NOT_CHATGPT[language] || RESPONSES.NOT_CHATGPT.en,
       language,
-      results,
-      constraints,
     });
   }
 
-  response.metadata = buildMetadata({
-    success: true,
-    results,
-    constraints,
-    metadata,
-  });
+  if (normalized.includes("favorite") || normalized.includes("প্রিয়")) {
+    return baseAssistantPayload({
+      message: RESPONSES.NO_FAVORITE[language] || RESPONSES.NO_FAVORITE.en,
+      language,
+    });
+  }
 
-  return response;
+  return baseAssistantPayload({
+    message: RESPONSES.NOT_GENERAL_QA[language] || RESPONSES.NOT_GENERAL_QA.en,
+    language,
+  });
 }
 
 /* -------------------------------------------------------------------------- */
-/* Empty Response                                                             */
+/* Date / Day-check Responses                                                */
 /* -------------------------------------------------------------------------- */
 
-function buildEmptyResponse({ query, language, constraints, metadata }) {
-  const response = {
-    success: false,
-    query,
+function buildDateResponse(language) {
+  const today = getFormattedToday();
+
+  const message =
+    language === "bn"
+      ? `আজ ${today.day.bn}, ${today.gregorian.bn}${today.hijri ? ` (হিজরি: ${today.hijri})` : ""}।`
+      : `Today is ${today.day.en}, ${today.gregorian.en}${today.hijri ? ` (Hijri: ${today.hijri})` : ""}.`;
+
+  return baseAssistantPayload({ message, language });
+}
+
+function buildDayCheckResponse(dayMention, language) {
+  const today = getFormattedToday();
+  const isCorrect = isDayNameToday(dayMention?.dayName, new Date());
+
+  let message;
+
+  if (isCorrect) {
+    message =
+      language === "bn"
+        ? `হ্যাঁ, আজ ${today.day.bn}।`
+        : `Yes, today is ${today.day.en}.`;
+  } else {
+    message =
+      language === "bn"
+        ? `আজ ${dayMention?.dayName} নয়।\nআজ ${today.day.bn}।`
+        : `Today isn't ${dayMention?.dayName}.\nToday is ${today.day.en}.`;
+  }
+
+  return baseAssistantPayload({ message, language });
+}
+
+/* -------------------------------------------------------------------------- */
+/* Recipe Search Responses                                                   */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Build the conversational response around a set of ranked recipe
+ * results (from recommendation-engine.getRecommendations /
+ * getRecommendationsForDish).
+ *
+ * @param results       ranked recipe array (with .score, .reasons)
+ * @param isFallback    true if these are "closest match" recipes
+ * @param constraints   the constraint set that was searched with
+ * @param language      "en" | "bn"
+ * @param session       conversation session (for inherited-context phrasing)
+ */
+function buildRecipeSearchResponse(results, isFallback, constraints, language, session) {
+  if (!results.length) {
+    return {
+      ...baseAssistantPayload({
+        message: pickVariedResponse("NO_MATCH", language, session),
+        language,
+      }),
+      recipes: [],
+      suggestions: FALLBACK_SUGGESTIONS[language] || FALLBACK_SUGGESTIONS.en,
+    };
+  }
+
+  const top = results[0];
+  const title = top.title?.[language] || top.title?.en;
+
+  const intro = buildSearchIntro(constraints, language, { isFallback });
+  const explanation = buildExplanation(top, language);
+  const followUp = buildFollowUpPrompt(results, language);
+
+  return {
+    assistant: {
+      message: intro,
+      recommendation: null,
+      explanation,
+      followUp,
+    },
+    recipes: results,
+    suggestions: buildDishSuggestions(results, language),
+  };
+}
+
+/**
+ * Build the opening line based on what was actually searched for —
+ * mirrors the tone of your spec's examples ("দারুণ! আপনার কাছে মুরগি
+ * ও আলু আছে...", "খুব ভালো পছন্দ!...").
+ */
+function buildSearchIntro(constraints, language, { isFallback }) {
+  if (isFallback) {
+    return language === "bn"
+      ? "আজকের জন্য কিছু মজার রান্না খুঁজে বের করা যাক!"
+      : "Let's find something fun to cook today!";
+  }
+
+  if (constraints.dish) {
+    return language === "bn"
+      ? "খুব ভালো পছন্দ! আমি কয়েকটি মিল থাকা রেসিপি পেয়েছি।"
+      : "Great choice! I found a few matching recipes.";
+  }
+
+  if (constraints.ingredients?.length) {
+    return language === "bn"
+      ? "দারুণ! এই উপকরণ দিয়ে আমি কিছু রেসিপি খুঁজে পেয়েছি।"
+      : "Nice! I found some recipes using what you have.";
+  }
+
+  if (constraints.cuisine) {
+    return language === "bn"
+      ? "অবশ্যই! আমি কয়েকটি জনপ্রিয় রেসিপি পেয়েছি।"
+      : "Of course! I found a few popular matching recipes.";
+  }
+
+  if (constraints.diet) {
+    return language === "bn"
+      ? "ভালো সিদ্ধান্ত। আমি কিছু উপযুক্ত রেসিপি খুঁজে পেয়েছি।"
+      : "Good choice. I found some recipes that fit.";
+  }
+
+  if (constraints.maxTime != null) {
+    return language === "bn"
+      ? `ঠিক আছে। আমি এমন রেসিপি দেখাচ্ছি যা প্রায় ${formatNumber(constraints.maxTime, "bn")} মিনিট বা তার কম সময়ে তৈরি করা যায়।`
+      : `Got it. Here are recipes that take about ${constraints.maxTime} minutes or less.`;
+  }
+
+  return language === "bn"
+    ? "আমি কয়েকটি মিল থাকা রেসিপি পেয়েছি।"
+    : "I found a few matching recipes for you.";
+}
+
+/**
+ * Brief "why this is recommended" line for the top result, per the
+ * spec's "Always explain briefly why the top recipe is recommended."
+ */
+function buildExplanation(topRecipe, language) {
+  if (!topRecipe?.reasons?.length) return null;
+  return topRecipe.reasons.join(language === "bn" ? " এবং " : " and ");
+}
+
+/**
+ * Prompt the user to pick one of the results, per your spec's
+ * "আপনার পছন্দেরটি নির্বাচন করুন" pattern.
+ */
+function buildFollowUpPrompt(results, language) {
+  if (results.length <= 1) return null;
+  return language === "bn"
+    ? "আপনার পছন্দেরটি নির্বাচন করুন, আমি সম্পূর্ণ রান্নার পদ্ধতি দেখিয়ে দেব।"
+    : "Pick your favorite and I'll show you the full recipe.";
+}
+
+/* -------------------------------------------------------------------------- */
+/* Unknown Intent                                                            */
+/* -------------------------------------------------------------------------- */
+
+function buildUnknownResponse(session, language) {
+  return baseAssistantPayload({
+    message: pickVariedResponse("UNKNOWN", language, session),
     language,
-    assistant: buildAssistant({ success: false, language, constraints }),
-    search: buildSearch({ query, language, constraints, results: [] }),
+  });
+}
+
+/* -------------------------------------------------------------------------- */
+/* Shared Payload Shape                                                      */
+/* -------------------------------------------------------------------------- */
+
+function baseAssistantPayload({ message, language, explanation = null, followUp = null }) {
+  return {
+    assistant: { message, recommendation: null, explanation, followUp },
     recipes: [],
-    metadata: {},
-  };
-
-  if (AI_CONFIG.RESPONSE.SHOW_SUGGESTIONS !== false) {
-    response.suggestions = buildSuggestions({
-      success: false,
-      language,
-      results: [],
-      constraints,
-    });
-  }
-
-  response.metadata = buildMetadata({
-    success: false,
-    results: [],
-    constraints,
-    metadata,
-  });
-
-  return response;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Assistant Section                                                          */
-/* -------------------------------------------------------------------------- */
-
-function buildAssistant({ success, language, results = [], constraints = {} }) {
-  const section = {
-    role: "recipe-assistant",
-    tone: "friendly",
-    greeting: getGreeting(language),
-    message: buildMainMessage({ success, language, results, constraints }),
-  };
-
-  if (AI_CONFIG.RESPONSE.SHOW_EXPLANATION !== false) {
-    section.explanation = buildExplanation({
-      success,
-      language,
-      results,
-      constraints,
-    });
-  }
-
-  if (AI_CONFIG.RESPONSE.SHOW_RECOMMENDATION !== false) {
-    section.recommendation = buildRecommendation({
-      success,
-      language,
-      results,
-    });
-  }
-
-  if (AI_CONFIG.RESPONSE.SHOW_FOLLOW_UP !== false) {
-    section.followUp = buildFollowUp({ success, language, constraints });
-  }
-
-  return section;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Greeting                                                                   */
-/* -------------------------------------------------------------------------- */
-
-function getGreeting(language) {
-  const greetings = {
-    en: "Hi! I'm your Recipe Assistant.",
-    bn: "হ্যালো! আমি আপনার রেসিপি সহকারী।",
-  };
-
-  return greetings[language] ?? greetings.en;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Main Message                                                               */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Assembles a contextual message from:                                       */
-/*   1. Result count + confidence tone                                        */
-/*   2. Negation acknowledgements                                             */
-/*   3. Contextual notes (meal type, detected entities)                       */
-/*                                                                            */
-
-function buildMainMessage({ success, language, results, constraints }) {
-  if (!success) {
-    return buildEmptyMainMessage(language, constraints);
-  }
-
-  const parts = [];
-
-  /* Part 1: Result count with confidence-appropriate tone */
-  parts.push(buildResultCountMessage(language, results));
-
-  /* Part 2: Negation acknowledgement */
-  const negationNote = buildNegationNote(language, constraints);
-  if (negationNote) {
-    parts.push(negationNote);
-  }
-
-  /* Part 3: Contextual note (meal type, entities) */
-  const contextNote = buildContextNote(language, constraints);
-  if (contextNote) {
-    parts.push(contextNote);
-  }
-
-  return parts.join(" ");
-}
-
-function buildResultCountMessage(language, results) {
-  const total = results.length;
-  const topScore = results[0]?.score ?? 0;
-  const maxScore = getMaximumPossibleScore();
-  const ratio = maxScore > 0 ? topScore / maxScore : 0;
-
-  /* High confidence: top result scored > 60% of max possible */
-  if (ratio > 0.6) {
-    return language === "bn"
-      ? `আমি আপনার জন্য ${total}টি চমৎকার রেসিপি খুঁজে পেয়েছি।`
-      : total === 1
-        ? "I found the perfect recipe for you."
-        : `I found ${total} great recipes for you.`;
-  }
-
-  /* Medium confidence */
-  if (ratio > 0.3) {
-    return language === "bn"
-      ? `আপনার অনুরোধের সাথে মিল রেখে ${total}টি রেসিপি পেয়েছি।`
-      : `I found ${total} recipe${total > 1 ? "s" : ""} that may match what you're looking for.`;
-  }
-
-  /* Low confidence */
-  return language === "bn"
-    ? `আপনার অনুরোধের সাথে আংশিক মিল রেখে ${total}টি রেসিপি পেয়েছি।`
-    : `I found ${total} recipe${total > 1 ? "s" : ""} that partially match your request.`;
-}
-
-function buildNegationNote(language, constraints) {
-  const negated = getNegatedPreferences(constraints);
-
-  if (negated.length === 0) return null;
-
-  const names = negated.map((p) => localizePreferenceName(p.name, language));
-
-  if (language === "bn") {
-    return `আমি লক্ষ্য করেছি আপনি ${joinWithComma(names, language)} এড়িয়ে চলতে চান।`;
-  }
-
-  return `I noted you'd like to avoid ${joinWithComma(names, language)}.`;
-}
-
-function buildContextNote(language, constraints) {
-  const parts = [];
-
-  /* Meal type */
-  if (constraints.mealType) {
-    const mealLabel = getMealTypeLabel(constraints.mealType, language);
-    if (mealLabel) {
-      parts.push(
-        language === "bn"
-          ? `এগুলো ${mealLabel} জন্য দারুণ।`
-          : `These are great for ${mealLabel}.`,
-      );
-    }
-  }
-
-  /* Detected entities summary (brief) */
-  const entityNames = getDetectedEntityLabels(constraints, language);
-  if (entityNames.length > 0 && entityNames.length <= 3) {
-    if (language === "bn") {
-      parts.push(
-        `আপনার উল্লেখিত ${joinWithComma(entityNames, language)} বিবেচনায় নেওয়া হয়েছে।`,
-      );
-    } else {
-      parts.push(
-        `I considered ${joinWithComma(entityNames, language)} from your request.`,
-      );
-    }
-  }
-
-  return parts.length > 0 ? parts.join(" ") : null;
-}
-
-function buildEmptyMainMessage(language, constraints) {
-  const intent = constraints.intent;
-
-  /* Greeting — friendly redirect to recipe search */
-  if (intent === "greeting") {
-    return language === "bn"
-      ? "হ্যালো! আমি আপনার রেসিপি সহকারী। উপকরণ, খাবারের নাম বা রান্নার ধরন বলুন — আমি আপনার জন্য রেসিপি খুঁজে বের করব!"
-      : "Hello! I'm your Recipe Assistant. Tell me what you'd like to cook — I can search by ingredients, dish names, or cuisines!";
-  }
-
-  /* Knowledge question — helpful guidance */
-  if (intent === "knowledge") {
-    return language === "bn"
-      ? "আমি রেসিপি খুঁজে বের করতে সাহায্য করতে পারি। চেষ্টা করুন: 'চিকেন দিয়ে রেসিপি' বা 'দ্রুত লাঞ্চ'।"
-      : "I can help you find recipes! Try something like 'recipes with chicken' or 'quick lunch ideas'.";
-  }
-
-  /* Has detected entities — specific not-found message */
-  const detected = getDetectedEntityLabels(constraints, language);
-
-  if (detected.length > 0) {
-    return language === "bn"
-      ? `দুঃখিত, আপনার উল্লেখিত ${joinWithComma(detected, language)} দিয়ে কোনো রেসিপি মেলেনি।`
-      : `Sorry, I couldn't find any recipes matching ${joinWithComma(detected, language)}.`;
-  }
-
-  return language === "bn"
-    ? "দুঃখিত, আপনার অনুরোধ অনুযায়ী কোনো রেসিপি খুঁজে পাইনি।"
-    : "Sorry, I couldn't find any recipes matching your request.";
-}
-/* -------------------------------------------------------------------------- */
-/* Explanation                                                                */
-/* -------------------------------------------------------------------------- */
-
-function buildExplanation({ success, language, results, constraints }) {
-  if (!success) {
-    return language === "bn"
-      ? "অন্য উপকরণ, ক্যাটাগরি অথবা কীওয়ার্ড ব্যবহার করে আবার চেষ্টা করুন।"
-      : "Try using different ingredients, categories, or keywords.";
-  }
-
-  const totalMatches = results[0]?.metadata?.totalMatches ?? 0;
-  const matchedFields = results[0]?.metadata?.matchedFields ?? 0;
-
-  if (totalMatches === 0 && matchedFields === 0) {
-    return language === "bn"
-      ? "ফলাফলগুলো আপনার অনুরোধের সাথে মিল অনুযায়ী সাজানো হয়েছে।"
-      : "The recipes are ranked by how well they match your request.";
-  }
-
-  if (language === "bn") {
-    return `শীর্ষ রেসিপিটিতে ${totalMatches}টি মিল পাওয়া গেছে ${matchedFields}টি ক্যাটাগরিতে।`;
-  }
-
-  return `The top recipe matched across ${matchedFields} categor${matchedFields === 1 ? "y" : "ies"} with ${totalMatches} individual match${totalMatches === 1 ? "" : "es"}.`;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Recommendation                                                             */
-/* -------------------------------------------------------------------------- */
-
-function buildRecommendation({ success, language, results }) {
-  if (!success || !results.length) return null;
-
-  const bestRecipe = results[0]?.recipe;
-  if (!bestRecipe) return null;
-
-  const title = getLocalizedValue(bestRecipe.title, language);
-
-  if (language === "bn") {
-    return `আমি প্রথমে "${title}" রেসিপিটি চেষ্টা করার পরামর্শ দিচ্ছি।`;
-  }
-
-  return `I recommend trying "${title}" first.`;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Follow Up                                                                  */
-/* -------------------------------------------------------------------------- */
-
-function buildFollowUp({ success, language, constraints }) {
-  if (!success) {
-    return language === "bn"
-      ? "আপনি চাইলে অন্য কোনো উপকরণ বা খাবারের নাম দিয়ে আবার অনুসন্ধান করতে পারেন।"
-      : "You can try searching again with different ingredients or dish names.";
-  }
-
-  /* Contextual follow-up based on what was detected */
-  const hasQuick = hasPreference(constraints, "quick");
-  const hasHealthy = hasPreference(constraints, "healthy", false);
-  const hasCuisine = (constraints.cuisines?.length ?? 0) > 0;
-
-  if (hasQuick && !hasHealthy) {
-    return language === "bn"
-      ? "আপনি কি স্বাস্থ্যকর বিকল্পও দেখতে চান?"
-      : "Would you like to see healthier options too?";
-  }
-
-  if (hasHealthy && !hasQuick) {
-    return language === "bn"
-      ? "আপনি কি আরও দ্রুত রান্নার রেসিপি দেখতে চান?"
-      : "Would you like quicker recipe options?";
-  }
-
-  if (hasCuisine) {
-    return language === "bn"
-      ? "আপনি কি অন্য দেশের খাবারও দেখতে চান?"
-      : "Would you like to try recipes from a different cuisine?";
-  }
-
-  return language === "bn"
-    ? "আপনি কি আরও দ্রুত, স্বাস্থ্যকর বা মশলাদার রেসিপি দেখতে চান?"
-    : "Would you like quicker, healthier, or spicier recipe suggestions?";
-}
-
-/* -------------------------------------------------------------------------- */
-/* Search Section                                                             */
-/* -------------------------------------------------------------------------- */
-
-function buildSearch({ query, language, constraints = {}, results = [] }) {
-  return {
-    query,
+    suggestions: [],
     language,
-    totalResults: results.length,
-    intent: resolveIntent(constraints),
-    entities: extractSearchEntities(constraints),
-    filters: extractSearchFilters(constraints),
   };
 }
 
 /* -------------------------------------------------------------------------- */
-/* Intent Resolution                                                          */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Uses the parser's intent when available and specific.  Falls back to      */
-/* constraint-based heuristic for the generic "recipe_search" intent.        */
-/*                                                                            */
-
-function resolveIntent(constraints) {
-  /* Use the parser's intent if it's more specific than generic search */
-  const parsedIntent = constraints.intent;
-
-  if (parsedIntent && parsedIntent !== "recipe_search") {
-    return parsedIntent;
-  }
-
-  /* Heuristic fallback: infer from what constraints are populated */
-  if (constraints.categories?.length) return "category";
-  if (constraints.ingredients?.length) return "ingredient";
-  if (constraints.cuisines?.length) return "cuisine";
-  if (constraints.diets?.length) return "diet";
-  if (constraints.tags?.length) return "tag";
-
-  return "recipe_search";
-}
-
-/* -------------------------------------------------------------------------- */
-/* Search Entities                                                            */
+/* Main Export                                                               */
 /* -------------------------------------------------------------------------- */
 
-function extractSearchEntities(constraints = {}) {
-  return {
-    ingredients: mapToSlugs(constraints.ingredients),
-    categories: mapToSlugs(constraints.categories),
-    cuisines: mapToSlugs(constraints.cuisines),
-    diets: mapToSlugs(constraints.diets),
-    tags: mapToSlugs(constraints.tags),
-    difficulties: mapToNames(constraints.difficulties),
-  };
-}
-
-/* -------------------------------------------------------------------------- */
-/* Search Filters                                                             */
-/* -------------------------------------------------------------------------- */
-
-function extractSearchFilters(constraints = {}) {
-  const filters = constraints.filters ?? {};
-
-  return {
-    maxCookTime: filters.maxCookTime ?? constraints.maxCookTime ?? null,
-    servings: filters.servings ?? constraints.servings ?? null,
-  };
-}
-
-/* -------------------------------------------------------------------------- */
-/* Format Recipes                                                             */
-/* -------------------------------------------------------------------------- */
-
-function formatRecipes(results = []) {
-  return results.map(formatRecipe);
-}
-
-function formatRecipe(result) {
-  const recipe = result?.recipe;
-
-  if (!recipe) return null;
-
-  const formatted = {
-    id: recipe.id,
-    slug: recipe.slug,
-    title: recipe.title ?? null,
-    description: recipe.description ?? null,
-
-    /* Map thumbnail → image for API consumers */
-    image: recipe.thumbnail ?? null,
-
-    category: recipe.category ?? null,
-    cuisine: recipe.cuisine ?? null,
-    difficulty: recipe.difficulty ?? null,
-
-    totalTime: recipe.totalTime ?? 0,
-    prepTime: recipe.prepTime ?? 0,
-    cookTime: recipe.cookTime ?? 0,
-    servings: recipe.servings ?? 0,
-
-    rating: recipe.rating ?? null,
-    featured: recipe.featured ?? false,
-
-    score: result.score ?? 0,
-  };
-
-  /* Include match details only when config allows */
-  if (AI_CONFIG.RESPONSE.INCLUDE_MATCH_REASONS !== false) {
-    formatted.matches = result.matches ?? null;
-    formatted.reasons = result.reasons ?? null;
-  }
-
-  return formatted;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Suggestions                                                                */
-/* -------------------------------------------------------------------------- */
-
-function buildSuggestions({
-  success,
-  language,
-  results = [],
-  constraints = {},
+/**
+ * Build the full response payload for a given intent + context.
+ * This is the single entry point generate-recipe.js (the top-level
+ * orchestrator called by HomeChat.jsx) should call once it has:
+ *  - the detected intent
+ *  - the parsed prompt (for dayMention, raw text, etc.)
+ *  - the search results (if intent required a recipe search)
+ *  - the session (for repetition-avoidance + language)
+ *
+ * Returns:
+ * {
+ *   success: boolean,
+ *   language: "en" | "bn",
+ *   assistant: { message, recommendation, explanation, followUp },
+ *   recipes: RankedRecipe[],
+ *   suggestions: string[],
+ * }
+ */
+export function buildResponse({
+  intent,
+  parsed,
+  session,
+  language = "en",
+  searchResult = null, // { results, isFallback } from recommendation-engine
+  constraints = null,
+  isIslamicGreeting = false,
 }) {
-  if (success) {
-    return buildSuccessSuggestions(language, results, constraints);
+  let payload;
+
+  switch (intent) {
+    case INTENTS.GREETING:
+      payload = buildGreetingResponse(session, language, { isIslamicGreeting });
+      break;
+
+    case INTENTS.IDENTITY:
+      payload = buildIdentityResponse(language);
+      break;
+
+    case INTENTS.CAPABILITIES:
+      payload = buildCapabilitiesResponse(language);
+      break;
+
+    case INTENTS.DATE:
+      payload = buildDateResponse(language);
+      break;
+
+    case INTENTS.DAY_CHECK:
+      payload = buildDayCheckResponse(parsed?.dayMention, language);
+      break;
+
+    case INTENTS.THANKS:
+      payload = buildThanksResponse(session, language);
+      break;
+
+    case INTENTS.GOODBYE:
+      payload = buildGoodbyeResponse(language, {
+        casual: /পরে কথা হবে|talk later|see you/.test(parsed?.raw?.toLowerCase() || ""),
+      });
+      break;
+
+    case INTENTS.SMALL_TALK:
+      payload = buildSmallTalkResponse(parsed?.raw || "", language);
+      break;
+
+    case INTENTS.RECIPE_SEARCH:
+    case INTENTS.INGREDIENT_SEARCH:
+      payload = buildRecipeSearchResponse(
+        searchResult?.results || [],
+        searchResult?.isFallback ?? false,
+        constraints || {},
+        language,
+        session,
+      );
+      break;
+
+    default:
+      payload = buildUnknownResponse(session, language);
+      break;
   }
 
-  return buildEmptySuggestions(language, constraints);
-}
-
-/* -------------------------------------------------------------------------- */
-/* Success Suggestions — Contextual                                           */
-/* -------------------------------------------------------------------------- */
-
-function buildSuccessSuggestions(language, results, constraints) {
-  const suggestions = [];
-
-  /* Negation-based: offer what they're avoiding */
-  const negated = getNegatedPreferences(constraints);
-
-  for (const pref of negated) {
-    const label = localizePreferenceName(pref.name, language);
-
-    suggestions.push(
-      language === "bn"
-        ? `${label} সহ রেসিপি দেখুন`
-        : `Show ${label} recipes instead`,
-    );
-  }
-
-  /* Preference-based: offer complementary options */
-  if (
-    hasPreference(constraints, "quick") &&
-    !hasPreference(constraints, "healthy", false)
-  ) {
-    suggestions.push(
-      language === "bn" ? "স্বাস্থ্যকর রেসিপি দেখুন" : "Show healthy recipes",
-    );
-  }
-
-  if (
-    hasPreference(constraints, "healthy", false) &&
-    !hasPreference(constraints, "quick")
-  ) {
-    suggestions.push(
-      language === "bn" ? "দ্রুত রান্নার রেসিপি দেখুন" : "Show quick recipes",
-    );
-  }
-
-  /* Cuisine-based: try another cuisine */
-  if (constraints.cuisines?.length > 0) {
-    suggestions.push(
-      language === "bn"
-        ? "অন্য দেশের খাবার চেষ্টা করুন"
-        : "Try another cuisine",
-    );
-  }
-
-  /* Ingredient-based: find more with same ingredients */
-  if (constraints.ingredients?.length > 0) {
-    suggestions.push(
-      language === "bn"
-        ? "একই উপকরণ দিয়ে আরও রেসিপি দেখুন"
-        : "Show more recipes using these ingredients",
-    );
-  }
-
-  /* Fallback defaults if nothing contextual was added */
-  if (suggestions.length === 0) {
-    suggestions.push(
-      language === "bn" ? "দ্রুত রান্নার রেসিপি দেখুন" : "Show quick recipes",
-    );
-    suggestions.push(
-      language === "bn" ? "স্বাস্থ্যকর রেসিপি দেখুন" : "Show healthy recipes",
-    );
-  }
-
-  return suggestions.slice(0, AI_CONFIG.MAX_SUGGESTIONS);
-}
-
-/* -------------------------------------------------------------------------- */
-/* Empty Suggestions — Recovery-Oriented                                     */
-/* -------------------------------------------------------------------------- */
-
-function buildEmptySuggestions(language, constraints = {}) {
-  const suggestions = [];
-  const intent = constraints.intent;
-
-  /* For greeting/knowledge intents, show getting-started suggestions */
-  if (intent === "greeting" || intent === "knowledge") {
-    if (language === "bn") {
-      suggestions.push("চিকেন বিরিয়ানি রেসিপি");
-      suggestions.push("দ্রুত লাঞ্চের আইডিয়া");
-      suggestions.push("সবজি দিয়ে রেসিপি");
-    } else {
-      suggestions.push("Chicken biryani recipe");
-      suggestions.push("Quick lunch ideas");
-      suggestions.push("Recipes with vegetables");
-    }
-    return suggestions.slice(0, AI_CONFIG.MAX_SUGGESTIONS);
-  }
-
-  /* Ingredient-based recovery */
-  if (constraints.ingredients?.length > 1) {
-    suggestions.push(
-      language === "bn"
-        ? "কম উপকরণ দিয়ে চেষ্টা করুন"
-        : "Try with fewer ingredients",
-    );
-  }
-
-  /* Cuisine-based recovery */
-  if (constraints.cuisines?.length > 0) {
-    suggestions.push(
-      language === "bn"
-        ? "অন্য দেশের খাবার চেষ্টা করুন"
-        : "Try another cuisine",
-    );
-  }
-
-  /* Diet-based recovery */
-  if (constraints.diets?.length > 0) {
-    suggestions.push(
-      language === "bn"
-        ? "ডায়েট সীমাবদ্ধতা সরিয়ে চেষ্টা করুন"
-        : "Remove diet restriction",
-    );
-  }
-
-  /* Negation-based: try including what they avoided */
-  const negated = getNegatedPreferences(constraints);
-
-  for (const pref of negated) {
-    const label = localizePreferenceName(pref.name, language);
-
-    suggestions.push(
-      language === "bn" ? `${label} সহ রেসিপি দেখুন` : `Try including ${label}`,
-    );
-  }
-
-  /* Generic fallback */
-  if (suggestions.length === 0) {
-    suggestions.push(
-      language === "bn"
-        ? "একটি নির্দিষ্ট খাবারের নাম দিন"
-        : "Try a specific dish name",
-    );
-    suggestions.push(
-      language === "bn"
-        ? "উপকরণের নাম দিয়ে অনুসন্ধান করুন"
-        : "Search by an ingredient name",
-    );
-  }
-
-  return suggestions.slice(0, AI_CONFIG.MAX_SUGGESTIONS);
-}
-
-/* -------------------------------------------------------------------------- */
-/* Metadata                                                                   */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Merges response-level metadata with pipeline metadata from               */
-/* generate-recipe.js.  Pipeline metadata takes precedence for overlapping   */
-/* keys (timing, errors, stages).                                           */
-/*                                                                            */
-
-function buildMetadata({
-  success,
-  results = [],
-  constraints = {},
-  metadata = {},
-}) {
-  const base = {
-    success,
-    totalResults: results.length,
-    generatedAt: new Date().toISOString(),
-    engine: "Recipe AI",
-    version: AI_CONFIG.VERSION,
+  return {
+    success: true,
+    language,
+    ...payload,
   };
-
-  /* Confidence — only include when config allows */
-  if (AI_CONFIG.RESPONSE.INCLUDE_CONFIDENCE !== false) {
-    base.confidence = calculateConfidence(results);
-  }
-
-  /* Merge pipeline metadata (timing, errors, stages, etc.) */
-  return { ...base, ...metadata };
-}
-
-/* -------------------------------------------------------------------------- */
-/* Confidence                                                                 */
-/* -------------------------------------------------------------------------- */
-
-function calculateConfidence(results = []) {
-  if (!results.length) return 0;
-
-  const topScore = results[0]?.score ?? 0;
-  const maxScore = getMaximumPossibleScore();
-
-  if (maxScore <= 0) return 0;
-
-  return clamp(Math.round((topScore / maxScore) * 100), 0, 100);
-}
-
-/* -------------------------------------------------------------------------- */
-/* Maximum Possible Score — Dynamic                                          */
-/* -------------------------------------------------------------------------- */
-/*                                                                            */
-/* Sums all SCORE and BONUS values from config dynamically.                  */
-/* This way, new scoring keys added to AI_CONFIG are automatically           */
-/* included in the confidence calculation without code changes here.        */
-/*                                                                            */
-
-function getMaximumPossibleScore() {
-  let total = 0;
-
-  if (AI_CONFIG.SCORE && typeof AI_CONFIG.SCORE === "object") {
-    for (const value of Object.values(AI_CONFIG.SCORE)) {
-      if (typeof value === "number") {
-        total += value;
-      }
-    }
-  }
-
-  if (AI_CONFIG.BONUS && typeof AI_CONFIG.BONUS === "object") {
-    for (const value of Object.values(AI_CONFIG.BONUS)) {
-      if (typeof value === "number") {
-        total += value;
-      }
-    }
-  }
-
-  return total;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Helpers — Entity Mapping                                                   */
-/* -------------------------------------------------------------------------- */
-
-function mapToSlugs(items) {
-  if (!Array.isArray(items)) return [];
-
-  return items
-    .filter((item) => item != null)
-    .map((item) => {
-      if (typeof item === "string") return item;
-      if (typeof item === "object" && item.slug) return item.slug;
-      return null;
-    })
-    .filter(Boolean);
-}
-
-function mapToNames(items) {
-  if (!Array.isArray(items)) return [];
-
-  return items
-    .filter((item) => item != null)
-    .map((item) => {
-      if (typeof item === "string") return item;
-      if (typeof item === "object" && item.name) {
-        return typeof item.name === "string" ? item.name : item.name.en;
-      }
-      return null;
-    })
-    .filter(Boolean);
-}
-
-/* -------------------------------------------------------------------------- */
-/* Helpers — Preferences                                                      */
-/* -------------------------------------------------------------------------- */
-
-function getNegatedPreferences(constraints) {
-  const prefs = constraints.preferences;
-
-  if (!Array.isArray(prefs)) return [];
-
-  return prefs.filter((p) => p && typeof p === "object" && p.negated === true);
-}
-
-function hasPreference(constraints, name, ignoreNegated = true) {
-  const prefs = constraints.preferences;
-
-  if (!Array.isArray(prefs)) return false;
-
-  return prefs.some((p) => {
-    if (!p) return false;
-
-    if (typeof p === "string") return p === name;
-
-    if (typeof p === "object") {
-      if (ignoreNegated && p.negated) return false;
-      return p.name === name;
-    }
-
-    return false;
-  });
-}
-
-function localizePreferenceName(name, language) {
-  const map = {
-    spicy: { en: "spicy food", bn: "ঝাল খাবার" },
-    healthy: { en: "healthy food", bn: "স্বাস্থ্যকর খাবার" },
-    quick: { en: "quick recipes", bn: "দ্রুত রেসিপি" },
-    easy: { en: "easy recipes", bn: "সহজ রেসিপি" },
-    vegetarian: { en: "vegetarian food", bn: "নিরামিষ খাবার" },
-    vegan: { en: "vegan food", bn: "ভেগান খাবার" },
-    protein: { en: "high-protein food", bn: "উচ্চ-প্রোটিন খাবার" },
-    lowCalorie: { en: "low-calorie food", bn: "কম-ক্যালোরি খাবার" },
-    budget: { en: "budget-friendly food", bn: "সাশ্রয়ী খাবার" },
-    kids: { en: "kid-friendly food", bn: "শিশু-বান্ধব খাবার" },
-    party: { en: "party food", bn: "পার্টির খাবার" },
-  };
-
-  const entry = map[name];
-
-  if (!entry) return name;
-
-  return entry[language] ?? entry.en;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Helpers — Entity Labels                                                    */
-/* -------------------------------------------------------------------------- */
-
-function getDetectedEntityLabels(constraints, language) {
-  const labels = [];
-
-  /* Cuisines */
-  if (constraints.cuisines?.length > 0) {
-    for (const c of constraints.cuisines) {
-      const name =
-        typeof c === "object" ? getLocalizedValue(c.name, language) : c;
-      if (name) labels.push(name);
-    }
-  }
-
-  /* Categories */
-  if (constraints.categories?.length > 0) {
-    for (const c of constraints.categories) {
-      const name =
-        typeof c === "object" ? getLocalizedValue(c.name, language) : c;
-      if (name) labels.push(name);
-    }
-  }
-
-  /* Diets */
-  if (constraints.diets?.length > 0) {
-    for (const d of constraints.diets) {
-      const name =
-        typeof d === "object" ? getLocalizedValue(d.name, language) : d;
-      if (name) labels.push(name);
-    }
-  }
-
-  /* Ingredients (limit to first 3 to avoid long messages) */
-  if (constraints.ingredients?.length > 0) {
-    for (const i of constraints.ingredients.slice(0, 3)) {
-      const name =
-        typeof i === "object"
-          ? i.name
-            ? getLocalizedValue(i.name, language)
-            : i.slug
-          : i;
-      if (name) labels.push(name);
-    }
-  }
-
-  return labels;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Helpers — Meal Type Labels                                                 */
-/* -------------------------------------------------------------------------- */
-
-function getMealTypeLabel(mealType, language) {
-  const labels = {
-    breakfast: { en: "breakfast", bn: "সকালের নাস্তা" },
-    lunch: { en: "lunch", bn: "দুপুরের খাবার" },
-    dinner: { en: "dinner", bn: "রাতের খাবার" },
-    snack: { en: "a snack", bn: "হালকা খাবার" },
-    dessert: { en: "dessert", bn: "মিষ্টি জাতীয় খাবার" },
-  };
-
-  const entry = labels[mealType];
-
-  if (!entry) return null;
-
-  return entry[language] ?? entry.en;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Helpers — Localization                                                     */
-/* -------------------------------------------------------------------------- */
-
-function getLocalizedValue(value, language = "en") {
-  if (value == null) return "";
-
-  if (typeof value === "string") return value;
-
-  if (typeof value === "object") {
-    return (
-      value[language] ?? value.en ?? Object.values(value).find(Boolean) ?? ""
-    );
-  }
-
-  return value;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Helpers — Text Formatting                                                  */
-/* -------------------------------------------------------------------------- */
-
-function joinWithComma(items, language) {
-  if (!items.length) return "";
-
-  if (items.length === 1) return items[0];
-
-  if (items.length === 2) {
-    return language === "bn"
-      ? `${items[0]} এবং ${items[1]}`
-      : `${items[0]} and ${items[1]}`;
-  }
-
-  const allButLast = items.slice(0, -1);
-  const last = items[items.length - 1];
-
-  return language === "bn"
-    ? `${allButLast.join(", ")} এবং ${last}`
-    : `${allButLast.join(", ")}, and ${last}`;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Helpers — Numeric                                                          */
-/* -------------------------------------------------------------------------- */
-
-function clamp(value, min, max) {
-  return Math.min(max, Math.max(min, value));
 }
