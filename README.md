@@ -115,8 +115,8 @@ Phase 5 — UI
 | recipe-ranker.js         | 9.5/10 | ✅ Minor improvements              |
 | recommendation-engine.js | 8.5/10 | ⚠️ Main logic improvements needed |
 
-lib/ai/recipe-matcher.js
-lib/ai/recommendation-engine.js
-lib/ai/conversation-manager.js
-lib/ai/recipe-memory.js
-lib/ai/recipe-response.js
+✅ generate-recipe.js
+✅ recommendation-engine.js
+✅ conversation-manager.js
+✅ recipe-response.js
+✅ শেষে entity-extractor.js-এ ছোট refinement (যদি দরকার হয়)

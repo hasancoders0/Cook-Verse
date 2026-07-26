@@ -43,14 +43,21 @@ export function createSession(language = "en") {
 function emptyContext() {
   return {
     lastSearchedRecipe: null,
+
+    // NEW
+    lastSearchQuery: "",
+    lastSearchMode: null,
+
     lastSearchResults: [],
     currentRecipeIndex: 0,
+
     lastMentionedIngredients: [],
     selectedCuisine: null,
     selectedCategory: null,
     selectedDifficulty: null,
     lastTimeConstraint: null,
     lastDiet: null,
+
     updatedAt: Date.now(),
   };
 }
@@ -157,13 +164,24 @@ export function updateContext(session, entities = {}) {
  * so a follow-up like "show me the cooking steps" can resolve without
  * the user repeating the dish name.
  */
-export function setLastSearchResults(session, recipes = []) {
+export function setLastSearchResults(
+  session,
+  recipes = [],
+  searchQuery = "",
+  searchMode = "similar",
+) {
   session.context.lastSearchResults = recipes;
   session.context.currentRecipeIndex = 0;
+
+  // Save current search information
+  session.context.lastSearchQuery = searchQuery;
+  session.context.lastSearchMode = searchMode;
+
   session.context.updatedAt = Date.now();
 
   return session;
 }
+
 export function setLastSearchedRecipe(session, recipe) {
   session.context.lastSearchedRecipe = recipe || null;
   session.context.updatedAt = Date.now();

@@ -1,8 +1,23 @@
 // src/lib/ai/entity-extractor.js
 
-import { ENTITY_TYPES, TIME_KEYWORDS, DIFFICULTY_ALIASES, STOPWORDS } from "./config";
-import { normalizeText, tokenize, removeStopwords, fuzzyIncludes } from "@/lib/utils";
-import { normalizeIngredient, normalizeCuisine, normalizeCategory, normalizeDiet } from "./entity-normalizer";
+import {
+  ENTITY_TYPES,
+  TIME_KEYWORDS,
+  DIFFICULTY_ALIASES,
+  STOPWORDS,
+} from "./config";
+import {
+  normalizeText,
+  tokenize,
+  removeStopwords,
+  fuzzyIncludes,
+} from "@/lib/utils";
+import {
+  normalizeIngredient,
+  normalizeCuisine,
+  normalizeCategory,
+  normalizeDiet,
+} from "./entity-normalizer";
 import {
   getIngredients,
   getCuisines,
@@ -48,15 +63,28 @@ function getDietVocab() {
  * / "chicken biryani" even without an exact title match.
  */
 function getDishVocab() {
-  return getAllRecipes().map((recipe) => ({
-    slug: recipe.slug,
-    names: [
+  return getAllRecipes().map((recipe) => {
+    const names = [
       recipe.title?.en,
       recipe.title?.bn,
       ...(recipe.searchTerms?.en || []),
       ...(recipe.searchTerms?.bn || []),
-    ].filter(Boolean),
-  }));
+    ].filter(Boolean);
+
+    // Add the first word of the recipe title as an alias
+    // Example:
+    // "Ilish Bhaja" -> "Ilish"
+    // "ইলিশ ভাজা" -> "ইলিশ"
+    const aliases = names.flatMap((name) => {
+      const firstWord = name.trim().split(/\s+/)[0];
+      return firstWord ? [firstWord] : [];
+    });
+
+    return {
+      slug: recipe.slug,
+      names: [...new Set([...names, ...aliases])],
+    };
+  });
 }
 
 /* -------------------------------------------------------------------------- */
@@ -84,7 +112,9 @@ function matchVocabInText(text, vocabList, { fuzzy = true } = {}) {
       const normName = normalizeText(name);
       if (!normName) return false;
       if (normalized.includes(normName)) return true;
-      return fuzzy && normName.length > 3 && fuzzyIncludes(normalized, normName);
+      return (
+        fuzzy && normName.length > 3 && fuzzyIncludes(normalized, normName)
+      );
     });
 
     if (hit) matches.push(entry.slug);
@@ -108,7 +138,10 @@ export function extractIngredients(text, language = "en") {
   // Also run each meaningful token through the normalizer directly —
   // catches ingredient words not yet in the recipe-derived vocab list
   // (e.g. user mentions an ingredient no current recipe uses).
-  const tokens = removeStopwords(tokenize(text), STOPWORDS[language] || STOPWORDS.en);
+  const tokens = removeStopwords(
+    tokenize(text),
+    STOPWORDS[language] || STOPWORDS.en,
+  );
   const tokenMatches = tokens
     .map((token) => normalizeIngredient(token, language))
     .filter(Boolean);
@@ -163,7 +196,9 @@ export function extractDifficulty(text) {
   for (const language of Object.keys(DIFFICULTY_ALIASES)) {
     const aliasMap = DIFFICULTY_ALIASES[language];
     for (const [level, aliases] of Object.entries(aliasMap)) {
-      const hit = aliases.some((alias) => normalized.includes(normalizeText(alias)));
+      const hit = aliases.some((alias) =>
+        normalized.includes(normalizeText(alias)),
+      );
       if (hit) return level;
     }
   }
@@ -182,12 +217,25 @@ export function extractDifficulty(text) {
  *  - keyword shortcuts: "quick", "fast", "দ্রুত"
  */
 export function extractTime(text, language = "en") {
-  const banglaDigits = { "০": "0", "১": "1", "২": "2", "৩": "3", "৪": "4", "৫": "5", "৬": "6", "৭": "7", "৮": "8", "৯": "9" };
+  const banglaDigits = {
+    "০": "0",
+    "১": "1",
+    "২": "2",
+    "৩": "3",
+    "৪": "4",
+    "৫": "5",
+    "৬": "6",
+    "৭": "7",
+    "৮": "8",
+    "৯": "9",
+  };
 
   const withWesternDigits = text.replace(/[০-৯]/g, (d) => banglaDigits[d]);
 
   // Match "<number> minute(s)" (en) or "<number> মিনিট" (bn)
-  const numericMatch = withWesternDigits.match(/(\d{1,3})\s*(minutes?|min|মিনিট)/i);
+  const numericMatch = withWesternDigits.match(
+    /(\d{1,3})\s*(minutes?|min|মিনিট)/i,
+  );
   if (numericMatch) {
     const minutes = parseInt(numericMatch[1], 10);
     if (!Number.isNaN(minutes)) return minutes;
@@ -261,11 +309,11 @@ export function hasAnyEntities(entities) {
   if (!entities) return false;
   return Boolean(
     entities.ingredients?.length ||
-      entities.dish ||
-      entities.cuisine ||
-      entities.category ||
-      entities.diet ||
-      entities.difficulty ||
-      entities.time != null,
+    entities.dish ||
+    entities.cuisine ||
+    entities.category ||
+    entities.diet ||
+    entities.difficulty ||
+    entities.time != null,
   );
 }

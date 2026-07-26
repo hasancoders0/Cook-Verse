@@ -81,14 +81,18 @@ export const MEMORY_CONFIG = {
 export const MATCH_CONFIG = {
   // Minimum fuzzy-similarity score (0-1) to accept a typo-tolerant match
   FUZZY_THRESHOLD: 0.72,
+
   // Minimum score to consider two free-text strings "the same" entity
   ENTITY_MATCH_THRESHOLD: 0.6,
-  // Max recipes returned per search
-  MAX_RESULTS: 6,
-  // Max "closest match" fallback recipes when nothing matches exactly
-  MAX_FALLBACK_RESULTS: 4,
-  // Max suggestion chips shown after a response
-  MAX_SUGGESTIONS: 4,
+
+  // Show only 3 recipes at a time
+  MAX_RESULTS: 3,
+
+  // Max fallback recipes
+  MAX_FALLBACK_RESULTS: 3,
+
+  // Suggestion chips
+  MAX_SUGGESTIONS: 3,
 };
 
 /**

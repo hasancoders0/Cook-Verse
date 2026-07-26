@@ -221,6 +221,7 @@ function buildRecipeSearchResponse(
   constraints,
   language,
   session,
+  searchMode = "similar",
 ) {
   if (!results.length) {
     return {
@@ -236,7 +237,10 @@ function buildRecipeSearchResponse(
   const top = results[0];
   const title = top.title?.[language] || top.title?.en;
 
-  const intro = buildSearchIntro(constraints, language, { isFallback });
+  const intro = buildSearchIntro(constraints, language, {
+    isFallback,
+    searchMode,
+  });
   const explanation = buildExplanation(top, language);
   const followUp = buildFollowUpPrompt(results, language);
 
@@ -257,7 +261,16 @@ function buildRecipeSearchResponse(
  * mirrors the tone of your spec's examples ("দারুণ! আপনার কাছে মুরগি
  * ও আলু আছে...", "খুব ভালো পছন্দ!...").
  */
-function buildSearchIntro(constraints, language, { isFallback }) {
+function buildSearchIntro(
+  constraints,
+  language,
+  { isFallback, searchMode = "similar" },
+) {
+  if (searchMode === "exact") {
+    return language === "bn"
+      ? "আমি আপনার খোঁজা রেসিপিটি পেয়েছি।"
+      : "I found the exact recipe you were looking for.";
+  }
   if (isFallback) {
     return language === "bn"
       ? "আজকের জন্য কিছু মজার রান্না খুঁজে বের করা যাক!"
@@ -605,6 +618,7 @@ export function buildResponse({
         constraints || {},
         language,
         session,
+        searchResult?.searchMode || "similar",
       );
       break;
 

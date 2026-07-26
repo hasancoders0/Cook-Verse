@@ -126,24 +126,27 @@ export function getRecommendationsForDish(
   { language = "en" } = {},
 ) {
   const allRecipes = getAllRecipes();
-  const exact = allRecipes.find((r) => r.slug === dishSlug);
 
+  // Find the exact recipe by slug
+  const exact = allRecipes.find((recipe) => recipe.slug === dishSlug);
+
+  // If no exact recipe exists, fall back to the normal search pipeline
   if (!exact) {
     return getRecommendations(constraints, { language });
   }
 
-  // Find siblings sharing the same category (e.g. other biryani dishes)
-  const siblings = allRecipes.filter(
-    (r) => r.slug !== dishSlug && r.category?.slug === exact.category?.slug,
-  );
-
-  const candidates = [exact, ...siblings];
-  const ranked = rankRecipes(candidates, constraints, language);
-
+  // Return ONLY the exact recipe.
+  // Related recipes will be handled separately in future ("Show more", "Related", etc.)
   return {
-    results: ranked.slice(0, MATCH_CONFIG.MAX_RESULTS),
+    results: [
+      {
+        ...exact,
+        matchType: "exact",
+      },
+    ],
     isFallback: false,
-    totalCandidates: candidates.length,
+    totalCandidates: 1,
+    searchMode: "exact",
   };
 }
 
