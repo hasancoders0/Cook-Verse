@@ -103,3 +103,23 @@ Phase 5 — UI
 ✅ HomeChat.jsx
 ✅ ChatMessages.jsx
 ✅ ChatInput.jsx
+
+
+
+| File                     | Rating | Status                            |
+| ------------------------ | ------ | --------------------------------- |
+| config.js                | 10/10  | ✅ Perfect                         |
+| prompt-parser.js         | 9.8/10 | ✅ Fixed                           |
+| conversation-manager.js  | 9.8/10 | ✅ Good                            |
+| recipe-matcher.js        | 8/10   | ⚠️ Needs redesign                 |
+| recipe-ranker.js         | 9.5/10 | ✅ Minor improvements              |
+| recommendation-engine.js | 8.5/10 | ⚠️ Main logic improvements needed |
+
+
+Ingredients
+Preparation Time
+Cooking Time
+Total Time
+Difficulty
+Cuisine / Country (যেমন: Bangladesh, India, Italy)
+Equipment

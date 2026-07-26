@@ -18,7 +18,6 @@ import {
   Flame,
 } from "lucide-react";
 
-import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
 
@@ -170,6 +169,7 @@ export default function HomeChat() {
           explanation: res.assistant?.explanation || null,
           recommendation: null,
           followUp: res.assistant?.followUp || null,
+          action: res.action ?? null,
 
           suggestions: res.suggestions ?? [],
         };
@@ -185,7 +185,12 @@ export default function HomeChat() {
               next.push({
                 id: `r${Date.now()}-${i}`,
                 role: "ai",
-                isRecipeCard: true,
+
+                isRecipeCard: !res.action,
+                isRecipeDetail: !!res.action,
+
+                action: res.action ?? null,
+
                 recipe: r,
 
                 suggestions: res.suggestions ?? [],
@@ -260,10 +265,10 @@ export default function HomeChat() {
 
   /* Render */
   return (
-    <div
-      className="relative h-full overflow-hidden"
-      style={{ background: "#0c0a09" }}
-    >
+<div
+  className="relative flex h-[calc(100dvh-57px)] lg:h-[100dvh] flex-col overflow-hidden"
+  style={{ background: "#0c0a09" }}
+>
       {/* Atmospheric background */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div
@@ -286,13 +291,7 @@ export default function HomeChat() {
       </div>
 
       {/* Chat shell */}
-      <div className="relative z-10 flex flex-col h-full">
-        <ChatHeader
-          lang={lang}
-          messageCount={messages.length}
-          onClear={onClear}
-        />
-
+      <div className="relative z-10 flex flex-1 flex-col overflow-hidden">
         <ChatMessages
           messages={messages}
           loading={loading}
@@ -302,7 +301,15 @@ export default function HomeChat() {
           onChip={onChip}
         />
 
-        <ChatInput ref={inputRef} lang={lang} loading={loading} onSend={send} />
+        <ChatInput
+          ref={inputRef}
+          lang={lang}
+          loading={loading}
+          onSend={send}
+          onClear={onClear}
+          suggestions={suggestions}
+          onChip={onChip}
+        />
       </div>
     </div>
   );

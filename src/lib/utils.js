@@ -1,5 +1,7 @@
 // src/lib/utils.js
 
+import { getDate as getBanglaDate } from "bangla-calendar";
+
 /* -------------------------------------------------------------------------- */
 /* Text Normalization                                                         */
 /* -------------------------------------------------------------------------- */
@@ -280,7 +282,7 @@ export function formatNumber(value, language = "en") {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Date & Day Formatting (EN / BN / Arabic-Hijri)                            */
+/* Date & Day Formatting (Gregorian / Bengali / Hijri                         */
 /* -------------------------------------------------------------------------- */
 
 const DAY_NAMES = {
@@ -293,7 +295,15 @@ const DAY_NAMES = {
     "Friday",
     "Saturday",
   ],
-  bn: ["রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার", "শুক্রবার", "শনিবার"],
+  bn: [
+    "রবিবার",
+    "সোমবার",
+    "মঙ্গলবার",
+    "বুধবার",
+    "বৃহস্পতিবার",
+    "শুক্রবার",
+    "শনিবার",
+  ],
 };
 
 const MONTH_NAMES = {
@@ -350,23 +360,114 @@ export function formatGregorianDate(date = new Date(), language = "en") {
   return `${month} ${day}, ${year}`;
 }
 
+const BANGLA_MONTHS_EN = {
+  বৈশাখ: "Boishakh",
+  জ্যৈষ্ঠ: "Joishtho",
+  আষাঢ়: "Ashar",
+  শ্রাবণ: "Srabon",
+  ভাদ্র: "Bhadro",
+  আশ্বিন: "Ashwin",
+  কার্তিক: "Kartik",
+  অগ্রহায়ণ: "Agrahayon",
+  পৌষ: "Poush",
+  মাঘ: "Magh",
+  ফাল্গুন: "Falgun",
+  চৈত্র: "Chaitra",
+};
+
+function convertBanglaDateToEnglish(dateString = "") {
+  let result = dateString;
+
+  // Bangla numerals → English numerals
+  result = fromBanglaNumerals(result);
+
+  // Bangla month → English month
+  Object.entries(BANGLA_MONTHS_EN).forEach(([bn, en]) => {
+    result = result.replace(bn, en);
+  });
+
+  return result;
+}
+
+export function formatBengaliDate(date = new Date(), language = "en") {
+  const banglaDate = getBanglaDate(date, {
+    format: "D MMMM YYYY",
+    calculationMethod: "BD",
+  });
+
+  if (language === "bn") {
+    return banglaDate;
+  }
+
+  const formatted = convertBanglaDateToEnglish(banglaDate);
+  return formatted;
+}
 /**
  * Format the Hijri (Arabic Islamic calendar) date using the built-in
  * Intl API — no external dependency required. Falls back gracefully
  * if the runtime doesn't support the calendar.
  */
-export function formatHijriDate(date = new Date()) {
+const HIJRI_MONTHS = {
+  en: [
+    "Muharram",
+    "Safar",
+    "Rabi al-Awwal",
+    "Rabi al-Thani",
+    "Jumada al-Awwal",
+    "Jumada al-Thani",
+    "Rajab",
+    "Sha'ban",
+    "Ramadan",
+    "Shawwal",
+    "Dhul Qa'dah",
+    "Dhul Hijjah",
+  ],
+  bn: [
+    "মুহাররম",
+    "সফর",
+    "রবিউল আউয়াল",
+    "রবিউস সানি",
+    "জমাদিউল আউয়াল",
+    "জমাদিউস সানি",
+    "রজব",
+    "শাবান",
+    "রমজান",
+    "শাওয়াল",
+    "জিলকদ",
+    "জিলহজ্জ",
+  ],
+};
+
+export function formatHijriDate(date = new Date(), language = "en") {
   try {
-    return new Intl.DateTimeFormat("ar-SA-u-ca-islamic", {
+    const formatted = new Intl.DateTimeFormat("en-TN-u-ca-islamic", {
       day: "numeric",
       month: "long",
       year: "numeric",
     }).format(date);
+
+    if (language === "en") {
+      return `${formatted} AH`;
+    }
+
+    return formatted
+      .replace(/\d/g, (d) => "০১২৩৪৫৬৭৮৯"[Number(d)])
+      .replace("Muharram", "মুহাররম")
+      .replace("Safar", "সফর")
+      .replace("Rabiʻ I", "রবিউল আউয়াল")
+      .replace("Rabiʻ II", "রবিউস সানি")
+      .replace("Jumada I", "জমাদিউল আউয়াল")
+      .replace("Jumada II", "জমাদিউস সানি")
+      .replace("Rajab", "রজব")
+      .replace("Shaʻban", "শাবান")
+      .replace("Ramadan", "রমজান")
+      .replace("Shawwal", "শাওয়াল")
+      .replace("Dhuʻl-Qiʻdah", "জিলকদ")
+      .replace("Dhuʻl-Hijjah", "জিলহজ্জ");
   } catch {
-    return null;
+    return language === "bn" ? "হিজরি তারিখ পাওয়া যায়নি" : "Hijri date unavailable";
   }
 }
-
 /**
  * Build the full "today's date" payload MealMuse needs when a user asks
  * what day/date it is — Gregorian in EN & BN, plus the Hijri/Arabic date.
@@ -388,7 +489,16 @@ export function getFormattedToday(date = new Date()) {
       en: formatGregorianDate(date, "en"),
       bn: formatGregorianDate(date, "bn"),
     },
-    hijri: formatHijriDate(date),
+
+    bengali: {
+      en: formatBengaliDate(date, "en"),
+      bn: formatBengaliDate(date, "bn"),
+    },
+
+    hijri: {
+      en: formatHijriDate(date, "en"),
+      bn: formatHijriDate(date, "bn"),
+    },
   };
 }
 

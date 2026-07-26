@@ -49,7 +49,7 @@ function unit(key, lang) {
 }
 
 function diffColor(d) {
-  const s = (typeof d === "string" ? d : d?.en ?? "").toLowerCase();
+  const s = (typeof d === "string" ? d : (d?.en ?? "")).toLowerCase();
   if (s === "easy" || s === "সহজ")
     return "text-emerald-400 bg-emerald-400/10 border-emerald-400/20";
   if (s === "medium" || s === "মাঝারি")
@@ -83,11 +83,11 @@ function ChatBubble({ msg }) {
         <Flame className="text-white" size={12} />
       </div>
       <div className="max-w-[88%] sm:max-w-[80%] space-y-1.5">
-{msg.text && (
-  <div className="rounded-2xl rounded-bl-sm bg-stone-900/60 border border-white/[0.05] px-4 py-3 font-ui text-sm leading-relaxed text-stone-200 whitespace-pre-line">
-    {msg.text}
-  </div>
-)}
+        {msg.text && (
+          <div className="rounded-2xl rounded-bl-sm bg-stone-900/60 border border-white/[0.05] px-4 py-3 font-ui text-sm leading-relaxed text-stone-200 whitespace-pre-line">
+            {msg.text}
+          </div>
+        )}
         {msg.explanation && (
           <p className="font-ui text-xs text-stone-500 pl-1 leading-relaxed">
             {msg.explanation}
@@ -167,7 +167,7 @@ function RecipeResultCard({ recipe, lang }) {
   return (
     <Link
       href={`/recipe/${slug}`}
-      className="msg-appear group relative block rounded-2xl overflow-hidden border border-white/[0.06] bg-stone-900/40 hover:bg-stone-900/70 hover:border-white/[0.12] transition-all duration-300 hover:shadow-xl hover:shadow-black/30 max-w-[30rem]"
+      className="msg-appear group relative block rounded-2xl border border-white/[0.06] bg-stone-900/40 hover:bg-stone-900/70 hover:border-white/[0.12] transition-all duration-300 hover:shadow-xl hover:shadow-black/30 max-w-[30rem]"
     >
       {/* Left accent bar on hover */}
       <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-orange-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -258,6 +258,58 @@ function RecipeResultCard({ recipe, lang }) {
       </div>
     </Link>
   );
+}
+
+function RecipeDetailCard({ recipe, action, lang }) {
+  if (!recipe) return null;
+
+  const title = t(recipe.title, lang);
+
+  if (action === "show_ingredients") {
+    return (
+      <div className="msg-appear rounded-2xl border border-white/[0.06] bg-stone-900/60 p-5 max-w-[42rem]">
+        <h3 className="text-lg font-semibold text-orange-400 mb-4">{title}</h3>
+
+        {(recipe.ingredientGroups || []).map((group, index) => (
+          <div key={index} className="mb-6">
+            <h4 className="font-medium text-stone-200 mb-3">
+              {t(group.title, lang)}
+            </h4>
+
+            <ul className="space-y-2">
+              {(group.items || []).map((item, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-2 text-sm text-stone-300 leading-relaxed"
+                >
+                  <span className="text-orange-400 mt-1">•</span>
+
+                  <span>
+                    {item.amount != null && (
+                      <>
+                        {item.amount} {t(item.unit, lang)}{" "}
+                      </>
+                    )}
+
+                    {t(item.name, lang)}
+
+                    {item.note && (
+                      <span className="text-stone-500">
+                        {" "}
+                        ({t(item.note, lang)})
+                      </span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return null;
 }
 
 /* ── Suggestion chip ── */
@@ -366,6 +418,16 @@ export default function ChatMessages({
       {/* Scrollable message list */}
       <div className="flex-1 min-h-0 overflow-y-auto chat-scroll px-4 sm:px-6 py-5 flex flex-col gap-4">
         {messages.map((msg) => {
+          if (msg.isRecipeDetail && msg.recipe) {
+            return (
+              <RecipeDetailCard
+                key={msg.id}
+                recipe={msg.recipe}
+                action={msg.action}
+                lang={lang}
+              />
+            );
+          }
           if (msg.isRecipeCard && msg.recipe) {
             return (
               <RecipeResultCard key={msg.id} recipe={msg.recipe} lang={lang} />

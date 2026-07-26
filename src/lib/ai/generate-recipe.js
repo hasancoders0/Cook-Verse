@@ -10,6 +10,7 @@ import {
   resolveFollowUpEntities,
   updateContext,
   setLastSearchedRecipe,
+  setLastSearchResults,
   recordTurn,
 } from "./conversation-manager";
 
@@ -19,7 +20,7 @@ import {
   getRecommendationsForDish,
 } from "./recommendation-engine";
 
-import { buildResponse } from "./recipe-response";
+import { buildResponse, buildNextRecipeResponse } from "./recipe-response";
 
 /* -------------------------------------------------------------------------- */
 /* Module Session                                                             */
@@ -132,7 +133,7 @@ function isIslamicGreeting(text = "") {
 /* Main Generator                                                             */
 /* -------------------------------------------------------------------------- */
 
-export function generateRecipe(rawText, { debug = false } = {}) {
+export function generateRecipe(rawText, { debug = true } = {}) {
   const currentSession = getSession();
 
   try {
@@ -143,6 +144,53 @@ export function generateRecipe(rawText, { debug = false } = {}) {
     const parsed = parsePrompt(rawText, {
       language,
     });
+
+    if (parsed.intent === INTENTS.SHOW_NEXT_RECIPE) {
+      const recipes = currentSession.context.lastSearchResults || [];
+      const nextIndex = currentSession.context.currentRecipeIndex + 1;
+
+      if (nextIndex >= recipes.length) {
+        return {
+          success: true,
+          language,
+          assistant: {
+            message:
+              language === "bn"
+                ? "বর্তমান অনুসন্ধানের জন্য আর কোনো রেসিপি নেই। আপনি চাইলে অন্য কোনো খাবার, উপকরণ বা রান্নার ধরন দিয়ে আবার খুঁজে দেখতে পারেন।"
+                : "There are no more recipes for your current search. Try searching for another dish, ingredient, or cuisine.",
+            recommendation: null,
+            explanation: null,
+            followUp: null,
+          },
+          recipes: [],
+          suggestions: [],
+        };
+      }
+
+      const nextRecipe = recipes[nextIndex];
+
+      currentSession.context.currentRecipeIndex = nextIndex;
+      setLastSearchedRecipe(currentSession, nextRecipe);
+
+      return buildNextRecipeResponse(nextRecipe, language);
+    }
+
+    // If there is no previous recipe, follow-up intents should become recipe searches.
+    const followUpIntents = [
+      INTENTS.SHOW_INGREDIENTS,
+      INTENTS.SHOW_TIME,
+      INTENTS.SHOW_DIFFICULTY,
+      INTENTS.SHOW_ORIGIN,
+      INTENTS.SHOW_EQUIPMENT,
+      INTENTS.SHOW_STEPS,
+      INTENTS.SHOW_NUTRITION,
+    ];
+
+    const hasRecipeContext = !!currentSession.context.lastSearchedRecipe;
+
+    if (followUpIntents.includes(parsed.intent) && !hasRecipeContext) {
+      parsed.intent = INTENTS.RECIPE_SEARCH;
+    }
 
     const rawEntities = extractEntities(rawText, {
       language,
@@ -173,7 +221,6 @@ export function generateRecipe(rawText, { debug = false } = {}) {
       parsed.intent === INTENTS.RECIPE_SEARCH ||
       parsed.intent === INTENTS.INGREDIENT_SEARCH;
 
-
     const hasEffectiveEntities = hasAnyEntities(effectiveEntities);
 
     const shouldSearch =
@@ -193,12 +240,11 @@ export function generateRecipe(rawText, { debug = false } = {}) {
         : getRecommendations(constraints, { language });
 
       updateContext(currentSession, effectiveEntities);
-
       if (searchResult.results.length > 0) {
+        setLastSearchResults(currentSession, searchResult.results);
         setLastSearchedRecipe(currentSession, searchResult.results[0]);
       }
     }
-    
 
     const response = buildResponse({
       intent: parsed.intent,
@@ -207,6 +253,7 @@ export function generateRecipe(rawText, { debug = false } = {}) {
       language,
       searchResult,
       constraints,
+      lastRecipe: currentSession.context.lastSearchedRecipe,
       isIslamicGreeting:
         parsed.intent === INTENTS.GREETING && isIslamicGreeting(rawText),
     });

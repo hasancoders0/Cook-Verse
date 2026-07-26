@@ -8,8 +8,8 @@
   },
 
   "description": {
-    "en": "A flavorful and aromatic chicken biryani made with fragrant basmati rice, marinated chicken, whole spices, herbs, and saffron. Perfect for family dinners and special occasions.",
-    "bn": "সুগন্ধি বাসমতি চাল, মেরিনেট করা মুরগি, গোটা মসলা, তাজা হার্বস এবং জাফরান দিয়ে তৈরি সুস্বাদু ও সুগন্ধি চিকেন বিরিয়ানি। পারিবারিক ডিনার ও বিশেষ অনুষ্ঠানের জন্য উপযুক্ত।"
+    "en": "A flavorful and aromatic chicken biryani made with fragrant basmati rice, yogurt-marinated chicken, whole spices, fresh herbs, and saffron. Perfect for family dinners and special occasions.",
+    "bn": "সুগন্ধি বাসমতি চাল, দইয়ে মেরিনেট করা মুরগি, গোটা মসলা, তাজা হার্বস এবং জাফরান দিয়ে তৈরি সুস্বাদু ও সুগন্ধি চিকেন বিরিয়ানি। পারিবারিক ডিনার ও বিশেষ অনুষ্ঠানের জন্য উপযুক্ত।"
   },
 
   "thumbnail": "https://images.unsplash.com/photo-1701579231305-d84d8af9a3fd?auto=format&fit=crop&w=1200&q=80",
@@ -35,9 +35,9 @@
     "bn": "মাঝারি"
   },
 
-  "prepTime": 20,
-  "cookTime": 35,
-  "totalTime": 55,
+  "prepTime": 30,
+  "cookTime": 40,
+  "totalTime": 70,
 
   "servings": 4,
 
@@ -80,6 +80,10 @@
           "unit": {
             "en": "cups",
             "bn": "কাপ"
+          },
+          "note": {
+            "en": "Aged long-grain preferred",
+            "bn": "পুরনো লম্বা দানার চাল পছন্দনীয়"
           }
         },
         {
@@ -98,7 +102,6 @@
         }
       ]
     },
-
     {
       "title": {
         "en": "Chicken Marinade",
@@ -117,6 +120,10 @@
           "unit": {
             "en": "g",
             "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Bone-in preferred for more flavor",
+            "bn": "স্বাদের জন্য হাড়সহ পছন্দনীয়"
           }
         },
         {
@@ -235,7 +242,6 @@
         }
       ]
     },
-
     {
       "title": {
         "en": "Whole Spices",
@@ -300,7 +306,6 @@
         }
       ]
     },
-
     {
       "title": {
         "en": "Seasoning",
@@ -365,7 +370,6 @@
         }
       ]
     },
-
     {
       "title": {
         "en": "For Garnish",
@@ -384,6 +388,10 @@
           "unit": {
             "en": "cup",
             "bn": "কাপ"
+          },
+          "note": {
+            "en": "Golden brown (birista)",
+            "bn": "সোনালি বাদামি (বিরিস্তা)"
           }
         },
         {
@@ -417,6 +425,7 @@
       ]
     }
   ],
+
   "instructions": [
     {
       "step": 1,
@@ -425,11 +434,11 @@
         "bn": "চাল প্রস্তুত করুন"
       },
       "description": {
-        "en": "Wash the basmati rice thoroughly and soak it for 30 minutes.",
-        "bn": "বাসমতি চাল ভালোভাবে ধুয়ে ৩০ মিনিট ভিজিয়ে রাখুন।"
+        "en": "Wash the basmati rice thoroughly until the water runs clear, then soak it for 30 minutes.",
+        "bn": "বাসমতি চাল ভালোভাবে ধুয়ে পানি পরিষ্কার হওয়া পর্যন্ত ধুয়ে ৩০ মিনিট ভিজিয়ে রাখুন।"
       },
       "tip": {
-        "en": "Soaking helps the rice cook evenly and stay fluffy.",
+        "en": "Soaking helps the rice cook evenly and remain fluffy.",
         "bn": "চাল ভিজিয়ে রাখলে সমানভাবে সেদ্ধ হয় এবং ঝরঝরে থাকে।"
       }
     },
@@ -440,23 +449,23 @@
         "bn": "মুরগি মেরিনেট করুন"
       },
       "description": {
-        "en": "Mix the chicken with yogurt, ginger garlic paste, lemon juice, turmeric, chili powder, garam masala, and salt. Marinate for at least 30 minutes.",
-        "bn": "মুরগির সাথে টক দই, আদা-রসুন বাটা, লেবুর রস, হলুদ, মরিচের গুঁড়া, গরম মসলা ও লবণ মিশিয়ে কমপক্ষে ৩০ মিনিট মেরিনেট করুন।"
+        "en": "Mix the chicken with yogurt, ginger-garlic paste, lemon juice, turmeric, red chili powder, garam masala, and salt. Marinate for at least 30 minutes (or overnight for deeper flavor).",
+        "bn": "মুরগির সাথে টক দই, আদা-রসুন বাটা, লেবুর রস, হলুদ, লাল মরিচের গুঁড়া, গরম মসলা ও লবণ মিশিয়ে কমপক্ষে ৩০ মিনিট মেরিনেট করুন (গভীর স্বাদের জন্য সারা রাত রাখতে পারেন)।"
       },
       "tip": {
-        "en": "For deeper flavor, marinate overnight.",
-        "bn": "আরও ভালো স্বাদের জন্য সারা রাত মেরিনেট করে রাখতে পারেন।"
+        "en": "Overnight marination gives the best results.",
+        "bn": "সারা রাত মেরিনেট করলে সেরা ফল পাওয়া যায়।"
       }
     },
     {
       "step": 3,
       "title": {
-        "en": "Cook the Rice",
-        "bn": "চাল সেদ্ধ করুন"
+        "en": "Parboil the Rice",
+        "bn": "চাল আংশিক সেদ্ধ করুন"
       },
       "description": {
-        "en": "Boil the rice with whole spices until it is about 70% cooked. Drain and set aside.",
-        "bn": "গোটা মসলার সাথে চাল ৭০% সেদ্ধ হওয়া পর্যন্ত রান্না করুন। তারপর পানি ঝরিয়ে আলাদা রাখুন।"
+        "en": "Bring water to a boil with the whole spices and salt. Add the soaked rice and cook until it is about 70% done (grains should still have a firm core). Drain immediately and set aside.",
+        "bn": "গোটা মসলা ও লবণ দিয়ে পানি ফুটিয়ে তাতে ভেজানো চাল দিন। চাল প্রায় ৭০% সেদ্ধ হওয়া পর্যন্ত রান্না করুন (দানায় একটু শক্ত অংশ থাকবে)। সঙ্গে সঙ্গে পানি ঝরিয়ে আলাদা রাখুন।"
       }
     },
     {
@@ -466,8 +475,8 @@
         "bn": "মুরগি রান্না করুন"
       },
       "description": {
-        "en": "Cook the marinated chicken with onions and tomatoes until the chicken is tender.",
-        "bn": "মেরিনেট করা মুরগি পেঁয়াজ ও টমেটোর সাথে নরম হওয়া পর্যন্ত রান্না করুন।"
+        "en": "In a heavy-bottomed pot, cook the marinated chicken with sliced onions and chopped tomato until the chicken is tender and the masala thickens slightly.",
+        "bn": "ভারী তলাযুক্ত পাত্রে মেরিনেট করা মুরগি, পাতলা কাটা পেঁয়াজ ও কুচি করা টমেটোর সাথে নরম হওয়া এবং মসলা একটু ঘন হওয়া পর্যন্ত রান্না করুন।"
       }
     },
     {
@@ -477,8 +486,8 @@
         "bn": "বিরিয়ানির স্তর তৈরি করুন"
       },
       "description": {
-        "en": "Layer the chicken and rice in a heavy pot. Add fried onions, mint, coriander, saffron milk, and ghee between layers.",
-        "bn": "ভারী পাত্রে মুরগি ও চাল স্তরে স্তরে সাজিয়ে প্রতিটি স্তরের মাঝে ভাজা পেঁয়াজ, পুদিনা, ধনেপাতা, জাফরান দুধ ও ঘি দিন।"
+        "en": "In the same pot, layer half the chicken, then half the rice. Sprinkle fried onions, mint, coriander, saffron milk, and ghee. Repeat the layers. Finish with the remaining rice and garnish.",
+        "bn": "একই পাত্রে অর্ধেক মুরগি, তারপর অর্ধেক চাল স্তরে সাজান। ভাজা পেঁয়াজ, পুদিনা, ধনেপাতা, জাফরান দুধ ও ঘি ছিটিয়ে দিন। স্তরগুলো পুনরাবৃত্তি করুন। শেষে বাকি চাল দিয়ে ঢেকে সাজিয়ে দিন।"
       }
     },
     {
@@ -488,8 +497,8 @@
         "bn": "দমে রান্না করুন"
       },
       "description": {
-        "en": "Cover tightly and cook over low heat for 20–25 minutes.",
-        "bn": "ভালোভাবে ঢেকে কম আঁচে ২০–২৫ মিনিট দমে রান্না করুন।"
+        "en": "Seal the pot tightly (with a lid or dough) and cook on the lowest heat for 20–25 minutes. Let it rest for 5–10 minutes before opening.",
+        "bn": "পাত্র ভালোভাবে ঢেকে (ঢাকনা বা ময়দার ডো দিয়ে) সবচেয়ে কম আঁচে ২০–২৫ মিনিট দমে রান্না করুন। খোলার আগে ৫–১০ মিনিট বিশ্রাম দিন।"
       }
     },
     {
@@ -499,31 +508,31 @@
         "bn": "পরিবেশন করুন"
       },
       "description": {
-        "en": "Gently fluff the biryani and serve hot with raita or salad.",
-        "bn": "হালকাভাবে বিরিয়ানি নেড়ে রায়তা বা সালাদের সাথে গরম গরম পরিবেশন করুন।"
+        "en": "Gently fluff the biryani from the sides and serve hot with raita, salad, or boiled egg.",
+        "bn": "পাশ থেকে হালকাভাবে বিরিয়ানি নেড়ে রায়তা, সালাদ বা সিদ্ধ ডিম দিয়ে গরম গরম পরিবেশন করুন।"
       }
     }
   ],
 
   "tips": [
     {
-      "en": "Use aged basmati rice for the best texture.",
-      "bn": "সেরা টেক্সচারের জন্য পুরনো বাসমতি চাল ব্যবহার করুন।"
+      "en": "Use aged basmati rice for the best texture and aroma.",
+      "bn": "সেরা টেক্সচার ও সুগন্ধের জন্য পুরনো বাসমতি চাল ব্যবহার করুন।"
     },
     {
-      "en": "Do not overcook the rice before layering.",
-      "bn": "স্তর তৈরির আগে চাল বেশি সেদ্ধ করবেন না।"
+      "en": "Never fully cook the rice before layering — 70% is ideal.",
+      "bn": "স্তর তৈরির আগে চাল পুরোপুরি সেদ্ধ করবেন না — ৭০% আদর্শ।"
     },
     {
-      "en": "Cook on low heat to achieve authentic dum biryani.",
-      "bn": "আসল দম বিরিয়ানির স্বাদের জন্য কম আঁচে রান্না করুন।"
+      "en": "Low and slow dum heat is the secret to authentic biryani.",
+      "bn": "আসল বিরিয়ানির গোপন রহস্য হলো কম আঁচে ধীরে ধীরে দম দেওয়া।"
     }
   ],
 
   "equipment": [
     {
-      "en": "Large Pot",
-      "bn": "বড় হাঁড়ি"
+      "en": "Large Heavy Pot",
+      "bn": "বড় ভারী হাঁড়ি"
     },
     {
       "en": "Mixing Bowl",
@@ -588,7 +597,8 @@
       "spicy rice",
       "high protein",
       "dinner",
-      "traditional biryani"
+      "traditional biryani",
+      "hyderabadi biryani"
     ],
     "bn": [
       "চিকেন বিরিয়ানি",
@@ -599,7 +609,8 @@
       "মুরগির বিরিয়ানি",
       "ঝাল ভাত",
       "উচ্চ প্রোটিন",
-      "রাতের খাবার"
+      "রাতের খাবার",
+      "হায়দ্রাবাদি বিরিয়ানি"
     ]
   },
 

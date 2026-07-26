@@ -19,20 +19,44 @@ import { buildDishSuggestions } from "./recommendation-engine";
  */
 const REPHRASE_VARIANTS = {
   GREETING: {
-    en: ["Hey again! What are you in the mood to cook?", "Hi there! Ready to find another recipe?"],
-    bn: ["আবার হ্যালো! আজ কী রান্না করতে মন চাইছে?", "হাই! আরেকটি রেসিপি খুঁজতে প্রস্তুত?"],
+    en: [
+      "Hey again! What are you in the mood to cook?",
+      "Hi there! Ready to find another recipe?",
+    ],
+    bn: [
+      "আবার হ্যালো! আজ কী রান্না করতে মন চাইছে?",
+      "হাই! আরেকটি রেসিপি খুঁজতে প্রস্তুত?",
+    ],
   },
   UNKNOWN: {
-    en: ["I'm still not sure what you mean — try naming a dish, ingredient, or cuisine.", "Hmm, could you rephrase that? A dish name or ingredient works great."],
-    bn: ["আমি এখনো ঠিক বুঝতে পারছি না — একটি খাবারের নাম, উপকরণ বা রান্নার ধরন বলে দেখুন।", "একটু অন্যভাবে বলবেন? খাবারের নাম বা উপকরণ দিলে সুবিধা হবে।"],
+    en: [
+      "I'm still not sure what you mean — try naming a dish, ingredient, or cuisine.",
+      "Hmm, could you rephrase that? A dish name or ingredient works great.",
+    ],
+    bn: [
+      "আমি এখনো ঠিক বুঝতে পারছি না — একটি খাবারের নাম, উপকরণ বা রান্নার ধরন বলে দেখুন।",
+      "একটু অন্যভাবে বলবেন? খাবারের নাম বা উপকরণ দিলে সুবিধা হবে।",
+    ],
   },
   NO_MATCH: {
-    en: ["Still no luck with that one — try a different ingredient or dish name?", "That one's not turning up matches. Want to try another ingredient?"],
-    bn: ["এখনো কোনো মিল পাওয়া যায়নি — অন্য কোনো উপকরণ বা খাবারের নাম দিয়ে দেখুন?", "এটির সাথে মিল পাওয়া যাচ্ছে না। অন্য একটি উপকরণ দিয়ে চেষ্টা করবেন?"],
+    en: [
+      "Still no luck with that one — try a different ingredient or dish name?",
+      "That one's not turning up matches. Want to try another ingredient?",
+    ],
+    bn: [
+      "এখনো কোনো মিল পাওয়া যায়নি — অন্য কোনো উপকরণ বা খাবারের নাম দিয়ে দেখুন?",
+      "এটির সাথে মিল পাওয়া যাচ্ছে না। অন্য একটি উপকরণ দিয়ে চেষ্টা করবেন?",
+    ],
   },
   THANKS: {
-    en: ["Anytime! Let me know if you want more recipe ideas.", "Happy to help — come back anytime for more recipes."],
-    bn: ["যেকোনো সময়! আরও রেসিপির আইডিয়া চাইলে জানাবেন।", "সাহায্য করতে পেরে ভালো লাগলো — আবার আসবেন।"],
+    en: [
+      "Anytime! Let me know if you want more recipe ideas.",
+      "Happy to help — come back anytime for more recipes.",
+    ],
+    bn: [
+      "যেকোনো সময়! আরও রেসিপির আইডিয়া চাইলে জানাবেন।",
+      "সাহায্য করতে পেরে ভালো লাগলো — আবার আসবেন।",
+    ],
   },
 };
 
@@ -47,7 +71,8 @@ function pickVariedResponse(key, language, session) {
   if (!session) return base;
 
   const repeatCount = countRecentRepeats(session.memory, base);
-  const variants = REPHRASE_VARIANTS[key]?.[language] || REPHRASE_VARIANTS[key]?.en;
+  const variants =
+    REPHRASE_VARIANTS[key]?.[language] || REPHRASE_VARIANTS[key]?.en;
 
   if (repeatCount > 0 && variants?.length) {
     const index = (repeatCount - 1) % variants.length;
@@ -61,7 +86,11 @@ function pickVariedResponse(key, language, session) {
 /* Conversational Intent Responses (non-recipe-search)                      */
 /* -------------------------------------------------------------------------- */
 
-function buildGreetingResponse(session, language, { isIslamicGreeting = false } = {}) {
+function buildGreetingResponse(
+  session,
+  language,
+  { isIslamicGreeting = false } = {},
+) {
   const message = isIslamicGreeting
     ? RESPONSES.GREETING_ISLAMIC[language] || RESPONSES.GREETING_ISLAMIC.en
     : pickVariedResponse("GREETING", language, session);
@@ -130,8 +159,22 @@ function buildDateResponse(language) {
 
   const message =
     language === "bn"
-      ? `আজ ${today.day.bn}, ${today.gregorian.bn}${today.hijri ? ` (হিজরি: ${today.hijri})` : ""}।`
-      : `Today is ${today.day.en}, ${today.gregorian.en}${today.hijri ? ` (Hijri: ${today.hijri})` : ""}.`;
+      ? [
+          `আজ ${today.day.bn}।`,
+          "",
+          "📅 আজকের তারিখ",
+          `• খ্রিস্টাব্দ: ${today.gregorian.bn}`,
+          `• বঙ্গাব্দ: ${today.bengali.bn}`,
+          `• হিজরি: ${today.hijri.bn}`,
+        ].join("\n")
+      : [
+          `Today is ${today.day.en}.`,
+          "",
+          "📅 Today's Date",
+          `• Gregorian: ${today.gregorian.en}`,
+          `• Bengali Calendar: ${today.bengali.en}`,
+          `• Hijri: ${today.hijri.en}`,
+        ].join("\n");
 
   return baseAssistantPayload({ message, language });
 }
@@ -172,7 +215,13 @@ function buildDayCheckResponse(dayMention, language) {
  * @param language      "en" | "bn"
  * @param session       conversation session (for inherited-context phrasing)
  */
-function buildRecipeSearchResponse(results, isFallback, constraints, language, session) {
+function buildRecipeSearchResponse(
+  results,
+  isFallback,
+  constraints,
+  language,
+  session,
+) {
   if (!results.length) {
     return {
       ...baseAssistantPayload({
@@ -280,12 +329,193 @@ function buildUnknownResponse(session, language) {
     language,
   });
 }
+function buildNextRecipeResponse(recipe, language) {
+  return {
+    assistant: {
+      message:
+        language === "bn"
+          ? "আপনার আগের অনুসন্ধান থেকে আরেকটি রেসিপি দেখানো হলো।"
+          : "Here's another recipe from your previous search.",
+      recommendation: null,
+      explanation: null,
+      followUp: null,
+    },
+
+    recipes: [recipe],
+    suggestions: [],
+  };
+}
+function buildRecipeFollowUpResponse(intent, recipe, language) {
+  if (!recipe) {
+    return baseAssistantPayload({
+      message:
+        language === "bn"
+          ? "আগে একটি রেসিপি নির্বাচন করুন, তারপর আমি এর বিস্তারিত দেখাতে পারব।"
+          : "Please select a recipe first, then I can show its details.",
+      language,
+    });
+  }
+
+  const title = recipe.title?.[language] || recipe.title?.en;
+
+  switch (intent) {
+    case INTENTS.SHOW_INGREDIENTS:
+      return {
+        assistant: {
+          message:
+            language === "bn"
+              ? `${title} এর উপকরণ নিচে দেখানো হলো।`
+              : `Here are the ingredients for ${title}.`,
+          recommendation: null,
+          explanation: null,
+          followUp: null,
+        },
+
+        recipes: [recipe],
+        suggestions: [],
+
+        action: "show_ingredients",
+      };
+
+    case INTENTS.SHOW_STEPS:
+      return {
+        assistant: {
+          message:
+            language === "bn"
+              ? "রান্নার সম্পূর্ণ ধাপ দেখতে নিচের রেসিপি কার্ডে ক্লিক করুন।"
+              : "Click the recipe card below to view the complete cooking steps.",
+          recommendation: null,
+          explanation: null,
+          followUp: null,
+        },
+
+        recipes: [recipe],
+        suggestions: [],
+      };
+
+    case INTENTS.SHOW_TIME:
+      return {
+        assistant: {
+          message:
+            language === "bn"
+              ? [
+                  `⏱️ প্রস্তুতি: ${recipe.prepTime} মিনিট`,
+                  `🔥 রান্না: ${recipe.cookTime} মিনিট`,
+                  `⌛ মোট সময়: ${recipe.totalTime} মিনিট`,
+                ].join("\n")
+              : [
+                  `⏱️ Preparation: ${recipe.prepTime} min`,
+                  `🔥 Cooking: ${recipe.cookTime} min`,
+                  `⌛ Total: ${recipe.totalTime} min`,
+                ].join("\n"),
+
+          recommendation: null,
+          explanation: null,
+          followUp: null,
+        },
+
+        recipes: [],
+        suggestions: [],
+      };
+
+    case INTENTS.SHOW_NUTRITION:
+      return {
+        assistant: {
+          message:
+            language === "bn"
+              ? "সম্পূর্ণ পুষ্টিগুণ দেখতে নিচের রেসিপি কার্ডে ক্লিক করুন।"
+              : "Click the recipe card below to view the complete nutrition information.",
+
+          recommendation: null,
+          explanation: null,
+          followUp: null,
+        },
+
+        recipes: [recipe],
+        suggestions: [],
+      };
+    case INTENTS.SHOW_DIFFICULTY:
+      const difficulty =
+        recipe.difficulty?.[language] || recipe.difficulty?.en || "N/A";
+      return {
+        assistant: {
+          message:
+            language === "bn"
+              ? `কঠিনতার স্তর: ${difficulty}`
+              : `Difficulty: ${difficulty}`,
+
+          recommendation: null,
+          explanation: null,
+          followUp: null,
+        },
+
+        recipes: [],
+        suggestions: [],
+      };
+
+    case INTENTS.SHOW_ORIGIN:
+      const country = recipe.country?.[language] || recipe.country?.en || "N/A";
+
+      const cuisine =
+        recipe.cuisine?.name?.[language] || recipe.cuisine?.name?.en || "N/A";
+      return {
+        assistant: {
+          message:
+            language === "bn"
+              ? [`🌍 দেশ: ${country}`, `🍽️ রান্নার ধরন: ${cuisine}`].join("\n")
+              : [`🌍 Country: ${country}`, `🍽️ Cuisine: ${cuisine}`].join("\n"),
+
+          recommendation: null,
+          explanation: null,
+          followUp: null,
+        },
+
+        recipes: [],
+        suggestions: [],
+      };
+
+    case INTENTS.SHOW_EQUIPMENT:
+      const equipment = (recipe.equipment || []).map(
+        (item) => item?.[language] || item?.en,
+      );
+
+      return {
+        assistant: {
+          message:
+            language === "bn"
+              ? [
+                  "প্রয়োজনীয় সরঞ্জাম:",
+                  ...equipment.map((item) => `• ${item}`),
+                ].join("\n")
+              : [
+                  "Required Equipment:",
+                  ...equipment.map((item) => `• ${item}`),
+                ].join("\n"),
+
+          recommendation: null,
+          explanation: null,
+          followUp: null,
+        },
+
+        recipes: [],
+        suggestions: [],
+      };
+
+    default:
+      return null;
+  }
+}
 
 /* -------------------------------------------------------------------------- */
 /* Shared Payload Shape                                                      */
 /* -------------------------------------------------------------------------- */
 
-function baseAssistantPayload({ message, language, explanation = null, followUp = null }) {
+function baseAssistantPayload({
+  message,
+  language,
+  explanation = null,
+  followUp = null,
+}) {
   return {
     assistant: { message, recommendation: null, explanation, followUp },
     recipes: [],
@@ -316,13 +546,16 @@ function baseAssistantPayload({ message, language, explanation = null, followUp 
  *   suggestions: string[],
  * }
  */
+export { buildNextRecipeResponse };
+
 export function buildResponse({
   intent,
   parsed,
   session,
   language = "en",
-  searchResult = null, // { results, isFallback } from recommendation-engine
+  searchResult = null,
   constraints = null,
+  lastRecipe = null,
   isIslamicGreeting = false,
 }) {
   let payload;
@@ -354,7 +587,9 @@ export function buildResponse({
 
     case INTENTS.GOODBYE:
       payload = buildGoodbyeResponse(language, {
-        casual: /পরে কথা হবে|talk later|see you/.test(parsed?.raw?.toLowerCase() || ""),
+        casual: /পরে কথা হবে|talk later|see you/.test(
+          parsed?.raw?.toLowerCase() || "",
+        ),
       });
       break;
 
@@ -371,6 +606,16 @@ export function buildResponse({
         language,
         session,
       );
+      break;
+
+    case INTENTS.SHOW_INGREDIENTS:
+    case INTENTS.SHOW_TIME:
+    case INTENTS.SHOW_DIFFICULTY:
+    case INTENTS.SHOW_ORIGIN:
+    case INTENTS.SHOW_EQUIPMENT:
+    case INTENTS.SHOW_STEPS:
+    case INTENTS.SHOW_NUTRITION:
+      payload = buildRecipeFollowUpResponse(intent, lastRecipe, language);
       break;
 
     default:

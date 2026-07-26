@@ -3,13 +3,13 @@
   "slug": "vegetable-salad",
 
   "title": {
-    "en": "Fresh Vegetable Salad",
-    "bn": "তাজা সবজি সালাদ"
+    "en": "Mixed Vegetable Salad",
+    "bn": "মিশ্র সবজি সালাদ"
   },
 
   "description": {
-    "en": "A refreshing and healthy vegetable salad made with crisp lettuce, cucumber, tomatoes, carrots, and a light lemon dressing. Perfect as a side dish or a light meal.",
-    "bn": "তাজা লেটুস, শসা, টমেটো, গাজর এবং হালকা লেবুর ড্রেসিং দিয়ে তৈরি স্বাস্থ্যকর ও সতেজ সবজি সালাদ। সাইড ডিশ বা হালকা খাবার হিসেবে উপযুক্ত।"
+    "en": "A refreshing and healthy vegetable salad made with crisp lettuce, cucumber, tomatoes, carrots, red onion, and a light lemon-olive oil dressing. Perfect as a side dish or a light meal.",
+    "bn": "তাজা লেটুস, শসা, টমেটো, গাজর, লাল পেঁয়াজ এবং হালকা লেবু-অলিভ অয়েল ড্রেসিং দিয়ে তৈরি স্বাস্থ্যকর ও সতেজ সবজি সালাদ। সাইড ডিশ বা হালকা খাবার হিসেবে উপযুক্ত।"
   },
 
   "thumbnail": "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1200&q=80",
@@ -89,8 +89,8 @@
             "bn": "টি"
           },
           "note": {
-            "en": "Washed and chopped",
-            "bn": "ধুয়ে কুচি করা"
+            "en": "Washed and roughly chopped (about 4–5 cups)",
+            "bn": "ধুয়ে মোটামুটি কুচি করা (প্রায় ৪–৫ কাপ)"
           }
         },
         {
@@ -107,8 +107,8 @@
             "bn": "টি"
           },
           "note": {
-            "en": "Sliced",
-            "bn": "স্লাইস করা"
+            "en": "Sliced or half-moons",
+            "bn": "স্লাইস বা অর্ধচন্দ্রাকারে কাটা"
           }
         },
         {
@@ -143,8 +143,8 @@
             "bn": "টি"
           },
           "note": {
-            "en": "Grated",
-            "bn": "কুচি করা"
+            "en": "Grated or julienned",
+            "bn": "কুচি বা জুলিয়েন করা"
           }
         },
         {
@@ -167,7 +167,6 @@
         }
       ]
     },
-
     {
       "title": {
         "en": "Dressing",
@@ -204,7 +203,6 @@
         }
       ]
     },
-
     {
       "title": {
         "en": "Seasoning",
@@ -246,6 +244,7 @@
       ]
     }
   ],
+
   "instructions": [
     {
       "step": 1,
@@ -254,8 +253,8 @@
         "bn": "সবজি প্রস্তুত করুন"
       },
       "description": {
-        "en": "Wash all vegetables thoroughly. Chop the lettuce, slice the cucumber and onion, dice the tomatoes, and grate the carrot.",
-        "bn": "সবজি ভালোভাবে ধুয়ে নিন। লেটুস কুচি করুন, শসা ও পেঁয়াজ পাতলা করে কাটুন, টমেটো ছোট টুকরো করুন এবং গাজর কুঁচি করুন।"
+        "en": "Wash all vegetables thoroughly under cold water. Chop the lettuce into bite-sized pieces, slice the cucumber, dice the tomatoes, grate or julienne the carrot, and thinly slice the red onion.",
+        "bn": "সবজি ঠান্ডা পানিতে ভালোভাবে ধুয়ে নিন। লেটুস কামড়ের আকারে কুচি করুন, শসা স্লাইস করুন, টমেটো কিউব করুন, গাজর কুঁচি বা জুলিয়েন করুন এবং লাল পেঁয়াজ পাতলা করে কাটুন।"
       }
     },
     {
@@ -266,7 +265,7 @@
       },
       "description": {
         "en": "Place all the prepared vegetables into a large mixing bowl.",
-        "bn": "সব প্রস্তুত করা সবজি একটি বড় মিক্সিং বাউলে নিন।"
+        "bn": "সব প্রস্তুত করা সবজি একটি বড় মিক্সিং বোলে নিন।"
       }
     },
     {
@@ -276,19 +275,19 @@
         "bn": "ড্রেসিং তৈরি করুন"
       },
       "description": {
-        "en": "Whisk together olive oil, lemon juice, salt, and black pepper until well combined.",
-        "bn": "অলিভ অয়েল, লেবুর রস, লবণ এবং গোলমরিচ একসাথে ভালোভাবে ফেটিয়ে ড্রেসিং তৈরি করুন।"
+        "en": "In a small bowl, whisk together the olive oil, lemon juice, salt, and black pepper until well combined and slightly emulsified.",
+        "bn": "একটি ছোট বাটিতে অলিভ অয়েল, লেবুর রস, লবণ এবং গোলমরিচ একসাথে ভালোভাবে ফেটিয়ে ড্রেসিং তৈরি করুন।"
       }
     },
     {
       "step": 4,
       "title": {
-        "en": "Mix the Salad",
-        "bn": "সালাদ মেশান"
+        "en": "Dress the Salad",
+        "bn": "সালাদে ড্রেসিং মেশান"
       },
       "description": {
-        "en": "Pour the dressing over the vegetables and toss gently until everything is evenly coated.",
-        "bn": "সবজির উপর ড্রেসিং ঢেলে আলতোভাবে মিশিয়ে নিন যাতে সবজিগুলো সমানভাবে কোট হয়।"
+        "en": "Pour the dressing over the vegetables and toss gently until everything is evenly coated. Taste and adjust salt or lemon if needed.",
+        "bn": "সবজির উপর ড্রেসিং ঢেলে আলতোভাবে মিশিয়ে নিন যাতে সবজিগুলো সমানভাবে কোট হয়। স্বাদ দেখে প্রয়োজনে লবণ বা লেবু বাড়ান।"
       }
     },
     {
@@ -298,7 +297,7 @@
         "bn": "পরিবেশন করুন"
       },
       "description": {
-        "en": "Serve immediately while the vegetables are fresh and crisp.",
+        "en": "Serve immediately while the vegetables are still crisp and fresh.",
         "bn": "সবজি সতেজ ও মচমচে থাকা অবস্থায় সঙ্গে সঙ্গে পরিবেশন করুন।"
       }
     }
@@ -306,16 +305,16 @@
 
   "tips": [
     {
-      "en": "Chill the vegetables before serving for extra freshness.",
-      "bn": "আরও সতেজ স্বাদের জন্য পরিবেশনের আগে সবজি ঠান্ডা করে নিন।"
+      "en": "Chill the chopped vegetables in the fridge for 10–15 minutes before dressing for extra crispness.",
+      "bn": "ড্রেসিং দেওয়ার আগে কাটা সবজি ১০–১৫ মিনিট ফ্রিজে রেখে আরও মচমচে করুন।"
     },
     {
-      "en": "Add feta cheese or avocado for extra flavor and nutrition.",
-      "bn": "অতিরিক্ত স্বাদ ও পুষ্টির জন্য ফেটা চিজ বা অ্যাভোকাডো যোগ করতে পারেন।"
+      "en": "Add crumbled feta, avocado slices, or a handful of chickpeas for extra protein and flavor.",
+      "bn": "অতিরিক্ত প্রোটিন ও স্বাদের জন্য ফেটা চিজ, অ্যাভোকাডো স্লাইস বা কিছু ছোলা যোগ করতে পারেন।"
     },
     {
-      "en": "Prepare the dressing separately and mix just before serving.",
-      "bn": "ড্রেসিং আলাদা তৈরি করে পরিবেশনের ঠিক আগে সালাদের সাথে মেশান।"
+      "en": "Keep the dressing separate and toss just before serving so the salad stays crisp longer.",
+      "bn": "ড্রেসিং আলাদা রেখে পরিবেশনের ঠিক আগে মেশান যাতে সালাদ বেশিক্ষণ মচমচে থাকে।"
     }
   ],
 
@@ -394,7 +393,8 @@
       "low calorie salad",
       "quick salad",
       "easy salad",
-      "light meal"
+      "light meal",
+      "side salad"
     ],
     "bn": [
       "সবজি সালাদ",
@@ -406,7 +406,8 @@
       "সহজ সালাদ",
       "দ্রুত সালাদ",
       "হালকা খাবার",
-      "লেটুস সালাদ"
+      "লেটুস সালাদ",
+      "সাইড সালাদ"
     ]
   },
 

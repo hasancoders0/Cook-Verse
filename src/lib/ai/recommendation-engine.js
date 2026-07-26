@@ -103,9 +103,10 @@ export function getRecommendations(constraints, { language = "en" } = {}) {
   // have, so the closest possible matches still surface.
   const fallbackRanked = rankRecipes(allRecipes, constraints, language);
   return {
-    results: fallbackRanked.slice(0, MATCH_CONFIG.MAX_FALLBACK_RESULTS),
-    isFallback: true,
+    results: [],
+    isFallback: false,
     totalCandidates: 0,
+    reason: "NO_MATCH_FOUND",
   };
 }
 

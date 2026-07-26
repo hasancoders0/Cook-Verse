@@ -76,7 +76,42 @@ function matchesIntentKeywords(text, intent, language) {
     return words.includes(keyword);
   });
 }
+function detectRecipeFollowUpIntent(text) {
+  const normalized = normalizeText(text);
+  const newRecipeWords = [
+    "recipe",
+    "রেসিপি",
+    "চাই",
+    "breakfast",
+    "lunch",
+    "dinner",
+    "নাস্তা",
+    "দুপুর",
+    "রাতের",
+  ];
+  const followUpIntents = [
+    INTENTS.SHOW_INGREDIENTS,
+    INTENTS.SHOW_TIME,
+    INTENTS.SHOW_DIFFICULTY,
+    INTENTS.SHOW_ORIGIN,
+    INTENTS.SHOW_EQUIPMENT,
+    INTENTS.SHOW_STEPS,
+    INTENTS.SHOW_NUTRITION,
+    INTENTS.SHOW_NEXT_RECIPE,
+  ];
 
+  for (const intent of followUpIntents) {
+    for (const language of [LANGUAGES.EN, LANGUAGES.BN]) {
+      if (matchesIntentKeywords(normalized, intent, language)) {
+        return intent;
+      }
+    }
+  }
+
+  if (newRecipeWords.some((word) => normalized.includes(word))) {
+    return null;
+  }
+}
 /**
  * Order matters: more specific intents should be checked before broader ones.
  * DAY_CHECK is checked before DATE since "is today Friday" contains no
@@ -86,6 +121,17 @@ const INTENT_CHECK_ORDER = [
   INTENTS.GREETING,
   INTENTS.IDENTITY,
   INTENTS.CAPABILITIES,
+
+  // Recipe follow-up actions
+  INTENTS.SHOW_INGREDIENTS,
+  INTENTS.SHOW_TIME,
+  INTENTS.SHOW_DIFFICULTY,
+  INTENTS.SHOW_ORIGIN,
+  INTENTS.SHOW_EQUIPMENT,
+  INTENTS.SHOW_STEPS,
+  INTENTS.SHOW_NUTRITION,
+  INTENTS.SHOW_NEXT_RECIPE,
+
   INTENTS.DATE,
   INTENTS.DAY_CHECK,
   INTENTS.THANKS,
@@ -108,7 +154,36 @@ export function detectIntent(text, language = LANGUAGES.EN) {
 
   if (!trimmed) return INTENTS.UNKNOWN;
 
-  // DAY_CHECK: message contains a day name AND a question-ish marker
+  // Check follow-up intent first
+  const followUpIntent = detectRecipeFollowUpIntent(trimmed);
+
+  // If the message explicitly asks for a NEW recipe,
+  // ignore follow-up intents.
+  if (followUpIntent) {
+    const normalized = normalizeText(trimmed);
+
+    const newRecipePatterns = [
+      /রেসিপি/,
+      /নাস্তা/,
+      /লাঞ্চ/,
+      /ডিনার/,
+      /খাবার/,
+      /\brecipe\b/i,
+      /\bbreakfast\b/i,
+      /\blunch\b/i,
+      /\bdinner\b/i,
+    ];
+
+    const wantsNewRecipe = newRecipePatterns.some((pattern) =>
+      pattern.test(normalized),
+    );
+
+    if (!wantsNewRecipe) {
+      return followUpIntent;
+    }
+  }
+
+  // DAY_CHECK
   const dayMention = findDayNameMention(trimmed);
   if (
     dayMention &&
@@ -119,20 +194,18 @@ export function detectIntent(text, language = LANGUAGES.EN) {
   }
 
   for (const intent of INTENT_CHECK_ORDER) {
-    if (intent === INTENTS.DAY_CHECK) continue; // already handled above
+    if (intent === INTENTS.DAY_CHECK) continue;
     if (matchesIntentKeywords(trimmed, intent, language)) {
       return intent;
     }
   }
 
-  // Heuristic fallback: "I have X and Y" / "আমার কাছে X আছে" pattern
-  // suggests ingredient search over generic recipe search.
+  // Ingredient search
   if (looksLikeIngredientStatement(trimmed, language)) {
     return INTENTS.INGREDIENT_SEARCH;
   }
 
-  // Anything else with real content is treated as a recipe search —
-  // entity-extractor + recipe-matcher decide if it actually resolves.
+  // Default recipe search
   const tokens = tokenize(trimmed);
   if (tokens.length > 0) {
     return INTENTS.RECIPE_SEARCH;

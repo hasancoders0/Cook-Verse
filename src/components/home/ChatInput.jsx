@@ -23,7 +23,7 @@ function lbl(key, lang) {
 }
 
 const ChatInput = forwardRef(function ChatInput(
-  { lang, loading, onSend },
+  { lang, loading, onSend, onClear },
   ref,
 ) {
   const inputRef = useRef(null);
@@ -48,7 +48,7 @@ const ChatInput = forwardRef(function ChatInput(
   };
 
   return (
-    <div className="px-4 sm:px-6 pb-4 pt-2">
+    <div className="flex-shrink-0 px-4 sm:px-6 pt-3 pb-4 border-t border-white/5 bg-stone-950/90 backdrop-blur-xl">
       {/* Input container */}
       <div
         className="relative flex items-center gap-3 rounded-2xl bg-stone-900/60 border border-white/[0.07] px-4 py-3 transition-all duration-300 focus-within:border-orange-500/30 focus-within:bg-stone-900/80 focus-within:shadow-[0_0_0_1px_rgba(249,115,22,0.08),0_8px_40px_rgba(0,0,0,0.35)]"
@@ -68,7 +68,30 @@ const ChatInput = forwardRef(function ChatInput(
           className="flex-1 bg-transparent border-none outline-none font-ui text-sm text-stone-100 placeholder:text-stone-600 disabled:opacity-50"
           aria-label="Recipe search input"
         />
-
+        <button
+          onClick={onClear}
+          type="button"
+          className="w-9 h-9 rounded-xl border border-white/10 bg-stone-800/70 hover:bg-stone-700 transition-all duration-200 flex items-center justify-center flex-shrink-0"
+          title="Reset Chat"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-stone-300"
+          >
+            <path d="M3 2v6h6" />
+            <path d="M21 12A9 9 0 0 0 6 5.3L3 8" />
+            <path d="M21 22v-6h-6" />
+            <path d="M3 12a9 9 0 0 0 15 6.7L21 16" />
+          </svg>
+        </button>
         <button
           onClick={submit}
           disabled={loading}

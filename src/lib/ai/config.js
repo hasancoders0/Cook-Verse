@@ -18,15 +18,31 @@ export const SUPPORTED_LANGUAGES = [LANGUAGES.EN, LANGUAGES.BN];
 
 export const INTENTS = {
   GREETING: "greeting",
-  IDENTITY: "identity", // "who are you"
-  CAPABILITIES: "capabilities", // "what can you do"
-  RECIPE_SEARCH: "recipe_search", // dish name / cuisine / category driven
-  INGREDIENT_SEARCH: "ingredient_search", // "I have chicken and potato"
-  DATE: "date", // "what's today's date"
-  DAY_CHECK: "day_check", // "is today Friday?"
+  IDENTITY: "identity",
+  CAPABILITIES: "capabilities",
+
+  RECIPE_SEARCH: "recipe_search",
+  INGREDIENT_SEARCH: "ingredient_search",
+
+  SHOW_NEXT_RECIPE: "show_next_recipe",
+
+  // Follow-up recipe actions
+  SHOW_INGREDIENTS: "show_ingredients",
+  SHOW_STEPS: "show_steps",
+  SHOW_TIME: "show_time",
+  SHOW_NUTRITION: "show_nutrition",
+
+  SHOW_DIFFICULTY: "show_difficulty",
+  SHOW_ORIGIN: "show_origin",
+  SHOW_EQUIPMENT: "show_equipment",
+
+  DATE: "date",
+  DAY_CHECK: "day_check",
+
   THANKS: "thanks",
   GOODBYE: "goodbye",
-  SMALL_TALK: "small_talk", // "what's your favorite food", "are you ChatGPT"
+  SMALL_TALK: "small_talk",
+
   UNKNOWN: "unknown",
 };
 
@@ -131,17 +147,90 @@ export const DIFFICULTY_ALIASES = {
 
 export const STOPWORDS = {
   en: [
-    "i", "me", "my", "you", "your", "the", "a", "an", "is", "are", "am",
-    "have", "has", "had", "want", "would", "like", "can", "could", "please",
-    "some", "something", "for", "with", "and", "or", "to", "of", "in", "on",
-    "at", "what", "which", "how", "do", "does", "today", "cook", "cooking",
-    "make", "recipe", "food", "eat", "give", "show", "find", "need",
+    "i",
+    "me",
+    "my",
+    "you",
+    "your",
+    "the",
+    "a",
+    "an",
+    "is",
+    "are",
+    "am",
+    "have",
+    "has",
+    "had",
+    "want",
+    "would",
+    "like",
+    "can",
+    "could",
+    "please",
+    "some",
+    "something",
+    "for",
+    "with",
+    "and",
+    "or",
+    "to",
+    "of",
+    "in",
+    "on",
+    "at",
+    "what",
+    "which",
+    "how",
+    "do",
+    "does",
+    "today",
+    "cook",
+    "cooking",
+    "make",
+    "recipe",
+    "food",
+    "eat",
+    "give",
+    "show",
+    "find",
+    "need",
   ],
   bn: [
-    "আমি", "আমার", "আমাকে", "তুমি", "তোমার", "আছে", "চাই", "চাও", "চান",
-    "করতে", "করবো", "করব", "রান্না", "খাবার", "কিছু", "একটা", "একটি",
-    "কী", "কি", "কে", "যে", "যা", "এই", "সেই", "এবং", "আর", "বা", "জন্য",
-    "দিয়ে", "থেকে", "হবে", "যেতে", "পারে", "খেতে", "খেয়ে",
+    "আমি",
+    "আমার",
+    "আমাকে",
+    "তুমি",
+    "তোমার",
+    "আছে",
+    "চাই",
+    "চাও",
+    "চান",
+    "করতে",
+    "করবো",
+    "করব",
+    "রান্না",
+    "খাবার",
+    "কিছু",
+    "একটা",
+    "একটি",
+    "কী",
+    "কি",
+    "কে",
+    "যে",
+    "যা",
+    "এই",
+    "সেই",
+    "এবং",
+    "আর",
+    "বা",
+    "জন্য",
+    "দিয়ে",
+    "থেকে",
+    "হবে",
+    "যেতে",
+    "পারে",
+    "খেতে",
+    "খেয়ে",
   ],
 };
 
@@ -151,19 +240,45 @@ export const STOPWORDS = {
 
 export const INTENT_KEYWORDS = {
   [INTENTS.GREETING]: {
-    en: ["hi", "hello", "hey", "good morning", "good evening"],
-    bn: ["হ্যালো", "হাই", "আসসালামু আলাইকুম", "সালাম"],
+    en: [
+      "hi",
+      "hello",
+      "hey",
+      "good morning",
+      "good evening",
+      "assalamu alaikum",
+      "assalamualaikum",
+      "assalamu alaikum wa rahmatullah",
+      "as salam alaikum",
+    ],
+    bn: [
+      "হ্যালো",
+      "হাই",
+      "আসসালামু আলাইকুম",
+      "আসসালামু আলাইকুম ওয়া রহমাতুল্লাহ",
+      "সালাম",
+    ],
   },
   [INTENTS.IDENTITY]: {
     en: ["who are you", "what are you", "your name"],
     bn: ["তুমি কে", "তুই কে", "আপনি কে", "তোমার নাম"],
   },
   [INTENTS.CAPABILITIES]: {
-    en: ["what can you do", "what do you do", "how can you help", "your features"],
+    en: [
+      "what can you do",
+      "what do you do",
+      "how can you help",
+      "your features",
+    ],
     bn: ["তুমি কী করতে পারো", "তুমি কি করতে পারো", "কী কী করতে পারো"],
   },
   [INTENTS.DATE]: {
-    en: ["what's the date", "what is the date", "today's date", "what day is it"],
+    en: [
+      "what's the date",
+      "what is the date",
+      "today's date",
+      "what day is it",
+    ],
     bn: ["আজ কত তারিখ", "আজকে কত তারিখ", "আজ কী তারিখ"],
   },
   [INTENTS.DAY_CHECK]: {
@@ -179,8 +294,117 @@ export const INTENT_KEYWORDS = {
     bn: ["বিদায়", "আচ্ছা পরে কথা হবে", "ভালো থাকবেন"],
   },
   [INTENTS.SMALL_TALK]: {
-    en: ["are you chatgpt", "are you ai", "favorite food", "can you answer everything"],
-    bn: ["তুমি কি চ্যাটজিপিটি", "তুমি কি এআই", "প্রিয় খাবার", "সব প্রশ্নের উত্তর"],
+    en: [
+      "are you chatgpt",
+      "are you ai",
+      "favorite food",
+      "can you answer everything",
+    ],
+    bn: [
+      "তুমি কি চ্যাটজিপিটি",
+      "তুমি কি এআই",
+      "প্রিয় খাবার",
+      "সব প্রশ্নের উত্তর",
+    ],
+  },
+  [INTENTS.SHOW_INGREDIENTS]: {
+    en: ["ingredients", "ingredient", "ingredient list", "what ingredients"],
+    bn: ["উপকরণ", "উপকরণ দেখাও", "উপাদান", "কি কি লাগবে", "কী কী লাগবে"],
+  },
+
+  [INTENTS.SHOW_STEPS]: {
+    en: [
+      "steps",
+      "step",
+      "cooking steps",
+      "recipe steps",
+      "how to cook",
+      "method",
+    ],
+    bn: [
+      "রান্নার ধাপ",
+      "ধাপ",
+      "রান্না দেখাও",
+      "কিভাবে রান্না",
+      "কীভাবে রান্না",
+      "প্রস্তুত প্রণালী",
+    ],
+  },
+
+  [INTENTS.SHOW_TIME]: {
+    en: ["time", "cooking time", "prep time", "total time", "how long"],
+    bn: ["কত সময়", "কতক্ষণ", "সময় লাগে", "রান্নার সময়"],
+  },
+
+  [INTENTS.SHOW_NUTRITION]: {
+    en: ["nutrition", "nutrition facts", "calories", "protein", "carbs", "fat"],
+    bn: [
+      "পুষ্টিগুণ",
+      "পুষ্টি",
+      "ক্যালোরি",
+      "প্রোটিন",
+      "কার্বোহাইড্রেট",
+      "ফ্যাট",
+    ],
+  },
+  [INTENTS.SHOW_DIFFICULTY]: {
+    en: [
+      "is it easy",
+      "is this easy",
+      "is it hard",
+      "is this hard",
+      "difficulty",
+      "how difficult",
+    ],
+    bn: ["এটা কি সহজ", "এটা কি কঠিন", "কঠিন নাকি", "কতটা কঠিন", "কঠিনতার স্তর"],
+  },
+  [INTENTS.SHOW_ORIGIN]: {
+    en: [
+      "country",
+      "which country",
+      "what country",
+      "where is it from",
+      "where did it come from",
+      "origin",
+      "origin country",
+      "cuisine",
+    ],
+    bn: [
+      "কোন দেশের",
+      "কোন দেশ",
+      "দেশ",
+      "উৎপত্তি",
+      "কোথা থেকে এসেছে",
+      "কুইজিন",
+      "রান্নার ধরন",
+    ],
+  },
+  [INTENTS.SHOW_EQUIPMENT]: {
+    en: ["equipment", "tools", "utensils", "what do i need"],
+    bn: ["যন্ত্রপাতি", "কী কী লাগবে", "কোন সরঞ্জাম", "উপকরণ নয় যন্ত্রপাতি"],
+  },
+  [INTENTS.SHOW_NEXT_RECIPE]: {
+    en: [
+      "another",
+      "another recipe",
+      "next recipe",
+      "show another",
+      "show next",
+      "one more",
+      "more",
+    ],
+
+    bn: [
+      "আরেকটা",
+      "আরেকটি",
+      "আরেকটা দেখাও",
+      "আরেকটি দেখাও",
+      "আরও",
+      "আরও দেখাও",
+      "পরেরটা",
+      "পরেরটি",
+      "পরের রেসিপি",
+    ],
   },
 };
 
@@ -248,8 +472,18 @@ export const RESPONSES = {
 /* -------------------------------------------------------------------------- */
 
 export const FALLBACK_SUGGESTIONS = {
-  en: ["Beef burger recipe", "Vegetable salad", "I have rice and eggs", "American fast food"],
-  bn: ["বিফ বার্গার রেসিপি", "সবজি সালাদ", "আমার কাছে ভাত ও ডিম আছে", "আমেরিকান ফাস্ট ফুড"],
+  en: [
+    "Beef burger recipe",
+    "Vegetable salad",
+    "I have rice and eggs",
+    "American fast food",
+  ],
+  bn: [
+    "বিফ বার্গার রেসিপি",
+    "সবজি সালাদ",
+    "আমার কাছে ভাত ও ডিম আছে",
+    "আমেরিকান ফাস্ট ফুড",
+  ],
 };
 
 /* -------------------------------------------------------------------------- */

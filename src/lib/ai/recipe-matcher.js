@@ -16,17 +16,25 @@ import { MATCH_CONFIG } from "./config";
 function countIngredientOverlap(recipe, ingredientSlugs = []) {
   if (!ingredientSlugs.length) return 0;
 
-  const recipeIngredients = flattenIngredients(recipe).map((item) =>
-    normalizeText(item.slug),
+  const recipeIngredients = new Set(
+    flattenIngredients(recipe).map((item) => normalizeText(item.slug)),
   );
 
-  let count = 0;
+  let matched = 0;
+
   for (const slug of ingredientSlugs) {
-    if (recipeIngredients.includes(normalizeText(slug))) {
-      count += 1;
+    if (recipeIngredients.has(normalizeText(slug))) {
+      matched++;
     }
   }
-  return count;
+
+  // If user searched with 3 or more ingredients,
+  // require at least 2 ingredients to match.
+  if (matched === 0) {
+    return 0;
+  }
+
+  return matched;
 }
 
 function matchesCuisine(recipe, cuisineSlug) {
@@ -46,10 +54,16 @@ function matchesDiet(recipe, dietSlug) {
   // "spicy" / "not-spicy" aren't real diet objects in recipe data —
   // approximate via tags until/unless recipes add explicit spice level.
   if (normalized === "spicy" || normalized === "not-spicy") {
-    return recipe.tags?.some((tag) => normalizeText(tag.slug) === normalized) ?? false;
+    return (
+      recipe.tags?.some((tag) => normalizeText(tag.slug) === normalized) ??
+      false
+    );
   }
 
-  return recipe.diet?.some((diet) => normalizeText(diet.slug) === normalized) ?? false;
+  return (
+    recipe.diet?.some((diet) => normalizeText(diet.slug) === normalized) ??
+    false
+  );
 }
 
 function matchesDifficulty(recipe, difficulty, language = "en") {
@@ -99,7 +113,8 @@ export function matchesFreeText(recipe, query = "", language = "en") {
     .map(normalizeText);
 
   return haystacks.some(
-    (text) => text.includes(normalizedQuery) || fuzzyIncludes(text, normalizedQuery),
+    (text) =>
+      text.includes(normalizedQuery) || fuzzyIncludes(text, normalizedQuery),
   );
 }
 
@@ -125,12 +140,19 @@ export function matchesFreeText(recipe, query = "", language = "en") {
  * }
  */
 export function getMatchSummary(recipe, constraints = {}, language = "en") {
-  const ingredientOverlap = countIngredientOverlap(recipe, constraints.ingredients);
+  const ingredientOverlap = countIngredientOverlap(
+    recipe,
+    constraints.ingredients,
+  );
   const dishHit = matchesDish(recipe, constraints.dish);
   const cuisineHit = matchesCuisine(recipe, constraints.cuisine);
   const categoryHit = matchesCategory(recipe, constraints.category);
   const dietHit = matchesDiet(recipe, constraints.diet);
-  const difficultyHit = matchesDifficulty(recipe, constraints.difficulty, language);
+  const difficultyHit = matchesDifficulty(
+    recipe,
+    constraints.difficulty,
+    language,
+  );
   const timeHit = matchesMaxTime(recipe, constraints.maxTime);
 
   const matchCount =
@@ -170,11 +192,48 @@ export function getMatchSummary(recipe, constraints = {}, language = "en") {
  *
  * Returns an array of recipe objects (not yet ranked/scored).
  */
-export function matchRecipes(allRecipes = [], constraints = {}, { language = "en" } = {}) {
+export function matchRecipes(
+  allRecipes = [],
+  constraints = {},
+  { language = "en" } = {},
+) {
   const candidates = [];
 
   for (const recipe of allRecipes) {
     const summary = getMatchSummary(recipe, constraints, language);
+    if (
+      constraints.ingredients?.length > 0 &&
+      summary.ingredientOverlap === 0
+    ) {
+      continue;
+    }
+
+    // Difficulty filter (must match)
+    if (constraints.difficulty && !summary.matchesDifficulty) {
+      continue;
+    }
+
+    // Cuisine filter (must match)
+    if (constraints.cuisine && !summary.matchesCuisine) {
+      continue;
+    }
+
+    // Category filter (must match)
+    if (constraints.category && !summary.matchesCategory) {
+      continue;
+    }
+
+    // Diet filter (must match)
+    if (constraints.diet && !summary.matchesDiet) {
+      continue;
+    }
+
+    // Time filter (must match)
+    if (constraints.maxTime != null && !summary.matchesTime) {
+      continue;
+    }
+
+    // At least one valid match
     if (summary.matchCount > 0) {
       candidates.push(recipe);
     }
@@ -189,12 +248,17 @@ export function matchRecipes(allRecipes = [], constraints = {}, { language = "en
  * try a strict pass first before falling back to loose matching —
  * currently unused by default but exposed for flexibility.
  */
-export function matchRecipesStrict(allRecipes = [], constraints = {}, { language = "en" } = {}) {
+export function matchRecipesStrict(
+  allRecipes = [],
+  constraints = {},
+  { language = "en" } = {},
+) {
   return allRecipes.filter((recipe) => {
     const summary = getMatchSummary(recipe, constraints, language);
 
     const checks = [];
-    if (constraints.ingredients?.length) checks.push(summary.ingredientOverlap > 0);
+    if (constraints.ingredients?.length)
+      checks.push(summary.ingredientOverlap > 0);
     if (constraints.dish) checks.push(summary.matchesDish);
     if (constraints.cuisine) checks.push(summary.matchesCuisine);
     if (constraints.category) checks.push(summary.matchesCategory);
@@ -212,5 +276,9 @@ export function matchRecipesStrict(allRecipes = [], constraints = {}, { language
  */
 export function findRecipeBySlug(allRecipes = [], slug) {
   if (!slug) return null;
-  return allRecipes.find((recipe) => normalizeText(recipe.slug) === normalizeText(slug)) || null;
+  return (
+    allRecipes.find(
+      (recipe) => normalizeText(recipe.slug) === normalizeText(slug),
+    ) || null
+  );
 }

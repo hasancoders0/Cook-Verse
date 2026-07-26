@@ -43,6 +43,8 @@ export function createSession(language = "en") {
 function emptyContext() {
   return {
     lastSearchedRecipe: null,
+    lastSearchResults: [],
+    currentRecipeIndex: 0,
     lastMentionedIngredients: [],
     selectedCuisine: null,
     selectedCategory: null,
@@ -155,6 +157,13 @@ export function updateContext(session, entities = {}) {
  * so a follow-up like "show me the cooking steps" can resolve without
  * the user repeating the dish name.
  */
+export function setLastSearchResults(session, recipes = []) {
+  session.context.lastSearchResults = recipes;
+  session.context.currentRecipeIndex = 0;
+  session.context.updatedAt = Date.now();
+
+  return session;
+}
 export function setLastSearchedRecipe(session, recipe) {
   session.context.lastSearchedRecipe = recipe || null;
   session.context.updatedAt = Date.now();

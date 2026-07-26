@@ -8,12 +8,11 @@
   },
 
   "description": {
-    "en": "A juicy homemade beef burger topped with fresh vegetables, melted cheese, and a toasted bun. Perfect for lunch, dinner, or weekend BBQs.",
-    "bn": ""
+    "en": "A juicy homemade beef burger made with 80% lean ground beef, melted cheddar, fresh vegetables, and a lightly toasted bun. Perfect for lunch, dinner, or weekend BBQs.",
+    "bn": "৮০% লিন গরুর কিমা দিয়ে তৈরি রসালো হোমমেড বিফ বার্গার, গলানো চেডার চিজ, তাজা সবজি এবং হালকা টোস্ট করা বান সহ। দুপুরের খাবার, রাতের খাবার বা উইকেন্ড বিবিকিউ-এর জন্য পারফেক্ট।"
   },
 
   "thumbnail": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80",
-
 
   "category": {
     "slug": "fast-food",
@@ -83,8 +82,8 @@
             "bn": "গ্রাম"
           },
           "note": {
-            "en": "80% lean",
-            "bn": ""
+            "en": "80% lean (20% fat) for juiciness",
+            "bn": "রসালোতার জন্য ৮০% লিন (২০% ফ্যাট)"
           }
         },
         {
@@ -102,7 +101,7 @@
           },
           "note": {
             "en": "Lightly toasted",
-            "bn": ""
+            "bn": "হালকা টোস্ট করা"
           }
         },
         {
@@ -259,8 +258,8 @@
         "bn": "গরুর কিমায় মসলা মেশান"
       },
       "description": {
-        "en": "Season the ground beef with salt and black pepper.",
-        "bn": ""
+        "en": "Place the ground beef in a mixing bowl. Sprinkle with salt and black pepper. Gently mix with your hands just until combined—do not overwork the meat.",
+        "bn": "মিক্সিং বোলে গরুর কিমা রাখুন। লবণ ও গোলমরিচ ছিটিয়ে দিন। হাত দিয়ে আলতো করে মিশিয়ে নিন—অতিরিক্ত মেখে ফেলবেন না।"
       }
     },
     {
@@ -270,8 +269,8 @@
         "bn": "প্যাটি তৈরি করুন"
       },
       "description": {
-        "en": "Divide the beef into two equal portions and shape them into burger patties.",
-        "bn": ""
+        "en": "Divide the beef into two equal portions (about 200 g each). Gently shape into patties slightly larger than the buns. Press a small dimple in the center of each patty so it cooks evenly.",
+        "bn": "কিমা দুই সমান অংশে ভাগ করুন (প্রায় ২০০ গ্রাম করে)। বানের চেয়ে একটু বড় করে আলতো করে প্যাটি বানান। সমানভাবে রান্না হওয়ার জন্য প্রতিটি প্যাটির মাঝখানে হালকা গর্ত চাপুন।"
       }
     },
     {
@@ -281,8 +280,8 @@
         "bn": "প্যাটি রান্না করুন"
       },
       "description": {
-        "en": "Cook the patties over medium-high heat for 4–5 minutes per side.",
-        "bn": ""
+        "en": "Heat a grill pan or skillet over medium-high heat. Cook the patties for 4–5 minutes per side for medium doneness (internal temperature 160°F / 71°C). Flip only once.",
+        "bn": "মিডিয়াম-হাই হিটে গ্রিল প্যান বা স্কিলেট গরম করুন। মিডিয়াম ডোনেসের জন্য প্রতি পাশে ৪–৫ মিনিট করে রান্না করুন (ভিতরের তাপমাত্রা ১৬০°F / ৭১°C)। শুধু একবার উল্টান।"
       }
     },
     {
@@ -292,8 +291,8 @@
         "bn": "চিজ যোগ করুন"
       },
       "description": {
-        "en": "Place cheddar cheese on top during the final minute.",
-        "bn": ""
+        "en": "During the last minute of cooking, place one slice of cheddar cheese on each patty and cover the pan briefly so the cheese melts.",
+        "bn": "রান্নার শেষ এক মিনিটে প্রতিটি প্যাটির উপর এক স্লাইস চেডার চিজ রাখুন এবং চিজ গলানোর জন্য প্যান ঢেকে দিন।"
       }
     },
     {
@@ -303,20 +302,24 @@
         "bn": "বার্গার তৈরি করুন"
       },
       "description": {
-        "en": "Toast the buns, spread the sauces, add vegetables, patties, and serve.",
-        "bn": ""
+        "en": "Lightly toast the buns. Spread mayonnaise and ketchup on the cut sides. Layer lettuce, tomato slices, onion rings, pickles, the cheesy patty, and the top bun. Serve immediately.",
+        "bn": "বান হালকা টোস্ট করুন। কাটা দিকে মেয়োনিজ ও কেচাপ লাগান। লেটুস, টমেটো স্লাইস, পেঁয়াজ রিং, পিকলস, চিজযুক্ত প্যাটি এবং উপরের বান স্তরে স্তরে সাজান। সাথে সাথে পরিবেশন করুন।"
       }
     }
   ],
 
   "tips": [
     {
-      "en": "Let the patties rest for 2 minutes before serving.",
-      "bn": ""
+      "en": "Let the cooked patties rest for 2 minutes before assembling so the juices redistribute.",
+      "bn": "রস সমানভাবে ছড়িয়ে পড়ার জন্য রান্না করা প্যাটিগুলো একত্র করার আগে ২ মিনিট বিশ্রাম দিন।"
     },
     {
-      "en": "Use freshly ground beef for better flavor.",
-      "bn": ""
+      "en": "Use freshly ground beef (or ask the butcher to grind it) for the best flavor and texture.",
+      "bn": "সেরা স্বাদ ও টেক্সচারের জন্য তাজা কিমা ব্যবহার করুন (বা কসাইকে কিমা করতে বলুন)।"
+    },
+    {
+      "en": "Do not press down on the patties while cooking—this squeezes out the juices.",
+      "bn": "রান্নার সময় প্যাটির উপর চাপ দেবেন না—এতে রস বের হয়ে যায়।"
     }
   ],
 
@@ -394,7 +397,11 @@
       "গরুর কিমা",
       "ফাস্ট ফুড",
       "আমেরিকান",
-      "উচ্চ প্রোটিন"
+      "উচ্চ প্রোটিন",
+      "বিবিকিউ",
+      "চেডার চিজ",
+      "গ্রিলড বার্গার",
+      "হোমমেড বার্গার"
     ]
   },
 
