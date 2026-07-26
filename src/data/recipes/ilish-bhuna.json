@@ -1,0 +1,482 @@
+{
+  "id": "ilish-bhuna",
+  "slug": "ilish-bhuna",
+
+  "title": {
+    "en": "Ilish Bhuna",
+    "bn": "ইলিশ ভুনা"
+  },
+
+  "description": {
+    "en": "A rich and spicy traditional Bangladeshi Ilish Bhuna cooked with onions, garlic, ginger, and aromatic spices until the oil separates. Perfect for everyday lunch or dinner.",
+    "bn": "পেঁয়াজ, রসুন, আদা ও সুগন্ধি মসলা দিয়ে কষিয়ে তৈরি সমৃদ্ধ ও ঝাল ঐতিহ্যবাহী বাংলাদেশি ইলিশ ভুনা। দৈনন্দিন দুপুর বা রাতের খাবারের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 15,
+  "cookTime": 30,
+  "totalTime": 45,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 400,
+    "protein": 34,
+    "fat": 26,
+    "carbohydrates": 8,
+    "fiber": 2,
+    "sugar": 3,
+    "sodium": 750
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "ilish-fish",
+          "name": {
+            "en": "Ilish Fish (Hilsa)",
+            "bn": "ইলিশ মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 1,
+          "unit": {
+            "en": "kg",
+            "bn": "কেজি"
+          },
+          "note": {
+            "en": "Cut into medium pieces",
+            "bn": "মাঝারি টুকরো করে কাটা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Aromatics",
+        "bn": "সুগন্ধি"
+      },
+      "items": [
+        {
+          "slug": "onion",
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 3,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Thinly sliced",
+            "bn": "পাতলা করে কাটা"
+          }
+        },
+        {
+          "slug": "ginger-paste",
+          "name": {
+            "en": "Ginger Paste",
+            "bn": "আদা বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "garlic-paste",
+          "name": {
+            "en": "Garlic Paste",
+            "bn": "রসুন বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit",
+            "bn": "চিরা করা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Spices",
+        "bn": "মসলা"
+      },
+      "items": [
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "red-chili-powder",
+          "name": {
+            "en": "Red Chili Powder",
+            "bn": "লাল মরিচের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "cumin-powder",
+          "name": {
+            "en": "Cumin Powder",
+            "bn": "জিরা গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "coriander-powder",
+          "name": {
+            "en": "Coriander Powder",
+            "bn": "ধনিয়ার গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "garam-masala",
+          "name": {
+            "en": "Garam Masala",
+            "bn": "গরম মসলা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking & Garnish",
+        "bn": "রান্নার জন্য ও সাজানো"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 5,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "fresh-coriander",
+          "name": {
+            "en": "Fresh Coriander",
+            "bn": "তাজা ধনেপাতা"
+          },
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Fish",
+        "bn": "মাছ প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Clean and cut the Ilish into medium pieces. Rub with a little turmeric and salt. Keep aside for 10–15 minutes.",
+        "bn": "ইলিশ মাছ পরিষ্কার করে মাঝারি টুকরো করুন। অল্প হলুদ ও লবণ মেখে ১০–১৫ মিনিট রেখে দিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Fry the Fish",
+        "bn": "মাছ ভেজে নিন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a pan until it smokes lightly. Fry the fish pieces carefully on both sides until light golden. Remove and set aside.",
+        "bn": "সরিষার তেল হালকা ধোঁয়া বের হওয়া পর্যন্ত গরম করুন। মাছের টুকরোগুলো সাবধানে দুই পাশে হালকা সোনালি করে ভেজে তুলে রাখুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Cook the Onion Base",
+        "bn": "পেঁয়াজের বেস তৈরি করুন"
+      },
+      "description": {
+        "en": "In the same oil, add the thinly sliced onions and fry on medium heat until soft and golden. Add ginger-garlic paste and sauté until the raw smell disappears.",
+        "bn": "একই তেলে পাতলা কাটা পেঁয়াজ দিয়ে মিডিয়াম আঁচে নরম ও সোনালি করে ভাজুন। আদা-রসুন বাটা দিয়ে কাঁচা গন্ধ না যাওয়া পর্যন্ত কষিয়ে নিন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Add Spices and Bhuna",
+        "bn": "মসলা দিয়ে ভুনা করুন"
+      },
+      "description": {
+        "en": "Add turmeric, red chili powder, cumin powder, coriander powder, and salt. Sprinkle a little water and cook the spices on medium heat until the oil separates and the masala becomes thick and aromatic.",
+        "bn": "হলুদ, লাল মরিচ, জিরা, ধনিয়ার গুঁড়া ও লবণ দিন। অল্প পানি ছিটিয়ে মিডিয়াম আঁচে তেল উপরে ভেসে না আসা এবং মসলা ঘন ও সুগন্ধি হওয়া পর্যন্ত কষান।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Add Fish and Finish",
+        "bn": "মাছ দিয়ে শেষ করুন"
+      },
+      "description": {
+        "en": "Gently add the fried fish pieces and green chilies. Mix carefully so the spices coat the fish. Cover and cook on low heat for 8–10 minutes until the gravy thickens and oil floats on top. Finish with garam masala and chopped coriander.",
+        "bn": "ভাজা মাছের টুকরো ও কাঁচা মরিচ আলতো করে দিন। সাবধানে মিশিয়ে মসলা মাছের সাথে লেগে যায়। ঢাকনা দিয়ে কম আঁচে ৮–১০ মিনিট রান্না করুন যতক্ষণ না ঝোল ঘন হয় ও তেল উপরে ভেসে ওঠে। শেষে গরম মসলা ও ধনেপাতা কুচি দিন।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Serve",
+        "bn": "পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Serve hot with steamed rice. This everyday Ilish Bhuna is delicious for both lunch and dinner.",
+        "bn": "গরম গরম ভাতের সাথে পরিবেশন করুন। এই দৈনন্দিন ইলিশ ভুনা দুপুর ও রাতের খাবার উভয়ের জন্যই সুস্বাদু।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Do not over-stir the fish after adding it — Ilish is delicate and breaks easily.",
+      "bn": "মাছ দেওয়ার পর বেশি নাড়বেন না — ইলিশ নরম, সহজে ভেঙে যায়।"
+    },
+    {
+      "en": "Proper bhuna (cooking until oil separates) is the key to authentic flavor and color.",
+      "bn": "সঠিক ভুনা (তেল উপরে ভেসে না আসা পর্যন্ত কষানো) আসল স্বাদ ও রঙের চাবিকাঠি।"
+    },
+    {
+      "en": "Mustard oil gives the classic Bangladeshi aroma — heat it until it smokes before cooking.",
+      "bn": "সরিষার তেল ক্লাসিক বাংলাদেশি সুগন্ধ দেয় — রান্নার আগে ধোঁয়া বের হওয়া পর্যন্ত গরম করুন।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Deep Pan or Kadai",
+      "bn": "গভীর প্যান বা কড়াই"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Lid",
+      "bn": "ঢাকনা"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "ilish",
+      "name": {
+        "en": "Ilish",
+        "bn": "ইলিশ"
+      }
+    },
+    {
+      "slug": "bhuna",
+      "name": {
+        "en": "Bhuna",
+        "bn": "ভুনা"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "everyday",
+      "name": {
+        "en": "Everyday",
+        "bn": "দৈনন্দিন"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "dinner",
+      "name": {
+        "en": "Dinner",
+        "bn": "রাতের খাবার"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ilish bhuna",
+      "hilsa bhuna",
+      "bangladeshi fish bhuna",
+      "spicy hilsa",
+      "everyday fish curry",
+      "onion fish curry",
+      "lunch dinner fish"
+    ],
+    "bn": [
+      "ইলিশ ভুনা",
+      "ইলিশ মাছ",
+      "ভুনা",
+      "বাংলাদেশি মাছের রান্না",
+      "দৈনন্দিন",
+      "দুপুরের খাবার",
+      "রাতের খাবার",
+      "মাছের পদ"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 265
+  },
+
+  "featured": false,
+
+  "published": true
+}

@@ -1,0 +1,394 @@
+{
+  "id": "ilish-bhapa",
+  "slug": "ilish-bhapa",
+
+  "title": {
+    "en": "Ilish Bhapa",
+    "bn": "ইলিশ ভাপা"
+  },
+
+  "description": {
+    "en": "A delicate and aromatic traditional Bangladeshi Ilish Bhapa — Hilsa fish steamed in a rich mustard-green chili paste with mustard oil. An elegant dish perfect for guest lunches.",
+    "bn": "সরিষা-কাঁচা মরিচ বাটা ও সরিষার তেলে মেরিনেট করে ভাপিয়ে তৈরি কোমল ও সুগন্ধি ঐতিহ্যবাহী বাংলাদেশি ইলিশ ভাপা। অতিথি আপ্যায়নের দুপুরের খাবারের জন্য মার্জিত পদ।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 20,
+  "cookTime": 25,
+  "totalTime": 45,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 380,
+    "protein": 33,
+    "fat": 25,
+    "carbohydrates": 5,
+    "fiber": 1,
+    "sugar": 1,
+    "sodium": 650
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "ilish-fish",
+          "name": {
+            "en": "Ilish Fish (Hilsa)",
+            "bn": "ইলিশ মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 800,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Cut into medium-thick pieces",
+            "bn": "মাঝারি মোটা টুকরো করে কাটা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Mustard Paste",
+        "bn": "সরিষা বাটা"
+      },
+      "items": [
+        {
+          "slug": "yellow-mustard-seeds",
+          "name": {
+            "en": "Yellow Mustard Seeds",
+            "bn": "হলুদ সরিষা"
+          },
+          "type": "spice",
+          "isMainIngredient": true,
+          "amount": 3,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Soaked for 20–30 minutes",
+            "bn": "২০–৩০ মিনিট ভিজিয়ে রাখা"
+          }
+        },
+        {
+          "slug": "black-mustard-seeds",
+          "name": {
+            "en": "Black Mustard Seeds",
+            "bn": "কালো সরিষা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Soaked",
+            "bn": "ভেজানো"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 8,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        },
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Steaming",
+        "bn": "ভাপানোর জন্য"
+      },
+      "items": [
+        {
+          "slug": "green-chili-extra",
+          "name": {
+            "en": "Extra Green Chili",
+            "bn": "অতিরিক্ত কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Whole or slit, for placing on top",
+            "bn": "গোটা বা চিরা, উপরের জন্য"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Mustard Paste",
+        "bn": "সরিষা বাটা তৈরি করুন"
+      },
+      "description": {
+        "en": "Soak the yellow and black mustard seeds for 20–30 minutes. Grind them with green chilies, turmeric, salt, and a little water into a smooth, thick paste. Mix in the mustard oil.",
+        "bn": "হলুদ ও কালো সরিষা ২০–৩০ মিনিট ভিজিয়ে রাখুন। কাঁচা মরিচ, হলুদ, লবণ ও অল্প পানি দিয়ে মসৃণ ঘন বাটা তৈরি করুন। সরিষার তেল মিশিয়ে নিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Marinate the Fish",
+        "bn": "মাছ মেরিনেট করুন"
+      },
+      "description": {
+        "en": "Clean and cut the Ilish into medium-thick pieces. Coat each piece thoroughly with the mustard paste. Let it marinate for at least 15–20 minutes.",
+        "bn": "ইলিশ মাছ পরিষ্কার করে মাঝারি মোটা টুকরো করুন। প্রতিটি টুকরোতে সরিষা বাটা ভালোভাবে মাখিয়ে কমপক্ষে ১৫–২০ মিনিট মেরিনেট করুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Arrange for Steaming",
+        "bn": "ভাপানোর জন্য সাজান"
+      },
+      "description": {
+        "en": "Place the marinated fish pieces in a heat-proof bowl or steel container. Pour any remaining paste over them and place a few extra green chilies on top.",
+        "bn": "মেরিনেট করা মাছের টুকরোগুলো তাপসহনীয় বাটি বা স্টিলের পাত্রে সাজান। বাকি বাটা উপরে ঢেলে দিন এবং কয়েকটি অতিরিক্ত কাঁচা মরিচ রাখুন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Steam the Fish",
+        "bn": "মাছ ভাপুন"
+      },
+      "description": {
+        "en": "Place the bowl in a steamer or inside a large pot with a little water at the bottom. Cover tightly and steam on medium heat for 20–25 minutes until the fish is cooked and the oil separates from the paste.",
+        "bn": "বাটিটি স্টিমারে বা অল্প পানি দেওয়া বড় হাঁড়ির ভিতরে রাখুন। ভালোভাবে ঢেকে মিডিয়াম আঁচে ২০–২৫ মিনিট ভাপুন যতক্ষণ না মাছ সেদ্ধ হয় এবং বাটা থেকে তেল আলাদা হয়।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Rest and Serve",
+        "bn": "বিশ্রাম দিয়ে পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Turn off the heat and let it rest for 5 minutes. Serve hot directly from the bowl with steamed rice. Ideal for guest meals.",
+        "bn": "আঁচ বন্ধ করে ৫ মিনিট বিশ্রাম দিন। বাটি থেকেই গরম গরম ভাতের সাথে পরিবেশন করুন। অতিথি আপ্যায়নের জন্য আদর্শ।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "The mustard paste should be thick, not watery, so it clings well to the fish.",
+      "bn": "সরিষা বাটা ঘন হওয়া উচিত, পাতলা নয়, যাতে মাছের সাথে ভালোভাবে লেগে থাকে।"
+    },
+    {
+      "en": "Do not open the lid frequently while steaming — keep the steam trapped for best results.",
+      "bn": "ভাপানোর সময় ঘন ঘন ঢাকনা খুলবেন না — বাষ্প আটকে রাখলে সেরা ফল পাওয়া যায়।"
+    },
+    {
+      "en": "A little extra mustard oil on top before steaming enhances the authentic aroma and flavor.",
+      "bn": "ভাপানোর আগে উপরে অল্প অতিরিক্ত সরিষার তেল দিলে আসল সুগন্ধ ও স্বাদ বাড়ে।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Steamer or Large Pot with Lid",
+      "bn": "স্টিমার বা ঢাকনাসহ বড় হাঁড়ি"
+    },
+    {
+      "en": "Heat-proof Bowl",
+      "bn": "তাপসহনীয় বাটি"
+    },
+    {
+      "en": "Grinder or Mixer",
+      "bn": "গ্রাইন্ডার বা মিক্সার"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "ilish",
+      "name": {
+        "en": "Ilish",
+        "bn": "ইলিশ"
+      }
+    },
+    {
+      "slug": "bhapa",
+      "name": {
+        "en": "Bhapa",
+        "bn": "ভাপা"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "guest-entertaining",
+      "name": {
+        "en": "Guest Entertaining",
+        "bn": "অতিথি আপ্যায়ন"
+      }
+    },
+    {
+      "slug": "steamed",
+      "name": {
+        "en": "Steamed",
+        "bn": "ভাপানো"
+      }
+    },
+    {
+      "slug": "mustard",
+      "name": {
+        "en": "Mustard",
+        "bn": "সরিষা"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ilish bhapa",
+      "hilsa bhapa",
+      "steamed hilsa",
+      "mustard hilsa",
+      "bangladeshi steamed fish",
+      "guest fish recipe",
+      "bengali bhapa",
+      "aromatic fish"
+    ],
+    "bn": [
+      "ইলিশ ভাপা",
+      "ইলিশ মাছ",
+      "ভাপা মাছ",
+      "সরিষা বাটা",
+      "বাংলাদেশি ভাপা",
+      "অতিথি আপ্যায়ন",
+      "দুপুরের খাবার",
+      "মাছের পদ"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 227
+  },
+
+  "featured": true,
+
+  "published": true
+}

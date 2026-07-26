@@ -1,0 +1,483 @@
+{
+  "id": "ilish-dopeyaza",
+  "slug": "ilish-dopeyaza",
+
+  "title": {
+    "en": "Ilish Dopeyaza",
+    "bn": "ইলিশ দোপেয়াজা"
+  },
+
+  "description": {
+    "en": "A flavorful traditional Bangladeshi Ilish Dopeyaza cooked with a generous amount of onions, green chilies, and aromatic spices in a semi-dry gravy. Perfect for lunch when entertaining guests.",
+    "bn": "প্রচুর পেঁয়াজ, কাঁচা মরিচ ও সুগন্ধি মসলা দিয়ে তৈরি সুস্বাদু ঐতিহ্যবাহী বাংলাদেশি ইলিশ দোপেয়াজা। অতিথি আপ্যায়নের দুপুরের খাবারের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 15,
+  "cookTime": 35,
+  "totalTime": 50,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 390,
+    "protein": 34,
+    "fat": 24,
+    "carbohydrates": 9,
+    "fiber": 2,
+    "sugar": 4,
+    "sodium": 740
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "ilish-fish",
+          "name": {
+            "en": "Ilish Fish (Hilsa)",
+            "bn": "ইলিশ মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 1,
+          "unit": {
+            "en": "kg",
+            "bn": "কেজি"
+          },
+          "note": {
+            "en": "Cut into medium-thick pieces",
+            "bn": "মাঝারি মোটা টুকরো করে কাটা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Onions & Aromatics",
+        "bn": "পেঁয়াজ ও সুগন্ধি"
+      },
+      "items": [
+        {
+          "slug": "onion",
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Thinly sliced (dopeyaza means plenty of onion)",
+            "bn": "পাতলা করে কাটা (দোপেয়াজা মানে প্রচুর পেঁয়াজ)"
+          }
+        },
+        {
+          "slug": "ginger-paste",
+          "name": {
+            "en": "Ginger Paste",
+            "bn": "আদা বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "garlic-paste",
+          "name": {
+            "en": "Garlic Paste",
+            "bn": "রসুন বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit",
+            "bn": "চিরা করা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Spices",
+        "bn": "মসলা"
+      },
+      "items": [
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "red-chili-powder",
+          "name": {
+            "en": "Red Chili Powder",
+            "bn": "লাল মরিচের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "cumin-powder",
+          "name": {
+            "en": "Cumin Powder",
+            "bn": "জিরা গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "coriander-powder",
+          "name": {
+            "en": "Coriander Powder",
+            "bn": "ধনিয়ার গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "garam-masala",
+          "name": {
+            "en": "Garam Masala",
+            "bn": "গরম মসলা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking & Garnish",
+        "bn": "রান্নার জন্য ও সাজানো"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 5,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "fresh-coriander",
+          "name": {
+            "en": "Fresh Coriander",
+            "bn": "তাজা ধনেপাতা"
+          },
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Fish",
+        "bn": "মাছ প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Clean and cut the Ilish into medium-thick pieces. Rub with turmeric and salt. Keep aside for 10–15 minutes.",
+        "bn": "ইলিশ মাছ পরিষ্কার করে মাঝারি মোটা টুকরো করুন। হলুদ ও লবণ মেখে ১০–১৫ মিনিট রেখে দিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Fry the Fish",
+        "bn": "মাছ ভেজে নিন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a pan until it smokes lightly. Fry the fish pieces carefully on both sides until light golden. Remove and set aside.",
+        "bn": "সরিষার তেল হালকা ধোঁয়া বের হওয়া পর্যন্ত গরম করুন। মাছের টুকরোগুলো সাবধানে দুই পাশে হালকা সোনালি করে ভেজে তুলে রাখুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Cook the Onions",
+        "bn": "পেঁয়াজ কষিয়ে নিন"
+      },
+      "description": {
+        "en": "In the same oil, add the thinly sliced onions. Fry on medium heat until they become soft and turn light golden. This large quantity of onion is the signature of Dopeyaza.",
+        "bn": "একই তেলে পাতলা কাটা পেঁয়াজ দিন। মিডিয়াম আঁচে নরম ও হালকা সোনালি হওয়া পর্যন্ত ভাজুন। প্রচুর পেঁয়াজই দোপেয়াজার বৈশিষ্ট্য।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Add Spices",
+        "bn": "মসলা যোগ করুন"
+      },
+      "description": {
+        "en": "Add ginger-garlic paste and sauté until the raw smell disappears. Then add turmeric, chili powder, cumin powder, coriander powder, and salt. Sprinkle a little water and cook until the oil starts to separate.",
+        "bn": "আদা-রসুন বাটা দিয়ে কাঁচা গন্ধ না যাওয়া পর্যন্ত কষিয়ে নিন। তারপর হলুদ, মরিচ, জিরা, ধনিয়ার গুঁড়া ও লবণ দিন। অল্প পানি ছিটিয়ে তেল উপরে ভেসে না আসা পর্যন্ত কষান।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Add Fish and Finish",
+        "bn": "মাছ দিয়ে শেষ করুন"
+      },
+      "description": {
+        "en": "Gently add the fried fish pieces and green chilies. Mix carefully so the onion-spice mixture coats the fish. Cover and cook on low heat for 8–10 minutes until the gravy thickens slightly and oil floats on top. Finish with garam masala and chopped coriander.",
+        "bn": "ভাজা মাছের টুকরো ও কাঁচা মরিচ আলতো করে দিন। সাবধানে মিশিয়ে পেঁয়াজ-মসলা মাছের সাথে লেগে যায়। ঢাকনা দিয়ে কম আঁচে ৮–১০ মিনিট রান্না করুন যতক্ষণ না ঝোল একটু ঘন হয় ও তেল উপরে ভেসে ওঠে। শেষে গরম মসলা ও ধনেপাতা কুচি দিন।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Serve",
+        "bn": "পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Serve hot with steamed rice. This rich onion-based Dopeyaza is ideal for guest meals.",
+        "bn": "গরম গরম ভাতের সাথে পরিবেশন করুন। এই পেঁয়াজভিত্তিক সমৃদ্ধ দোপেয়াজা অতিথি আপ্যায়নের জন্য আদর্শ।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Use plenty of onions — that is the real meaning of “Dopeyaza”.",
+      "bn": "প্রচুর পেঁয়াজ ব্যবহার করুন — এটাই “দোপেয়াজা”-র আসল অর্থ।"
+    },
+    {
+      "en": "Do not over-stir the fish after adding it; Ilish is delicate and breaks easily.",
+      "bn": "মাছ দেওয়ার পর বেশি নাড়বেন না; ইলিশ নরম, সহজে ভেঙে যায়।"
+    },
+    {
+      "en": "A semi-dry consistency with oil floating on top is the hallmark of a good Dopeyaza.",
+      "bn": "অর্ধ-শুকনো গঠন ও উপরে তেল ভাসমান থাকাই ভালো দোপেয়াজার বৈশিষ্ট্য।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Deep Pan or Kadai",
+      "bn": "গভীর প্যান বা কড়াই"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Lid",
+      "bn": "ঢাকনা"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "ilish",
+      "name": {
+        "en": "Ilish",
+        "bn": "ইলিশ"
+      }
+    },
+    {
+      "slug": "dopeyaza",
+      "name": {
+        "en": "Dopeyaza",
+        "bn": "দোপেয়াজা"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "guest-entertaining",
+      "name": {
+        "en": "Guest Entertaining",
+        "bn": "অতিথি আপ্যায়ন"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "onion-based",
+      "name": {
+        "en": "Onion Based",
+        "bn": "পেঁয়াজভিত্তিক"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ilish dopeyaza",
+      "hilsa dopeyaza",
+      "bangladeshi dopeyaza",
+      "onion fish curry",
+      "guest fish recipe",
+      "special lunch",
+      "bengali dopeyaza",
+      "semi dry fish curry"
+    ],
+    "bn": [
+      "ইলিশ দোপেয়াজা",
+      "ইলিশ মাছ",
+      "দোপেয়াজা",
+      "বাংলাদেশি মাছের রান্না",
+      "অতিথি আপ্যায়ন",
+      "দুপুরের খাবার",
+      "মাছের পদ",
+      "পেঁয়াজ দিয়ে মাছ"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 176
+  },
+
+  "featured": true,
+
+  "published": true
+}

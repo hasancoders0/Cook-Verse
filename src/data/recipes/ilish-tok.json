@@ -1,0 +1,461 @@
+{
+  "id": "ilish-tok",
+  "slug": "ilish-tok",
+
+  "title": {
+    "en": "Ilish Tok",
+    "bn": "ইলিশ টক"
+  },
+
+  "description": {
+    "en": "A light, tangy, and refreshing traditional Bangladeshi Ilish Tok made with Hilsa fish, tamarind or raw mango, green chilies, and mustard oil. A perfect summer lunch dish.",
+    "bn": "তেঁতুল বা কাঁচা আম, কাঁচা মরিচ ও সরিষার তেল দিয়ে তৈরি হালকা, টক ও সতেজ ঐতিহ্যবাহী বাংলাদেশি ইলিশ টক। গ্রীষ্মকালের দুপুরের খাবারের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Easy",
+    "bn": "সহজ"
+  },
+
+  "prepTime": 15,
+  "cookTime": 25,
+  "totalTime": 40,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 340,
+    "protein": 33,
+    "fat": 18,
+    "carbohydrates": 12,
+    "fiber": 2,
+    "sugar": 6,
+    "sodium": 620
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "ilish-fish",
+          "name": {
+            "en": "Ilish Fish (Hilsa)",
+            "bn": "ইলিশ মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 800,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Cut into medium pieces",
+            "bn": "মাঝারি টুকরো করে কাটা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Tangy Base",
+        "bn": "টক বেস"
+      },
+      "items": [
+        {
+          "slug": "tamarind",
+          "name": {
+            "en": "Tamarind",
+            "bn": "তেঁতুল"
+          },
+          "type": "acid",
+          "isMainIngredient": true,
+          "amount": 3,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Soaked pulp, or raw mango paste",
+            "bn": "ভেজানো মজ্জা, অথবা কাঁচা আমের বাটা"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit",
+            "bn": "চিরা করা"
+          }
+        },
+        {
+          "slug": "onion",
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "pc",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Sliced (optional)",
+            "bn": "পাতলা করে কাটা (ঐচ্ছিক)"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Spices",
+        "bn": "মসলা"
+      },
+      "items": [
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "mustard-seeds",
+          "name": {
+            "en": "Mustard Seeds",
+            "bn": "সরিষা দানা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "nigella-seeds",
+          "name": {
+            "en": "Nigella Seeds (Kalonji)",
+            "bn": "কালোজিরা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        },
+        {
+          "slug": "sugar",
+          "name": {
+            "en": "Sugar",
+            "bn": "চিনি"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "To balance the sourness",
+            "bn": "টক স্বাদ ব্যালেন্স করতে"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking",
+        "bn": "রান্নার জন্য"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "water",
+          "name": {
+            "en": "Water",
+            "bn": "পানি"
+          },
+          "type": "liquid",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "cups",
+            "bn": "কাপ"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Fish",
+        "bn": "মাছ প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Clean and cut the Ilish into medium pieces. Rub with a little turmeric and salt. Keep aside for 10 minutes.",
+        "bn": "ইলিশ মাছ পরিষ্কার করে মাঝারি টুকরো করুন। অল্প হলুদ ও লবণ মেখে ১০ মিনিট রেখে দিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Prepare the Tamarind",
+        "bn": "তেঁতুল প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Soak the tamarind in warm water for 10–15 minutes, then extract the thick pulp. Strain and keep aside. (If using raw mango, make a paste.)",
+        "bn": "তেঁতুল গরম পানিতে ১০–১৫ মিনিট ভিজিয়ে মোটা মজ্জা বের করে ছেঁকে নিন। (কাঁচা আম ব্যবহার করলে বাটা করে নিন।)"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Fry the Fish Lightly",
+        "bn": "মাছ হালকা ভেজে নিন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a pan until it smokes lightly. Lightly fry the fish pieces on both sides for 1–2 minutes. Remove and set aside.",
+        "bn": "সরিষার তেল হালকা ধোঁয়া বের হওয়া পর্যন্ত গরম করুন। মাছের টুকরোগুলো দুই পাশে ১–২ মিনিট হালকা ভেজে তুলে রাখুন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Temper the Oil",
+        "bn": "তেলে ফোড়ন দিন"
+      },
+      "description": {
+        "en": "In the same oil, add mustard seeds and nigella seeds. When they splutter, add sliced onion (if using) and green chilies. Sauté briefly.",
+        "bn": "একই তেলে সরিষা দানা ও কালোজিরা দিন। ফোড়ন উঠলে পেঁয়াজ কুচি (দিলে) ও কাঁচা মরিচ দিয়ে হালকা কষিয়ে নিন।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Make the Tok Gravy",
+        "bn": "টক ঝোল তৈরি করুন"
+      },
+      "description": {
+        "en": "Add turmeric powder, the tamarind pulp, salt, sugar, and water. Bring to a boil and let it simmer for 3–4 minutes until the gravy becomes light and tangy.",
+        "bn": "হলুদের গুঁড়া, তেঁতুলের মজ্জা, লবণ, চিনি ও পানি দিন। ফুটিয়ে ৩–৪ মিনিট সিদ্ধ করুন যতক্ষণ না ঝোল হালকা ও টক হয়।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Add Fish and Finish",
+        "bn": "মাছ দিয়ে শেষ করুন"
+      },
+      "description": {
+        "en": "Gently place the fried fish pieces into the gravy. Cover and cook on low heat for 6–8 minutes. Do not stir too much. Serve hot with steamed rice.",
+        "bn": "ভাজা মাছের টুকরোগুলো আলতো করে ঝোলে দিন। ঢাকনা দিয়ে কম আঁচে ৬–৮ মিনিট রান্না করুন। বেশি নাড়বেন না। গরম গরম ভাতের সাথে পরিবেশন করুন।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "The gravy should remain thin and light — this is the charm of a good Tok.",
+      "bn": "ঝোল হালকা ও পাতলা রাখুন — এটাই ভালো টকের সৌন্দর্য।"
+    },
+    {
+      "en": "Adjust the sugar according to the sourness of the tamarind or raw mango.",
+      "bn": "তেঁতুল বা কাঁচা আমের টক অনুযায়ী চিনির পরিমাণ ঠিক করুন।"
+    },
+    {
+      "en": "Ilish Tok is especially popular in summer because the tangy gravy feels cooling and light.",
+      "bn": "ইলিশ টক গ্রীষ্মকালে বিশেষ জনপ্রিয় কারণ টক ঝোল হালকা ও শীতল অনুভূতি দেয়।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Deep Pan or Kadai",
+      "bn": "গভীর প্যান বা কড়াই"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Lid",
+      "bn": "ঢাকনা"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "ilish",
+      "name": {
+        "en": "Ilish",
+        "bn": "ইলিশ"
+      }
+    },
+    {
+      "slug": "tok",
+      "name": {
+        "en": "Tok",
+        "bn": "টক"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "summer",
+      "name": {
+        "en": "Summer",
+        "bn": "গ্রীষ্মকাল"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "tangy",
+      "name": {
+        "en": "Tangy",
+        "bn": "টক"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ilish tok",
+      "hilsa tok",
+      "tangy hilsa",
+      "bangladeshi fish curry",
+      "summer fish recipe",
+      "tamarind fish",
+      "light fish curry",
+      "lunch",
+      "refreshing fish"
+    ],
+    "bn": [
+      "ইলিশ টক",
+      "ইলিশ মাছ",
+      "টক মাছ",
+      "বাংলাদেশি মাছের রান্না",
+      "গ্রীষ্মকাল",
+      "তেঁতুল দিয়ে মাছ",
+      "হালকা মাছের তরকারি",
+      "দুপুরের খাবার",
+      "মাছের পদ"
+    ]
+  },
+
+  "rating": {
+    "average": 4.7,
+    "count": 198
+  },
+
+  "featured": false,
+
+  "published": true
+}

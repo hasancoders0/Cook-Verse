@@ -1,0 +1,438 @@
+{
+  "id": "cod-fish-and-chips",
+  "slug": "cod-fish-and-chips",
+
+  "title": {
+    "en": "Cod Fish and Chips",
+    "bn": "কড ফিশ অ্যান্ড চিপস"
+  },
+
+  "description": {
+    "en": "A classic British Cod Fish and Chips featuring crispy beer-battered cod fillets served with golden thick-cut chips. Perfect for lunch, afternoon, or anytime craving.",
+    "bn": "ক্রিস্পি বিয়ার ব্যাটার করা কড ফিলেট ও সোনালি মোটা কাটা চিপস দিয়ে তৈরি ক্লাসিক ব্রিটিশ কড ফিশ অ্যান্ড চিপস। দুপুর, বিকেল বা যেকোনো সময়ের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1544982503-9f984c14501a?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "british",
+    "name": {
+      "en": "British",
+      "bn": "ব্রিটিশ"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 25,
+  "cookTime": 30,
+  "totalTime": 55,
+
+  "servings": 2,
+
+  "nutrition": {
+    "calories": 850,
+    "protein": 42,
+    "fat": 45,
+    "carbohydrates": 75,
+    "fiber": 6,
+    "sugar": 3,
+    "sodium": 980
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "cod-fillet",
+          "name": {
+            "en": "Cod Fillet",
+            "bn": "কড ফিলেট"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 400,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Skinless, boneless, thick pieces",
+            "bn": "চামড়া ও হাড়বিহীন, মোটা টুকরো"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Batter",
+        "bn": "ব্যাটার"
+      },
+      "items": [
+        {
+          "slug": "all-purpose-flour",
+          "name": {
+            "en": "All-Purpose Flour",
+            "bn": "ময়দা"
+          },
+          "type": "grain",
+          "isMainIngredient": true,
+          "amount": 150,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          }
+        },
+        {
+          "slug": "cornflour",
+          "name": {
+            "en": "Cornflour",
+            "bn": "কর্নফ্লোর"
+          },
+          "type": "grain",
+          "isMainIngredient": false,
+          "amount": 50,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          }
+        },
+        {
+          "slug": "baking-powder",
+          "name": {
+            "en": "Baking Powder",
+            "bn": "বেকিং পাউডার"
+          },
+          "type": "leavening",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "cold-beer",
+          "name": {
+            "en": "Cold Beer",
+            "bn": "ঠান্ডা বিয়ার"
+          },
+          "type": "liquid",
+          "isMainIngredient": false,
+          "amount": 250,
+          "unit": {
+            "en": "ml",
+            "bn": "মিলি"
+          },
+          "note": {
+            "en": "Lager or ale, very cold",
+            "bn": "ল্যাগার বা এল, খুব ঠান্ডা"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Chips",
+        "bn": "চিপস"
+      },
+      "items": [
+        {
+          "slug": "potato",
+          "name": {
+            "en": "Potato",
+            "bn": "আলু"
+          },
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 600,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Maris Piper or similar, cut into thick chips",
+            "bn": "ম্যারিস পাইপার বা অনুরূপ, মোটা চিপস কাটা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Frying & Serving",
+        "bn": "ভাজা ও পরিবেশনের জন্য"
+      },
+      "items": [
+        {
+          "slug": "vegetable-oil",
+          "name": {
+            "en": "Vegetable Oil",
+            "bn": "সবজি তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "liter",
+            "bn": "লিটার"
+          },
+          "note": {
+            "en": "For deep frying",
+            "bn": "ডিপ ফ্রাইয়ের জন্য"
+          }
+        },
+        {
+          "slug": "malt-vinegar",
+          "name": {
+            "en": "Malt Vinegar",
+            "bn": "মল্ট ভিনেগার"
+          },
+          "type": "condiment",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "For seasoning chips and fish",
+            "bn": "চিপস ও মাছ সিজন করার জন্য"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Chips",
+        "bn": "চিপস প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Peel the potatoes and cut into thick chips (about 1.5 cm). Rinse in cold water to remove excess starch, then pat completely dry.",
+        "bn": "আলু ছাড়িয়ে মোটা চিপস (প্রায় ১.৫ সেমি) কেটে নিন। অতিরিক্ত স্টার্চ সরাতে ঠান্ডা পানিতে ধুয়ে সম্পূর্ণ শুকিয়ে নিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "First Fry the Chips",
+        "bn": "চিপস প্রথমবার ভাজুন"
+      },
+      "description": {
+        "en": "Heat oil to 150°C (300°F). Fry the chips in batches for 5–6 minutes until soft but not colored. Remove and drain on paper towels.",
+        "bn": "তেল ১৫০°C (৩০০°F) গরম করুন। চিপস ব্যাচ করে ৫–৬ মিনিট ভাজুন যতক্ষণ না নরম হয় কিন্তু রং না ধরে। তুলে কাগজের টাওয়েলে ঝরিয়ে রাখুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Make the Batter",
+        "bn": "ব্যাটার তৈরি করুন"
+      },
+      "description": {
+        "en": "In a large bowl, whisk together flour, cornflour, baking powder, and salt. Gradually whisk in the ice-cold beer until you get a smooth, thick batter (like double cream). Keep cold.",
+        "bn": "বড় বাটিতে ময়দা, কর্নফ্লোর, বেকিং পাউডার ও লবণ মিশিয়ে ফেটিয়ে নিন। ধীরে ধীরে বরফ ঠান্ডা বিয়ার দিয়ে মসৃণ ঘন ব্যাটার (ডাবল ক্রিমের মতো) তৈরি করুন। ঠান্ডা রাখুন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Prepare the Fish",
+        "bn": "মাছ প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Pat the cod fillets completely dry. Season lightly with salt. Dust with a little flour so the batter sticks better.",
+        "bn": "কড ফিলেট সম্পূর্ণ শুকিয়ে নিন। হালকা লবণ ছিটিয়ে দিন। ব্যাটার ভালোভাবে লাগার জন্য অল্প ময়দা মাখিয়ে নিন।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Fry the Fish",
+        "bn": "মাছ ভাজুন"
+      },
+      "description": {
+        "en": "Increase oil temperature to 180°C (350°F). Dip each fish piece into the cold batter, let excess drip off, and carefully lower into the hot oil. Fry for 5–7 minutes until golden and crispy. Drain on a wire rack.",
+        "bn": "তেলের তাপমাত্রা ১৮০°C (৩৫০°F) বাড়ান। প্রতিটি মাছের টুকরো ঠান্ডা ব্যাটারে ডুবিয়ে অতিরিক্ত ব্যাটার ঝরিয়ে গরম তেলে সাবধানে নামান। ৫–৭ মিনিট সোনালি ও ক্রিস্পি হওয়া পর্যন্ত ভাজুন। তারের র্যাকে ঝরিয়ে রাখুন।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Second Fry the Chips & Serve",
+        "bn": "চিপস দ্বিতীয়বার ভাজুন ও পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Raise oil to 190°C (375°F). Fry the chips again for 2–3 minutes until golden and crisp. Season with salt. Serve the fish and chips immediately with malt vinegar.",
+        "bn": "তেল ১৯০°C (৩৭৫°F) গরম করুন। চিপস আবার ২–৩ মিনিট সোনালি ও ক্রিস্পি হওয়া পর্যন্ত ভাজুন। লবণ ছিটিয়ে দিন। মাছ ও চিপস সাথে সাথে মল্ট ভিনেগার দিয়ে পরিবেশন করুন।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Keep the batter ice-cold and the oil hot — this creates the lightest, crispiest coating.",
+      "bn": "ব্যাটার বরফ ঠান্ডা এবং তেল গরম রাখুন — এতে সবচেয়ে হালকা ও ক্রিস্পি কোট হয়।"
+    },
+    {
+      "en": "Double-frying the chips is essential for the perfect British-style texture.",
+      "bn": "চিপস দুইবার ভাজা আসল ব্রিটিশ স্টাইলের টেক্সচারের জন্য জরুরি।"
+    },
+    {
+      "en": "Serve immediately — fish and chips are best eaten fresh and hot.",
+      "bn": "সাথে সাথে পরিবেশন করুন — ফিশ অ্যান্ড চিপস তাজা ও গরম অবস্থায় সবচেয়ে ভালো।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Deep Fryer or Large Deep Pan",
+      "bn": "ডিপ ফ্রায়ার বা বড় গভীর প্যান"
+    },
+    {
+      "en": "Wire Rack",
+      "bn": "তারের র্যাক"
+    },
+    {
+      "en": "Thermometer",
+      "bn": "থার্মোমিটার"
+    },
+    {
+      "en": "Mixing Bowl",
+      "bn": "মিক্সিং বোল"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "cod",
+      "name": {
+        "en": "Cod",
+        "bn": "কড"
+      }
+    },
+    {
+      "slug": "fish-and-chips",
+      "name": {
+        "en": "Fish and Chips",
+        "bn": "ফিশ অ্যান্ড চিপস"
+      }
+    },
+    {
+      "slug": "british",
+      "name": {
+        "en": "British",
+        "bn": "ব্রিটিশ"
+      }
+    },
+    {
+      "slug": "fried",
+      "name": {
+        "en": "Fried",
+        "bn": "ভাজা"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "anytime",
+      "name": {
+        "en": "Anytime",
+        "bn": "যেকোনো সময়"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "cod fish and chips",
+      "fish and chips",
+      "british fish and chips",
+      "beer battered cod",
+      "classic fish and chips",
+      "chips",
+      "fried cod",
+      "lunch"
+    ],
+    "bn": [
+      "কড ফিশ অ্যান্ড চিপস",
+      "ফিশ অ্যান্ড চিপস",
+      "কড মাছ",
+      "ব্রিটিশ ফিশ",
+      "বিয়ার ব্যাটার",
+      "চিপস",
+      "দুপুরের খাবার",
+      "মাছের পদ"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 412
+  },
+
+  "featured": true,
+
+  "published": true
+}

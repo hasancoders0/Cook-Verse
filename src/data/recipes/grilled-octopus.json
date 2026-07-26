@@ -1,0 +1,436 @@
+{
+  "id": "grilled-octopus",
+  "slug": "grilled-octopus",
+
+  "title": {
+    "en": "Grilled Octopus",
+    "bn": "অক্টোপাস গ্রিল"
+  },
+
+  "description": {
+    "en": "Tender Mediterranean-style grilled octopus with a smoky char, dressed in olive oil, lemon, garlic, and oregano. Perfect as a main course for dinner or special occasions.",
+    "bn": "ধোঁয়াটে চার সহ নরম ভূমধ্যসাগরীয় স্টাইলের গ্রিল করা অক্টোপাস, অলিভ অয়েল, লেবু, রসুন ও ওরেগানো দিয়ে সাজানো। রাতের খাবার বা বিশেষ অনুষ্ঠানের প্রধান পদ হিসেবে উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1620401494094-686b27a7fdde?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "mediterranean",
+    "name": {
+      "en": "Mediterranean",
+      "bn": "ভূমধ্যসাগরীয়"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 20,
+  "cookTime": 60,
+  "totalTime": 80,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 320,
+    "protein": 38,
+    "fat": 16,
+    "carbohydrates": 4,
+    "fiber": 1,
+    "sugar": 1,
+    "sodium": 680
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Octopus",
+        "bn": "অক্টোপাস"
+      },
+      "items": [
+        {
+          "slug": "octopus",
+          "name": {
+            "en": "Octopus",
+            "bn": "অক্টোপাস"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 1,
+          "unit": {
+            "en": "kg",
+            "bn": "কেজি"
+          },
+          "note": {
+            "en": "Fresh or thawed, cleaned",
+            "bn": "তাজা বা গলানো, পরিষ্কার করা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Boiling",
+        "bn": "সিদ্ধ করার জন্য"
+      },
+      "items": [
+        {
+          "slug": "bay-leaf",
+          "name": {
+            "en": "Bay Leaf",
+            "bn": "তেজপাতা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "lemon",
+          "name": {
+            "en": "Lemon",
+            "bn": "লেবু"
+          },
+          "type": "fruit",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "pc",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Sliced",
+            "bn": "স্লাইস করা"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Marinade & Dressing",
+        "bn": "মেরিনেড ও ড্রেসিং"
+      },
+      "items": [
+        {
+          "slug": "olive-oil",
+          "name": {
+            "en": "Olive Oil",
+            "bn": "অলিভ অয়েল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "lemon-juice",
+          "name": {
+            "en": "Lemon Juice",
+            "bn": "লেবুর রস"
+          },
+          "type": "acid",
+          "isMainIngredient": false,
+          "amount": 3,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "garlic",
+          "name": {
+            "en": "Garlic",
+            "bn": "রসুন"
+          },
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "cloves",
+            "bn": "কোয়া"
+          },
+          "note": {
+            "en": "Minced",
+            "bn": "কুচি করা"
+          }
+        },
+        {
+          "slug": "dried-oregano",
+          "name": {
+            "en": "Dried Oregano",
+            "bn": "শুকনো ওরেগানো"
+          },
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "black-pepper",
+          "name": {
+            "en": "Black Pepper",
+            "bn": "গোলমরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "fresh-parsley",
+          "name": {
+            "en": "Fresh Parsley",
+            "bn": "তাজা পার্সলে"
+          },
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Octopus",
+        "bn": "অক্টোপাস প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "If frozen, thaw the octopus completely in the refrigerator. Rinse thoroughly under cold water and remove the beak if still present.",
+        "bn": "জমে থাকলে ফ্রিজে গলিয়ে নিন। ঠান্ডা পানিতে ভালোভাবে ধুয়ে নিন এবং ঠোঁট থাকলে সরিয়ে ফেলুন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Boil Until Tender",
+        "bn": "নরম হওয়া পর্যন্ত সিদ্ধ করুন"
+      },
+      "description": {
+        "en": "Place the octopus in a large pot with enough water to cover. Add bay leaves, lemon slices, and salt. Bring to a boil, then reduce to a gentle simmer. Cook for 45–60 minutes until a knife inserts easily into the thickest part.",
+        "bn": "অক্টোপাস বড় হাঁড়িতে পানিতে ডুবিয়ে রাখুন। তেজপাতা, লেবুর স্লাইস ও লবণ দিন। ফুটিয়ে নামিয়ে কম আঁচে ৪৫–৬০ মিনিট সিদ্ধ করুন যতক্ষণ না ছুরি সহজে ঢোকে।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Cool and Cut",
+        "bn": "ঠান্ডা করে কাটুন"
+      },
+      "description": {
+        "en": "Remove the octopus from the water and let it cool slightly. Separate the tentacles and pat dry with paper towels.",
+        "bn": "পানি থেকে তুলে হালকা ঠান্ডা হতে দিন। টেন্টাকল আলাদা করে কাগজের টাওয়েল দিয়ে শুকিয়ে নিন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Marinate",
+        "bn": "মেরিনেট করুন"
+      },
+      "description": {
+        "en": "In a bowl, mix olive oil, lemon juice, minced garlic, oregano, black pepper, and half of the parsley. Toss the tentacles in the marinade and let sit for 10–15 minutes.",
+        "bn": "বাটিতে অলিভ অয়েল, লেবুর রস, কুচি রসুন, ওরেগানো, গোলমরিচ ও অর্ধেক পার্সলে মিশিয়ে নিন। টেন্টাকলগুলো মেরিনেডে মাখিয়ে ১০–১৫ মিনিট রাখুন।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Grill",
+        "bn": "গ্রিল করুন"
+      },
+      "description": {
+        "en": "Preheat a grill or grill pan to medium-high heat. Grill the tentacles for 3–4 minutes per side until lightly charred and heated through.",
+        "bn": "গ্রিল বা গ্রিল প্যান মিডিয়াম-হাই হিটে গরম করুন। টেন্টাকলগুলো প্রতি পাশে ৩–৪ মিনিট করে গ্রিল করুন যতক্ষণ না হালকা চার হয়।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Serve",
+        "bn": "পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Transfer to a serving plate. Drizzle with remaining marinade or extra olive oil and lemon juice. Sprinkle with the rest of the parsley and serve with lemon wedges.",
+        "bn": "পরিবেশন প্লেটে তুলুন। বাকি মেরিনেড বা অতিরিক্ত অলিভ অয়েল ও লেবুর রস ছিটিয়ে দিন। বাকি পার্সলে ছিটিয়ে লেবুর টুকরো দিয়ে পরিবেশন করুন।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Do not overcook on the grill — the octopus is already tender from boiling; you only want a light char.",
+      "bn": "গ্রিলে অতিরিক্ত রান্না করবেন না — সিদ্ধ করার সময়ই নরম হয়ে যায়, শুধু হালকা চার লাগাতে হবে।"
+    },
+    {
+      "en": "For extra tenderness, you can freeze the octopus overnight before cooking (the ice crystals help break down the fibers).",
+      "bn": "অতিরিক্ত নরম করতে চাইলে রান্নার আগে এক রাত ফ্রিজে রাখতে পারেন (বরফের স্ফটিক মাংস নরম করে)।"
+    },
+    {
+      "en": "Serve with grilled vegetables, roasted potatoes, or a simple Greek salad for a complete Mediterranean meal.",
+      "bn": "সম্পূর্ণ ভূমধ্যসাগরীয় খাবারের জন্য গ্রিল করা সবজি, রোস্ট পটেটো বা সাধারণ গ্রীক সালাদের সাথে পরিবেশন করুন।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Large Pot",
+      "bn": "বড় হাঁড়ি"
+    },
+    {
+      "en": "Grill Pan or Outdoor Grill",
+      "bn": "গ্রিল প্যান বা আউটডোর গ্রিল"
+    },
+    {
+      "en": "Tongs",
+      "bn": "চিমটা"
+    },
+    {
+      "en": "Mixing Bowl",
+      "bn": "মিক্সিং বোল"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "octopus",
+      "name": {
+        "en": "Octopus",
+        "bn": "অক্টোপাস"
+      }
+    },
+    {
+      "slug": "seafood",
+      "name": {
+        "en": "Seafood",
+        "bn": "সীফুড"
+      }
+    },
+    {
+      "slug": "mediterranean",
+      "name": {
+        "en": "Mediterranean",
+        "bn": "ভূমধ্যসাগরীয়"
+      }
+    },
+    {
+      "slug": "grilled",
+      "name": {
+        "en": "Grilled",
+        "bn": "গ্রিল করা"
+      }
+    },
+    {
+      "slug": "dinner",
+      "name": {
+        "en": "Dinner",
+        "bn": "রাতের খাবার"
+      }
+    },
+    {
+      "slug": "special-occasion",
+      "name": {
+        "en": "Special Occasion",
+        "bn": "বিশেষ অনুষ্ঠান"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "grilled octopus",
+      "octopus grill",
+      "mediterranean octopus",
+      "greek octopus",
+      "seafood main",
+      "charred octopus",
+      "octopus recipe",
+      "high protein seafood",
+      "dinner",
+      "special occasion"
+    ],
+    "bn": [
+      "অক্টোপাস গ্রিল",
+      "গ্রিল অক্টোপাস",
+      "ভূমধ্যসাগরীয় অক্টোপাস",
+      "গ্রীক অক্টোপাস",
+      "সীফুড প্রধান",
+      "মাছের পদ",
+      "রাতের খাবার",
+      "বিশেষ অনুষ্ঠান",
+      "উচ্চ প্রোটিন"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 97
+  },
+
+  "featured": true,
+
+  "published": true
+}

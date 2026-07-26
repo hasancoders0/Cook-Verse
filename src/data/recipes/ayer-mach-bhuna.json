@@ -1,0 +1,476 @@
+{
+  "id": "ayer-mach-bhuna",
+  "slug": "ayer-mach-bhuna",
+
+  "title": {
+    "en": "Ayer Fish Bhuna",
+    "bn": "আইড় মাছ ভুনা"
+  },
+
+  "description": {
+    "en": "A rich and spicy traditional Bangladeshi Ayer (Wallago attu) fish bhuna cooked with onions, garlic, ginger, and aromatic spices until the oil separates. Perfect for lunch or entertaining guests.",
+    "bn": "পেঁয়াজ, রসুন, আদা ও সুগন্ধি মসলা দিয়ে কষিয়ে তৈরি ঐতিহ্যবাহী বাংলাদেশি আইড় মাছ ভুনা। দুপুরের খাবার বা অতিথি আপ্যায়নের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1611599537845-1c7aca0091c0?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 15,
+  "cookTime": 35,
+  "totalTime": 50,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 380,
+    "protein": 36,
+    "fat": 22,
+    "carbohydrates": 8,
+    "fiber": 2,
+    "sugar": 3,
+    "sodium": 720
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "ayer-fish",
+          "name": {
+            "en": "Ayer Fish",
+            "bn": "আইড় মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 1,
+          "unit": {
+            "en": "kg",
+            "bn": "কেজি"
+          },
+          "note": {
+            "en": "Cut into medium pieces, cleaned",
+            "bn": "মাঝারি টুকরো করে কাটা, পরিষ্কার করা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Spice Paste & Aromatics",
+        "bn": "মসলা ও সুগন্ধি"
+      },
+      "items": [
+        {
+          "slug": "onion",
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Finely sliced or chopped",
+            "bn": "পাতলা করে কাটা বা কুচি"
+          }
+        },
+        {
+          "slug": "ginger-paste",
+          "name": {
+            "en": "Ginger Paste",
+            "bn": "আদা বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "garlic-paste",
+          "name": {
+            "en": "Garlic Paste",
+            "bn": "রসুন বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 5,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit or whole",
+            "bn": "চিরা বা গোটা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Dry Spices",
+        "bn": "শুকনো মসলা"
+      },
+      "items": [
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "red-chili-powder",
+          "name": {
+            "en": "Red Chili Powder",
+            "bn": "লাল মরিচের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "cumin-powder",
+          "name": {
+            "en": "Cumin Powder",
+            "bn": "জিরা গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "coriander-powder",
+          "name": {
+            "en": "Coriander Powder",
+            "bn": "ধনিয়ার গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking & Garnish",
+        "bn": "রান্নার জন্য ও সাজানো"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Or vegetable oil",
+            "bn": "অথবা সয়াবিন তেল"
+          }
+        },
+        {
+          "slug": "fresh-coriander",
+          "name": {
+            "en": "Fresh Coriander",
+            "bn": "তাজা ধনেপাতা"
+          },
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 0.25,
+          "unit": {
+            "en": "cup",
+            "bn": "কাপ"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Marinate the Fish",
+        "bn": "মাছ মেরিনেট করুন"
+      },
+      "description": {
+        "en": "Rub the fish pieces with a little turmeric, salt, and a pinch of chili powder. Set aside for 10–15 minutes.",
+        "bn": "মাছের টুকরোগুলোতে অল্প হলুদ, লবণ ও এক চিমটি মরিচের গুঁড়া মেখে ১০–১৫ মিনিট রেখে দিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Fry the Fish",
+        "bn": "মাছ ভেজে নিন"
+      },
+      "description": {
+        "en": "Heat oil in a pan. Lightly fry the fish pieces until golden on both sides. Remove and keep aside.",
+        "bn": "প্যানে তেল গরম করে মাছের টুকরোগুলো দুই পাশে সোনালি করে হালকা ভেজে তুলে রাখুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Prepare the Bhuna Base",
+        "bn": "ভুনার বেস তৈরি করুন"
+      },
+      "description": {
+        "en": "In the same oil, add the sliced onions and fry until golden brown. Add ginger-garlic paste and sauté until the raw smell disappears.",
+        "bn": "একই তেলে পেঁয়াজ কুচি দিয়ে সোনালি করে ভাজুন। আদা-রসুন বাটা দিয়ে কাঁচা গন্ধ না যাওয়া পর্যন্ত কষিয়ে নিন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Add Spices",
+        "bn": "মসলা যোগ করুন"
+      },
+      "description": {
+        "en": "Add turmeric, chili powder, cumin powder, coriander powder, and salt. Sprinkle a little water and cook the spices on medium heat until the oil separates (bhuna stage).",
+        "bn": "হলুদ, মরিচ, জিরা, ধনিয়ার গুঁড়া ও লবণ দিন। অল্প পানি ছিটিয়ে মিডিয়াম আঁচে তেল উপরে ভেসে না আসা পর্যন্ত কষিয়ে নিন (ভুনা স্টেজ)।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Cook the Fish",
+        "bn": "মাছ রান্না করুন"
+      },
+      "description": {
+        "en": "Add the fried fish pieces and green chilies. Gently mix so the spices coat the fish. Cover and cook on low heat for 8–10 minutes, adding a splash of water only if needed.",
+        "bn": "ভাজা মাছ ও কাঁচা মরিচ দিন। আলতো করে মিশিয়ে মসলা মাছের সাথে লেগে যায়। ঢাকনা দিয়ে কম আঁচে ৮–১০ মিনিট রান্না করুন, প্রয়োজনে অল্প পানি দিন।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Finish & Serve",
+        "bn": "শেষ করুন ও পরিবেশন করুন"
+      },
+      "description": {
+        "en": "When the gravy is thick and oil floats on top, sprinkle chopped coriander leaves. Serve hot with steamed rice or plain roti.",
+        "bn": "ঝোল ঘন হয়ে তেল উপরে ভেসে এলে ধনেপাতা কুচি ছিটিয়ে দিন। গরম গরম ভাত বা রুটির সাথে পরিবেশন করুন।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Do not over-stir the fish after adding it — Ayer fish is delicate and can break easily.",
+      "bn": "মাছ দেওয়ার পর বেশি নেড়েচড়ে দেবেন না — আইড় মাছ নরম, সহজে ভেঙে যায়।"
+    },
+    {
+      "en": "Mustard oil gives the authentic Bangladeshi flavor; heat it until it smokes lightly before cooking.",
+      "bn": "সরিষার তেল আসল বাংলাদেশি স্বাদ দেয়; রান্নার আগে হালকা ধোঁয়া বের হওয়া পর্যন্ত গরম করুন।"
+    },
+    {
+      "en": "For a drier bhuna, cook uncovered in the last few minutes so excess moisture evaporates.",
+      "bn": "আরও শুকনো ভুনা চাইলে শেষ কয়েক মিনিট ঢাকনা খুলে রাখুন যাতে অতিরিক্ত পানি শুকিয়ে যায়।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Deep Frying Pan or Kadai",
+      "bn": "গভীর ফ্রাইং প্যান বা কড়াই"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Mixing Bowl",
+      "bn": "মিক্সিং বোল"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "fish",
+      "name": {
+        "en": "Fish",
+        "bn": "মাছ"
+      }
+    },
+    {
+      "slug": "bhuna",
+      "name": {
+        "en": "Bhuna",
+        "bn": "ভুনা"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "guest-entertaining",
+      "name": {
+        "en": "Guest Entertaining",
+        "bn": "অতিথি আপ্যায়ন"
+      }
+    },
+    {
+      "slug": "spicy",
+      "name": {
+        "en": "Spicy",
+        "bn": "ঝাল"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ayer fish bhuna",
+      "ayer mach bhuna",
+      "wallago attu recipe",
+      "bangladeshi fish curry",
+      "fish bhuna",
+      "spicy fish",
+      "bengali fish",
+      "main course fish",
+      "lunch",
+      "guest recipe"
+    ],
+    "bn": [
+      "আইড় মাছ ভুনা",
+      "আইড় মাছ",
+      "মাছ ভুনা",
+      "বাংলাদেশি মাছের রান্না",
+      "মাছের পদ",
+      "প্রধান খাবার",
+      "দুপুরের খাবার",
+      "অতিথি আপ্যায়ন",
+      "ঝাল মাছ"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 214
+  },
+
+  "featured": true,
+
+  "published": true
+}

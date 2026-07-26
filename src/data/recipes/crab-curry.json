@@ -1,0 +1,518 @@
+{
+  "id": "crab-curry",
+  "slug": "crab-curry",
+
+  "title": {
+    "en": "Crab Curry",
+    "bn": "কাঁকড়া কারি"
+  },
+
+  "description": {
+    "en": "A rich and spicy traditional Indian Crab Curry cooked with onions, tomatoes, coconut, and aromatic spices. Perfect for special occasion lunches.",
+    "bn": "পেঁয়াজ, টমেটো, নারকেল ও সুগন্ধি মসলা দিয়ে তৈরি সমৃদ্ধ ও ঝাল ঐতিহ্যবাহী ভারতীয় কাঁকড়া কারি। বিশেষ অনুষ্ঠানের দুপুরের খাবারের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "indian",
+    "name": {
+      "en": "Indian",
+      "bn": "ভারতীয়"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 25,
+  "cookTime": 40,
+  "totalTime": 65,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 380,
+    "protein": 32,
+    "fat": 22,
+    "carbohydrates": 14,
+    "fiber": 3,
+    "sugar": 5,
+    "sodium": 820
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Crab",
+        "bn": "কাঁকড়া"
+      },
+      "items": [
+        {
+          "slug": "crab",
+          "name": {
+            "en": "Crab",
+            "bn": "কাঁকড়া"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 1,
+          "unit": {
+            "en": "kg",
+            "bn": "কেজি"
+          },
+          "note": {
+            "en": "Fresh, cleaned and cut into pieces",
+            "bn": "তাজা, পরিষ্কার করা ও টুকরো করা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Aromatics & Paste",
+        "bn": "সুগন্ধি ও বাটা"
+      },
+      "items": [
+        {
+          "slug": "onion",
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 3,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Finely sliced or chopped",
+            "bn": "পাতলা করে কাটা বা কুচি"
+          }
+        },
+        {
+          "slug": "tomato",
+          "name": {
+            "en": "Tomato",
+            "bn": "টমেটো"
+          },
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        },
+        {
+          "slug": "ginger-garlic-paste",
+          "name": {
+            "en": "Ginger Garlic Paste",
+            "bn": "আদা-রসুন বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit",
+            "bn": "চিরা করা"
+          }
+        },
+        {
+          "slug": "grated-coconut",
+          "name": {
+            "en": "Grated Coconut",
+            "bn": "কুচি করা নারকেল"
+          },
+          "type": "other",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "cup",
+            "bn": "কাপ"
+          },
+          "note": {
+            "en": "Fresh or desiccated",
+            "bn": "তাজা বা শুকনো"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Spices",
+        "bn": "মসলা"
+      },
+      "items": [
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "red-chili-powder",
+          "name": {
+            "en": "Red Chili Powder",
+            "bn": "লাল মরিচের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "coriander-powder",
+          "name": {
+            "en": "Coriander Powder",
+            "bn": "ধনিয়ার গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "cumin-powder",
+          "name": {
+            "en": "Cumin Powder",
+            "bn": "জিরা গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "garam-masala",
+          "name": {
+            "en": "Garam Masala",
+            "bn": "গরম মসলা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking & Garnish",
+        "bn": "রান্নার জন্য ও সাজানো"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil or Vegetable Oil",
+            "bn": "সরিষার তেল বা সবজি তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 5,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "fresh-coriander",
+          "name": {
+            "en": "Fresh Coriander",
+            "bn": "তাজা ধনেপাতা"
+          },
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 3,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        },
+        {
+          "slug": "water",
+          "name": {
+            "en": "Water",
+            "bn": "পানি"
+          },
+          "type": "liquid",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "cups",
+            "bn": "কাপ"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Crab",
+        "bn": "কাঁকড়া প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Clean the crabs thoroughly. Remove the top shell, gills, and any unwanted parts. Cut into pieces if large. Wash well and keep aside.",
+        "bn": "কাঁকড়া ভালোভাবে পরিষ্কার করুন। উপরের খোলস, গিল ও অপ্রয়োজনীয় অংশ সরিয়ে ফেলুন। বড় হলে টুকরো করুন। ভালো করে ধুয়ে রাখুন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Make the Masala Base",
+        "bn": "মসলার বেস তৈরি করুন"
+      },
+      "description": {
+        "en": "Heat oil in a deep pan. Add sliced onions and fry until golden brown. Add ginger-garlic paste and green chilies. Sauté until the raw smell disappears.",
+        "bn": "গভীর প্যানে তেল গরম করুন। পেঁয়াজ কুচি দিয়ে সোনালি করে ভাজুন। আদা-রসুন বাটা ও কাঁচা মরিচ দিয়ে কাঁচা গন্ধ না যাওয়া পর্যন্ত কষিয়ে নিন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Add Spices and Tomato",
+        "bn": "মসলা ও টমেটো যোগ করুন"
+      },
+      "description": {
+        "en": "Add turmeric, red chili powder, coriander powder, cumin powder, and salt. Mix well. Add chopped tomatoes and cook until soft and the oil starts to separate.",
+        "bn": "হলুদ, লাল মরিচ, ধনিয়া, জিরা গুঁড়া ও লবণ দিয়ে মিশিয়ে নিন। কুচি করা টমেটো দিয়ে নরম হওয়া এবং তেল উপরে ভেসে না আসা পর্যন্ত রান্না করুন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Add Coconut and Crab",
+        "bn": "নারকেল ও কাঁকড়া যোগ করুন"
+      },
+      "description": {
+        "en": "Add the grated coconut and stir for a minute. Then add the cleaned crab pieces. Mix gently so the masala coats the crab well. Cook for 3–4 minutes.",
+        "bn": "কুচি করা নারকেল দিয়ে এক মিনিট নাড়ুন। তারপর পরিষ্কার করা কাঁকড়ার টুকরো দিন। আলতো করে মিশিয়ে মসলা কাঁকড়ায় ভালোভাবে লেগে যায়। ৩–৪ মিনিট রান্না করুন।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Simmer the Curry",
+        "bn": "কারি সিদ্ধ করুন"
+      },
+      "description": {
+        "en": "Pour in the water, cover, and cook on medium-low heat for 15–20 minutes until the crab is cooked and the gravy thickens slightly. Stir occasionally.",
+        "bn": "পানি দিয়ে ঢাকনা দিয়ে মিডিয়াম-লো আঁচে ১৫–২০ মিনিট রান্না করুন যতক্ষণ না কাঁকড়া সেদ্ধ হয় এবং ঝোল একটু ঘন হয়। মাঝে মাঝে নাড়ুন।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Finish and Serve",
+        "bn": "শেষ করুন ও পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Sprinkle garam masala and chopped coriander. Simmer for another 2 minutes. Serve hot with steamed rice or appam. Ideal for special occasions.",
+        "bn": "গরম মসলা ও ধনেপাতা কুচি ছিটিয়ে আরও ২ মিনিট সিদ্ধ করুন। গরম গরম ভাত বা অ্যাপামের সাথে পরিবেশন করুন। বিশেষ অনুষ্ঠানের জন্য আদর্শ।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Use fresh live crabs for the best flavor and texture.",
+      "bn": "সেরা স্বাদ ও টেক্সচারের জন্য তাজা জীবিত কাঁকড়া ব্যবহার করুন।"
+    },
+    {
+      "en": "Do not overcook the crab, otherwise the meat becomes tough.",
+      "bn": "কাঁকড়া অতিরিক্ত রান্না করবেন না, নইলে মাংস শক্ত হয়ে যায়।"
+    },
+    {
+      "en": "A little coconut milk can be added at the end for a richer, creamier gravy.",
+      "bn": "শেষে অল্প নারকেলের দুধ দিলে ঝোল আরও সমৃদ্ধ ও ক্রিমি হয়।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Deep Pan or Kadai",
+      "bn": "গভীর প্যান বা কড়াই"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Lid",
+      "bn": "ঢাকনা"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "crab",
+      "name": {
+        "en": "Crab",
+        "bn": "কাঁকড়া"
+      }
+    },
+    {
+      "slug": "curry",
+      "name": {
+        "en": "Curry",
+        "bn": "কারি"
+      }
+    },
+    {
+      "slug": "indian",
+      "name": {
+        "en": "Indian",
+        "bn": "ভারতীয়"
+      }
+    },
+    {
+      "slug": "special-occasion",
+      "name": {
+        "en": "Special Occasion",
+        "bn": "বিশেষ অনুষ্ঠান"
+      }
+    },
+    {
+      "slug": "seafood",
+      "name": {
+        "en": "Seafood",
+        "bn": "সীফুড"
+      }
+    },
+    {
+      "slug": "spicy",
+      "name": {
+        "en": "Spicy",
+        "bn": "ঝাল"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "crab curry",
+      "indian crab curry",
+      "spicy crab",
+      "seafood curry",
+      "special occasion crab",
+      "coconut crab curry",
+      "lunch"
+    ],
+    "bn": [
+      "কাঁকড়া কারি",
+      "কাঁকড়া",
+      "ভারতীয় কারি",
+      "সীফুড",
+      "বিশেষ অনুষ্ঠান",
+      "দুপুরের খাবার",
+      "মাছের পদ",
+      "ঝাল কারি"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 203
+  },
+
+  "featured": true,
+
+  "published": true
+}

@@ -1,0 +1,348 @@
+{
+  "id": "ilish-bhaja",
+  "slug": "ilish-bhaja",
+
+  "title": {
+    "en": "Ilish Bhaja",
+    "bn": "ইলিশ ভাজা"
+  },
+
+  "description": {
+    "en": "A simple and classic traditional Bangladeshi Ilish Bhaja — Hilsa fish pieces marinated with turmeric and salt, then shallow-fried in mustard oil until golden and crispy. A perfect everyday lunch dish.",
+    "bn": "হলুদ ও লবণ মেখে সরিষার তেলে সোনালি করে ভাজা ঐতিহ্যবাহী বাংলাদেশি ইলিশ ভাজা। দৈনন্দিন দুপুরের খাবারের জন্য পারফেক্ট।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Easy",
+    "bn": "সহজ"
+  },
+
+  "prepTime": 10,
+  "cookTime": 15,
+  "totalTime": 25,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 360,
+    "protein": 32,
+    "fat": 24,
+    "carbohydrates": 2,
+    "fiber": 0,
+    "sugar": 0,
+    "sodium": 580
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "ilish-fish",
+          "name": {
+            "en": "Ilish Fish (Hilsa)",
+            "bn": "ইলিশ মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 800,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Cut into medium pieces",
+            "bn": "মাঝারি টুকরো করে কাটা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Marinade",
+        "bn": "মেরিনেড"
+      },
+      "items": [
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        },
+        {
+          "slug": "red-chili-powder",
+          "name": {
+            "en": "Red Chili Powder",
+            "bn": "লাল মরিচের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Optional, for extra heat",
+            "bn": "ঐচ্ছিক, অতিরিক্ত ঝালের জন্য"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Frying",
+        "bn": "ভাজার জন্য"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Or enough for shallow frying",
+            "bn": "অথবা শ্যালো ফ্রাইয়ের জন্য যথেষ্ট"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Clean and Cut the Fish",
+        "bn": "মাছ পরিষ্কার ও কাটুন"
+      },
+      "description": {
+        "en": "Clean the Ilish thoroughly and cut into medium-sized pieces. Pat dry with a paper towel to remove excess moisture.",
+        "bn": "ইলিশ মাছ ভালোভাবে পরিষ্কার করে মাঝারি আকারের টুকরো করুন। অতিরিক্ত পানি শুকানোর জন্য কাগজের টাওয়েল দিয়ে মুছে নিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Marinate",
+        "bn": "মেরিনেট করুন"
+      },
+      "description": {
+        "en": "Rub the fish pieces evenly with turmeric powder, salt, and red chili powder (if using). Let it rest for 10–15 minutes.",
+        "bn": "মাছের টুকরোগুলোতে হলুদের গুঁড়া, লবণ এবং লাল মরিচের গুঁড়া (দিলে) সমানভাবে মেখে ১০–১৫ মিনিট রেখে দিন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Heat the Oil",
+        "bn": "তেল গরম করুন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a frying pan over medium heat until it reaches smoking point, then reduce the heat slightly. This removes the raw smell of mustard oil.",
+        "bn": "ফ্রাইং প্যানে সরিষার তেল মিডিয়াম আঁচে গরম করুন যতক্ষণ না ধোঁয়া বের হয়, তারপর আঁচ একটু কমিয়ে দিন। এতে সরিষার তেলের কাঁচা গন্ধ চলে যায়।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Fry the Fish",
+        "bn": "মাছ ভাজুন"
+      },
+      "description": {
+        "en": "Gently place the marinated fish pieces in the hot oil. Fry on medium heat for 3–4 minutes on each side until golden brown and crispy. Do not overcrowd the pan.",
+        "bn": "মেরিনেট করা মাছের টুকরোগুলো গরম তেলে আলতো করে দিন। মিডিয়াম আঁচে প্রতি পাশে ৩–৪ মিনিট করে সোনালি ও ক্রিস্পি হওয়া পর্যন্ত ভাজুন। প্যানে একসাথে বেশি টুকরো দেবেন না।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Drain and Serve",
+        "bn": "ঝরিয়ে পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Remove the fried fish and place on a paper towel to drain excess oil. Serve hot with steamed rice, dal, or any simple vegetable dish.",
+        "bn": "ভাজা মাছ তুলে কাগজের টাওয়েলে রেখে অতিরিক্ত তেল ঝরিয়ে নিন। গরম গরম ভাত, ডাল বা যেকোনো সাধারণ তরকারির সাথে পরিবেশন করুন।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Pat the fish completely dry before marinating — this helps achieve a crispier crust.",
+      "bn": "মেরিনেট করার আগে মাছ সম্পূর্ণ শুকিয়ে নিন — এতে ক্রিস্পিয়া ক্রাস্ট ভালো হয়।"
+    },
+    {
+      "en": "Do not flip the fish too early or too often; let one side set properly before turning.",
+      "bn": "মাছ খুব তাড়াতাড়ি বা বারবার উল্টাবেন না; এক পাশ ভালোভাবে সেট হওয়ার পর উল্টান।"
+    },
+    {
+      "en": "Mustard oil is essential for authentic Bangladeshi flavor. Heat it properly until it smokes.",
+      "bn": "আসল বাংলাদেশি স্বাদের জন্য সরিষার তেল জরুরি। সঠিকভাবে ধোঁয়া বের হওয়া পর্যন্ত গরম করুন।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Frying Pan",
+      "bn": "ফ্রাইং প্যান"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Paper Towel",
+      "bn": "কাগজের টাওয়েল"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "ilish",
+      "name": {
+        "en": "Ilish",
+        "bn": "ইলিশ"
+      }
+    },
+    {
+      "slug": "bhaja",
+      "name": {
+        "en": "Bhaja",
+        "bn": "ভাজা"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "everyday",
+      "name": {
+        "en": "Everyday",
+        "bn": "দৈনন্দিন"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "fried",
+      "name": {
+        "en": "Fried",
+        "bn": "ভাজা"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ilish bhaja",
+      "hilsa fry",
+      "fried hilsa",
+      "bangladeshi fried fish",
+      "simple fish fry",
+      "everyday fish",
+      "mustard oil fish",
+      "lunch"
+    ],
+    "bn": [
+      "ইলিশ ভাজা",
+      "ইলিশ মাছ",
+      "ভাজা মাছ",
+      "বাংলাদেশি ভাজা",
+      "দৈনন্দিন রান্না",
+      "দুপুরের খাবার",
+      "সরিষার তেলে ভাজা",
+      "মাছের পদ"
+    ]
+  },
+
+  "rating": {
+    "average": 4.7,
+    "count": 312
+  },
+
+  "featured": false,
+
+  "published": true
+}

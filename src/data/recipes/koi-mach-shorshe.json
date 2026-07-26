@@ -1,0 +1,432 @@
+{
+  "id": "koi-mach-shorshe",
+  "slug": "koi-mach-shorshe",
+
+  "title": {
+    "en": "Koi Mach Shorshe",
+    "bn": "কই মাছ সরিষা"
+  },
+
+  "description": {
+    "en": "A flavorful traditional Bangladeshi Koi Mach Shorshe — climbing perch fish cooked in a rich mustard gravy with green chilies and mustard oil. Perfect for guest lunches.",
+    "bn": "সরিষা বাটা, কাঁচা মরিচ ও সরিষার তেল দিয়ে তৈরি সুস্বাদু ঐতিহ্যবাহী বাংলাদেশি কই মাছ সরিষা। অতিথি আপ্যায়নের দুপুরের খাবারের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 20,
+  "cookTime": 30,
+  "totalTime": 50,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 370,
+    "protein": 30,
+    "fat": 23,
+    "carbohydrates": 6,
+    "fiber": 1,
+    "sugar": 1,
+    "sodium": 660
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "koi-fish",
+          "name": {
+            "en": "Koi Fish (Climbing Perch)",
+            "bn": "কই মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 800,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Cleaned and scored",
+            "bn": "পরিষ্কার করা ও স্কোর করা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Mustard Paste",
+        "bn": "সরিষা বাটা"
+      },
+      "items": [
+        {
+          "slug": "yellow-mustard-seeds",
+          "name": {
+            "en": "Yellow Mustard Seeds",
+            "bn": "হলুদ সরিষা"
+          },
+          "type": "spice",
+          "isMainIngredient": true,
+          "amount": 3,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Soaked for 20–30 minutes",
+            "bn": "২০–৩০ মিনিট ভিজিয়ে রাখা"
+          }
+        },
+        {
+          "slug": "black-mustard-seeds",
+          "name": {
+            "en": "Black Mustard Seeds",
+            "bn": "কালো সরিষা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Soaked",
+            "bn": "ভেজানো"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 8,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.75,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking",
+        "bn": "রান্নার জন্য"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 5,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "nigella-seeds",
+          "name": {
+            "en": "Nigella Seeds (Kalonji)",
+            "bn": "কালোজিরা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "water",
+          "name": {
+            "en": "Water",
+            "bn": "পানি"
+          },
+          "type": "liquid",
+          "isMainIngredient": false,
+          "amount": 1.25,
+          "unit": {
+            "en": "cups",
+            "bn": "কাপ"
+          }
+        },
+        {
+          "slug": "green-chili-extra",
+          "name": {
+            "en": "Extra Green Chili",
+            "bn": "অতিরিক্ত কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit",
+            "bn": "চিরা করা"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Mustard Paste",
+        "bn": "সরিষা বাটা তৈরি করুন"
+      },
+      "description": {
+        "en": "Soak yellow and black mustard seeds for 20–30 minutes. Grind them with green chilies, turmeric, salt, and a little water into a smooth paste.",
+        "bn": "হলুদ ও কালো সরিষা ২০–৩০ মিনিট ভিজিয়ে রাখুন। কাঁচা মরিচ, হলুদ, লবণ ও অল্প পানি দিয়ে মসৃণ বাটা তৈরি করুন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Prepare the Fish",
+        "bn": "মাছ প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Clean the Koi fish thoroughly, score the skin lightly, and pat dry. Rub with a little turmeric and salt. Keep aside for 10 minutes.",
+        "bn": "কই মাছ ভালোভাবে পরিষ্কার করে চামড়ায় হালকা স্কোর দিন এবং শুকিয়ে নিন। অল্প হলুদ ও লবণ মেখে ১০ মিনিট রেখে দিন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Lightly Fry the Fish",
+        "bn": "মাছ হালকা ভেজে নিন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a pan until it smokes lightly. Lightly fry the fish on both sides for 2–3 minutes until the surface firms up. Remove and set aside.",
+        "bn": "সরিষার তেল হালকা ধোঁয়া বের হওয়া পর্যন্ত গরম করুন। মাছ দুই পাশে ২–৩ মিনিট হালকা ভেজে নিন যতক্ষণ না উপরের অংশ শক্ত হয়। তুলে রাখুন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Make the Mustard Gravy",
+        "bn": "সরিষা ঝোল তৈরি করুন"
+      },
+      "description": {
+        "en": "In the same oil, add nigella seeds. When they splutter, add the mustard paste and cook on low heat for 1–2 minutes. Add water, remaining salt, and slit green chilies. Bring to a gentle simmer.",
+        "bn": "একই তেলে কালোজিরা দিন। ফোড়ন উঠলে সরিষা বাটা দিয়ে কম আঁচে ১–২ মিনিট কষিয়ে নিন। পানি, বাকি লবণ ও চিরা কাঁচা মরিচ দিয়ে হালকা সিদ্ধ করুন।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Add Fish and Finish",
+        "bn": "মাছ দিয়ে শেষ করুন"
+      },
+      "description": {
+        "en": "Gently place the fried Koi fish into the gravy. Cover and cook on low heat for 10–12 minutes until the fish is fully cooked and the gravy is aromatic. Avoid stirring too much.",
+        "bn": "ভাজা কই মাছ আলতো করে ঝোলে দিন। ঢাকনা দিয়ে কম আঁচে ১০–১২ মিনিট রান্না করুন যতক্ষণ না মাছ সেদ্ধ হয় এবং ঝোল সুগন্ধি হয়। বেশি নাড়বেন না।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Serve",
+        "bn": "পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Serve hot with steamed rice. This mustard-based Koi dish is excellent for entertaining guests.",
+        "bn": "গরম গরম ভাতের সাথে পরিবেশন করুন। এই সরিষাভিত্তিক কই মাছের পদ অতিথি আপ্যায়নের জন্য চমৎকার।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Scoring the Koi fish helps the mustard paste penetrate better.",
+      "bn": "কই মাছে স্কোর দিলে সরিষা বাটা ভালোভাবে ঢোকে।"
+    },
+    {
+      "en": "Cook the mustard paste on low heat to avoid bitterness.",
+      "bn": "সরিষা বাটা কম আঁচে কষান যাতে তেতো না হয়।"
+    },
+    {
+      "en": "A final drizzle of raw mustard oil before serving enhances the authentic aroma.",
+      "bn": "পরিবেশনের আগে অল্প কাঁচা সরিষার তেল ছিটিয়ে দিলে আসল সুগন্ধ বাড়ে।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Deep Pan or Kadai",
+      "bn": "গভীর প্যান বা কড়াই"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Grinder or Mixer",
+      "bn": "গ্রাইন্ডার বা মিক্সার"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "koi",
+      "name": {
+        "en": "Koi",
+        "bn": "কই"
+      }
+    },
+    {
+      "slug": "shorshe",
+      "name": {
+        "en": "Shorshe",
+        "bn": "সরিষা"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "guest-entertaining",
+      "name": {
+        "en": "Guest Entertaining",
+        "bn": "অতিথি আপ্যায়ন"
+      }
+    },
+    {
+      "slug": "mustard",
+      "name": {
+        "en": "Mustard",
+        "bn": "সরিষা"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "koi mach shorshe",
+      "climbing perch mustard",
+      "koi mustard curry",
+      "bangladeshi koi fish",
+      "mustard fish",
+      "guest fish recipe",
+      "shorshe koi"
+    ],
+    "bn": [
+      "কই মাছ সরিষা",
+      "কই মাছ",
+      "সরিষা",
+      "বাংলাদেশি মাছের রান্না",
+      "অতিথি আপ্যায়ন",
+      "দুপুরের খাবার",
+      "মাছের পদ",
+      "সরিষা বাটা"
+    ]
+  },
+
+  "rating": {
+    "average": 4.7,
+    "count": 142
+  },
+
+  "featured": true,
+
+  "published": true
+}

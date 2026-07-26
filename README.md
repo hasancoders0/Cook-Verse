@@ -115,11 +115,8 @@ Phase 5 — UI
 | recipe-ranker.js         | 9.5/10 | ✅ Minor improvements              |
 | recommendation-engine.js | 8.5/10 | ⚠️ Main logic improvements needed |
 
-
-Ingredients
-Preparation Time
-Cooking Time
-Total Time
-Difficulty
-Cuisine / Country (যেমন: Bangladesh, India, Italy)
-Equipment
+lib/ai/recipe-matcher.js
+lib/ai/recommendation-engine.js
+lib/ai/conversation-manager.js
+lib/ai/recipe-memory.js
+lib/ai/recipe-response.js

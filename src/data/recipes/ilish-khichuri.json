@@ -1,0 +1,513 @@
+{
+  "id": "ilish-khichuri",
+  "slug": "ilish-khichuri",
+
+  "title": {
+    "en": "Ilish Khichuri",
+    "bn": "ইলিশ খিচুড়ি"
+  },
+
+  "description": {
+    "en": "A comforting traditional Bangladeshi Ilish Khichuri made with fragrant rice, lentils, and tender pieces of Hilsa fish. A classic monsoon season favorite perfect for lunch.",
+    "bn": "সুগন্ধি চাল, ডাল ও নরম ইলিশ মাছের টুকরো দিয়ে তৈরি ঐতিহ্যবাহী বাংলাদেশি ইলিশ খিচুড়ি। বর্ষাকালের দুপুরের খাবারের ক্লাসিক পদ।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 20,
+  "cookTime": 45,
+  "totalTime": 65,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 480,
+    "protein": 32,
+    "fat": 18,
+    "carbohydrates": 52,
+    "fiber": 5,
+    "sugar": 2,
+    "sodium": 710
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Main Ingredients",
+        "bn": "প্রধান উপকরণ"
+      },
+      "items": [
+        {
+          "slug": "ilish-fish",
+          "name": {
+            "en": "Ilish Fish (Hilsa)",
+            "bn": "ইলিশ মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 500,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Cut into medium pieces",
+            "bn": "মাঝারি টুকরো করে কাটা"
+          }
+        },
+        {
+          "slug": "rice",
+          "name": {
+            "en": "Rice",
+            "bn": "চাল"
+          },
+          "type": "grain",
+          "isMainIngredient": true,
+          "amount": 1.5,
+          "unit": {
+            "en": "cups",
+            "bn": "কাপ"
+          },
+          "note": {
+            "en": "Short or medium grain preferred",
+            "bn": "ছোট বা মাঝারি দানার চাল পছন্দনীয়"
+          }
+        },
+        {
+          "slug": "moong-dal",
+          "name": {
+            "en": "Moong Dal",
+            "bn": "মুগ ডাল"
+          },
+          "type": "legume",
+          "isMainIngredient": true,
+          "amount": 0.5,
+          "unit": {
+            "en": "cup",
+            "bn": "কাপ"
+          },
+          "note": {
+            "en": "Yellow split moong, lightly roasted",
+            "bn": "হলুদ মুগ ডাল, হালকা ভাজা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Aromatics & Spices",
+        "bn": "সুগন্ধি ও মসলা"
+      },
+      "items": [
+        {
+          "slug": "onion",
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "pc",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Sliced",
+            "bn": "পাতলা করে কাটা"
+          }
+        },
+        {
+          "slug": "ginger-paste",
+          "name": {
+            "en": "Ginger Paste",
+            "bn": "আদা বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "garlic-paste",
+          "name": {
+            "en": "Garlic Paste",
+            "bn": "রসুন বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit",
+            "bn": "চিরা করা"
+          }
+        },
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "cumin-powder",
+          "name": {
+            "en": "Cumin Powder",
+            "bn": "জিরা গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "bay-leaf",
+          "name": {
+            "en": "Bay Leaf",
+            "bn": "তেজপাতা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking & Garnish",
+        "bn": "রান্নার জন্য ও সাজানো"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "ghee",
+          "name": {
+            "en": "Ghee",
+            "bn": "ঘি"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "water",
+          "name": {
+            "en": "Water",
+            "bn": "পানি"
+          },
+          "type": "liquid",
+          "isMainIngredient": false,
+          "amount": 5,
+          "unit": {
+            "en": "cups",
+            "bn": "কাপ"
+          }
+        },
+        {
+          "slug": "fresh-coriander",
+          "name": {
+            "en": "Fresh Coriander",
+            "bn": "তাজা ধনেপাতা"
+          },
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Ingredients",
+        "bn": "উপকরণ প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Wash the rice and moong dal separately. Lightly roast the moong dal in a dry pan until aromatic. Clean and cut the Ilish into medium pieces. Rub with a little turmeric and salt.",
+        "bn": "চাল ও মুগ ডাল আলাদা করে ধুয়ে নিন। মুগ ডাল শুকনো কড়াইতে হালকা ভেজে সুগন্ধি করে নিন। ইলিশ মাছ পরিষ্কার করে মাঝারি টুকরো করুন এবং অল্প হলুদ-লবণ মেখে রাখুন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Fry the Fish",
+        "bn": "মাছ ভেজে নিন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a pan. Lightly fry the Ilish pieces on both sides until the surface firms up. Remove and keep aside.",
+        "bn": "সরিষার তেল গরম করে ইলিশের টুকরোগুলো দুই পাশে হালকা ভেজে নিন যতক্ষণ না উপরের অংশ শক্ত হয়। তুলে রাখুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Make the Khichuri Base",
+        "bn": "খিচুড়ির বেস তৈরি করুন"
+      },
+      "description": {
+        "en": "In the same oil, add bay leaves and sliced onion. Fry until soft. Add ginger-garlic paste and sauté. Then add turmeric, cumin powder, and green chilies.",
+        "bn": "একই তেলে তেজপাতা ও পেঁয়াজ কুচি দিয়ে নরম করে ভাজুন। আদা-রসুন বাটা দিয়ে কষিয়ে নিন। তারপর হলুদ, জিরা গুঁড়া ও কাঁচা মরিচ দিন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Cook Rice and Dal",
+        "bn": "চাল ও ডাল রান্না করুন"
+      },
+      "description": {
+        "en": "Add the washed rice and roasted moong dal. Stir for 1–2 minutes. Pour in the water and salt. Bring to a boil, then cover and cook on medium heat until the rice and dal are almost done (about 15–18 minutes).",
+        "bn": "ধোয়া চাল ও ভাজা মুগ ডাল দিন। ১–২ মিনিট নাড়ুন। পানি ও লবণ দিয়ে ফুটিয়ে তুলুন। ঢাকনা দিয়ে মিডিয়াম আঁচে চাল ও ডাল প্রায় সেদ্ধ হওয়া পর্যন্ত রান্না করুন (প্রায় ১৫–১৮ মিনিট)।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Add the Fish",
+        "bn": "মাছ যোগ করুন"
+      },
+      "description": {
+        "en": "Gently place the fried Ilish pieces on top of the khichuri. Do not stir vigorously. Cover and cook on low heat for another 8–10 minutes until the fish is cooked and the khichuri reaches a soft, porridge-like consistency.",
+        "bn": "ভাজা ইলিশের টুকরোগুলো খিচুড়ির উপর আলতো করে সাজিয়ে দিন। জোরে নাড়বেন না। ঢাকনা দিয়ে কম আঁচে আরও ৮–১০ মিনিট রান্না করুন যতক্ষণ না মাছ সেদ্ধ হয় এবং খিচুড়ি নরম হয়।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Finish and Serve",
+        "bn": "শেষ করুন ও পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Drizzle ghee on top, sprinkle chopped coriander, and let it rest for 5 minutes. Serve hot. Traditionally enjoyed during the monsoon season.",
+        "bn": "উপরে ঘি ছিটিয়ে ধনেপাতা কুচি দিন এবং ৫ মিনিট বিশ্রাম দিন। গরম গরম পরিবেশন করুন। বর্ষাকালে ঐতিহ্যগতভাবে উপভোগ করা হয়।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Do not over-stir after adding the fish — Ilish is delicate and breaks easily.",
+      "bn": "মাছ দেওয়ার পর বেশি নাড়বেন না — ইলিশ নরম, সহজে ভেঙে যায়।"
+    },
+    {
+      "en": "Roasting the moong dal lightly before cooking gives better flavor and aroma.",
+      "bn": "রান্নার আগে মুগ ডাল হালকা ভেজে নিলে স্বাদ ও সুগন্ধ ভালো হয়।"
+    },
+    {
+      "en": "Ilish Khichuri tastes best on rainy days with a side of fried eggplant or simple omelette.",
+      "bn": "ইলিশ খিচুড়ি বর্ষার দিনে ভাজা বেগুন বা সাধারণ অমলেটের সাথে সবচেয়ে ভালো লাগে।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Heavy Bottom Pot",
+      "bn": "ভারী তলার হাঁড়ি"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Lid",
+      "bn": "ঢাকনা"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "ilish",
+      "name": {
+        "en": "Ilish",
+        "bn": "ইলিশ"
+      }
+    },
+    {
+      "slug": "khichuri",
+      "name": {
+        "en": "Khichuri",
+        "bn": "খিচুড়ি"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "monsoon",
+      "name": {
+        "en": "Monsoon",
+        "bn": "বর্ষাকাল"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "comfort-food",
+      "name": {
+        "en": "Comfort Food",
+        "bn": "আরামদায়ক খাবার"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ilish khichuri",
+      "hilsa khichuri",
+      "bangladeshi khichuri",
+      "monsoon khichuri",
+      "fish khichuri",
+      "rice and fish",
+      "rainy day food",
+      "comfort food",
+      "lunch"
+    ],
+    "bn": [
+      "ইলিশ খিচুড়ি",
+      "ইলিশ মাছ",
+      "খিচুড়ি",
+      "বর্ষাকাল",
+      "বাংলাদেশি খিচুড়ি",
+      "মাছের পদ",
+      "দুপুরের খাবার",
+      "আরামদায়ক খাবার",
+      "বৃষ্টির দিনের খাবার"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 267
+  },
+
+  "featured": true,
+
+  "published": true
+}

@@ -1,0 +1,432 @@
+{
+  "id": "ilish-shorshe-jhol",
+  "slug": "ilish-shorshe-jhol",
+
+  "title": {
+    "en": "Ilish Shorshe Jhol",
+    "bn": "ইলিশের সরিষা ঝোল"
+  },
+
+  "description": {
+    "en": "A light and classic traditional Bangladeshi Ilish Shorshe Jhol — Hilsa fish cooked in a thin mustard gravy with green chilies and mustard oil. A perfect everyday lunch dish.",
+    "bn": "সরিষা বাটা, কাঁচা মরিচ ও সরিষার তেল দিয়ে তৈরি হালকা ও ক্লাসিক ঐতিহ্যবাহী বাংলাদেশি ইলিশের সরিষা ঝোল। দৈনন্দিন দুপুরের খাবারের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Easy",
+    "bn": "সহজ"
+  },
+
+  "prepTime": 15,
+  "cookTime": 25,
+  "totalTime": 40,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 350,
+    "protein": 32,
+    "fat": 20,
+    "carbohydrates": 6,
+    "fiber": 1,
+    "sugar": 1,
+    "sodium": 640
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "ilish-fish",
+          "name": {
+            "en": "Ilish Fish (Hilsa)",
+            "bn": "ইলিশ মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 800,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Cut into medium pieces",
+            "bn": "মাঝারি টুকরো করে কাটা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Mustard Paste",
+        "bn": "সরিষা বাটা"
+      },
+      "items": [
+        {
+          "slug": "yellow-mustard-seeds",
+          "name": {
+            "en": "Yellow Mustard Seeds",
+            "bn": "হলুদ সরিষা"
+          },
+          "type": "spice",
+          "isMainIngredient": true,
+          "amount": 2.5,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Soaked for 20–30 minutes",
+            "bn": "২০–৩০ মিনিট ভিজিয়ে রাখা"
+          }
+        },
+        {
+          "slug": "black-mustard-seeds",
+          "name": {
+            "en": "Black Mustard Seeds",
+            "bn": "কালো সরিষা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Soaked",
+            "bn": "ভেজানো"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.75,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking",
+        "bn": "রান্নার জন্য"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "nigella-seeds",
+          "name": {
+            "en": "Nigella Seeds (Kalonji)",
+            "bn": "কালোজিরা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "water",
+          "name": {
+            "en": "Water",
+            "bn": "পানি"
+          },
+          "type": "liquid",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "cups",
+            "bn": "কাপ"
+          }
+        },
+        {
+          "slug": "green-chili-extra",
+          "name": {
+            "en": "Extra Green Chili",
+            "bn": "অতিরিক্ত কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 3,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit, for the gravy",
+            "bn": "চিরা করা, ঝোলের জন্য"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Mustard Paste",
+        "bn": "সরিষা বাটা তৈরি করুন"
+      },
+      "description": {
+        "en": "Soak yellow and black mustard seeds for 20–30 minutes. Grind them with green chilies, turmeric, salt, and a little water into a smooth paste.",
+        "bn": "হলুদ ও কালো সরিষা ২০–৩০ মিনিট ভিজিয়ে রাখুন। কাঁচা মরিচ, হলুদ, লবণ ও অল্প পানি দিয়ে মসৃণ বাটা তৈরি করুন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Prepare the Fish",
+        "bn": "মাছ প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Clean and cut the Ilish into medium pieces. Rub with a little turmeric and salt. Keep aside for 10 minutes.",
+        "bn": "ইলিশ মাছ পরিষ্কার করে মাঝারি টুকরো করুন। অল্প হলুদ ও লবণ মেখে ১০ মিনিট রেখে দিন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Lightly Fry the Fish",
+        "bn": "মাছ হালকা ভেজে নিন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a pan until it smokes lightly. Lightly fry the fish pieces on both sides for 1–2 minutes. Remove and set aside.",
+        "bn": "সরিষার তেল হালকা ধোঁয়া বের হওয়া পর্যন্ত গরম করুন। মাছের টুকরোগুলো দুই পাশে ১–২ মিনিট হালকা ভেজে তুলে রাখুন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Make the Mustard Gravy",
+        "bn": "সরিষা ঝোল তৈরি করুন"
+      },
+      "description": {
+        "en": "In the same oil, add nigella seeds. When they splutter, add the mustard paste and cook for 1–2 minutes on low heat. Add water, remaining salt, and slit green chilies. Bring to a gentle boil.",
+        "bn": "একই তেলে কালোজিরা দিন। ফোড়ন উঠলে সরিষা বাটা দিয়ে কম আঁচে ১–২ মিনিট কষিয়ে নিন। পানি, বাকি লবণ ও চিরা কাঁচা মরিচ দিয়ে হালকা ফুটিয়ে তুলুন।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Add Fish and Finish",
+        "bn": "মাছ দিয়ে শেষ করুন"
+      },
+      "description": {
+        "en": "Gently place the fried fish pieces into the gravy. Cover and cook on low heat for 8–10 minutes until the fish is cooked and the gravy is light and aromatic. Do not stir too much.",
+        "bn": "ভাজা মাছের টুকরোগুলো আলতো করে ঝোলে দিন। ঢাকনা দিয়ে কম আঁচে ৮–১০ মিনিট রান্না করুন যতক্ষণ না মাছ সেদ্ধ হয় এবং ঝোল হালকা ও সুগন্ধি হয়। বেশি নাড়বেন না।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Serve",
+        "bn": "পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Serve hot with steamed rice. This everyday Shorshe Jhol is light, flavorful, and comforting.",
+        "bn": "গরম গরম ভাতের সাথে পরিবেশন করুন। এই দৈনন্দিন সরিষা ঝোল হালকা, স্বাদযুক্ত ও আরামদায়ক।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Keep the gravy thin and light — that is the characteristic of a good Shorshe Jhol.",
+      "bn": "ঝোল হালকা ও পাতলা রাখুন — এটাই ভালো সরিষা ঝোলের বৈশিষ্ট্য।"
+    },
+    {
+      "en": "Do not overcook the mustard paste on high heat, otherwise it can become bitter.",
+      "bn": "সরিষা বাটা বেশি আঁচে বেশিক্ষণ কষাবেন না, নইলে তেতো হয়ে যেতে পারে।"
+    },
+    {
+      "en": "A final drizzle of raw mustard oil before serving enhances the authentic aroma.",
+      "bn": "পরিবেশনের আগে অল্প কাঁচা সরিষার তেল ছিটিয়ে দিলে আসল সুগন্ধ বাড়ে।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Deep Pan or Kadai",
+      "bn": "গভীর প্যান বা কড়াই"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Grinder or Mixer",
+      "bn": "গ্রাইন্ডার বা মিক্সার"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "ilish",
+      "name": {
+        "en": "Ilish",
+        "bn": "ইলিশ"
+      }
+    },
+    {
+      "slug": "shorshe-jhol",
+      "name": {
+        "en": "Shorshe Jhol",
+        "bn": "সরিষা ঝোল"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "everyday",
+      "name": {
+        "en": "Everyday",
+        "bn": "দৈনন্দিন"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "mustard",
+      "name": {
+        "en": "Mustard",
+        "bn": "সরিষা"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ilish shorshe jhol",
+      "hilsa mustard curry",
+      "shorshe ilish",
+      "bangladeshi mustard fish",
+      "everyday fish jhol",
+      "light mustard gravy",
+      "lunch fish"
+    ],
+    "bn": [
+      "ইলিশের সরিষা ঝোল",
+      "ইলিশ মাছ",
+      "সরিষা ঝোল",
+      "বাংলাদেশি মাছের রান্না",
+      "দৈনন্দিন",
+      "দুপুরের খাবার",
+      "মাছের পদ",
+      "সরিষা বাটা"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 289
+  },
+
+  "featured": false,
+
+  "published": true
+}

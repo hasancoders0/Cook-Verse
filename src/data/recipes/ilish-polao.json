@@ -1,0 +1,535 @@
+{
+  "id": "ilish-polao",
+  "slug": "ilish-polao",
+
+  "title": {
+    "en": "Ilish Polao",
+    "bn": "ইলিশ পোলাও"
+  },
+
+  "description": {
+    "en": "A fragrant and festive traditional Bangladeshi Ilish Polao made with aromatic rice, tender Hilsa fish pieces, whole spices, and ghee. A special occasion favorite for lunch.",
+    "bn": "সুগন্ধি চাল, নরম ইলিশ মাছের টুকরো, গোটা মসলা ও ঘি দিয়ে তৈরি ঐতিহ্যবাহী বাংলাদেশি ইলিশ পোলাও। বিশেষ অনুষ্ঠানের দুপুরের খাবারের প্রিয় পদ।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 25,
+  "cookTime": 40,
+  "totalTime": 65,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 520,
+    "protein": 30,
+    "fat": 22,
+    "carbohydrates": 55,
+    "fiber": 2,
+    "sugar": 3,
+    "sodium": 720
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Main Ingredients",
+        "bn": "প্রধান উপকরণ"
+      },
+      "items": [
+        {
+          "slug": "ilish-fish",
+          "name": {
+            "en": "Ilish Fish (Hilsa)",
+            "bn": "ইলিশ মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 600,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Cut into medium pieces",
+            "bn": "মাঝারি টুকরো করে কাটা"
+          }
+        },
+        {
+          "slug": "rice",
+          "name": {
+            "en": "Rice",
+            "bn": "চাল"
+          },
+          "type": "grain",
+          "isMainIngredient": true,
+          "amount": 2,
+          "unit": {
+            "en": "cups",
+            "bn": "কাপ"
+          },
+          "note": {
+            "en": "Chinigura, Kalijira or good quality short-grain rice preferred",
+            "bn": "চিনিগুঁড়া, কালিজিরা বা ভালো মানের ছোট দানার চাল পছন্দনীয়"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Aromatics & Spices",
+        "bn": "সুগন্ধি ও মসলা"
+      },
+      "items": [
+        {
+          "slug": "onion",
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Thinly sliced + some for beresta",
+            "bn": "পাতলা করে কাটা + কিছু বেরেস্তার জন্য"
+          }
+        },
+        {
+          "slug": "ginger-paste",
+          "name": {
+            "en": "Ginger Paste",
+            "bn": "আদা বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "garlic-paste",
+          "name": {
+            "en": "Garlic Paste",
+            "bn": "রসুন বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit",
+            "bn": "চিরা করা"
+          }
+        },
+        {
+          "slug": "yogurt",
+          "name": {
+            "en": "Yogurt",
+            "bn": "টক দই"
+          },
+          "type": "dairy",
+          "isMainIngredient": false,
+          "amount": 3,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Beaten",
+            "bn": "ফেটানো"
+          }
+        },
+        {
+          "slug": "bay-leaf",
+          "name": {
+            "en": "Bay Leaf",
+            "bn": "তেজপাতা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "cinnamon-stick",
+          "name": {
+            "en": "Cinnamon Stick",
+            "bn": "দারুচিনি"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "green-cardamom",
+          "name": {
+            "en": "Green Cardamom",
+            "bn": "সবুজ এলাচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "cloves",
+          "name": {
+            "en": "Cloves",
+            "bn": "লবঙ্গ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking & Garnish",
+        "bn": "রান্নার জন্য ও সাজানো"
+      },
+      "items": [
+        {
+          "slug": "ghee",
+          "name": {
+            "en": "Ghee",
+            "bn": "ঘি"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 3,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "water",
+          "name": {
+            "en": "Water",
+            "bn": "পানি"
+          },
+          "type": "liquid",
+          "isMainIngredient": false,
+          "amount": 3.5,
+          "unit": {
+            "en": "cups",
+            "bn": "কাপ"
+          }
+        },
+        {
+          "slug": "fried-onion",
+          "name": {
+            "en": "Fried Onion (Beresta)",
+            "bn": "ভাজা পেঁয়াজ (বেরেস্তা)"
+          },
+          "type": "garnish",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "cup",
+            "bn": "কাপ"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Fish and Rice",
+        "bn": "মাছ ও চাল প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Clean and cut the Ilish into medium pieces. Rub with a little turmeric and salt. Wash the rice thoroughly and soak for 20 minutes. Drain well.",
+        "bn": "ইলিশ মাছ পরিষ্কার করে মাঝারি টুকরো করুন। অল্প হলুদ ও লবণ মেখে রাখুন। চাল ভালোভাবে ধুয়ে ২০ মিনিট ভিজিয়ে রাখুন। পানি ঝরিয়ে নিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Fry the Fish",
+        "bn": "মাছ ভেজে নিন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a pan. Lightly fry the fish pieces on both sides until the surface firms up. Remove and keep aside.",
+        "bn": "সরিষার তেল গরম করে মাছের টুকরোগুলো দুই পাশে হালকা ভেজে নিন যতক্ষণ না উপরের অংশ শক্ত হয়। তুলে রাখুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Make the Polao Base",
+        "bn": "পোলাওয়ের বেস তৈরি করুন"
+      },
+      "description": {
+        "en": "In a heavy pot, heat ghee. Add bay leaf, cinnamon, cardamom, and cloves. Add sliced onion and fry until light golden. Add ginger-garlic paste and sauté. Then add beaten yogurt, green chilies, and salt. Cook for 2 minutes.",
+        "bn": "ভারী হাঁড়িতে ঘি গরম করুন। তেজপাতা, দারুচিনি, এলাচ ও লবঙ্গ দিন। পেঁয়াজ কুচি দিয়ে হালকা সোনালি করে ভাজুন। আদা-রসুন বাটা দিয়ে কষিয়ে নিন। তারপর ফেটানো দই, কাঁচা মরিচ ও লবণ দিয়ে ২ মিনিট রান্না করুন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Add Rice and Water",
+        "bn": "চাল ও পানি দিন"
+      },
+      "description": {
+        "en": "Add the drained rice and gently mix for 1–2 minutes so the grains are coated. Pour in the water and bring to a boil. Reduce heat, cover, and cook until the rice is 70–80% done.",
+        "bn": "ঝরানো চাল দিয়ে ১–২ মিনিট আলতো করে মিশিয়ে নিন যাতে দানাগুলো কোট হয়। পানি দিয়ে ফুটিয়ে তুলুন। আঁচ কমিয়ে ঢাকনা দিয়ে চাল ৭০–৮০% সেদ্ধ হওয়া পর্যন্ত রান্না করুন।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Add Fish and Dum",
+        "bn": "মাছ দিয়ে দম দিন"
+      },
+      "description": {
+        "en": "Gently place the fried fish pieces on top of the rice. Sprinkle fried onion (beresta). Cover tightly and cook on the lowest heat (dum) for 10–12 minutes until the rice is fully cooked and aromatic.",
+        "bn": "ভাজা মাছের টুকরোগুলো চালের উপর আলতো করে সাজান। ভাজা পেঁয়াজ (বেরেস্তা) ছিটিয়ে দিন। ভালোভাবে ঢেকে সবচেয়ে কম আঁচে ১০–১২ মিনিট দম দিন যতক্ষণ না চাল পুরোপুরি সেদ্ধ ও সুগন্ধি হয়।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Serve",
+        "bn": "পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Let it rest for 5 minutes. Gently fluff and serve hot. Perfect for special occasion lunches.",
+        "bn": "৫ মিনিট বিশ্রাম দিন। আলতো করে নেড়ে গরম গরম পরিবেশন করুন। বিশেষ অনুষ্ঠানের দুপুরের খাবারের জন্য পারফেক্ট।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Use good quality aromatic rice (Chinigura or Kalijira) for authentic taste and fragrance.",
+      "bn": "আসল স্বাদ ও সুগন্ধের জন্য ভালো মানের সুগন্ধি চাল (চিনিগুঁড়া বা কালিজিরা) ব্যবহার করুন।"
+    },
+    {
+      "en": "Do not stir vigorously after adding the fish — Ilish breaks easily.",
+      "bn": "মাছ দেওয়ার পর জোরে নাড়বেন না — ইলিশ সহজে ভেঙে যায়।"
+    },
+    {
+      "en": "A final touch of pure ghee and beresta makes the polao extra special for guests.",
+      "bn": "শেষে খাঁটি ঘি ও বেরেস্তা দিলে পোলাও অতিথিদের জন্য আরও বিশেষ হয়ে ওঠে।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Heavy Bottom Pot",
+      "bn": "ভারী তলার হাঁড়ি"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Lid",
+      "bn": "ঢাকনা"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "ilish",
+      "name": {
+        "en": "Ilish",
+        "bn": "ইলিশ"
+      }
+    },
+    {
+      "slug": "polao",
+      "name": {
+        "en": "Polao",
+        "bn": "পোলাও"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "special-occasion",
+      "name": {
+        "en": "Special Occasion",
+        "bn": "বিশেষ অনুষ্ঠান"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "festive",
+      "name": {
+        "en": "Festive",
+        "bn": "উৎসবমুখর"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ilish polao",
+      "hilsa pulao",
+      "bangladeshi polao",
+      "fish pulao",
+      "special occasion rice",
+      "festive lunch",
+      "aromatic fish rice",
+      "chinigura polao"
+    ],
+    "bn": [
+      "ইলিশ পোলাও",
+      "ইলিশ মাছ",
+      "পোলাও",
+      "বাংলাদেশি পোলাও",
+      "বিশেষ অনুষ্ঠান",
+      "দুপুরের খাবার",
+      "সুগন্ধি পোলাও",
+      "মাছের পদ"
+    ]
+  },
+
+  "rating": {
+    "average": 4.9,
+    "count": 298
+  },
+
+  "featured": true,
+
+  "published": true
+}

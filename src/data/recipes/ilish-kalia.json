@@ -1,0 +1,573 @@
+{
+  "id": "ilish-kalia",
+  "slug": "ilish-kalia",
+
+  "title": {
+    "en": "Ilish Kalia",
+    "bn": "ইলিশ কালিয়া"
+  },
+
+  "description": {
+    "en": "A rich and aromatic traditional Bangladeshi Ilish (Hilsa) Kalia cooked with plenty of onions, yogurt, whole spices, and a thick, flavorful gravy. Perfect for special occasions and festive lunches.",
+    "bn": "প্রচুর পেঁয়াজ, দই, গোটা মসলা ও ঘন সুস্বাদু ঝোল দিয়ে তৈরি ঐতিহ্যবাহী বাংলাদেশি ইলিশ কালিয়া। বিশেষ অনুষ্ঠান ও উৎসবের দুপুরের খাবারের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 20,
+  "cookTime": 40,
+  "totalTime": 60,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 420,
+    "protein": 35,
+    "fat": 28,
+    "carbohydrates": 10,
+    "fiber": 2,
+    "sugar": 4,
+    "sodium": 780
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "ilish-fish",
+          "name": {
+            "en": "Ilish Fish (Hilsa)",
+            "bn": "ইলিশ মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 1,
+          "unit": {
+            "en": "kg",
+            "bn": "কেজি"
+          },
+          "note": {
+            "en": "Cut into thick pieces (4–6 pieces)",
+            "bn": "মোটা টুকরো করে কাটা (৪–৬ টুকরো)"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Aromatics & Paste",
+        "bn": "সুগন্ধি ও বাটা"
+      },
+      "items": [
+        {
+          "slug": "onion",
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 3,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Finely sliced or made into paste",
+            "bn": "পাতলা করে কাটা বা বাটা"
+          }
+        },
+        {
+          "slug": "ginger-paste",
+          "name": {
+            "en": "Ginger Paste",
+            "bn": "আদা বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "garlic-paste",
+          "name": {
+            "en": "Garlic Paste",
+            "bn": "রসুন বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit",
+            "bn": "চিরা করা"
+          }
+        },
+        {
+          "slug": "yogurt",
+          "name": {
+            "en": "Yogurt",
+            "bn": "টক দই"
+          },
+          "type": "dairy",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Beaten",
+            "bn": "ফেটানো"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Whole & Dry Spices",
+        "bn": "গোটা ও শুকনো মসলা"
+      },
+      "items": [
+        {
+          "slug": "bay-leaf",
+          "name": {
+            "en": "Bay Leaf",
+            "bn": "তেজপাতা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "cinnamon-stick",
+          "name": {
+            "en": "Cinnamon Stick",
+            "bn": "দারুচিনি"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "green-cardamom",
+          "name": {
+            "en": "Green Cardamom",
+            "bn": "সবুজ এলাচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "cloves",
+          "name": {
+            "en": "Cloves",
+            "bn": "লবঙ্গ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "red-chili-powder",
+          "name": {
+            "en": "Red Chili Powder",
+            "bn": "লাল মরিচের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "cumin-powder",
+          "name": {
+            "en": "Cumin Powder",
+            "bn": "জিরা গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "coriander-powder",
+          "name": {
+            "en": "Coriander Powder",
+            "bn": "ধনিয়ার গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "garam-masala",
+          "name": {
+            "en": "Garam Masala",
+            "bn": "গরম মসলা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking & Garnish",
+        "bn": "রান্নার জন্য ও সাজানো"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 5,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "ghee",
+          "name": {
+            "en": "Ghee",
+            "bn": "ঘি"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "fresh-coriander",
+          "name": {
+            "en": "Fresh Coriander",
+            "bn": "তাজা ধনেপাতা"
+          },
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Fish",
+        "bn": "মাছ প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Clean and cut the Ilish into thick pieces. Rub with turmeric and salt. Keep aside for 15 minutes.",
+        "bn": "ইলিশ মাছ পরিষ্কার করে মোটা টুকরো করুন। হলুদ ও লবণ মেখে ১৫ মিনিট রেখে দিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Fry the Fish",
+        "bn": "মাছ ভেজে নিন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a pan until it smokes lightly. Fry the fish pieces carefully on both sides until light golden. Remove and set aside.",
+        "bn": "সরিষার তেল হালকা ধোঁয়া বের হওয়া পর্যন্ত গরম করুন। মাছের টুকরোগুলো সাবধানে দুই পাশে হালকা সোনালি করে ভেজে তুলে রাখুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Make the Onion Base",
+        "bn": "পেঁয়াজের বেস তৈরি করুন"
+      },
+      "description": {
+        "en": "In the same oil, add bay leaf, cinnamon, cardamom, and cloves. Add sliced onions and fry until deep golden brown. This is the key to a good kalia.",
+        "bn": "একই তেলে তেজপাতা, দারুচিনি, এলাচ ও লবঙ্গ দিন। পেঁয়াজ কুচি দিয়ে গাঢ় সোনালি করে ভাজুন। ভালো কালিয়ার জন্য এটা খুব জরুরি।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Cook the Spices",
+        "bn": "মসলা কষিয়ে নিন"
+      },
+      "description": {
+        "en": "Add ginger-garlic paste and sauté. Then add turmeric, chili powder, cumin, coriander powder, and beaten yogurt. Cook on medium heat until the oil separates and the masala becomes thick and aromatic.",
+        "bn": "আদা-রসুন বাটা দিয়ে কষিয়ে নিন। তারপর হলুদ, মরিচ, জিরা, ধনিয়ার গুঁড়া ও ফেটানো দই দিন। মিডিয়াম আঁচে তেল উপরে ভেসে না আসা এবং মসলা ঘন ও সুগন্ধি হওয়া পর্যন্ত কষান।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Add Fish and Finish",
+        "bn": "মাছ দিয়ে শেষ করুন"
+      },
+      "description": {
+        "en": "Gently add the fried fish pieces and green chilies. Add a little warm water if needed for gravy. Cover and cook on low heat for 8–10 minutes. Finish with garam masala, ghee, and chopped coriander.",
+        "bn": "ভাজা মাছের টুকরো ও কাঁচা মরিচ আলতো করে দিন। প্রয়োজনে অল্প গরম পানি দিন। ঢাকনা দিয়ে কম আঁচে ৮–১০ মিনিট রান্না করুন। শেষে গরম মসলা, ঘি ও ধনেপাতা কুচি দিয়ে সাজান।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Serve",
+        "bn": "পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Serve hot with steamed rice or polao. This rich kalia is best enjoyed on special occasions.",
+        "bn": "গরম গরম ভাত বা পোলাওয়ের সাথে পরিবেশন করুন। এই সমৃদ্ধ কালিয়া বিশেষ অনুষ্ঠানে সবচেয়ে ভালো লাগে।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Never over-stir Ilish after adding it to the gravy — the pieces are delicate and can break easily.",
+      "bn": "ইলিশ মাছ ঝোলে দেওয়ার পর বেশি নেড়েচড়ে দেবেন না — টুকরোগুলো নরম, সহজে ভেঙে যায়।"
+    },
+    {
+      "en": "Deep golden onions are the secret to authentic kalia color and flavor.",
+      "bn": "গাঢ় সোনালি পেঁয়াজই আসল কালিয়ার রং ও স্বাদের গোপন রহস্য।"
+    },
+    {
+      "en": "Use good quality mustard oil and heat it properly for the classic Bangladeshi aroma.",
+      "bn": "ভালো মানের সরিষার তেল ব্যবহার করুন এবং সঠিকভাবে গরম করুন যাতে ঐতিহ্যবাহী বাংলাদেশি সুগন্ধ আসে।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Deep Pan or Kadai",
+      "bn": "গভীর প্যান বা কড়াই"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Lid",
+      "bn": "ঢাকনা"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "ilish",
+      "name": {
+        "en": "Ilish",
+        "bn": "ইলিশ"
+      }
+    },
+    {
+      "slug": "hilsa",
+      "name": {
+        "en": "Hilsa",
+        "bn": "হিলসা"
+      }
+    },
+    {
+      "slug": "kalia",
+      "name": {
+        "en": "Kalia",
+        "bn": "কালিয়া"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "special-occasion",
+      "name": {
+        "en": "Special Occasion",
+        "bn": "বিশেষ অনুষ্ঠান"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ilish kalia",
+      "hilsa kalia",
+      "bangladeshi ilish",
+      "hilsa curry",
+      "rich fish curry",
+      "special occasion fish",
+      "bengali kalia",
+      "onion fish curry",
+      "festive lunch"
+    ],
+    "bn": [
+      "ইলিশ কালিয়া",
+      "ইলিশ মাছ",
+      "কালিয়া",
+      "বাংলাদেশি ইলিশ",
+      "বিশেষ অনুষ্ঠান",
+      "মাছের পদ",
+      "দুপুরের খাবার",
+      "ঐতিহ্যবাহী রান্না",
+      "ঘন ঝোল"
+    ]
+  },
+
+  "rating": {
+    "average": 4.9,
+    "count": 312
+  },
+
+  "featured": true,
+
+  "published": true
+}

@@ -1,0 +1,501 @@
+{
+  "id": "crab-bhuna",
+  "slug": "crab-bhuna",
+
+  "title": {
+    "en": "Crab Bhuna",
+    "bn": "কাঁকড়া ভুনা"
+  },
+
+  "description": {
+    "en": "A rich and spicy traditional Bangladeshi Crab Bhuna cooked with plenty of onions, garlic, ginger, and aromatic spices until the oil separates. Perfect for special occasion lunch or dinner.",
+    "bn": "প্রচুর পেঁয়াজ, রসুন, আদা ও সুগন্ধি মসলা দিয়ে কষিয়ে তৈরি সমৃদ্ধ ও ঝাল ঐতিহ্যবাহী বাংলাদেশি কাঁকড়া ভুনা। বিশেষ অনুষ্ঠানের দুপুর বা রাতের খাবারের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 25,
+  "cookTime": 40,
+  "totalTime": 65,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 390,
+    "protein": 33,
+    "fat": 24,
+    "carbohydrates": 10,
+    "fiber": 2,
+    "sugar": 4,
+    "sodium": 850
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Crab",
+        "bn": "কাঁকড়া"
+      },
+      "items": [
+        {
+          "slug": "crab",
+          "name": {
+            "en": "Crab",
+            "bn": "কাঁকড়া"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 1,
+          "unit": {
+            "en": "kg",
+            "bn": "কেজি"
+          },
+          "note": {
+            "en": "Fresh, cleaned and cut into pieces",
+            "bn": "তাজা, পরিষ্কার করা ও টুকরো করা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Aromatics",
+        "bn": "সুগন্ধি"
+      },
+      "items": [
+        {
+          "slug": "onion",
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Thinly sliced",
+            "bn": "পাতলা করে কাটা"
+          }
+        },
+        {
+          "slug": "ginger-paste",
+          "name": {
+            "en": "Ginger Paste",
+            "bn": "আদা বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "garlic-paste",
+          "name": {
+            "en": "Garlic Paste",
+            "bn": "রসুন বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit",
+            "bn": "চিরা করা"
+          }
+        },
+        {
+          "slug": "tomato",
+          "name": {
+            "en": "Tomato",
+            "bn": "টমেটো"
+          },
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Spices",
+        "bn": "মসলা"
+      },
+      "items": [
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "red-chili-powder",
+          "name": {
+            "en": "Red Chili Powder",
+            "bn": "লাল মরিচের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "cumin-powder",
+          "name": {
+            "en": "Cumin Powder",
+            "bn": "জিরা গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "coriander-powder",
+          "name": {
+            "en": "Coriander Powder",
+            "bn": "ধনিয়ার গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "garam-masala",
+          "name": {
+            "en": "Garam Masala",
+            "bn": "গরম মসলা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking & Garnish",
+        "bn": "রান্নার জন্য ও সাজানো"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "fresh-coriander",
+          "name": {
+            "en": "Fresh Coriander",
+            "bn": "তাজা ধনেপাতা"
+          },
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 3,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Crab",
+        "bn": "কাঁকড়া প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Clean the crabs thoroughly. Remove the top shell, gills, and unwanted parts. Cut into pieces if large. Wash well and keep aside.",
+        "bn": "কাঁকড়া ভালোভাবে পরিষ্কার করুন। উপরের খোলস, গিল ও অপ্রয়োজনীয় অংশ সরিয়ে ফেলুন। বড় হলে টুকরো করুন। ভালো করে ধুয়ে রাখুন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Fry the Onions",
+        "bn": "পেঁয়াজ ভাজুন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a deep pan until it smokes lightly. Add the thinly sliced onions and fry on medium heat until soft and golden brown.",
+        "bn": "সরিষার তেল হালকা ধোঁয়া বের হওয়া পর্যন্ত গরম করুন। পাতলা কাটা পেঁয়াজ দিয়ে মিডিয়াম আঁচে নরম ও সোনালি বাদামি করে ভাজুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Cook the Masala",
+        "bn": "মসলা কষিয়ে নিন"
+      },
+      "description": {
+        "en": "Add ginger-garlic paste and green chilies. Sauté until the raw smell disappears. Then add turmeric, red chili powder, cumin powder, coriander powder, and salt. Sprinkle a little water and cook until the oil separates.",
+        "bn": "আদা-রসুন বাটা ও কাঁচা মরিচ দিয়ে কাঁচা গন্ধ না যাওয়া পর্যন্ত কষিয়ে নিন। তারপর হলুদ, লাল মরিচ, জিরা, ধনিয়ার গুঁড়া ও লবণ দিন। অল্প পানি ছিটিয়ে তেল উপরে ভেসে না আসা পর্যন্ত কষান।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Add Tomato and Crab",
+        "bn": "টমেটো ও কাঁকড়া যোগ করুন"
+      },
+      "description": {
+        "en": "Add chopped tomatoes and cook until soft. Then add the cleaned crab pieces. Mix gently so the masala coats the crab well. Cook for 4–5 minutes on medium heat.",
+        "bn": "কুচি করা টমেটো দিয়ে নরম হওয়া পর্যন্ত রান্না করুন। তারপর পরিষ্কার করা কাঁকড়ার টুকরো দিন। আলতো করে মিশিয়ে মসলা কাঁকড়ায় ভালোভাবে লেগে যায়। মিডিয়াম আঁচে ৪–৫ মিনিট রান্না করুন।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Bhuna and Finish",
+        "bn": "ভুনা করে শেষ করুন"
+      },
+      "description": {
+        "en": "Cover and cook on low heat for 12–15 minutes until the crab is fully cooked and the gravy becomes thick with oil floating on top. Sprinkle garam masala and chopped coriander. Mix gently.",
+        "bn": "ঢাকনা দিয়ে কম আঁচে ১২–১৫ মিনিট রান্না করুন যতক্ষণ না কাঁকড়া সেদ্ধ হয় এবং ঝোল ঘন হয়ে তেল উপরে ভেসে ওঠে। গরম মসলা ও ধনেপাতা কুচি ছিটিয়ে আলতো করে মিশিয়ে নিন।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Serve",
+        "bn": "পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Serve hot with steamed rice. This rich Crab Bhuna is ideal for special occasion meals at lunch or dinner.",
+        "bn": "গরম গরম ভাতের সাথে পরিবেশন করুন। এই সমৃদ্ধ কাঁকড়া ভুনা বিশেষ অনুষ্ঠানের দুপুর বা রাতের খাবারের জন্য আদর্শ।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Use fresh crabs for the best flavor. Frozen crabs can be used but fresh is always better.",
+      "bn": "সেরা স্বাদের জন্য তাজা কাঁকড়া ব্যবহার করুন। জমে থাকা কাঁকড়াও ব্যবহার করা যায় তবে তাজাই ভালো।"
+    },
+    {
+      "en": "Proper bhuna (cooking until oil separates) is the key to authentic taste and rich color.",
+      "bn": "সঠিক ভুনা (তেল উপরে ভেসে না আসা পর্যন্ত কষানো) আসল স্বাদ ও গাঢ় রঙের চাবিকাঠি।"
+    },
+    {
+      "en": "Do not add too much water — Crab Bhuna should have a thick, semi-dry consistency.",
+      "bn": "বেশি পানি দেবেন না — কাঁকড়া ভুনা ঘন ও অর্ধ-শুকনো হওয়া উচিত।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Deep Pan or Kadai",
+      "bn": "গভীর প্যান বা কড়াই"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Lid",
+      "bn": "ঢাকনা"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "crab",
+      "name": {
+        "en": "Crab",
+        "bn": "কাঁকড়া"
+      }
+    },
+    {
+      "slug": "bhuna",
+      "name": {
+        "en": "Bhuna",
+        "bn": "ভুনা"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "special-occasion",
+      "name": {
+        "en": "Special Occasion",
+        "bn": "বিশেষ অনুষ্ঠান"
+      }
+    },
+    {
+      "slug": "seafood",
+      "name": {
+        "en": "Seafood",
+        "bn": "সীফুড"
+      }
+    },
+    {
+      "slug": "spicy",
+      "name": {
+        "en": "Spicy",
+        "bn": "ঝাল"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "crab bhuna",
+      "bangladeshi crab",
+      "spicy crab bhuna",
+      "onion crab curry",
+      "special occasion seafood",
+      "crab recipe",
+      "lunch dinner"
+    ],
+    "bn": [
+      "কাঁকড়া ভুনা",
+      "কাঁকড়া",
+      "বাংলাদেশি কাঁকড়া",
+      "ভুনা",
+      "বিশেষ অনুষ্ঠান",
+      "সীফুড",
+      "দুপুরের খাবার",
+      "রাতের খাবার",
+      "মাছের পদ"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 178
+  },
+
+  "featured": true,
+
+  "published": true
+}

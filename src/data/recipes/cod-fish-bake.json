@@ -1,0 +1,456 @@
+{
+  "id": "cod-fish-bake",
+  "slug": "cod-fish-bake",
+
+  "title": {
+    "en": "Cod Fish Bake",
+    "bn": "কড ফিশ বেক"
+  },
+
+  "description": {
+    "en": "An elegant and creamy international-style Cod Fish Bake with tender cod fillets, a rich herb-cream sauce, and a golden cheese topping. Perfect for special occasion dinners.",
+    "bn": "নরম কড ফিলেট, সমৃদ্ধ হার্ব-ক্রিম সস ও সোনালি চিজ টপিং দিয়ে তৈরি মার্জিত আন্তর্জাতিক স্টাইলের কড ফিশ বেক। বিশেষ অনুষ্ঠানের রাতের খাবারের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "international",
+    "name": {
+      "en": "International",
+      "bn": "আন্তর্জাতিক"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 20,
+  "cookTime": 30,
+  "totalTime": 50,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 420,
+    "protein": 38,
+    "fat": 22,
+    "carbohydrates": 12,
+    "fiber": 1,
+    "sugar": 3,
+    "sodium": 680
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "cod-fillet",
+          "name": {
+            "en": "Cod Fillet",
+            "bn": "কড ফিলেট"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 700,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Skinless, boneless, thick pieces",
+            "bn": "চামড়া ও হাড়বিহীন, মোটা টুকরো"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Sauce",
+        "bn": "সস"
+      },
+      "items": [
+        {
+          "slug": "butter",
+          "name": {
+            "en": "Butter",
+            "bn": "বাটার"
+          },
+          "type": "dairy",
+          "isMainIngredient": false,
+          "amount": 40,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          }
+        },
+        {
+          "slug": "all-purpose-flour",
+          "name": {
+            "en": "All-Purpose Flour",
+            "bn": "ময়দা"
+          },
+          "type": "grain",
+          "isMainIngredient": false,
+          "amount": 30,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          }
+        },
+        {
+          "slug": "milk",
+          "name": {
+            "en": "Milk",
+            "bn": "দুধ"
+          },
+          "type": "dairy",
+          "isMainIngredient": false,
+          "amount": 350,
+          "unit": {
+            "en": "ml",
+            "bn": "মিলি"
+          }
+        },
+        {
+          "slug": "cream",
+          "name": {
+            "en": "Cream",
+            "bn": "ক্রিম"
+          },
+          "type": "dairy",
+          "isMainIngredient": false,
+          "amount": 100,
+          "unit": {
+            "en": "ml",
+            "bn": "মিলি"
+          }
+        },
+        {
+          "slug": "garlic",
+          "name": {
+            "en": "Garlic",
+            "bn": "রসুন"
+          },
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "cloves",
+            "bn": "কোয়া"
+          },
+          "note": {
+            "en": "Minced",
+            "bn": "কুচি করা"
+          }
+        },
+        {
+          "slug": "lemon-juice",
+          "name": {
+            "en": "Lemon Juice",
+            "bn": "লেবুর রস"
+          },
+          "type": "acid",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "dijon-mustard",
+          "name": {
+            "en": "Dijon Mustard",
+            "bn": "ডিজন মাস্টার্ড"
+          },
+          "type": "condiment",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Seasoning & Topping",
+        "bn": "সিজনিং ও টপিং"
+      },
+      "items": [
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "black-pepper",
+          "name": {
+            "en": "Black Pepper",
+            "bn": "গোলমরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "dried-parsley",
+          "name": {
+            "en": "Dried Parsley",
+            "bn": "শুকনো পার্সলে"
+          },
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "cheddar-cheese",
+          "name": {
+            "en": "Cheddar Cheese",
+            "bn": "চেডার চিজ"
+          },
+          "type": "dairy",
+          "isMainIngredient": false,
+          "amount": 80,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Grated",
+            "bn": "কুচি করা"
+          }
+        },
+        {
+          "slug": "parmesan-cheese",
+          "name": {
+            "en": "Parmesan Cheese",
+            "bn": "পারমেসান চিজ"
+          },
+          "type": "dairy",
+          "isMainIngredient": false,
+          "amount": 30,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Grated",
+            "bn": "কুচি করা"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Fish",
+        "bn": "মাছ প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Preheat oven to 190°C (375°F). Pat the cod fillets dry and season both sides with salt, black pepper, and a little lemon juice. Arrange in a lightly greased baking dish.",
+        "bn": "ওভেন ১৯০°C (৩৭৫°F) প্রিহিট করুন। কড ফিলেট শুকিয়ে দুই পাশে লবণ, গোলমরিচ ও অল্প লেবুর রস মেখে নিন। হালকা তেল মাখানো বেকিং ডিশে সাজান।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Make the Cream Sauce",
+        "bn": "ক্রিম সস তৈরি করুন"
+      },
+      "description": {
+        "en": "In a saucepan, melt the butter over medium heat. Add minced garlic and cook for 30 seconds. Stir in the flour and cook for 1 minute. Gradually whisk in the milk and cream until smooth and thickened. Add Dijon mustard, dried parsley, salt, and pepper. Simmer for 2–3 minutes.",
+        "bn": "সসপ্যানে মাঝারি আঁচে বাটার গলিয়ে নিন। কুচি রসুন দিয়ে ৩০ সেকেন্ড রান্না করুন। ময়দা দিয়ে ১ মিনিট নাড়ুন। ধীরে ধীরে দুধ ও ক্রিম ফেটিয়ে মসৃণ ও ঘন করুন। ডিজন মাস্টার্ড, শুকনো পার্সলে, লবণ ও গোলমরিচ দিয়ে ২–৩ মিনিট সিদ্ধ করুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Assemble the Bake",
+        "bn": "বেক একত্র করুন"
+      },
+      "description": {
+        "en": "Pour the cream sauce evenly over the cod fillets. Sprinkle grated cheddar and parmesan cheese on top.",
+        "bn": "ক্রিম সস কড ফিলেটের উপর সমানভাবে ঢেলে দিন। উপরে কুচি করা চেডার ও পারমেসান চিজ ছিটিয়ে দিন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Bake",
+        "bn": "বেক করুন"
+      },
+      "description": {
+        "en": "Bake in the preheated oven for 20–25 minutes until the fish is cooked through, the sauce is bubbling, and the cheese topping is golden brown.",
+        "bn": "প্রিহিটেড ওভেনে ২০–২৫ মিনিট বেক করুন যতক্ষণ না মাছ সেদ্ধ হয়, সস ফুটতে থাকে এবং চিজ টপিং সোনালি বাদামি হয়।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Rest and Serve",
+        "bn": "বিশ্রাম দিয়ে পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Remove from the oven and let it rest for 3–4 minutes. Garnish with fresh parsley if desired and serve hot with steamed vegetables, salad, or crusty bread.",
+        "bn": "ওভেন থেকে বের করে ৩–৪ মিনিট বিশ্রাম দিন। ইচ্ছে করলে তাজা পার্সলে দিয়ে সাজিয়ে গরম গরম স্টিমড সবজি, সালাদ বা ক্রাস্টি ব্রেডের সাথে পরিবেশন করুন।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Do not overbake the cod — it should be just cooked and still moist.",
+      "bn": "কড অতিরিক্ত বেক করবেন না — ঠিকমতো সেদ্ধ ও রসালো থাকা উচিত।"
+    },
+    {
+      "en": "For extra flavor, add a pinch of nutmeg to the cream sauce.",
+      "bn": "অতিরিক্ত স্বাদের জন্য ক্রিম সসে এক চিমটি জায়ফল যোগ করতে পারেন।"
+    },
+    {
+      "en": "This dish looks elegant on the table and is ideal for special dinners.",
+      "bn": "এই পদ টেবিলে মার্জিত দেখায় এবং বিশেষ রাতের খাবারের জন্য আদর্শ।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Baking Dish",
+      "bn": "বেকিং ডিশ"
+    },
+    {
+      "en": "Saucepan",
+      "bn": "সসপ্যান"
+    },
+    {
+      "en": "Whisk",
+      "bn": "হুইস্ক"
+    },
+    {
+      "en": "Oven",
+      "bn": "ওভেন"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "cod",
+      "name": {
+        "en": "Cod",
+        "bn": "কড"
+      }
+    },
+    {
+      "slug": "bake",
+      "name": {
+        "en": "Bake",
+        "bn": "বেক"
+      }
+    },
+    {
+      "slug": "international",
+      "name": {
+        "en": "International",
+        "bn": "আন্তর্জাতিক"
+      }
+    },
+    {
+      "slug": "special-occasion",
+      "name": {
+        "en": "Special Occasion",
+        "bn": "বিশেষ অনুষ্ঠান"
+      }
+    },
+    {
+      "slug": "dinner",
+      "name": {
+        "en": "Dinner",
+        "bn": "রাতের খাবার"
+      }
+    },
+    {
+      "slug": "creamy",
+      "name": {
+        "en": "Creamy",
+        "bn": "ক্রিমি"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "cod fish bake",
+      "baked cod",
+      "creamy cod bake",
+      "cod casserole",
+      "special dinner fish",
+      "cheesy cod",
+      "international fish bake"
+    ],
+    "bn": [
+      "কড ফিশ বেক",
+      "কড মাছ",
+      "বেকড কড",
+      "ক্রিমি মাছ",
+      "বিশেষ অনুষ্ঠান",
+      "রাতের খাবার",
+      "মাছের পদ",
+      "চিজ টপিং"
+    ]
+  },
+
+  "rating": {
+    "average": 4.8,
+    "count": 187
+  },
+
+  "featured": true,
+
+  "published": true
+}

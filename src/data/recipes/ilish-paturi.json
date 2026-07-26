@@ -1,0 +1,439 @@
+{
+  "id": "ilish-paturi",
+  "slug": "ilish-paturi",
+
+  "title": {
+    "en": "Ilish Paturi",
+    "bn": "ইলিশ পাতুরি"
+  },
+
+  "description": {
+    "en": "A classic traditional Bangladeshi Ilish Paturi where Hilsa fish is marinated in mustard-coconut paste, wrapped in banana leaves, and steamed to perfection. An elegant dish for special occasions and festive lunches.",
+    "bn": "সরিষা-নারকেল বাটায় মেরিনেট করা ইলিশ মাছ কলার পাতায় মুড়িয়ে ভাপিয়ে তৈরি ঐতিহ্যবাহী বাংলাদেশি ইলিশ পাতুরি। বিশেষ অনুষ্ঠান ও উৎসবের দুপুরের খাবারের জন্য মার্জিত পদ।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Medium",
+    "bn": "মাঝারি"
+  },
+
+  "prepTime": 25,
+  "cookTime": 30,
+  "totalTime": 55,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 410,
+    "protein": 34,
+    "fat": 26,
+    "carbohydrates": 8,
+    "fiber": 2,
+    "sugar": 2,
+    "sodium": 690
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "ilish-fish",
+          "name": {
+            "en": "Ilish Fish (Hilsa)",
+            "bn": "ইলিশ মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 800,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Cut into 4–6 thick pieces",
+            "bn": "৪–৬টি মোটা টুকরো করে কাটা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Mustard Paste",
+        "bn": "সরিষা বাটা"
+      },
+      "items": [
+        {
+          "slug": "yellow-mustard-seeds",
+          "name": {
+            "en": "Yellow Mustard Seeds",
+            "bn": "হলুদ সরিষা"
+          },
+          "type": "spice",
+          "isMainIngredient": true,
+          "amount": 3,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Soaked for 30 minutes",
+            "bn": "৩০ মিনিট ভিজিয়ে রাখা"
+          }
+        },
+        {
+          "slug": "black-mustard-seeds",
+          "name": {
+            "en": "Black Mustard Seeds",
+            "bn": "কালো সরিষা"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Soaked",
+            "bn": "ভেজানো"
+          }
+        },
+        {
+          "slug": "grated-coconut",
+          "name": {
+            "en": "Grated Coconut",
+            "bn": "কুচি করা নারকেল"
+          },
+          "type": "other",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Fresh preferred",
+            "bn": "তাজা পছন্দনীয়"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 6,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          }
+        },
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 3,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Wrapping & Cooking",
+        "bn": "মুড়ানো ও রান্নার জন্য"
+      },
+      "items": [
+        {
+          "slug": "banana-leaf",
+          "name": {
+            "en": "Banana Leaf",
+            "bn": "কলার পাতা"
+          },
+          "type": "other",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Washed and lightly wilted over flame",
+            "bn": "ধুয়ে আগুনে হালকা সেঁকানো"
+          }
+        },
+        {
+          "slug": "thread-or-toothpick",
+          "name": {
+            "en": "Thread or Toothpick",
+            "bn": "সুতা বা টুথপিক"
+          },
+          "type": "other",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "set",
+            "bn": "সেট"
+          },
+          "note": {
+            "en": "For securing the parcels",
+            "bn": "প্যাকেট বাঁধার জন্য"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Mustard Paste",
+        "bn": "সরিষা বাটা তৈরি করুন"
+      },
+      "description": {
+        "en": "Soak yellow and black mustard seeds for 30 minutes. Grind them with green chilies, grated coconut, turmeric, salt, and a little water into a smooth thick paste. Mix in the mustard oil.",
+        "bn": "হলুদ ও কালো সরিষা ৩০ মিনিট ভিজিয়ে রাখুন। কাঁচা মরিচ, কুচি নারকেল, হলুদ, লবণ ও অল্প পানি দিয়ে মসৃণ ঘন বাটা তৈরি করুন। সরিষার তেল মিশিয়ে নিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Marinate the Fish",
+        "bn": "মাছ মেরিনেট করুন"
+      },
+      "description": {
+        "en": "Clean and cut the Ilish into thick pieces. Coat each piece generously with the mustard-coconut paste. Let it marinate for at least 15–20 minutes.",
+        "bn": "ইলিশ মাছ পরিষ্কার করে মোটা টুকরো করুন। প্রতিটি টুকরোতে সরিষা-নারকেল বাটা ভালোভাবে মাখিয়ে কমপক্ষে ১৫–২০ মিনিট মেরিনেট করুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Prepare the Banana Leaves",
+        "bn": "কলার পাতা প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Wash the banana leaves and pass them lightly over a flame so they become soft and pliable. Cut into pieces large enough to wrap each fish portion.",
+        "bn": "কলার পাতা ধুয়ে আগুনের উপর হালকা সেঁকে নরম ও নমনীয় করে নিন। প্রতিটি মাছের টুকরো মুড়ানোর মতো আকারে কেটে নিন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Wrap the Fish",
+        "bn": "মাছ মুড়িয়ে নিন"
+      },
+      "description": {
+        "en": "Place one marinated fish piece in the center of a banana leaf. Fold the leaf into a neat parcel and secure with thread or toothpick. Repeat for all pieces.",
+        "bn": "মেরিনেট করা মাছের একটি টুকরো কলার পাতার মাঝখানে রাখুন। পাতা ভাঁজ করে সুন্দর প্যাকেট তৈরি করুন এবং সুতা বা টুথপিক দিয়ে বেঁধে দিন। সব টুকরোর জন্য একইভাবে করুন।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Steam the Paturi",
+        "bn": "পাতুরি ভাপুন"
+      },
+      "description": {
+        "en": "Arrange the parcels in a steamer or on a plate inside a large pot with a little water. Cover tightly and steam on medium heat for 20–25 minutes until the fish is cooked through.",
+        "bn": "প্যাকেটগুলো স্টিমারে বা অল্প পানি দেওয়া বড় হাঁড়ির ভিতরের প্লেটে সাজান। ভালোভাবে ঢেকে মিডিয়াম আঁচে ২০–২৫ মিনিট ভাপুন যতক্ষণ না মাছ সেদ্ধ হয়।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Serve",
+        "bn": "পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Open the parcels carefully at the table so the aroma is released. Serve hot with steamed rice. Ideal for special occasions.",
+        "bn": "টেবিলে সাবধানে প্যাকেট খুলে সুগন্ধ ছড়িয়ে দিন। গরম গরম ভাতের সাথে পরিবেশন করুন। বিশেষ অনুষ্ঠানের জন্য আদর্শ।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Fresh banana leaves give the best aroma. If unavailable, you can use parchment paper, but the traditional flavor will be milder.",
+      "bn": "তাজা কলার পাতা সবচেয়ে ভালো সুগন্ধ দেয়। না পেলে পার্চমেন্ট পেপার ব্যবহার করতে পারেন, তবে ঐতিহ্যবাহী স্বাদ একটু কম হবে।"
+    },
+    {
+      "en": "Do not make the mustard paste too watery — it should be thick so it clings to the fish.",
+      "bn": "সরিষা বাটা খুব পাতলা করবেন না — ঘন হওয়া উচিত যাতে মাছের সাথে লেগে থাকে।"
+    },
+    {
+      "en": "Steaming is traditional, but you can also slow-cook the parcels in a covered pan with very little oil for a slightly different texture.",
+      "bn": "ভাপানোই ঐতিহ্যবাহী পদ্ধতি, তবে খুব অল্প তেলে ঢাকা প্যানে ধীরে রান্না করলেও ভিন্ন টেক্সচার পাওয়া যায়।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Steamer or Large Pot with Lid",
+      "bn": "স্টিমার বা ঢাকনাসহ বড় হাঁড়ি"
+    },
+    {
+      "en": "Grinder or Mixer",
+      "bn": "গ্রাইন্ডার বা মিক্সার"
+    },
+    {
+      "en": "Thread or Toothpicks",
+      "bn": "সুতা বা টুথপিক"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "ilish",
+      "name": {
+        "en": "Ilish",
+        "bn": "ইলিশ"
+      }
+    },
+    {
+      "slug": "paturi",
+      "name": {
+        "en": "Paturi",
+        "bn": "পাতুরি"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "special-occasion",
+      "name": {
+        "en": "Special Occasion",
+        "bn": "বিশেষ অনুষ্ঠান"
+      }
+    },
+    {
+      "slug": "steamed",
+      "name": {
+        "en": "Steamed",
+        "bn": "ভাপানো"
+      }
+    },
+    {
+      "slug": "mustard",
+      "name": {
+        "en": "Mustard",
+        "bn": "সরিষা"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ilish paturi",
+      "hilsa paturi",
+      "banana leaf fish",
+      "mustard hilsa",
+      "bangladeshi paturi",
+      "steamed hilsa",
+      "special occasion fish",
+      "bengali paturi",
+      "festive lunch"
+    ],
+    "bn": [
+      "ইলিশ পাতুরি",
+      "ইলিশ মাছ",
+      "পাতুরি",
+      "কলার পাতায় মাছ",
+      "সরিষা বাটা",
+      "বিশেষ অনুষ্ঠান",
+      "বাংলাদেশি পাতুরি",
+      "ভাপানো মাছ",
+      "দুপুরের খাবার"
+    ]
+  },
+
+  "rating": {
+    "average": 4.9,
+    "count": 241
+  },
+
+  "featured": true,
+
+  "published": true
+}

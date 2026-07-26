@@ -1,0 +1,507 @@
+{
+  "id": "ayer-mach-jhol",
+  "slug": "ayer-mach-jhol",
+
+  "title": {
+    "en": "Ayer Fish Jhol",
+    "bn": "আইড় মাছের ঝোল"
+  },
+
+  "description": {
+    "en": "A light and comforting traditional Bangladeshi Ayer fish jhol cooked with potatoes, tomatoes, green chilies, and simple spices in a thin, flavorful gravy. Ideal for everyday lunch.",
+    "bn": "আলু, টমেটো, কাঁচা মরিচ ও সাধারণ মসলা দিয়ে তৈরি হালকা ও সুস্বাদু ঐতিহ্যবাহী বাংলাদেশি আইড় মাছের ঝোল। দৈনন্দিন দুপুরের খাবারের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1611599537845-1c7aca0091c0?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Easy",
+    "bn": "সহজ"
+  },
+
+  "prepTime": 15,
+  "cookTime": 30,
+  "totalTime": 45,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 310,
+    "protein": 34,
+    "fat": 14,
+    "carbohydrates": 12,
+    "fiber": 2,
+    "sugar": 3,
+    "sodium": 650
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "ayer-fish",
+          "name": {
+            "en": "Ayer Fish",
+            "bn": "আইড় মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 800,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Cut into medium pieces, cleaned",
+            "bn": "মাঝারি টুকরো করে কাটা, পরিষ্কার করা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Vegetables",
+        "bn": "সবজি"
+      },
+      "items": [
+        {
+          "slug": "potato",
+          "name": {
+            "en": "Potato",
+            "bn": "আলু"
+          },
+          "type": "vegetable",
+          "isMainIngredient": true,
+          "amount": 2,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Medium size, cut into quarters",
+            "bn": "মাঝারি সাইজ, চার টুকরো করা"
+          }
+        },
+        {
+          "slug": "tomato",
+          "name": {
+            "en": "Tomato",
+            "bn": "টমেটো"
+          },
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "pc",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        },
+        {
+          "slug": "onion",
+          "name": {
+            "en": "Onion",
+            "bn": "পেঁয়াজ"
+          },
+          "type": "vegetable",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "pc",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Sliced",
+            "bn": "পাতলা করে কাটা"
+          }
+        },
+        {
+          "slug": "green-chili",
+          "name": {
+            "en": "Green Chili",
+            "bn": "কাঁচা মরিচ"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 4,
+          "unit": {
+            "en": "pcs",
+            "bn": "টি"
+          },
+          "note": {
+            "en": "Slit",
+            "bn": "চিরা করা"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Spices & Paste",
+        "bn": "মসলা ও বাটা"
+      },
+      "items": [
+        {
+          "slug": "ginger-paste",
+          "name": {
+            "en": "Ginger Paste",
+            "bn": "আদা বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "garlic-paste",
+          "name": {
+            "en": "Garlic Paste",
+            "bn": "রসুন বাটা"
+          },
+          "type": "paste",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "red-chili-powder",
+          "name": {
+            "en": "Red Chili Powder",
+            "bn": "লাল মরিচের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "cumin-powder",
+          "name": {
+            "en": "Cumin Powder",
+            "bn": "জিরা গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Cooking & Garnish",
+        "bn": "রান্নার জন্য ও সাজানো"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 3,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          }
+        },
+        {
+          "slug": "water",
+          "name": {
+            "en": "Water",
+            "bn": "পানি"
+          },
+          "type": "liquid",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "cups",
+            "bn": "কাপ"
+          }
+        },
+        {
+          "slug": "fresh-coriander",
+          "name": {
+            "en": "Fresh Coriander",
+            "bn": "তাজা ধনেপাতা"
+          },
+          "type": "herb",
+          "isMainIngredient": false,
+          "amount": 2,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Chopped",
+            "bn": "কুচি করা"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Prepare the Fish",
+        "bn": "মাছ প্রস্তুত করুন"
+      },
+      "description": {
+        "en": "Clean and cut the Ayer fish into medium pieces. Rub with a little turmeric and salt. Keep aside for 10 minutes.",
+        "bn": "আইড় মাছ পরিষ্কার করে মাঝারি টুকরো করুন। অল্প হলুদ ও লবণ মেখে ১০ মিনিট রেখে দিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Fry the Fish Lightly",
+        "bn": "মাছ হালকা ভেজে নিন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a pan. Lightly fry the fish pieces for 1–2 minutes on each side until the surface firms up. Remove and set aside.",
+        "bn": "সরিষার তেল গরম করে মাছের টুকরোগুলো প্রতি পাশে ১–২ মিনিট হালকা ভেজে নিন যতক্ষণ না উপরের অংশ শক্ত হয়। তুলে রাখুন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Make the Gravy Base",
+        "bn": "ঝোলের বেস তৈরি করুন"
+      },
+      "description": {
+        "en": "In the same oil, add sliced onion and fry until soft and light golden. Add ginger-garlic paste and sauté for a minute.",
+        "bn": "একই তেলে পেঁয়াজ কুচি দিয়ে নরম ও হালকা সোনালি করে ভাজুন। আদা-রসুন বাটা দিয়ে এক মিনিট কষিয়ে নিন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Add Spices and Vegetables",
+        "bn": "মসলা ও সবজি যোগ করুন"
+      },
+      "description": {
+        "en": "Add turmeric, chili powder, cumin powder, and salt. Mix well. Add chopped tomato and potato pieces. Stir for 2–3 minutes.",
+        "bn": "হলুদ, মরিচের গুঁড়া, জিরা গুঁড়া ও লবণ দিয়ে মিশিয়ে নিন। কুচি করা টমেটো ও আলুর টুকরো দিন। ২–৩ মিনিট নাড়ুন।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Add Water and Fish",
+        "bn": "পানি ও মাছ দিন"
+      },
+      "description": {
+        "en": "Pour in the water and bring to a boil. Gently add the fried fish pieces and green chilies. Cover and cook on medium-low heat for 12–15 minutes until the potatoes are soft and the gravy is light.",
+        "bn": "পানি দিয়ে ফুটিয়ে তুলুন। ভাজা মাছের টুকরো ও কাঁচা মরিচ আলতো করে দিন। ঢাকনা দিয়ে মিডিয়াম-লো আঁচে ১২–১৫ মিনিট রান্না করুন যতক্ষণ না আলু নরম হয় এবং ঝোল হালকা হয়।"
+      }
+    },
+    {
+      "step": 6,
+      "title": {
+        "en": "Finish and Serve",
+        "bn": "শেষ করুন ও পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Check seasoning. Sprinkle chopped coriander leaves. Serve hot with steamed rice.",
+        "bn": "স্বাদ দেখে নিন। ধনেপাতা কুচি ছিটিয়ে দিন। গরম গরম ভাতের সাথে পরিবেশন করুন।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Keep the gravy thin and light — that is the characteristic of a good Bengali/Bangladeshi jhol.",
+      "bn": "ঝোল হালকা ও পাতলা রাখুন — এটাই ভালো বাংলা/বাংলাদেশি ঝোলের বৈশিষ্ট্য।"
+    },
+    {
+      "en": "Do not over-fry the fish; just a light fry is enough so it doesn’t break while cooking in the gravy.",
+      "bn": "মাছ বেশি ভাজবেন না; শুধু হালকা ভেজে নিলেই হবে যাতে ঝোলে রান্নার সময় না ভাঙে।"
+    },
+    {
+      "en": "Adding a few mustard seeds or a pinch of panch phoron at the beginning gives extra traditional aroma.",
+      "bn": "শুরুতে কয়েকটা সরিষা বা এক চিমটি পাঁচ ফোড়ন দিলে অতিরিক্ত ঐতিহ্যবাহী সুগন্ধ পাওয়া যায়।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Deep Pan or Kadai",
+      "bn": "গভীর প্যান বা কড়াই"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Lid",
+      "bn": "ঢাকনা"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "fish",
+      "name": {
+        "en": "Fish",
+        "bn": "মাছ"
+      }
+    },
+    {
+      "slug": "jhol",
+      "name": {
+        "en": "Jhol",
+        "bn": "ঝোল"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "everyday",
+      "name": {
+        "en": "Everyday",
+        "bn": "দৈনন্দিন"
+      }
+    },
+    {
+      "slug": "light",
+      "name": {
+        "en": "Light",
+        "bn": "হালকা"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "ayer fish jhol",
+      "ayer mach jhol",
+      "bangladeshi fish curry",
+      "light fish curry",
+      "bengali fish jhol",
+      "everyday fish recipe",
+      "potato fish curry",
+      "lunch",
+      "simple fish curry"
+    ],
+    "bn": [
+      "আইড় মাছের ঝোল",
+      "আইড় মাছ",
+      "মাছের ঝোল",
+      "বাংলাদেশি মাছের রান্না",
+      "হালকা মাছের তরকারি",
+      "দৈনন্দিন রান্না",
+      "দুপুরের খাবার",
+      "মাছের পদ",
+      "আলু দিয়ে মাছ"
+    ]
+  },
+
+  "rating": {
+    "average": 4.7,
+    "count": 189
+  },
+
+  "featured": false,
+
+  "published": true
+}

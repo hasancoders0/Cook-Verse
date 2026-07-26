@@ -1,0 +1,347 @@
+{
+  "id": "kakila-mach-bhaja",
+  "slug": "kakila-mach-bhaja",
+
+  "title": {
+    "en": "Kakila Mach Bhaja",
+    "bn": "কাকিলা মাছ ভাজা"
+  },
+
+  "description": {
+    "en": "A simple and crispy traditional Bangladeshi Kakila Mach Bhaja — small Kakila fish marinated with turmeric and salt, then shallow-fried in mustard oil until golden. A perfect everyday lunch dish.",
+    "bn": "হলুদ ও লবণ মেখে সরিষার তেলে সোনালি করে ভাজা ঐতিহ্যবাহী বাংলাদেশি কাকিলা মাছ ভাজা। দৈনন্দিন দুপুরের খাবারের জন্য উপযুক্ত।"
+  },
+
+  "thumbnail": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80",
+
+  "category": {
+    "slug": "main-course",
+    "name": {
+      "en": "Main Course",
+      "bn": "প্রধান খাবার"
+    }
+  },
+
+  "cuisine": {
+    "slug": "bangladeshi",
+    "name": {
+      "en": "Bangladeshi",
+      "bn": "বাংলাদেশি"
+    }
+  },
+
+  "difficulty": {
+    "en": "Easy",
+    "bn": "সহজ"
+  },
+
+  "prepTime": 10,
+  "cookTime": 15,
+  "totalTime": 25,
+
+  "servings": 4,
+
+  "nutrition": {
+    "calories": 320,
+    "protein": 28,
+    "fat": 20,
+    "carbohydrates": 2,
+    "fiber": 0,
+    "sugar": 0,
+    "sodium": 560
+  },
+
+  "diet": [
+    {
+      "slug": "high-protein",
+      "name": {
+        "en": "High Protein",
+        "bn": "উচ্চ প্রোটিন"
+      }
+    },
+    {
+      "slug": "gluten-free",
+      "name": {
+        "en": "Gluten Free",
+        "bn": "গ্লুটেন ফ্রি"
+      }
+    }
+  ],
+
+  "ingredientGroups": [
+    {
+      "title": {
+        "en": "Fish",
+        "bn": "মাছ"
+      },
+      "items": [
+        {
+          "slug": "kakila-fish",
+          "name": {
+            "en": "Kakila Fish",
+            "bn": "কাকিলা মাছ"
+          },
+          "type": "protein",
+          "isMainIngredient": true,
+          "amount": 500,
+          "unit": {
+            "en": "g",
+            "bn": "গ্রাম"
+          },
+          "note": {
+            "en": "Cleaned, small whole fish",
+            "bn": "পরিষ্কার করা, ছোট গোটা মাছ"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Marinade",
+        "bn": "মেরিনেড"
+      },
+      "items": [
+        {
+          "slug": "turmeric-powder",
+          "name": {
+            "en": "Turmeric Powder",
+            "bn": "হলুদের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 1,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          }
+        },
+        {
+          "slug": "salt",
+          "name": {
+            "en": "Salt",
+            "bn": "লবণ"
+          },
+          "type": "seasoning",
+          "isMainIngredient": false,
+          "amount": 1.25,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Or to taste",
+            "bn": "স্বাদ অনুযায়ী"
+          }
+        },
+        {
+          "slug": "red-chili-powder",
+          "name": {
+            "en": "Red Chili Powder",
+            "bn": "লাল মরিচের গুঁড়া"
+          },
+          "type": "spice",
+          "isMainIngredient": false,
+          "amount": 0.5,
+          "unit": {
+            "en": "tsp",
+            "bn": "চা চামচ"
+          },
+          "note": {
+            "en": "Optional",
+            "bn": "ঐচ্ছিক"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "For Frying",
+        "bn": "ভাজার জন্য"
+      },
+      "items": [
+        {
+          "slug": "mustard-oil",
+          "name": {
+            "en": "Mustard Oil",
+            "bn": "সরিষার তেল"
+          },
+          "type": "oil",
+          "isMainIngredient": false,
+          "amount": 5,
+          "unit": {
+            "en": "tbsp",
+            "bn": "টেবিল চামচ"
+          },
+          "note": {
+            "en": "Or enough for shallow frying",
+            "bn": "অথবা শ্যালো ফ্রাইয়ের জন্য যথেষ্ট"
+          }
+        }
+      ]
+    }
+  ],
+
+  "instructions": [
+    {
+      "step": 1,
+      "title": {
+        "en": "Clean the Fish",
+        "bn": "মাছ পরিষ্কার করুন"
+      },
+      "description": {
+        "en": "Clean the Kakila fish thoroughly. Remove the guts if not already cleaned. Wash well and pat dry with a paper towel.",
+        "bn": "কাকিলা মাছ ভালোভাবে পরিষ্কার করুন। না পরিষ্কার করা থাকলে নাড়িভুঁড়ি বের করে ফেলুন। ভালো করে ধুয়ে কাগজের টাওয়েল দিয়ে শুকিয়ে নিন।"
+      }
+    },
+    {
+      "step": 2,
+      "title": {
+        "en": "Marinate",
+        "bn": "মেরিনেট করুন"
+      },
+      "description": {
+        "en": "Rub the fish evenly with turmeric powder, salt, and red chili powder (if using). Let it rest for 10 minutes.",
+        "bn": "মাছে হলুদের গুঁড়া, লবণ এবং লাল মরিচের গুঁড়া (দিলে) সমানভাবে মেখে ১০ মিনিট রেখে দিন।"
+      }
+    },
+    {
+      "step": 3,
+      "title": {
+        "en": "Heat the Oil",
+        "bn": "তেল গরম করুন"
+      },
+      "description": {
+        "en": "Heat mustard oil in a frying pan over medium heat until it reaches smoking point, then reduce the heat slightly.",
+        "bn": "ফ্রাইং প্যানে সরিষার তেল মিডিয়াম আঁচে গরম করুন যতক্ষণ না ধোঁয়া বের হয়, তারপর আঁচ একটু কমিয়ে দিন।"
+      }
+    },
+    {
+      "step": 4,
+      "title": {
+        "en": "Fry the Fish",
+        "bn": "মাছ ভাজুন"
+      },
+      "description": {
+        "en": "Gently place the marinated Kakila fish in the hot oil. Fry on medium heat for 3–4 minutes on each side until golden brown and crispy. Do not overcrowd the pan.",
+        "bn": "মেরিনেট করা কাকিলা মাছ গরম তেলে আলতো করে দিন। মিডিয়াম আঁচে প্রতি পাশে ৩–৪ মিনিট করে সোনালি ও ক্রিস্পি হওয়া পর্যন্ত ভাজুন। প্যানে একসাথে বেশি মাছ দেবেন না।"
+      }
+    },
+    {
+      "step": 5,
+      "title": {
+        "en": "Drain and Serve",
+        "bn": "ঝরিয়ে পরিবেশন করুন"
+      },
+      "description": {
+        "en": "Remove the fried fish and place on a paper towel to drain excess oil. Serve hot with steamed rice and dal or any simple vegetable dish.",
+        "bn": "ভাজা মাছ তুলে কাগজের টাওয়েলে রেখে অতিরিক্ত তেল ঝরিয়ে নিন। গরম গরম ভাত, ডাল বা যেকোনো সাধারণ তরকারির সাথে পরিবেশন করুন।"
+      }
+    }
+  ],
+
+  "tips": [
+    {
+      "en": "Pat the fish completely dry before marinating for a crispier result.",
+      "bn": "মেরিনেট করার আগে মাছ সম্পূর্ণ শুকিয়ে নিন যাতে আরও ক্রিস্পি হয়।"
+    },
+    {
+      "en": "Fry on medium heat so the small fish cooks through without burning.",
+      "bn": "মিডিয়াম আঁচে ভাজুন যাতে ছোট মাছ পুড়ে না যায় এবং ভিতর পর্যন্ত সেদ্ধ হয়।"
+    },
+    {
+      "en": "Mustard oil gives the authentic Bangladeshi flavor — heat it properly until it smokes.",
+      "bn": "সরিষার তেল আসল বাংলাদেশি স্বাদ দেয় — সঠিকভাবে ধোঁয়া বের হওয়া পর্যন্ত গরম করুন।"
+    }
+  ],
+
+  "equipment": [
+    {
+      "en": "Frying Pan",
+      "bn": "ফ্রাইং প্যান"
+    },
+    {
+      "en": "Spatula",
+      "bn": "স্প্যাচুলা"
+    },
+    {
+      "en": "Paper Towel",
+      "bn": "কাগজের টাওয়েল"
+    }
+  ],
+
+  "tags": [
+    {
+      "slug": "kakila",
+      "name": {
+        "en": "Kakila",
+        "bn": "কাকিলা"
+      }
+    },
+    {
+      "slug": "bhaja",
+      "name": {
+        "en": "Bhaja",
+        "bn": "ভাজা"
+      }
+    },
+    {
+      "slug": "bangladeshi",
+      "name": {
+        "en": "Bangladeshi",
+        "bn": "বাংলাদেশি"
+      }
+    },
+    {
+      "slug": "everyday",
+      "name": {
+        "en": "Everyday",
+        "bn": "দৈনন্দিন"
+      }
+    },
+    {
+      "slug": "lunch",
+      "name": {
+        "en": "Lunch",
+        "bn": "দুপুরের খাবার"
+      }
+    },
+    {
+      "slug": "fried",
+      "name": {
+        "en": "Fried",
+        "bn": "ভাজা"
+      }
+    }
+  ],
+
+  "searchTerms": {
+    "en": [
+      "kakila mach bhaja",
+      "kakila fish fry",
+      "fried kakila",
+      "bangladeshi small fish",
+      "everyday fish fry",
+      "mustard oil fish",
+      "lunch"
+    ],
+    "bn": [
+      "কাকিলা মাছ ভাজা",
+      "কাকিলা মাছ",
+      "ভাজা মাছ",
+      "বাংলাদেশি মাছ",
+      "দৈনন্দিন",
+      "দুপুরের খাবার",
+      "মাছের পদ",
+      "সরিষার তেলে ভাজা"
+    ]
+  },
+
+  "rating": {
+    "average": 4.6,
+    "count": 134
+  },
+
+  "featured": false,
+
+  "published": true
+}
