@@ -58,7 +58,8 @@ const REASON_TEMPLATES = {
 };
 
 function resolveReasonText(key, language, ...args) {
-  const template = REASON_TEMPLATES[key]?.[language] || REASON_TEMPLATES[key]?.en;
+  const template =
+    REASON_TEMPLATES[key]?.[language] || REASON_TEMPLATES[key]?.en;
   if (typeof template === "function") return template(...args);
   return template || "";
 }
@@ -78,35 +79,121 @@ function scoreRecipe(recipe, constraints, language) {
   const reasons = [];
   let score = 0;
 
+  // -----------------------------------------------------
+  // Search query priority
+  // -----------------------------------------------------
+
+  const query = constraints.query?.toLowerCase().trim();
+
+  if (query) {
+    const title = recipe.title?.en?.toLowerCase() || "";
+
+    const searchTerms = [
+      ...(recipe.searchTerms?.en || []),
+      ...(recipe.searchTerms?.bn || []),
+    ].map((item) => item.toLowerCase());
+
+    if (recipe.slug === query) {
+      score += 1000;
+    }
+
+    if (title === query) {
+      score += 1000;
+    }
+
+    if (searchTerms.includes(query)) {
+      score += 500;
+    }
+  }
+
   if (summary.matchesDish) {
     score += RANKING_WEIGHTS.DISH_NAME_MATCH;
     reasons.push(resolveReasonText("dish", language));
   }
 
   if (summary.ingredientOverlap > 0) {
-    const mainIngredientBonus = countMainIngredientOverlap(recipe, constraints.ingredients);
+    const mainIngredientBonus = countMainIngredientOverlap(
+      recipe,
+      constraints.ingredients,
+    );
+    score += mainIngredientBonus * 300;
     const secondaryOverlap = summary.ingredientOverlap - mainIngredientBonus;
 
     score +=
-      mainIngredientBonus * RANKING_WEIGHTS.MAIN_INGREDIENT_MATCH +
-      Math.max(secondaryOverlap, 0) * RANKING_WEIGHTS.SECONDARY_INGREDIENT_MATCH;
+      Math.max(secondaryOverlap, 0) *
+      RANKING_WEIGHTS.SECONDARY_INGREDIENT_MATCH;
 
-    reasons.push(resolveReasonText("ingredient", language, summary.ingredientOverlap));
+    reasons.push(
+      resolveReasonText("ingredient", language, summary.ingredientOverlap),
+    );
   }
 
   if (summary.matchesCuisine) {
-    score += RANKING_WEIGHTS.CUISINE_MATCH;
+    score += 150;
     reasons.push(resolveReasonText("cuisine", language));
   }
 
+  // -----------------------------------------------------
+  // Tag Match
+  // -----------------------------------------------------
+
+  if (query) {
+    const tags = (recipe.tags || [])
+      .flatMap((tag) => [tag.slug, tag.name?.en, tag.name?.bn])
+      .filter(Boolean)
+      .map((item) => item.toLowerCase());
+
+    if (tags.some((tag) => tag === query || tag.includes(query))) {
+      score += 200;
+    }
+  }
+
   if (summary.matchesCategory) {
-    score += RANKING_WEIGHTS.CATEGORY_MATCH;
+    score += 150;
     reasons.push(resolveReasonText("category", language));
+  }
+
+  // -----------------------------------------------------
+  // Description Match
+  // -----------------------------------------------------
+
+  if (query) {
+    const descriptions = [recipe.description?.en, recipe.description?.bn]
+      .filter(Boolean)
+      .map((item) => item.toLowerCase());
+
+    if (descriptions.some((text) => text.includes(query))) {
+      score += 80;
+    }
   }
 
   if (summary.matchesDiet) {
     score += RANKING_WEIGHTS.DIET_MATCH;
     reasons.push(resolveReasonText("diet", language));
+  }
+
+  // -----------------------------------------------------
+  // Fuzzy Match
+  // -----------------------------------------------------
+
+  if (query) {
+    const searchable = [
+      recipe.slug,
+      recipe.title?.en,
+      recipe.title?.bn,
+      ...(recipe.searchTerms?.en || []),
+      ...(recipe.searchTerms?.bn || []),
+    ]
+      .filter(Boolean)
+      .map((item) => item.toLowerCase());
+
+    const fuzzyMatched = searchable.some((item) => {
+      return item !== query && (item.includes(query) || query.includes(item));
+    });
+
+    if (fuzzyMatched) {
+      score += 30;
+    }
   }
 
   if (summary.matchesDifficulty) {
@@ -164,7 +251,8 @@ function countMainIngredientOverlap(recipe, ingredientSlugs = []) {
       .map((item) => normalizeText(item.slug)),
   );
 
-  return ingredientSlugs.filter((slug) => mainSlugs.has(normalizeText(slug))).length;
+  return ingredientSlugs.filter((slug) => mainSlugs.has(normalizeText(slug)))
+    .length;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -180,7 +268,11 @@ function countMainIngredientOverlap(recipe, ingredientSlugs = []) {
  *
  * Returns: Array<Recipe & { score: number, reasons: string[] }>
  */
-export function rankRecipes(candidates = [], constraints = {}, language = "en") {
+export function rankRecipes(
+  candidates = [],
+  constraints = {},
+  language = "en",
+) {
   const scored = candidates.map((recipe) => {
     const { score, reasons } = scoreRecipe(recipe, constraints, language);
     return { ...recipe, score, reasons };
@@ -202,7 +294,11 @@ export function rankRecipes(candidates = [], constraints = {}, language = "en") 
  * callers that only care about the top pick (e.g. a quick "what should
  * I cook" single-recipe response).
  */
-export function getTopRecipe(candidates = [], constraints = {}, language = "en") {
+export function getTopRecipe(
+  candidates = [],
+  constraints = {},
+  language = "en",
+) {
   const ranked = rankRecipes(candidates, constraints, language);
   return ranked[0] || null;
 }

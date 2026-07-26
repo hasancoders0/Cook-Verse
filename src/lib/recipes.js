@@ -1,3 +1,4 @@
+// src/lib/recipes.js
 import recipes from "@/data/recipes";
 
 import { getLocalizedValue } from "@/lib/language";

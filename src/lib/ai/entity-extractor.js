@@ -57,11 +57,6 @@ function getDietVocab() {
   return buildVocabList(getDiets());
 }
 
-/**
- * Build a dish-name vocabulary from recipe titles + searchTerms, so a
- * message like "আমি বিরিয়ানি রান্না করতে চাই" can match "চিকেন বিরিয়ানি"
- * / "chicken biryani" even without an exact title match.
- */
 function getDishVocab() {
   return getAllRecipes().map((recipe) => {
     const names = [
@@ -71,18 +66,9 @@ function getDishVocab() {
       ...(recipe.searchTerms?.bn || []),
     ].filter(Boolean);
 
-    // Add the first word of the recipe title as an alias
-    // Example:
-    // "Ilish Bhaja" -> "Ilish"
-    // "ইলিশ ভাজা" -> "ইলিশ"
-    const aliases = names.flatMap((name) => {
-      const firstWord = name.trim().split(/\s+/)[0];
-      return firstWord ? [firstWord] : [];
-    });
-
     return {
       slug: recipe.slug,
-      names: [...new Set([...names, ...aliases])],
+      names,
     };
   });
 }
@@ -158,9 +144,23 @@ export function extractIngredients(text, language = "en") {
  * "বিরিয়ানি"). Returns the single best-matching recipe slug, or null.
  */
 export function extractDish(text) {
+  const normalized = normalizeText(text);
+
   const vocab = getDishVocab();
-  const matches = matchVocabInText(text, vocab, { fuzzy: true });
-  return matches[0] || null;
+
+  const exact = vocab.find((entry) =>
+    entry.names.some((name) => normalizeText(name) === normalized),
+  );
+
+  if (exact) {
+    return exact.slug;
+  }
+
+  const partial = matchVocabInText(text, vocab, {
+    fuzzy: true,
+  });
+
+  return partial[0] || null;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -277,9 +277,31 @@ export function extractEntities(text, { language = "en" } = {}) {
     return emptyEntities();
   }
 
+  const detectedDish = extractDish(text);
+  const normalizedInput = normalizeText(text);
+
+  const exactRecipeMatch =
+    detectedDish &&
+    getAllRecipes().find((recipe) => {
+      const names = [
+        recipe.title?.en,
+        recipe.title?.bn,
+        ...(recipe.searchTerms?.en || []),
+        ...(recipe.searchTerms?.bn || []),
+      ]
+        .filter(Boolean)
+        .map(normalizeText);
+
+      return (
+        recipe.slug === detectedDish &&
+        names.some((name) => name === normalizedInput)
+      );
+    });
+
   return {
     ingredients: extractIngredients(text, language),
-    dish: extractDish(text),
+    dish: exactRecipeMatch ? detectedDish : null,
+    query: normalizeText(text),
     cuisine: extractCuisine(text),
     category: extractCategory(text),
     diet: extractDiet(text),
@@ -292,6 +314,7 @@ function emptyEntities() {
   return {
     ingredients: [],
     dish: null,
+    query: null,
     cuisine: null,
     category: null,
     diet: null,
@@ -310,6 +333,7 @@ export function hasAnyEntities(entities) {
   return Boolean(
     entities.ingredients?.length ||
     entities.dish ||
+    entities.query ||
     entities.cuisine ||
     entities.category ||
     entities.diet ||

@@ -1,3 +1,4 @@
+// src/data/recipes/index.js
 // Recipe Files
 import beefBurger from "./beef-burger.json";
 import chickenBiryani from "./chicken-biryani.json";

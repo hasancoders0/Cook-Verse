@@ -154,6 +154,13 @@ export function updateContext(session, entities = {}) {
   if (entities.diet) {
     ctx.lastDiet = entities.diet;
   }
+  if (entities.query) {
+    ctx.lastSearchQuery = entities.query;
+  }
+
+  if (entities.searchMode) {
+    ctx.lastSearchMode = entities.searchMode;
+  }
 
   ctx.updatedAt = Date.now();
   return session;
@@ -227,12 +234,17 @@ export function resolveFollowUpEntities(session, parsed, extracted = {}) {
     ingredients: extracted.ingredients?.length
       ? extracted.ingredients
       : ctx.lastMentionedIngredients,
+
+    query: extracted.query ?? ctx.lastSearchQuery,
+    searchMode: ctx.lastSearchMode,
+
     cuisine: extracted.cuisine ?? ctx.selectedCuisine,
     category: extracted.category ?? ctx.selectedCategory,
     difficulty: extracted.difficulty ?? ctx.selectedDifficulty,
     time: extracted.time ?? ctx.lastTimeConstraint,
     diet: extracted.diet ?? ctx.lastDiet,
-    dish: extracted.dish ?? null, // dish name never inherited from context
+    dish: extracted.dish ?? null,
+
     inheritedFromContext: true,
   };
 }

@@ -4,6 +4,7 @@ import { INTENTS } from "./config";
 import { detectLanguage } from "./language-detector";
 import { parsePrompt } from "./prompt-parser";
 import { extractEntities, hasAnyEntities } from "./entity-extractor";
+import { normalizeText } from "@/lib/utils";
 
 import {
   createSession,
@@ -196,8 +197,6 @@ export function generateRecipe(rawText, { debug = true } = {}) {
       language,
     });
 
-
-
     const effectiveEntities = resolveFollowUpEntities(
       currentSession,
       parsed,
@@ -233,15 +232,25 @@ export function generateRecipe(rawText, { debug = true } = {}) {
     let constraints = null;
     let searchResult = null;
     if (shouldSearch && hasEffectiveEntities) {
-      constraints = buildConstraints(effectiveEntities);
+      constraints = {
+        ...buildConstraints(effectiveEntities),
+        query: rawText,
+      };
 
-      searchResult = effectiveEntities.dish
-        ? getRecommendationsForDish(effectiveEntities.dish, constraints, {
-            language,
-          })
-        : getRecommendations(constraints, { language });
+      const exactQuery =
+        effectiveEntities.dish &&
+        normalizeText(rawText) ===
+          normalizeText(effectiveEntities.dish.replace(/-/g, " "));
+
+      searchResult =
+        effectiveEntities.dish && exactQuery
+          ? getRecommendationsForDish(effectiveEntities.dish, constraints, {
+              language,
+            })
+          : getRecommendations(constraints, { language });
 
       updateContext(currentSession, effectiveEntities);
+
       if (searchResult.results.length > 0) {
         setLastSearchResults(currentSession, searchResult.results);
         setLastSearchedRecipe(currentSession, searchResult.results[0]);

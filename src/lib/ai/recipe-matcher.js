@@ -1,8 +1,7 @@
 // src/lib/ai/recipe-matcher.js
 
 import { flattenIngredients } from "@/lib/recipes";
-import { normalizeText, fuzzyIncludes } from "@/lib/utils";
-import { MATCH_CONFIG } from "./config";
+import { normalizeText, fuzzyIncludes, tokenize } from "@/lib/utils";
 
 /* -------------------------------------------------------------------------- */
 /* Field-Level Matchers                                                      */
@@ -97,25 +96,62 @@ function matchesDish(recipe, dishSlug) {
  */
 export function matchesFreeText(recipe, query = "", language = "en") {
   if (!query) return false;
-  const normalizedQuery = normalizeText(query);
 
-  const haystacks = [
-    recipe.title?.[language],
-    recipe.title?.en,
-    recipe.description?.[language],
-    ...(recipe.searchTerms?.[language] || []),
+  const q = normalizeText(query);
+
+  const tokens = tokenize(q).filter((token) => token.length > 2);
+
+  const titleEn = normalizeText(recipe.title?.en || "");
+  const titleBn = normalizeText(recipe.title?.bn || "");
+
+  const searchTerms = [
     ...(recipe.searchTerms?.en || []),
-    recipe.category?.name?.[language],
-    recipe.cuisine?.name?.[language],
-    ...(recipe.tags?.map((tag) => tag.name?.[language]) || []),
+    ...(recipe.searchTerms?.bn || []),
+  ].map(normalizeText);
+
+  const searchable = [
+    recipe.slug,
+
+    recipe.title?.en,
+    recipe.title?.bn,
+
+    ...(recipe.searchTerms?.en || []),
+    ...(recipe.searchTerms?.bn || []),
+
+    recipe.description?.en,
+    recipe.description?.bn,
+
+    recipe.category?.name?.en,
+    recipe.category?.name?.bn,
+
+    recipe.cuisine?.name?.en,
+    recipe.cuisine?.name?.bn,
+
+    ...(recipe.tags?.map((tag) => tag.name?.en) || []),
+    ...(recipe.tags?.map((tag) => tag.name?.bn) || []),
   ]
     .filter(Boolean)
     .map(normalizeText);
 
-  return haystacks.some(
-    (text) =>
-      text.includes(normalizedQuery) || fuzzyIncludes(text, normalizedQuery),
-  );
+  if (titleEn === q || titleBn === q) {
+    return true;
+  }
+
+  if (searchTerms.includes(q)) {
+    return true;
+  }
+
+  return searchable.some((item) => {
+    // Full query
+    if (item === q || item.includes(q) || fuzzyIncludes(item, q)) {
+      return true;
+    }
+
+    // Token match
+    return tokens.some((token) => {
+      return item.includes(token) || fuzzyIncludes(item, token);
+    });
+  });
 }
 
 /* -------------------------------------------------------------------------- */
@@ -201,6 +237,20 @@ export function matchRecipes(
 
   for (const recipe of allRecipes) {
     const summary = getMatchSummary(recipe, constraints, language);
+    const query = normalizeText(constraints.query || "");
+
+    const searchableText = [
+      recipe.title?.en,
+      recipe.title?.bn,
+      ...(recipe.searchTerms?.en || []),
+      ...(recipe.searchTerms?.bn || []),
+    ]
+      .filter(Boolean)
+      .map(normalizeText);
+
+    const queryMatched =
+      query && searchableText.some((text) => text.includes(query));
+
     if (
       constraints.ingredients?.length > 0 &&
       summary.ingredientOverlap === 0
@@ -233,8 +283,14 @@ export function matchRecipes(
       continue;
     }
 
-    // At least one valid match
-    if (summary.matchCount > 0) {
+    const shouldInclude =
+      summary.matchCount > 0 ||
+      queryMatched ||
+      (!constraints.dish &&
+        constraints.query &&
+        matchesFreeText(recipe, constraints.query, language));
+
+    if (shouldInclude) {
       candidates.push(recipe);
     }
   }

@@ -83,6 +83,52 @@ src/
 
 
 
+Exact Title Match
+      +1000
+
+Exact Slug Match
+      +1000
+
+SearchTerms Match
+      +500
+
+Main Ingredient
+      +300
+
+Tags
+      +200
+
+Cuisine
+      +150
+
+Category
+      +150
+
+Description
+      +80
+
+Fuzzy
+      +30
+
+1. Exact slug match
+2. Exact title match
+3. Exact searchTerms match
+4. Main ingredient match
+5. Tag match
+6. Cuisine match
+7. Category match
+8. Description match
+9. Fuzzy match
+
+
+Commit 1 — Ranking System
+Commit 2 — Entity Extractor
+Commit 3 — Recommendation Engine
+Commit 4 — Conversation Memory
+Commit 5 — Smart Search
+Commit 6 — Intro & AI Personality
+
+
 Phase 1 — Foundation
 ✅ config.js Ok
 ✅ language-detector.js Ok no need to change in future

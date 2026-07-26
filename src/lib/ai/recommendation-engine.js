@@ -2,7 +2,7 @@
 
 import { getAllRecipes } from "@/lib/recipes";
 import { MATCH_CONFIG } from "./config";
-import { matchRecipes } from "./recipe-matcher";
+import { matchRecipes, matchesFreeText } from "./recipe-matcher";
 import { rankRecipes } from "./recipe-ranker";
 
 /* -------------------------------------------------------------------------- */
@@ -30,6 +30,9 @@ export function buildConstraints(entities = {}) {
   return {
     ingredients: entities.ingredients || [],
     dish: entities.dish || null,
+
+    query: entities.query || null,
+
     cuisine: entities.cuisine || null,
     category: entities.category || null,
     diet: entities.diet || null,
@@ -89,12 +92,24 @@ export function getRecommendations(constraints, { language = "en" } = {}) {
 
   const candidates = matchRecipes(allRecipes, constraints);
 
-  if (candidates.length > 0) {
-    const ranked = rankRecipes(candidates, constraints, language);
+  let smartCandidates = [];
+
+  if (constraints.query) {
+    smartCandidates = allRecipes.filter((recipe) =>
+      matchesFreeText(recipe, constraints.query, language),
+    );
+  }
+
+  const finalCandidates =
+    smartCandidates.length > 0 ? smartCandidates : candidates;
+
+  if (finalCandidates.length > 0) {
+    const ranked = rankRecipes(finalCandidates, constraints, language);
+
     return {
       results: ranked.slice(0, MATCH_CONFIG.MAX_RESULTS),
       isFallback: false,
-      totalCandidates: candidates.length,
+      totalCandidates: ranked.length,
     };
   }
 
@@ -102,10 +117,11 @@ export function getRecommendations(constraints, { language = "en" } = {}) {
   // Fall back to ranking ALL recipes against whatever constraints we
   // have, so the closest possible matches still surface.
   const fallbackRanked = rankRecipes(allRecipes, constraints, language);
+
   return {
-    results: [],
-    isFallback: false,
-    totalCandidates: 0,
+    results: fallbackRanked.slice(0, MATCH_CONFIG.MAX_RESULTS),
+    isFallback: true,
+    totalCandidates: fallbackRanked.length,
     reason: "NO_MATCH_FOUND",
   };
 }
@@ -127,26 +143,25 @@ export function getRecommendationsForDish(
 ) {
   const allRecipes = getAllRecipes();
 
-  // Find the exact recipe by slug
   const exact = allRecipes.find((recipe) => recipe.slug === dishSlug);
 
-  // If no exact recipe exists, fall back to the normal search pipeline
   if (!exact) {
     return getRecommendations(constraints, { language });
   }
 
-  // Return ONLY the exact recipe.
-  // Related recipes will be handled separately in future ("Show more", "Related", etc.)
+  const siblings = allRecipes.filter(
+    (recipe) =>
+      recipe.slug !== exact.slug &&
+      recipe.category?.slug === exact.category?.slug,
+  );
+
+  const ranked = rankRecipes([exact, ...siblings], constraints, language);
+
   return {
-    results: [
-      {
-        ...exact,
-        matchType: "exact",
-      },
-    ],
+    results: ranked.slice(0, MATCH_CONFIG.MAX_RESULTS),
     isFallback: false,
-    totalCandidates: 1,
-    searchMode: "exact",
+    totalCandidates: ranked.length,
+    searchMode: "dish",
   };
 }
 
