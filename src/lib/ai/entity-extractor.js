@@ -17,6 +17,7 @@ import {
   normalizeCuisine,
   normalizeCategory,
   normalizeDiet,
+  normalizeRecipe,
 } from "./entity-normalizer";
 import {
   getIngredients,
@@ -144,23 +145,7 @@ export function extractIngredients(text, language = "en") {
  * "বিরিয়ানি"). Returns the single best-matching recipe slug, or null.
  */
 export function extractDish(text) {
-  const normalized = normalizeText(text);
-
-  const vocab = getDishVocab();
-
-  const exact = vocab.find((entry) =>
-    entry.names.some((name) => normalizeText(name) === normalized),
-  );
-
-  if (exact) {
-    return exact.slug;
-  }
-
-  const partial = matchVocabInText(text, vocab, {
-    fuzzy: true,
-  });
-
-  return partial[0] || null;
+  return normalizeRecipe(text);
 }
 
 /* -------------------------------------------------------------------------- */

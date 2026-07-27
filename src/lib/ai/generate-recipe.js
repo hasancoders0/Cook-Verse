@@ -4,7 +4,6 @@ import { INTENTS } from "./config";
 import { detectLanguage } from "./language-detector";
 import { parsePrompt } from "./prompt-parser";
 import { extractEntities, hasAnyEntities } from "./entity-extractor";
-import { normalizeText } from "@/lib/utils";
 
 import {
   createSession,
@@ -237,17 +236,11 @@ export function generateRecipe(rawText, { debug = true } = {}) {
         query: rawText,
       };
 
-      const exactQuery =
-        effectiveEntities.dish &&
-        normalizeText(rawText) ===
-          normalizeText(effectiveEntities.dish.replace(/-/g, " "));
-
-      searchResult =
-        effectiveEntities.dish && exactQuery
-          ? getRecommendationsForDish(effectiveEntities.dish, constraints, {
-              language,
-            })
-          : getRecommendations(constraints, { language });
+      searchResult = effectiveEntities.dish
+        ? getRecommendationsForDish(effectiveEntities.dish, constraints, {
+            language,
+          })
+        : getRecommendations(constraints, { language });
 
       updateContext(currentSession, effectiveEntities);
 

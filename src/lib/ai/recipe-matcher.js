@@ -1,7 +1,12 @@
 // src/lib/ai/recipe-matcher.js
 
 import { flattenIngredients } from "@/lib/recipes";
-import { normalizeText, fuzzyIncludes, tokenize } from "@/lib/utils";
+import {
+  normalizeText,
+  fuzzyIncludes,
+  similarity,
+  tokenize,
+} from "@/lib/utils";
 
 /* -------------------------------------------------------------------------- */
 /* Field-Level Matchers                                                      */
@@ -148,12 +153,110 @@ export function matchesFreeText(recipe, query = "", language = "en") {
     }
 
     // Token match
-    return tokens.some((token) => {
+    return tokens.every((token) => {
       return item.includes(token) || fuzzyIncludes(item, token);
     });
   });
 }
 
+export function smartSearch(recipe, query = "") {
+  if (!query) return false;
+
+  const q = normalizeText(query);
+
+  // 1. Exact slug
+  if (normalizeText(recipe.slug) === q) {
+    return true;
+  }
+
+  // 2. Exact title
+  const titles = [recipe.title?.en, recipe.title?.bn]
+    .filter(Boolean)
+    .map(normalizeText);
+
+  if (titles.includes(q)) {
+    return true;
+  }
+
+  // 3. searchTerms
+  const searchTerms = [
+    ...(recipe.searchTerms?.en || []),
+    ...(recipe.searchTerms?.bn || []),
+  ].map(normalizeText);
+
+  if (searchTerms.includes(q)) {
+    return true;
+  }
+
+  // 4. Main Ingredients
+  const mainIngredients = (recipe.ingredientGroups || [])
+    .flatMap((group) => group.items || [])
+    .filter((item) => item.isMainIngredient)
+    .flatMap((item) => [item.slug, item.name?.en, item.name?.bn])
+    .filter(Boolean)
+    .map(normalizeText);
+
+  if (mainIngredients.includes(q)) {
+    return true;
+  }
+
+  // 5. Tags
+  const tags = (recipe.tags || [])
+    .flatMap((tag) => [tag.slug, tag.name?.en, tag.name?.bn])
+    .filter(Boolean)
+    .map(normalizeText);
+
+  if (tags.includes(q)) {
+    return true;
+  }
+
+  // 6. Cuisine
+  const cuisine = [
+    recipe.cuisine?.slug,
+    recipe.cuisine?.name?.en,
+    recipe.cuisine?.name?.bn,
+  ]
+    .filter(Boolean)
+    .map(normalizeText);
+
+  if (cuisine.includes(q)) {
+    return true;
+  }
+
+  // 7. Category
+  const category = [
+    recipe.category?.slug,
+    recipe.category?.name?.en,
+    recipe.category?.name?.bn,
+  ]
+    .filter(Boolean)
+    .map(normalizeText);
+
+  if (category.includes(q)) {
+    return true;
+  }
+
+  // 8. Description
+  const descriptions = [recipe.description?.en, recipe.description?.bn]
+    .filter(Boolean)
+    .map(normalizeText);
+
+  if (descriptions.some((text) => text.includes(q))) {
+    return true;
+  }
+
+  // 9. Fuzzy
+  const allTexts = [
+    ...titles,
+    ...searchTerms,
+    ...mainIngredients,
+    ...tags,
+    ...cuisine,
+    ...category,
+  ];
+
+  return allTexts.some((text) => similarity(text, q) >= 0.75);
+}
 /* -------------------------------------------------------------------------- */
 /* Match Scoring (per-recipe overlap summary)                               */
 /* -------------------------------------------------------------------------- */
@@ -239,17 +342,8 @@ export function matchRecipes(
     const summary = getMatchSummary(recipe, constraints, language);
     const query = normalizeText(constraints.query || "");
 
-    const searchableText = [
-      recipe.title?.en,
-      recipe.title?.bn,
-      ...(recipe.searchTerms?.en || []),
-      ...(recipe.searchTerms?.bn || []),
-    ]
-      .filter(Boolean)
-      .map(normalizeText);
-
     const queryMatched =
-      query && searchableText.some((text) => text.includes(query));
+      query && matchesFreeText(recipe, constraints.query, language);
 
     if (
       constraints.ingredients?.length > 0 &&
@@ -283,12 +377,7 @@ export function matchRecipes(
       continue;
     }
 
-    const shouldInclude =
-      summary.matchCount > 0 ||
-      queryMatched ||
-      (!constraints.dish &&
-        constraints.query &&
-        matchesFreeText(recipe, constraints.query, language));
+    const shouldInclude = summary.matchCount > 0 || queryMatched;
 
     if (shouldInclude) {
       candidates.push(recipe);

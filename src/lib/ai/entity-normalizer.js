@@ -1,6 +1,18 @@
 // src/lib/ai/entity-normalizer.js
 
-import { normalizeText, normalizeSlug, fuzzyIncludes, similarity } from "@/lib/utils";
+import {
+  getIngredients,
+  getCuisines,
+  getCategories,
+  getDiets,
+  getAllRecipes,
+} from "@/lib/recipes";
+import {
+  normalizeText,
+  normalizeSlug,
+  fuzzyIncludes,
+  similarity,
+} from "@/lib/utils";
 import { MATCH_CONFIG } from "./config";
 
 /* -------------------------------------------------------------------------- */
@@ -13,102 +25,134 @@ import { MATCH_CONFIG } from "./config";
  * will pick them up automatically once a matching slug also exists in
  * a recipe's ingredientGroups.
  */
-const INGREDIENT_ALIASES = {
-  chicken: ["chicken", "মুরগি", "মুরগীর মাংস", "মুরগীর", "মুরগি মাংস"],
-  beef: ["beef", "গরুর মাংস", "গরু", "গরুর গোশত"],
-  mutton: ["mutton", "খাসির মাংস", "খাসি", "ছাগলের মাংস"],
-  fish: [
-   "fish",
-   "মাছ",
-   "ইলিশ",
-   "hilsa",
-   "কাতলা",
-   "katla",
-   "কই",
-   "koi",
-   "কাকিলা",
-   "kakila",
-   "কাঁকড়া",
-   "crab"
-],
-  egg: ["egg", "eggs", "ডিম"],
-  potato: ["potato", "potatoes", "aloo", "আলু"],
-  onion: ["onion", "onions", "পেঁয়াজ", "পিয়াজ"],
-  "red-onion": ["red onion", "লাল পেঁয়াজ"],
-  garlic: ["garlic", "রসুন"],
-  ginger: ["ginger", "আদা"],
-  tomato: ["tomato", "tomatoes", "টমেটো"],
-  cucumber: ["cucumber", "শসা"],
-  carrot: ["carrot", "carrots", "গাজর"],
-  lettuce: ["lettuce", "লেটুস"],
-  rice: ["rice", "চাল", "ভাত"],
-  "basmati-rice": ["basmati rice", "বাসমতি চাল"],
-  flour: ["flour", "ময়দা", "আটা"],
-  sugar: ["sugar", "চিনি"],
-  salt: ["salt", "লবণ"],
-  "black-pepper": ["black pepper", "pepper", "গোলমরিচ"],
-  "olive-oil": ["olive oil", "অলিভ অয়েল"],
-  oil: ["oil", "cooking oil", "তেল"],
-  "lemon-juice": ["lemon juice", "লেবুর রস"],
-  lemon: ["lemon", "লেবু"],
-  yogurt: ["yogurt", "yoghurt", "দই"],
-  cheese: ["cheese", "চিজ", "পনির"],
-  butter: ["butter", "মাখন"],
-  bun: ["bun", "buns", "বান"],
-  lentil: ["lentil", "lentils", "ডাল"],
-  cumin: ["cumin", "জিরা"],
-  coriander: ["coriander", "cilantro", "ধনিয়া", "ধনেপাতা"],
-  turmeric: ["turmeric", "হলুদ"],
-  "chili-powder": ["chili powder", "chilli powder", "মরিচ গুঁড়া"],
-  "green-chili": ["green chili", "green chilli", "কাঁচা মরিচ"],
-};
+function buildIngredientAliases() {
+  return Object.fromEntries(
+    getIngredients().map((item) => {
+      const aliases = new Set();
+
+      // ------------------------------------------------------------------
+      // Slug
+      // ------------------------------------------------------------------
+
+      aliases.add(item.slug);
+
+      item.slug.split("-").forEach((part) => {
+        if (part) aliases.add(part);
+      });
+
+      // ------------------------------------------------------------------
+      // English Name
+      // ------------------------------------------------------------------
+
+      if (item.name?.en) {
+        aliases.add(item.name.en);
+
+        // Example:
+        // Ilish Fish (Hilsa)
+        const cleanName = item.name.en.replace(/\(.*?\)/g, "").trim();
+
+        aliases.add(cleanName);
+
+        // Parentheses text
+        const match = item.name.en.match(/\((.*?)\)/);
+
+        if (match?.[1]) {
+          aliases.add(match[1].trim());
+        }
+
+        // Remove common suffix words
+        const shortName = cleanName
+          .replace(/\b(Fish|Meat|Chicken|Beef|Mutton)\b/gi, "")
+          .trim();
+
+        if (shortName && shortName !== cleanName) {
+          aliases.add(shortName);
+        }
+      }
+
+      // ------------------------------------------------------------------
+      // Bangla Name
+      // ------------------------------------------------------------------
+
+      if (item.name?.bn) {
+        aliases.add(item.name.bn);
+
+        const shortBn = item.name.bn
+          .replace(/মাছ/g, "")
+          .replace(/মাংস/g, "")
+          .trim();
+
+        if (shortBn && shortBn !== item.name.bn) {
+          aliases.add(shortBn);
+        }
+      }
+
+      return [item.slug, [...aliases]];
+    }),
+  );
+}
+
+
+function buildRecipeAliases() {
+  return Object.fromEntries(
+    getAllRecipes().map((recipe) => {
+      const aliases = new Set();
+
+      // slug
+      aliases.add(recipe.slug);
+
+      // title
+      if (recipe.title?.en) aliases.add(recipe.title.en);
+      if (recipe.title?.bn) aliases.add(recipe.title.bn);
+
+      // searchTerms
+      (recipe.searchTerms?.en || []).forEach((term) => aliases.add(term));
+      (recipe.searchTerms?.bn || []).forEach((term) => aliases.add(term));
+
+      return [recipe.slug, [...aliases]];
+    }),
+  );
+}
+
+
+const INGREDIENT_ALIASES = buildIngredientAliases();
+const RECIPE_ALIASES = buildRecipeAliases();
+
+
+
+
 
 /* -------------------------------------------------------------------------- */
 /* Cuisine Aliases                                                            */
 /* -------------------------------------------------------------------------- */
-
-const CUISINE_ALIASES = {
-  bangladeshi: ["bangladeshi", "bangla", "দেশি", "বাংলাদেশি"],
-  indian: ["indian", "ভারতীয়"],
-  italian: ["italian", "ইতালিয়ান", "ইতালীয়"],
-  chinese: ["chinese", "চাইনিজ", "চীনা"],
-  american: ["american", "আমেরিকান"],
-  mexican: ["mexican", "মেক্সিকান"],
-  thai: ["thai", "থাই"],
-  international: ["international", "আন্তর্জাতিক"],
-  arab: ["arab", "arabic", "middle eastern", "আরবি"],
-};
+const CUISINE_ALIASES = Object.fromEntries(
+  getCuisines().map((item) => [
+    item.slug,
+    [item.slug, item.name?.en, item.name?.bn].filter(Boolean),
+  ]),
+);
 
 /* -------------------------------------------------------------------------- */
 /* Category Aliases                                                          */
 /* -------------------------------------------------------------------------- */
 
-const CATEGORY_ALIASES = {
-  breakfast: ["breakfast", "নাস্তা", "সকালের নাস্তা"],
-  lunch: ["lunch", "দুপুরের খাবার"],
-  dinner: ["dinner", "রাতের খাবার"],
-  salad: ["salad", "সালাদ"],
-  dessert: ["dessert", "sweet", "মিষ্টি"],
-  snack: ["snack", "snacks", "নাস্তা", "স্ন্যাক্স"],
-  "main-course": ["main course", "main dish", "প্রধান খাবার"],
-  soup: ["soup", "স্যুপ"],
-  "fast-food": ["fast food", "ফাস্ট ফুড"],
-};
+const CATEGORY_ALIASES = Object.fromEntries(
+  getCategories().map((item) => [
+    item.slug,
+    [item.slug, item.name?.en, item.name?.bn].filter(Boolean),
+  ]),
+);
 
 /* -------------------------------------------------------------------------- */
 /* Diet Aliases                                                              */
 /* -------------------------------------------------------------------------- */
 
-const DIET_ALIASES = {
-  vegetarian: ["vegetarian", "veg", "নিরামিষ"],
-  vegan: ["vegan", "ভেগান"],
-  "low-calorie": ["low calorie", "low-calorie", "diet food", "কম ক্যালোরি"],
-  "gluten-free": ["gluten free", "gluten-free", "গ্লুটেন ফ্রি"],
-  "high-protein": ["high protein", "high-protein", "উচ্চ প্রোটিন"],
-  healthy: ["healthy", "স্বাস্থ্যকর"],
-  spicy: ["spicy", "hot", "ঝাল", "মসলাদার"],
-  "not-spicy": ["not spicy", "mild", "ঝাল ছাড়া", "কম ঝাল"],
-};
+const DIET_ALIASES = Object.fromEntries(
+  getDiets().map((item) => [
+    item.slug,
+    [item.slug, item.name?.en, item.name?.bn].filter(Boolean),
+  ]),
+);
 
 /* -------------------------------------------------------------------------- */
 /* Generic Alias Resolution                                                  */
@@ -129,6 +173,8 @@ function buildAliasIndex(aliasMap) {
 }
 
 const INGREDIENT_INDEX = buildAliasIndex(INGREDIENT_ALIASES);
+const RECIPE_INDEX = buildAliasIndex(RECIPE_ALIASES);
+
 const CUISINE_INDEX = buildAliasIndex(CUISINE_ALIASES);
 const CATEGORY_INDEX = buildAliasIndex(CATEGORY_ALIASES);
 const DIET_INDEX = buildAliasIndex(DIET_ALIASES);
@@ -140,7 +186,12 @@ const DIET_INDEX = buildAliasIndex(DIET_ALIASES);
  *  2. Already-canonical slug (value is itself a key in aliasMap)
  *  3. Fuzzy match against all known aliases (typo tolerance)
  */
-function resolveAlias(value, index, aliasMap, threshold = MATCH_CONFIG.ENTITY_MATCH_THRESHOLD) {
+function resolveAlias(
+  value,
+  index,
+  aliasMap,
+  threshold = MATCH_CONFIG.ENTITY_MATCH_THRESHOLD,
+) {
   if (!value) return null;
 
   const normalized = normalizeText(value);
@@ -199,6 +250,9 @@ export function normalizeDiet(value) {
   return resolveAlias(value, DIET_INDEX, DIET_ALIASES);
 }
 
+export function normalizeRecipe(value) {
+  return resolveAlias(value, RECIPE_INDEX, RECIPE_ALIASES);
+}
 /* -------------------------------------------------------------------------- */
 /* Batch Helpers                                                             */
 /* -------------------------------------------------------------------------- */

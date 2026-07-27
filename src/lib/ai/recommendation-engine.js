@@ -2,7 +2,7 @@
 
 import { getAllRecipes } from "@/lib/recipes";
 import { MATCH_CONFIG } from "./config";
-import { matchRecipes, matchesFreeText } from "./recipe-matcher";
+import { matchRecipes } from "./recipe-matcher";
 import { rankRecipes } from "./recipe-ranker";
 
 /* -------------------------------------------------------------------------- */
@@ -92,19 +92,8 @@ export function getRecommendations(constraints, { language = "en" } = {}) {
 
   const candidates = matchRecipes(allRecipes, constraints);
 
-  let smartCandidates = [];
-
-  if (constraints.query) {
-    smartCandidates = allRecipes.filter((recipe) =>
-      matchesFreeText(recipe, constraints.query, language),
-    );
-  }
-
-  const finalCandidates =
-    smartCandidates.length > 0 ? smartCandidates : candidates;
-
-  if (finalCandidates.length > 0) {
-    const ranked = rankRecipes(finalCandidates, constraints, language);
+  if (candidates.length > 0) {
+    const ranked = rankRecipes(candidates, constraints, language);
 
     return {
       results: ranked.slice(0, MATCH_CONFIG.MAX_RESULTS),
@@ -149,13 +138,7 @@ export function getRecommendationsForDish(
     return getRecommendations(constraints, { language });
   }
 
-  const siblings = allRecipes.filter(
-    (recipe) =>
-      recipe.slug !== exact.slug &&
-      recipe.category?.slug === exact.category?.slug,
-  );
-
-  const ranked = rankRecipes([exact, ...siblings], constraints, language);
+  const ranked = rankRecipes([exact], constraints, language);
 
   return {
     results: ranked.slice(0, MATCH_CONFIG.MAX_RESULTS),
@@ -174,7 +157,35 @@ export function getRecommendationsForDish(
  * set, for use as follow-up chips (per the spec's "Note: Should show
  * here name recipe list dish name..." annotations).
  */
+export function getRelatedRecipes(recipe) {
+  if (!recipe) return [];
+
+  const allRecipes = getAllRecipes();
+
+  return allRecipes.filter(
+    (item) =>
+      item.slug !== recipe.slug &&
+      item.category?.slug === recipe.category?.slug,
+  );
+}
+
 export function buildDishSuggestions(results = [], language = "en") {
+  // Exact recipe search
+  if (results.length === 1) {
+    const current = results[0];
+
+    return getAllRecipes()
+      .filter(
+        (recipe) =>
+          recipe.slug !== current.slug &&
+          recipe.category?.slug === current.category?.slug,
+      )
+      .slice(0, MATCH_CONFIG.MAX_SUGGESTIONS)
+      .map((recipe) => recipe.title?.[language] || recipe.title?.en)
+      .filter(Boolean);
+  }
+
+  // Normal search
   return results
     .slice(0, MATCH_CONFIG.MAX_SUGGESTIONS)
     .map((recipe) => recipe.title?.[language] || recipe.title?.en)
